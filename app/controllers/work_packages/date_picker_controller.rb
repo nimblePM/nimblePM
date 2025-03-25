@@ -81,10 +81,22 @@ class WorkPackages::DatePickerController < ApplicationController
   def edit
     set_date_attributes_to_work_package
 
-    render datepicker_modal_component
+    respond_to do |format|
+      format.turbo_stream do
+        replace_via_turbo_stream(
+          component: datepicker_modal_component
+        )
+        render turbo_stream: turbo_streams
+      end
+      # TODO: preserve context for selecting start and end date on the datepicker.
+      format.html do
+        render :show,
+               locals: { work_package:, schedule_manually:, params: params.merge(date_mode: date_mode).permit! },
+               layout: false
+      end
+    end
   end
 
-  # rubocop:disable Metrics/AbcSize
   def create
     make_fake_initial_work_package
     service_call = set_date_attributes_to_work_package
@@ -117,7 +129,6 @@ class WorkPackages::DatePickerController < ApplicationController
       }
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   def update
     service_call = WorkPackages::UpdateService
@@ -125,25 +136,18 @@ class WorkPackages::DatePickerController < ApplicationController
                           model: @work_package)
                      .call(work_package_datepicker_params)
 
-    if service_call.success?
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: []
-        end
-      end
-    else
-      respond_to do |format|
-        format.turbo_stream do
-          # Bundle 422 status code into stream response so
-          # Angular has context as to the success or failure of
-          # the request in order to fetch the new set of Work Package
-          # attributes in the ancestry solely on success.
-          render turbo_stream: [
-            turbo_stream.morph("wp-datepicker-dialog--content", datepicker_modal_component)
-          ], status: :unprocessable_entity
-        end
-      end
+    unless service_call.success?
+      update_via_turbo_stream(
+        component: datepicker_modal_component,
+        method: "morph"
+      )
     end
+
+    # Bundle 422 status code into stream response so
+    # Angular has context as to the success or failure of
+    # the request in order to fetch the new set of Work Package
+    # attributes in the ancestry solely on success.
+    respond_to_with_turbo_streams(status: service_call.success? ? :ok : :unprocessable_entity)
   end
 
   private

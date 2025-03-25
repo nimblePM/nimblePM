@@ -57,10 +57,6 @@ module WorkPackages
         @date_mode = date_mode
       end
 
-      def wrapper_key
-        "wp-datepicker-dialog--content"
-      end
-
       private
 
       def schedule_manually?
