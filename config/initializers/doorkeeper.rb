@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (needs plugins)
   orm :active_record
@@ -98,6 +100,8 @@ Doorkeeper.configure do
   # https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes
   #
   default_scopes :api_v3
+
+  optional_scopes :scim_v2
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then

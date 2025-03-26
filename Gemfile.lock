@@ -1122,6 +1122,8 @@ GEM
     sanitize (7.0.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.16.8)
+    scimitar (2.11.0)
+      rails (>= 7.0)
     secure_headers (7.1.0)
     securerandom (0.4.1)
     selenium-devtools (0.135.0)
@@ -1450,6 +1452,7 @@ DEPENDENCIES
   ruby-progressbar (~> 1.13.0)
   rubytree (~> 2.1.0)
   sanitize (~> 7.0.0)
+  scimitar
   secure_headers (~> 7.1.0)
   selenium-devtools
   selenium-webdriver (~> 4.20)
@@ -1867,6 +1870,7 @@ CHECKSUMS
   rubyzip (2.3.2) sha256=3f57e3935dc2255c414484fbf8d673b4909d8a6a57007ed754dde39342d2373f
   safety_net_attestation (0.4.0) sha256=96be2d74e7ed26453a51894913449bea0e072f44490021545ac2d1c38b0718ce
   sanitize (7.0.0) sha256=269d1b9d7326e69307723af5643ec032ff86ad616e72a3b36d301ac75a273984
+  scimitar (2.11.0) sha256=77cf779a843be7d572046acdcf0a1829bd3b1c33db993fa83faf7f1863d8c625
   secure_headers (7.1.0) sha256=6b1f9d5f9507af2948f4636452c41c09371927836396c2185438ffdf0a731124
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-devtools (0.135.0) sha256=3862ec1f3e940a030f492b3691d11af35544789f961fcd0633cb89e4ea4251ec

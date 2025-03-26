@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #  OpenProject is an open source project management software.
 #  Copyright (C) the OpenProject GmbH
 #
@@ -92,6 +94,7 @@ module OpenProject
     # Plugins can declare new scopes by declaring new constants in this module.
     module Scope
       API_V3 = :api_v3
+      SCIM_V2 = :scim_v2
 
       class << self
         def values

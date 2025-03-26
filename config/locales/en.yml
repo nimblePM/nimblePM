@@ -1106,6 +1106,8 @@ en:
         new_password: "New password"
         password_confirmation: "Confirmation"
         consented_at: "Consented at"
+      group:
+        identity_url: "Identity URL"
       user_preference:
         comments_sorting: "Display comments"
         dismissed_enterprise_banners: "Hidden enterprise banners"

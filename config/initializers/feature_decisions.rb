@@ -64,3 +64,5 @@ OpenProject::FeatureDecisions.add :work_package_comment_id_url,
 OpenProject::FeatureDecisions.add :comments_with_restricted_visibility,
                                   description: "Enables submitting comments that are restricted " \
                                                "and only a subset of users can see"
+OpenProject::FeatureDecisions.add :scim_api,
+                                  description: "Enables SCIM API."

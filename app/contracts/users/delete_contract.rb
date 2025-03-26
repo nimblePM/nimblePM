@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -41,7 +43,8 @@ module Users
       if actor == user
         Setting.users_deletable_by_self?
       else
-        actor.admin? && actor.active? && Setting.users_deletable_by_admins?
+        (actor.admin? && actor.active? && Setting.users_deletable_by_admins?) ||
+          User.system == actor
       end
     end
   end

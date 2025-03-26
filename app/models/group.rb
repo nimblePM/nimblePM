@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -66,6 +68,80 @@ class Group < Principal
   def to_s
     lastname
   end
+
+  def scim_external_id
+    return nil if identity_url.blank?
+
+    identity_url.split(":", 2).second
+  end
+
+  def scim_external_id=(external_id)
+    oidc_provider = OpenIDConnect::Provider.first
+    raise "There should at least one OIDC Provider for SCIM to work with" unless oidc_provider
+
+    self.identity_url = "#{oidc_provider.slug}:#{external_id}"
+    external_id
+  end
+
+  def scim_users_and_groups
+    users
+  end
+
+  def scim_users_and_groups=(_array)
+    users
+  end
+
+  def self.scim_resource_type
+    Scimitar::Resources::Group
+  end
+
+  def self.scim_attributes_map
+    {
+      id: :id,
+      externalId: :scim_external_id,
+      displayName: :name,
+      members: [
+        list: :scim_users_and_groups,
+        using: {
+          value: :id
+        },
+        find_with: ->(scim_list_entry) {
+          id   = scim_list_entry["value"]
+          type = scim_list_entry["type"] || "User" # Some online examples omit 'type' and believe 'User' will be assumed
+
+          case type.downcase
+          when "user"
+            User.user.where.not(identity_url: [nil, ""]).find_by(id:)
+          when "group"
+            # TODO OP does not support nesting of groups but SCIM does.
+            # For now raises exception in case of group as a member arrival.
+            raise Scimitar::InvalidSyntaxError.new("Unsupported type #{type.inspect}")
+          else
+            raise Scimitar::InvalidSyntaxError.new("Unrecognised type #{type.inspect}")
+          end
+        }
+      ]
+    }
+  end
+
+  def self.scim_mutable_attributes
+    nil
+  end
+
+  def self.scim_queryable_attributes
+    {
+      displayName: :name
+    }
+  end
+
+  def self.scim_timestamps_map
+    {
+      created: :created_at,
+      lastModified: :updated_at
+    }
+  end
+
+  include Scimitar::Resources::Mixin
 
   private
 

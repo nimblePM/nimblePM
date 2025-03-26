@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -30,7 +32,7 @@ require "digest/sha1"
 
 class User < Principal
   VALID_NAME_REGEX = /\A[\d\p{Alpha}\p{Mark}\p{Space}\p{Emoji}'’´\-_.,@()+&*–]+\z/
-  CURRENT_USER_LOGIN_ALIAS = "me".freeze
+  CURRENT_USER_LOGIN_ALIAS = "me"
   USER_FORMATS_STRUCTURE = {
     firstname_lastname: %i[firstname lastname],
     firstname: [:firstname],
@@ -115,7 +117,7 @@ class User < Principal
 
   def self.blocked_condition(blocked)
     block_duration = Setting.brute_force_block_minutes.to_i.minutes
-    blocked_if_login_since = Time.now - block_duration
+    blocked_if_login_since = Time.zone.now - block_duration
     negation = blocked ? "" : "NOT"
 
     ["#{negation} (users.failed_login_count >= ? AND users.last_failed_login_on > ?)",
@@ -274,7 +276,7 @@ class User < Principal
   def self.try_to_autologin(key)
     token = Token::AutoLogin.find_by_plaintext_value(key) # rubocop:disable Rails/DynamicFindBy
     # Make sure there's only 1 token that matches the key
-    if token && ((token.created_at > Setting.autologin.to_i.day.ago) && token.user && token.user.active?)
+    if token && ((token.created_at > Setting.autologin.to_i.day.ago) && token.user&.active?)
       token.user
     end
   end
@@ -486,7 +488,7 @@ class User < Principal
   # Returns the current day according to user's time zone
   def today
     if time_zone.nil?
-      Date.today
+      Time.zone.today
     else
       Time.now.in_time_zone(time_zone).to_date
     end
@@ -561,6 +563,94 @@ class User < Principal
     SystemUser.first
   end
 
+  def scim_external_id
+    return nil if identity_url.blank?
+
+    identity_url.split(":", 2).second
+  end
+
+  def scim_external_id=(external_id)
+    oidc_provider = OpenIDConnect::Provider.first
+    raise "There should at least one OIDC Provider for SCIM to work with" unless oidc_provider
+
+    self.identity_url = "#{oidc_provider.slug}:#{external_id}"
+    external_id
+  end
+
+  def scim_active=(is_active)
+    if is_active
+      activate
+      true
+    else
+      lock if active?
+      false
+    end
+  end
+
+  def scim_active
+    active?
+  end
+
+  def self.scim_resource_type
+    Scimitar::Resources::User
+  end
+
+  def self.scim_attributes_map
+    {
+      id: :id,
+      externalId: :scim_external_id,
+      userName: :login,
+      name: {
+        givenName: :firstname,
+        familyName: :lastname
+      },
+      emails: [
+        {
+          match: "type",
+          with: "work",
+          using: {
+            value: :mail,
+            primary: true
+          }
+        }
+      ],
+
+      groups: [
+        {
+          list: :groups,
+          using: {
+            value: :id,
+            # TODO $ref seems to be mandadory accroding to the spec.
+          }
+        }
+      ],
+      active: :scim_active
+    }
+  end
+
+  def self.scim_mutable_attributes
+    nil
+  end
+
+  def self.scim_queryable_attributes
+    {
+      givenName: { column: :firstname },
+      familyName: { column: :lastname },
+      emails: { column: :mail },
+      groups: { column: Group.arel_table[:id] },
+      "groups.value" => { column: Group.arel_table[:id] }
+    }
+  end
+
+  def self.scim_timestamps_map
+    {
+      created: :created_at,
+      lastModified: :updated_at
+    }
+  end
+
+  include Scimitar::Resources::Mixin
+
   protected
 
   # Login must not be aliased value 'me'
@@ -610,7 +700,7 @@ class User < Principal
   def clean_up_former_passwords
     # minimum 1 to keep the actual user password
     keep_count = [1, Setting[:password_count_former_banned].to_i].max
-    (passwords[keep_count..-1] || []).each(&:destroy)
+    (passwords[keep_count..] || []).each(&:destroy)
   end
 
   def clean_up_password_attribute
@@ -654,7 +744,7 @@ class User < Principal
   def last_failed_login_within_block_time?
     block_duration = Setting.brute_force_block_minutes.to_i.minutes
     last_failed_login_on and
-      Time.now - last_failed_login_on < block_duration
+      Time.zone.now - last_failed_login_on < block_duration
   end
 
   def log_failed_login_count
@@ -666,7 +756,7 @@ class User < Principal
   end
 
   def log_failed_login_timestamp
-    self.last_failed_login_on = Time.now
+    self.last_failed_login_on = Time.zone.now
   end
 
   def self.default_admin_account_changed?
