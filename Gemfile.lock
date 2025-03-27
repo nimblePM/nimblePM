@@ -1452,7 +1452,7 @@ DEPENDENCIES
   ruby-progressbar (~> 1.13.0)
   rubytree (~> 2.1.0)
   sanitize (~> 7.0.0)
-  scimitar
+  scimitar (~> 2.11)
   secure_headers (~> 7.1.0)
   selenium-devtools
   selenium-webdriver (~> 4.20)

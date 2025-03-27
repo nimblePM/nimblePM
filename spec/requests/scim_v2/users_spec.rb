@@ -41,10 +41,53 @@ RSpec.describe "SCIM API Users" do
 
   describe "GET /scim_v2/Users" do
     context "with the feature flag enabled", with_flag: { scim_api: true } do
-      it do
-        group
+      before { group }
 
+      it do
         get "/scim_v2/Users", {}, headers
+
+        response_body = JSON.parse(last_response.body)
+        expect(response_body).to eq("Resources" =>
+                                      [{ "active" => true,
+                                         "emails" => [{ "primary" => true,
+                                                        "type" => "work",
+                                                        "value" => admin.mail }],
+                                         "externalId" => nil,
+                                         "groups" => [],
+                                         "id" => admin.id.to_s,
+                                         "meta" => { "created" => admin.created_at.iso8601,
+                                                     "lastModified" => admin.updated_at.iso8601,
+                                                     "location" => "http://test.host/scim_v2/Users/#{admin.id}",
+                                                     "resourceType" => "User" },
+                                         "name" => { "familyName" => admin.lastname,
+                                                     "givenName" => admin.firstname },
+                                         "schemas" => ["urn:ietf:params:scim:schemas:core:2.0:User"],
+                                         "userName" => admin.login },
+                                       { "active" => true,
+                                         "emails" => [{ "primary" => true,
+                                                        "type" => "work",
+                                                        "value" => user.mail }],
+                                         "externalId" => external_user_id,
+                                         "groups" => [{ "value" => group.id.to_s }],
+                                         "id" => user.id.to_s,
+                                         "meta" => { "created" => user.created_at.iso8601,
+                                                     "lastModified" => user.updated_at.iso8601,
+                                                     "location" => "http://test.host/scim_v2/Users/#{user.id}",
+                                                     "resourceType" => "User" },
+                                         "name" => { "familyName" => user.lastname,
+                                                     "givenName" => user.firstname },
+                                         "schemas" => ["urn:ietf:params:scim:schemas:core:2.0:User"],
+                                         "userName" => user.login },
+                                      ],
+                                    "itemsPerPage" => 100,
+                                    "schemas" => ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
+                                    "startIndex" => 1,
+                                    "totalResults" => 2)
+      end
+
+      it "filters results" do
+        filter_with_existing_rows = ERB::Util.url_encode('familyName Eq "' + user.lastname + '"')
+        get "/scim_v2/Users?filter=#{filter_with_existing_rows}", {}, headers
 
         response_body = JSON.parse(last_response.body)
         expect(response_body).to eq("Resources" => [{ "active" => true,
@@ -66,7 +109,18 @@ RSpec.describe "SCIM API Users" do
                                     "schemas" => ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
                                     "startIndex" => 1,
                                     "totalResults" => 1)
+
+        filter_with_nonexisting_rows = ERB::Util.url_encode('familyName Eq "NONEXISTENT USER LASTNAME"')
+        get "/scim_v2/Users?filter=#{filter_with_nonexisting_rows}", {}, headers
+
+        response_body = JSON.parse(last_response.body)
+        expect(response_body).to eq({"Resources" => [],
+                                     "itemsPerPage" => 100,
+                                     "schemas" => ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
+                                     "startIndex" => 1,
+                                     "totalResults" => 0})
       end
+
     end
 
     context "with the feature flag disabled", with_flag: { scim_api: false } do
@@ -303,7 +357,7 @@ RSpec.describe "SCIM API Users" do
       it "changes external_id" do
         request_body =    {
           "schemas" =>
-          ["urn =>ietf:params:scim:api:messages:2.0:PatchOp"],
+          ["urn:ietf:params:scim:api:messages:2.0:PatchOp"],
           "Operations" => [{
             "op" => "replace",
             "path" => "externalId",
@@ -335,7 +389,7 @@ RSpec.describe "SCIM API Users" do
         new_email_value = "qwertty@gmail.com"
         request_body =    {
           "schemas" =>
-          ["urn =>ietf:params:scim:api:messages:2.0:PatchOp"],
+          ["urn:ietf:params:scim:api:messages:2.0:PatchOp"],
           "Operations" => [{
             "op" => "replace",
             "path" => "emails[type eq \"work\"]",

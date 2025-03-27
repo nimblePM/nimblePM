@@ -62,25 +62,35 @@ RSpec.describe "SCIM API Groups" do
                                       "totalResults" => 1 })
       end
 
-      # it do
-      #   filter = ERB::Util.url_encode('displayName Eq "john"')
-      #   get "/scim_v2/Groups?filter=#{filter}", {}, headers
+      it "filters results" do
+        filter = ERB::Util.url_encode('displayName Eq "' + group.name + '"')
+        get "/scim_v2/Groups?filter=#{filter}", {}, headers
 
-      #   response_body = JSON.parse(last_response.body)
-      #   expect(response_body).to eq({ "Resources" => [{ "displayName" => group.name,
-      #                                                   "externalId" => external_group_id,
-      #                                                   "id" => group.id.to_s,
-      #                                                   "members" => [{ "value" => user.id.to_s }],
-      #                                                   "meta" => { "location" => "http://test.host/scim_v2/Groups/#{group.id}",
-      #                                                               "created" => group.created_at.iso8601,
-      #                                                               "lastModified" => group.updated_at.iso8601,
-      #                                                               "resourceType" => "Group" },
-      #                                                   "schemas" => ["urn:ietf:params:scim:schemas:core:2.0:Group"] }],
-      #                                 "itemsPerPage" => 100,
-      #                                 "schemas" => ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
-      #                                 "startIndex" => 1,
-      #                                 "totalResults" => 1 })
-      # end
+        response_body = JSON.parse(last_response.body)
+        expect(response_body).to eq({ "Resources" => [{ "displayName" => group.name,
+                                                        "externalId" => external_group_id,
+                                                        "id" => group.id.to_s,
+                                                        "members" => [{ "value" => user.id.to_s }],
+                                                        "meta" => { "location" => "http://test.host/scim_v2/Groups/#{group.id}",
+                                                                    "created" => group.created_at.iso8601,
+                                                                    "lastModified" => group.updated_at.iso8601,
+                                                                    "resourceType" => "Group" },
+                                                        "schemas" => ["urn:ietf:params:scim:schemas:core:2.0:Group"] }],
+                                      "itemsPerPage" => 100,
+                                      "schemas" => ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
+                                      "startIndex" => 1,
+                                      "totalResults" => 1 })
+
+        filter = ERB::Util.url_encode('displayName Eq "NONEXISTENT GROUP NAME"')
+        get "/scim_v2/Groups?filter=#{filter}", {}, headers
+
+        response_body = JSON.parse(last_response.body)
+        expect(response_body).to eq({"Resources" => [],
+                                     "itemsPerPage" => 100,
+                                     "schemas" => ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
+                                     "startIndex" => 1,
+                                     "totalResults" => 0})
+      end
     end
 
     context "with the feature flag disabled", with_flag: { scim_api: false } do
@@ -265,7 +275,7 @@ RSpec.describe "SCIM API Groups" do
         new_external_group_id = "new_idp_user_id_123asdqwe12345"
         request_body = {
           "schemas" =>
-          ["urn =>ietf:params:scim:api:messages:2.0:PatchOp"],
+          ["urn:ietf:params:scim:api:messages:2.0:PatchOp"],
           "Operations" => [{
             "op" => "replace",
             "path" => "externalId",

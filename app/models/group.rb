@@ -111,7 +111,7 @@ class Group < Principal
 
           case type.downcase
           when "user"
-            User.user.where.not(identity_url: [nil, ""]).find_by(id:)
+            User.not_builtin.find_by(id:)
           when "group"
             # TODO OP does not support nesting of groups but SCIM does.
             # For now raises exception in case of group as a member arrival.
@@ -130,7 +130,7 @@ class Group < Principal
 
   def self.scim_queryable_attributes
     {
-      displayName: :name
+      displayName: { column: :lastname }
     }
   end
 
