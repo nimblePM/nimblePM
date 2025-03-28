@@ -88,6 +88,8 @@ class Group < Principal
   end
 
   def scim_users_and_groups=(_array)
+    # Nothing is happening here, because users should be added/removed to the group
+    # through Groups::UpdateSerivce. So, it is done on a higher(controller) level.
     users
   end
 
@@ -113,7 +115,7 @@ class Group < Principal
           when "user"
             User.not_builtin.find_by(id:)
           when "group"
-            # TODO OP does not support nesting of groups but SCIM does.
+            # OP does not support nesting of groups but SCIM does.
             # For now raises exception in case of group as a member arrival.
             raise Scimitar::InvalidSyntaxError.new("Unsupported type #{type.inspect}")
           else
@@ -125,6 +127,7 @@ class Group < Principal
   end
 
   def self.scim_mutable_attributes
+    # Allow mutation of everything with a write accessor
     nil
   end
 

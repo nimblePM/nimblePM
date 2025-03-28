@@ -235,7 +235,10 @@ RSpec.describe "SCIM API Groups" do
           "active" => true,
           "externalId" => new_external_group_id,
           "displayName" => group.name,
-          "members" => [{ "value" => user.id.to_s }],
+          "members" => [
+            { "value" => user.id.to_s },
+            { "value" => admin.id.to_s },
+          ],
           "schemas" => ["urn:ietf:params:scim:schemas:core:2.0:Group"]
         }
 
@@ -246,7 +249,10 @@ RSpec.describe "SCIM API Groups" do
         expect(response_body).to eq({ "displayName" => group.name,
                                       "externalId" => new_external_group_id,
                                       "id" => group.id.to_s,
-                                      "members" => [{ "value" => user.id.to_s }],
+                                      "members" => [
+                                        { "value" => admin.id.to_s },
+                                        { "value" => user.id.to_s },
+                                      ],
                                       "meta" => { "location" => "http://test.host/scim_v2/Groups/#{group.id}",
                                                   "created" => group.created_at.iso8601,
                                                   "lastModified" => group.updated_at.iso8601,
@@ -258,49 +264,6 @@ RSpec.describe "SCIM API Groups" do
     context "with the feature flag disabled", with_flag: { scim_api: false } do
       it do
         put "/scim_v2/Groups/123", "", headers
-
-        response_body = JSON.parse(last_response.body)
-        expect(response_body).to eq(
-          { "detail" => "Requires authentication", "schemas" => ["urn:ietf:params:scim:api:messages:2.0:Error"],
-            "status" => "401" }
-        )
-      end
-    end
-  end
-
-  describe "PATCH /scim_v2/Users/:id" do
-    context "with the feature flag enabled", with_flag: { scim_api: true } do
-      it "changes external_id" do
-        group
-        new_external_group_id = "new_idp_user_id_123asdqwe12345"
-        request_body = {
-          "schemas" =>
-          ["urn:ietf:params:scim:api:messages:2.0:PatchOp"],
-          "Operations" => [{
-            "op" => "replace",
-            "path" => "externalId",
-            "value" => new_external_group_id
-          }]
-        }
-        patch "/scim_v2/Groups/#{group.id}", request_body.to_json, headers
-
-        response_body = JSON.parse(last_response.body)
-        group.reload
-        expect(response_body).to eq({ "displayName" => group.name,
-                                      "externalId" => new_external_group_id,
-                                      "id" => group.id.to_s,
-                                      "members" => [{ "value" => user.id.to_s }],
-                                      "meta" => { "location" => "http://test.host/scim_v2/Groups/#{group.id}",
-                                                  "created" => group.created_at.iso8601,
-                                                  "lastModified" => group.updated_at.iso8601,
-                                                  "resourceType" => "Group" },
-                                      "schemas" => ["urn:ietf:params:scim:schemas:core:2.0:Group"] })
-      end
-    end
-
-    context "with the feature flag disabled", with_flag: { scim_api: false } do
-      it do
-        patch "/scim_v2/Groups/123", "", headers
 
         response_body = JSON.parse(last_response.body)
         expect(response_body).to eq(

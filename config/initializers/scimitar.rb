@@ -29,6 +29,9 @@
 #++
 
 Rails.application.config.to_prepare do
+  Scimitar.service_provider_configuration = Scimitar::ServiceProviderConfiguration.new({
+    patch:  Scimitar::Supportable.unsupported
+  })
   Scimitar.engine_configuration = Scimitar::EngineConfiguration.new(
     token_authenticator: Proc.new do |_token, _options|
       OpenProject::FeatureDecisions.scim_api_active?

@@ -62,20 +62,6 @@ module ScimV2
       end
     end
 
-    def update
-      super do |user_id, patch_hash|
-        storage_class.transaction do
-          user = storage_scope.find(user_id)
-          user.from_scim_patch!(patch_hash: patch_hash)
-          Users::UpdateService
-            .new(user: User.system, model: user)
-            .call
-            .on_failure { |call| raise call.message }
-          user.to_scim(location: url_for(action: :show, id: user.id))
-        end
-      end
-    end
-
     def destroy
       super do |user_id|
         user = storage_scope.find(user_id)

@@ -59,21 +59,7 @@ module ScimV2
           group.from_scim!(scim_hash: scim_resource.as_json)
           Groups::UpdateService
             .new(user: User.system, model: group)
-            .call
-            .on_failure { |call| raise call.message }
-          group.to_scim(location: url_for(action: :show, id: group.id))
-        end
-      end
-    end
-
-    def update
-      super do |group_id, patch_hash|
-        storage_class.transaction do
-          group = storage_scope.find(group_id)
-          group.from_scim_patch!(patch_hash: patch_hash)
-          Groups::UpdateService
-            .new(user: User.system, model: group)
-            .call
+            .call(user_ids: scim_resource.members.map(&:value))
             .on_failure { |call| raise call.message }
           group.to_scim(location: url_for(action: :show, id: group.id))
         end

@@ -629,6 +629,7 @@ class User < Principal
   end
 
   def self.scim_mutable_attributes
+    # Allow mutation of everything with a write accessor
     nil
   end
 
