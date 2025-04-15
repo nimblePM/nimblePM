@@ -167,6 +167,12 @@ class Meeting < ApplicationRecord
     !!template
   end
 
+  # One-time meeting time zone
+  # is always in the user's time zone
+  def time_zone
+    User.current.time_zone
+  end
+
   # Returns true if user or current user is allowed to view the meeting
   def visible?(user = User.current)
     user.allowed_in_project?(:view_meetings, project)

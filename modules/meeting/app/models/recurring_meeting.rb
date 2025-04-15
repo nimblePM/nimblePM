@@ -143,7 +143,7 @@ class RecurringMeeting < ApplicationRecord
   end
 
   def time_zone
-    time_zone_string = super || Setting.user_default_timezone.presence || "Etc/UTC"
+    time_zone_string = super || User.current.time_zone
     ActiveSupport::TimeZone[time_zone_string]
   end
 
