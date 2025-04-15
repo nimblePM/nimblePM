@@ -94,7 +94,10 @@ module RecurringMeetings
       schedule_meetings = recurring_meeting.scheduled_meetings
 
       schedule_meetings.each do |scheduled|
-        new_time = scheduled.start_time.change(
+        # Ensure we treat the start_time as a local time of the series
+        start_time = scheduled.start_time.in_zone(recurring_meeting.time_zone)
+        # so that we change the correct hour/minute
+        new_time = start_time.change(
           hour: recurring_meeting.start_time.hour,
           min: recurring_meeting.start_time.min
         )
@@ -169,7 +172,7 @@ module RecurringMeetings
       GoodJob::Job.where(finished_at: nil, concurrency_key:).delete_all
 
       # Ensure we init the next meeting directly
-      InitNextOccurrenceJob.perform_now(recurring_meeting, recurring_meeting.next_occurrence.to_time)
+      InitNextOccurrenceJob.perform_now(recurring_meeting, recurring_meeting.next_occurrence)
     end
 
     def should_reschedule?(recurring_meeting)

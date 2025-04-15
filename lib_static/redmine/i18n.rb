@@ -122,13 +122,21 @@ module Redmine
     # optional specified format.
     #
     # @param time [Time] The time to format.
+    # @param time_zone [ActiveSupport::TimeZone] Use a different time zone than the current users's.
+    #   If provided, will output the time zone identifier
     # @param format [String, nil] The strftime format to use for the date. If nil, the default
     #   date format from `Setting.date_format` is used.
     # @return [String, nil] The formatted date string, or nil if the time is not provided.
-    def format_time_as_date(time, format: nil)
+    def format_time_as_date(time, time_zone: nil, format: nil)
       return nil unless time
 
-      local_date = in_user_zone(time).to_date
+      local =
+        if time_zone
+          time.in_time_zone(time_zone)
+        else
+          in_user_zone(time)
+        end
+      local_date = local.to_date
 
       if format
         local_date.strftime(format)

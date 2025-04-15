@@ -142,9 +142,15 @@ class RecurringMeeting < ApplicationRecord
     super&.in_time_zone(time_zone)
   end
 
+  def time_zone_differs?
+    time_zone != User.current.time_zone
+  end
+
   def time_zone
-    time_zone_string = super || User.current.time_zone
-    ActiveSupport::TimeZone[time_zone_string]
+    time_zone_string = super
+    zone = ActiveSupport::TimeZone[time_zone_string] if time_zone_string.present?
+
+    zone || User.current.time_zone
   end
 
   def schedule
@@ -193,9 +199,11 @@ class RecurringMeeting < ApplicationRecord
   end
 
   def human_frequency_schedule
+    formatted_time = format_time(start_time, time_zone:, include_date: false)
+    time = time_zone_differs? ? "#{formatted_time} (#{friendly_timezone_name(time_zone)})" : formatted_time
     I18n.t("recurring_meeting.in_words.frequency",
            base: base_schedule,
-           time: format_time(start_time, include_date: false))
+           time:)
   end
 
   def reschedule_required?(previous: false)
