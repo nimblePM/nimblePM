@@ -10,7 +10,13 @@ export default class OpRecurringMeetingsFormController extends OpMeetingsFormCon
   updateFrequencyText():void {
     const data = new FormData(this.element as HTMLFormElement);
     const urlSearchParams = new URLSearchParams();
-    ['start_date', 'start_time_hour', 'frequency', 'interval'].forEach((name) => {
+    [
+      'start_date',
+      'start_time_hour',
+      'frequency',
+      'interval',
+      'time_zone'
+    ].forEach((name) => {
       const key = `meeting[${name}]`;
       urlSearchParams.append(key, data.get(key) as string);
     });

@@ -42,6 +42,11 @@ class Meeting::TimeGroup < ApplicationForm
           )
         ) { I18n.t("recurring_meeting.time_zone_difference_banner.title") }
       end
+
+      meeting_form.hidden(
+        name: :time_zone,
+        value: @meeting.time_zone.name
+      )
     end
 
     meeting_form.group(layout: :horizontal) do |group|
