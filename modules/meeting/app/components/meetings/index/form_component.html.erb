@@ -7,10 +7,10 @@
       data: {
         turbo: true,
         controller: [
-          "meetings--form",
           "show-when-value-selected",
-          @meeting.is_a?(RecurringMeeting) ? "recurring-meetings--form" : nil
-        ].compact.join(" "),
+          @meeting.is_a?(RecurringMeeting) ? "recurring-meetings--form" : "meetings--form"
+        ].join(" "),
+        "recurring-meetings--form-persisted-value": @meeting.persisted?,
         "application-target": "dynamic"
       },
       html: {

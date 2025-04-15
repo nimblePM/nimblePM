@@ -1,16 +1,11 @@
-import { ApplicationController } from 'stimulus-use';
-import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
-import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
+import OpMeetingsFormController from 'core-stimulus/controllers/dynamic/meetings/form.controller';
 
-export default class OpRecurringMeetingsFormController extends ApplicationController {
-  private turboRequests:TurboRequestsService;
-  private pathHelper:PathHelperService;
+export default class OpRecurringMeetingsFormController extends OpMeetingsFormController {
+  static values = {
+    persisted: Boolean,
+  };
 
-  async connect() {
-    const context = await window.OpenProject.getPluginContext();
-    this.turboRequests = context.services.turboRequests;
-    this.pathHelper = context.services.pathHelperService;
-  }
+  declare persistedValue:boolean;
 
   updateFrequencyText():void {
     const data = new FormData(this.element as HTMLFormElement);
@@ -28,5 +23,14 @@ export default class OpRecurringMeetingsFormController extends ApplicationContro
           headers: { Accept: 'text/vnd.turbo-stream.html' },
         },
       );
+  }
+
+  updateTimezoneText() {
+    // We don't update the timezone text on editing recurring meetings
+    if (this.persistedValue) {
+      return;
+    }
+
+    super.updateTimezoneText();
   }
 }

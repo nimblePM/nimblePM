@@ -31,6 +31,7 @@
     "paths": {
       "@ng-select/ng-select": ["../node_modules/@ng-select/ng-select/"],
       "core-app/*": ["./app/*"],
+      "core-stimulus/*": ["./stimulus/*"],
       "core-typings/*": [
         "./typings/*"
       ],

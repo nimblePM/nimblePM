@@ -99,6 +99,8 @@ class Meeting::TimeGroup < ApplicationForm
   end
 
   def timezone_caption
+    return if @meeting.is_a?(RecurringMeeting) && @meeting.persisted?
+
     friendly_timezone_name(User.current.time_zone, period: @meeting.start_time)
   end
 end
