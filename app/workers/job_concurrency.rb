@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -31,12 +33,5 @@ module JobConcurrency
 
   included do
     include GoodJob::ActiveJobExtensions::Concurrency
-  end
-
-  ##
-  # Run the concurrency check of good_job without actually trying to enqueue it
-  # Will call the provided block in case the job would be cancelled
-  def check_concurrency(&block)
-    good_job_enqueue_concurrency_check(self, on_abort: block, on_enqueue: nil)
   end
 end

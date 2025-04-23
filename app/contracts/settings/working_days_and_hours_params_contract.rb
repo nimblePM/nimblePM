@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -34,7 +36,6 @@ module Settings
     validate :hours_per_day_are_present
     validate :durations_are_positive_values
     validate :durations_are_within_bounds
-    validate :unique_job
 
     protected
 
@@ -52,7 +53,7 @@ module Settings
 
     def durations_are_positive_values
       if hours_per_day &&
-        hours_per_day_is_negative_or_zero?
+         hours_per_day_is_negative_or_zero?
         errors.add :base, :durations_are_not_positive_numbers
       end
     end
@@ -63,12 +64,6 @@ module Settings
 
     def hours_per_day_is_negative_or_zero?
       !hours_per_day.to_i.positive?
-    end
-
-    def unique_job
-      WorkPackages::ApplyWorkingDaysChangeJob.new.check_concurrency do
-        errors.add :base, :previous_working_day_changes_unprocessed
-      end
     end
 
     def working_days
