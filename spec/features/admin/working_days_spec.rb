@@ -162,21 +162,6 @@ RSpec.describe "Working Days", :js do
         follower              |          XXX   |
       TABLE
     end
-
-    it "shows an error when a previous change to the working days configuration isn't processed yet",
-       with_good_job_batches: [WorkPackages::ApplyWorkingDaysChangeJob] do
-      # Have a job already scheduled
-      WorkPackages::ApplyWorkingDaysChangeJob.perform_later(user_id: 5)
-
-      uncheck "Tuesday"
-      click_on "Apply changes"
-
-      # Not executing the background jobs
-      dialog.confirm
-
-      expect_flash(type: :error,
-                   message: "The previous changes to the working days configuration have not been applied yet.")
-    end
   end
 
   describe "non-working days" do

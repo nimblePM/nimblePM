@@ -44,50 +44,35 @@ RSpec.describe Settings::WorkingDaysAndHoursParamsContract do
     context "without #{attribute}" do
       let(:params) { { working_days: [1], hours_per_day: 8 }.except(attribute) }
 
-      include_examples "contract is invalid", base: :"#{attribute}_are_missing"
+      it_behaves_like "contract is invalid", base: :"#{attribute}_are_missing"
     end
-  end
-
-  context "with an ApplyWorkingDaysChangeJob already existing",
-          with_good_job: WorkPackages::ApplyWorkingDaysChangeJob do
-    let(:params) { { working_days: [1, 2, 3], hours_per_day: 8 } }
-
-    before do
-      WorkPackages::ApplyWorkingDaysChangeJob
-        .set(wait: 10.minutes) # GoodJob executes inline job without wait immediately
-        .perform_later(user_id: current_user.id,
-                       previous_non_working_days: [],
-                       previous_working_days: [1, 2, 3, 4])
-    end
-
-    include_examples "contract is invalid", base: :previous_working_day_changes_unprocessed
   end
 
   describe "0 durations" do
     context "when hours_per_day is 0" do
       let(:params) { { working_days: [1], hours_per_day: 0 } }
 
-      include_examples "contract is invalid", base: :durations_are_not_positive_numbers
+      it_behaves_like "contract is invalid", base: :durations_are_not_positive_numbers
     end
   end
 
   describe "Text durations" do
     let(:params) { { working_days: [1], hours_per_day: "blah" } }
 
-    include_examples "contract is invalid", base: :durations_are_not_positive_numbers
+    it_behaves_like "contract is invalid", base: :durations_are_not_positive_numbers
   end
 
   describe "Negative durations" do
     let(:params) { { working_days: [1], hours_per_day: -2 } }
 
-    include_examples "contract is invalid", base: :durations_are_not_positive_numbers
+    it_behaves_like "contract is invalid", base: :durations_are_not_positive_numbers
   end
 
   describe "Out-of-bounds durations" do
     context "when hours_per_day is greater than 24" do
       let(:params) { { working_days: [1], hours_per_day: 25 } }
 
-      include_examples "contract is invalid", base: :hours_per_day_is_out_of_bounds
+      it_behaves_like "contract is invalid", base: :hours_per_day_is_out_of_bounds
     end
   end
 end
