@@ -41,9 +41,7 @@ class ApplicationForm < Primer::Forms::Base
   end
 
   # @return [ActionView::Base] the view helper instance
-  def helpers
-    @view_context.helpers
-  end
+  delegate :helpers, to: :@view_context
 
   # @return [ActiveRecord::Base] the model instance given to the form builder
   def model
@@ -55,5 +53,20 @@ class ApplicationForm < Primer::Forms::Base
   # @return [String] the human-readable name of the specified attribute
   def attribute_name(field_name)
     model.class.human_attribute_name(field_name)
+  end
+
+  def attribute_label(field_name)
+    attribute_name(field_name)
+  end
+
+  def attribute_label_with_help_text(field_name, attribute_scope = nil)
+    helpers.safe_join([attribute_label(field_name), " ", attribute_help_text(field_name, attribute_scope)])
+  end
+
+  def attribute_help_text(field_name, attribute_scope = nil)
+    helpers.angular_component_tag(
+      "opce-attribute-help-text",
+      inputs: { attribute: field_name, attributeScope: attribute_scope || model&.model_name }
+    )
   end
 end
