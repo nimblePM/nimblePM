@@ -41,7 +41,9 @@ class ApplicationForm < Primer::Forms::Base
   end
 
   # @return [ActionView::Base] the view helper instance
-  delegate :helpers, to: :@view_context
+  def helpers
+    @view_context.helpers
+  end
 
   # @return [ActiveRecord::Base] the model instance given to the form builder
   def model
