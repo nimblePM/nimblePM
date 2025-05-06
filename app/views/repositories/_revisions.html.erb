@@ -39,7 +39,7 @@ See COPYRIGHT and LICENSE files for more details.
           <col>
           <col>
         </colgroup>
-        <caption class="hidden-for-sighted">
+        <caption class="sr-only">
           <span>
             <%= t(:text_table_difference_description, entries: t(:label_changeset) + " " + t(:label_version_plural)) %>
           </span>
@@ -52,7 +52,7 @@ See COPYRIGHT and LICENSE files for more details.
                   <span aria-describedby="revision-id--description">
                     #
                   </span>
-                  <label id="revision-id--description" class="hidden-for-sighted">
+                  <label id="revision-id--description" class="sr-only">
                     <%= t(:label_changeset_id) %>
                   </label>
                 </div>
@@ -114,7 +114,7 @@ See COPYRIGHT and LICENSE files for more details.
                 <%= link_to_revision(changeset, project) %>
               </td>
               <td class="checkbox">
-                <%= label_tag "cb-#{line_num}", t(:description_compare_from) + " " + t(:label_changeset), class: "hidden-for-sighted" %>
+                <%= label_tag "cb-#{line_num}", t(:description_compare_from) + " " + t(:label_changeset), class: "sr-only" %>
                 <% if show_diff && (line_num < revisions.size) %>
                 <%= radio_button_tag "rev",
                                      changeset.identifier,
@@ -127,7 +127,7 @@ See COPYRIGHT and LICENSE files for more details.
                 <% end %>
               </td>
               <td class="checkbox">
-                <%= label_tag "cbto-#{line_num}", t(:description_compare_to) + " " + t(:label_changeset), class: "hidden-for-sighted" %>
+                <%= label_tag "cbto-#{line_num}", t(:description_compare_to) + " " + t(:label_changeset), class: "sr-only" %>
                 <% if show_diff && (line_num > 1) %>
                 <%= radio_button_tag "rev_to",
                                      changeset.identifier,

@@ -67,11 +67,11 @@ See COPYRIGHT and LICENSE files for more details.
   <% if show_decoration %>
     <header class="op-app-header<%= ' op-app-header_development' if OpenProject::Configuration.development_highlight_enabled? %>">
       <div class="op-app-header--start">
-        <h1 class="hidden-for-sighted">
+        <h1 class="sr-only">
           <%= t(:label_top_menu) %>
         </h1>
         <opce-main-menu-toggle></opce-main-menu-toggle>
-        <a href="" class="hidden-for-sighted skip-navigation-link"
+        <a href="" class="sr-only skip-navigation-link"
            id="skip-navigation--content"
            aria-label="<%= I18n.t('js.work_packages.jump_marks.label_content') %>">
           <%= I18n.t('js.work_packages.jump_marks.content') %>
@@ -96,7 +96,7 @@ See COPYRIGHT and LICENSE files for more details.
         data-controller="menus--main"
         data-application-target="dynamic"
       >
-        <h1 class="hidden-for-sighted"><%= t(:label_main_menu) %></h1>
+        <h1 class="sr-only"><%= t(:label_main_menu) %></h1>
         <opce-main-menu-resizer></opce-main-menu-resizer>
         <div id="menu-sidebar">
           <%= main_menu %>
@@ -123,7 +123,7 @@ See COPYRIGHT and LICENSE files for more details.
       <%= content_tag :div,
                       id: 'content',
                       class: "#{initial_classes} #{'content--split' if content_for?(:content_body_right)}" do %>
-        <h1 class="hidden-for-sighted accessibility-helper"><%= t(:label_content) %></h1>
+        <h1 class="sr-only accessibility-helper"><%= t(:label_content) %></h1>
         <% if content_for?(:content_header) %>
           <div id="content-header">
             <%= content_for :content_header %>

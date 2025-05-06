@@ -49,7 +49,7 @@ class Widget::Filters::Operators < Widget::Filters::Base
       label1 = content_tag :label,
                            hidden_for_sighted_label,
                            for: "operators[#{filter_class.underscore_name}]",
-                           class: "hidden-for-sighted"
+                           class: "sr-only"
       label = content_tag :label do
         if filter_class.available_operators.any?
           filter_class.available_operators.first.label

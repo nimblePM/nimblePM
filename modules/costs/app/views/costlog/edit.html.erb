@@ -64,7 +64,7 @@ See COPYRIGHT and LICENSE files for more details.
     <%= f.date_picker :spent_on,
                       required: true,
                       data: { "remote-field-key": "fixed_date" } %>
-    <label for="cost_entry_spent_on" class="hidden-for-sighted"><%= t(:label_date) %> <%= t(:text_hint_date_format) %></label>
+    <label for="cost_entry_spent_on" class="sr-only"><%= t(:label_date) %> <%= t(:text_hint_date_format) %></label>
   </div>
   <% if User.current.allowed_in_project? :log_costs, @project %>
     <div class="form--field">

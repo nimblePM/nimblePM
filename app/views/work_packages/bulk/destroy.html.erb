@@ -74,7 +74,7 @@ See COPYRIGHT and LICENSE files for more details.
         <div class="grid-block">
           <div class="form--field">
             <div class="form--text-field-container -xslim">
-              <%= styled_label_tag "to_do_reassign_to_id", t(:text_reassign), class: "form--label hidden-for-sighted" %>
+              <%= styled_label_tag "to_do_reassign_to_id", t(:text_reassign), class: "form--label sr-only" %>
               <%= f.text_field "reassign_to_id", placeholder: WorkPackage.human_attribute_name(:id), value: params[:reassign_to_id], size: 6, onfocus: 'jQuery("#to_do_action_reassign").prop("checked", true);' %>
             </div>
           </div>

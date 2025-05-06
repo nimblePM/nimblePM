@@ -16,7 +16,7 @@
                   accesskey: accesskey(:edit),
                   with_text_formatting: true,
                   resource: resource,
-                  label_options: { class: "hidden-for-sighted" },
+                  label_options: { class: "sr-only" },
                   preview_context: preview_context(@page, @project) %>
 </div>
 
@@ -30,7 +30,7 @@
 <div class="form--field">
   <%= f.text_field :journal_notes,
                    class: "-border-on-hover-only -hide-placeholder-on-focus",
-                   label_options: { class: "hidden-for-sighted", label: :"attributes.comment" },
+                   label_options: { class: "sr-only", label: :"attributes.comment" },
                    autocomplete: "off",
                    container_class: "-wide",
                    placeholder: t(:text_what_did_you_change_click_to_add_comment) %>

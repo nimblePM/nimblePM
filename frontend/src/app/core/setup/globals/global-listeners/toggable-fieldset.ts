@@ -33,7 +33,7 @@ function createFieldsetToggleStateLabel(legend:JQuery, text:string) {
 
   if (toggleLabel.length === 0) {
     toggleLabel = jQuery('<span />').addClass(labelClass)
-      .addClass('hidden-for-sighted');
+      .addClass('sr-only');
 
     legendLink.append(toggleLabel);
   }

@@ -56,7 +56,7 @@ class Widget::Filters::Project < Widget::Filters::Base
   def html_label
     label_tag "#{filter_class.underscore_name}_arg_1_val",
               "#{h(filter_class.label)} #{I18n.t(:label_filter_value)}",
-              class: "hidden-for-sighted"
+              class: "sr-only"
   end
 
   def map_filter_values

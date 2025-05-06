@@ -40,7 +40,7 @@ class Widget::Filters::MultiValues < Widget::Filters::Base
       box_content = "".html_safe
       label = label_tag "#{filter_class.underscore_name}_arg_1_val",
                         h(filter_class.label) + " " + I18n.t(:label_filter_value),
-                        class: "hidden-for-sighted"
+                        class: "sr-only"
 
       box = content_tag :select, select_options, id: "#{filter_class.underscore_name}_select_1" do
         render_widget Widget::Filters::Option, filter, to: box_content unless @options[:lazy]
@@ -54,7 +54,7 @@ class Widget::Filters::MultiValues < Widget::Filters::Base
                     "",
                     class: "icon-context icon-button icon-add icon4",
                     title: I18n.t(:label_enable_multi_select) do
-          content_tag :span, I18n.t(:label_enable_multi_select), class: "hidden-for-sighted"
+          content_tag :span, I18n.t(:label_enable_multi_select), class: "sr-only"
         end
       end
 

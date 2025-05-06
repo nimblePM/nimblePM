@@ -125,7 +125,7 @@ See COPYRIGHT and LICENSE files for more details.
       <%= styled_form_tag(memberships_of_group_path(@group), method: :post) do %>
         <fieldset class="form--fieldset add-membership-form-fieldset">
           <legend class="form--fieldset-legend"><%=t(:label_project_new)%></legend>
-          <%= label_tag "membership_project_id", t(:description_choose_project), class: "hidden-for-sighted" %>
+          <%= label_tag "membership_project_id", t(:description_choose_project), class: "sr-only" %>
 
           <% group_project_ids = @group.projects.ids  %>
           <% filters = [{ name: 'active', operator: '=', values: ['t']}] %>

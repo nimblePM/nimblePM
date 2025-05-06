@@ -112,7 +112,7 @@ See COPYRIGHT and LICENSE files for more details.
   <% if authorize_for 'news/comments', 'create' %>
     <%= form_for([@news, Comment.new], html: { id: "add_comment_form" }) do %>
       <div>
-        <%= label_tag "comment_comments", Journal.human_attribute_name(:notes), class: "hidden-for-sighted" %>
+        <%= label_tag "comment_comments", Journal.human_attribute_name(:notes), class: "sr-only" %>
         <%= text_area "comment",
                       "comments",
                       class: "wiki-edit" %>

@@ -41,7 +41,7 @@ module ReorderLinksHelper
   def reorder_link(name, url, direction, icon_class, label, method)
     text = content_tag(:span,
                        label,
-                       class: "hidden-for-sighted")
+                       class: "sr-only")
     icon = content_tag(:span,
                        "",
                        class: "icon-context #{icon_class} icon-small")

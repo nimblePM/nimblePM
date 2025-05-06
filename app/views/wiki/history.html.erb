@@ -51,7 +51,7 @@ See COPYRIGHT and LICENSE files for more details.
           <col>
           <col data-highlight="false">
         </colgroup>
-        <caption class="hidden-for-sighted">
+        <caption class="sr-only">
           <span>
             <%= t(:text_table_difference_description, entries: t(:label_wiki_page) + " " + t(:label_version_plural)) %>
           </span>
@@ -64,7 +64,7 @@ See COPYRIGHT and LICENSE files for more details.
                   <span aria-describedby="wiki-id--description">
                     #
                   </span>
-                  <label id="wiki-id--description" class="hidden-for-sighted">
+                  <label id="wiki-id--description" class="sr-only">
                     <%= t(:label_wiki_page_id) %>
                   </label>
                 </div>
@@ -127,7 +127,7 @@ See COPYRIGHT and LICENSE files for more details.
               <td class="id"><%= link_to h(ver.version), action: "show", id: @page, project_id: @page.project, version: ver.version %></td>
               <td class="checkbox">
                 <% if show_diff && (line_num < @versions.size) %>
-                  <label for="<%= "cb-#{line_num}" %>" class="hidden-for-sighted"><%= t(:description_compare_from) + " " + t(:label_version) + " " + h(ver.version.to_s) %></label>
+                  <label for="<%= "cb-#{line_num}" %>" class="sr-only"><%= t(:description_compare_from) + " " + t(:label_version) + " " + h(ver.version.to_s) %></label>
                   <%= radio_button_tag(
                         "version_from",
                         ver.version,
@@ -143,7 +143,7 @@ See COPYRIGHT and LICENSE files for more details.
               </td>
               <td class="checkbox">
                 <% if show_diff && (line_num > 1) %>
-                  <label for="<%= "cbto-#{line_num}" %>" class="hidden-for-sighted"><%= t(:description_compare_to) + " " + t(:label_version) + " " + h(ver.version.to_s) %></label>
+                  <label for="<%= "cbto-#{line_num}" %>" class="sr-only"><%= t(:description_compare_to) + " " + t(:label_version) + " " + h(ver.version.to_s) %></label>
                   <%= radio_button_tag(
                         "version_to",
                         ver.version,

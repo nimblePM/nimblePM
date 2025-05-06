@@ -23,7 +23,7 @@
           [ngClass]="highlightingClassForWpType()"
           [textContent]="relatedWorkPackage.type.name"
         ></span>
-        <span class="hidden-for-sighted" [textContent]="text.updateRelation"></span>
+        <span class="sr-only" [textContent]="text.updateRelation"></span>
       </button>
       <div
         class="inline-edit--container inplace-edit"

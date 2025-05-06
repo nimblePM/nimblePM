@@ -85,7 +85,7 @@ module WorkPackagesHelper
     if package.closed? && !options[:no_hidden]
       parts[:hidden_link] << content_tag(:span,
                                          I18n.t(:label_closed_work_packages),
-                                         class: "hidden-for-sighted")
+                                         class: "sr-only")
     end
 
     # Suffix part
@@ -231,7 +231,7 @@ module WorkPackagesHelper
 
   def protected_work_packages_columns_options
     work_packages_columns_options
-      .select { |column| column[:id] == "id" || column[:id] == "subject" }
+      .select { |column| ["id", "subject"].include?(column[:id]) }
   end
 
   private

@@ -203,7 +203,7 @@ See COPYRIGHT and LICENSE files for more details.
     </fieldset>
     <fieldset class="form--fieldset">
       <legend class="form--fieldset-legend"><%= Journal.human_attribute_name(:notes) %></legend>
-      <%= label_tag "notes", Journal.human_attribute_name(:notes), class: "hidden-for-sighted" %>
+      <%= label_tag "notes", Journal.human_attribute_name(:notes), class: "sr-only" %>
       <%= styled_text_area_tag "notes", @notes, cols: 60, rows: 10, class: "wiki-edit", with_text_formatting: true %>
     </fieldset>
     <%= call_hook(:view_work_packages_move_bottom, work_packages: @work_packages, target_project: @target_project, copy: !!@copy) %>

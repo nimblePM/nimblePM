@@ -40,7 +40,7 @@ class Widget::Filters < Widget::Base
       add_filter_label += label_tag(
         "add_filter_select",
         "#{I18n.t('js.filter.description.text_open_filter')} #{I18n.t('js.filter.description.text_close_filter')}",
-        class: "hidden-for-sighted"
+        class: "sr-only"
       )
 
       add_filter_value = content_tag :div, class: "advanced-filters--add-filter-value" do

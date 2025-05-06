@@ -29,7 +29,7 @@ See COPYRIGHT and LICENSE files for more details.
 <%= toolbar title: t(:label_revision_plural) do %>
   <%= form_tag({ action: "revision", id: @project }, { method: :get }) do %>
     <li class="toolbar-item">
-      <%= label_tag :rev, t(:label_revision), class: "hidden-for-sighted" %>
+      <%= label_tag :rev, t(:label_revision), class: "sr-only" %>
       <%= text_field_tag :rev, @rev, size: 8, placeholder: t(:label_revision) %>
     </li>
     <li class="toolbar-item">

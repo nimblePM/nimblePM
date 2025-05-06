@@ -49,7 +49,7 @@ class Widget::GroupBys < Widget::Base
     end
 
     content_tag :fieldset do
-      legend = content_tag :legend, I18n.t("reporting.group_by.selected_#{type}"), class: "hidden-for-sighted"
+      legend = content_tag :legend, I18n.t("reporting.group_by.selected_#{type}"), class: "sr-only"
 
       container = content_tag :div,
                               id: "group-by--#{type}",
@@ -67,7 +67,7 @@ class Widget::GroupBys < Widget::Base
                            class: "group-by--control grid-content shrink" do
           label = label_tag "group-by--add-#{type}",
                             "#{I18n.t(:label_group_by_add)} #{I18n.t('js.filter.description.text_open_filter')}",
-                            class: "hidden-for-sighted"
+                            class: "sr-only"
 
           label += content_tag :select, id: "group-by--add-#{type}", class: "advanced-filters--select" do
             content = content_tag :option, I18n.t(:label_group_by_add), value: "", disabled: true, selected: true

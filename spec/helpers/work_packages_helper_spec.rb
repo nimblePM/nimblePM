@@ -57,14 +57,14 @@ RSpec.describe WorkPackagesHelper do
       it "prepends an invisible closed information if the work package is closed" do
         stub_work_package.status = closed_status
 
-        expect(helper.link_to_work_package(stub_work_package)).to have_css("a span.hidden-for-sighted", text: "closed")
+        expect(helper.link_to_work_package(stub_work_package)).to have_css("a span.sr-only", text: "closed")
       end
 
       it "omits the invisible closed information if told so even though the work package is closed" do
         stub_work_package.status = closed_status
 
         expect(helper.link_to_work_package(stub_work_package, no_hidden: true))
-          .to have_no_css("a span.hidden-for-sighted", text: "closed")
+          .to have_no_css("a span.sr-only", text: "closed")
       end
     end
 
