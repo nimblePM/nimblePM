@@ -682,9 +682,7 @@ module API
         end
 
         def project_phase
-          @project_phase ||= represented.project&.phases&.detect do
-            it.definition_id == represented.project_phase_definition_id
-          end
+          @project_phase ||= represented.project_phase
         end
 
         def phase_set_and_active?
