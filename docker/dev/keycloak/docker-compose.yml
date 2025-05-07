@@ -13,7 +13,15 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.1
-    command: ["start-dev", "--proxy-headers", "xforwarded", "--spi-connections-http-client-default-disable-trust-manager=true"]
+    command:
+    - "start-dev"
+    - "--proxy-headers"
+    - "xforwarded"
+    - "--spi-connections-http-client-default-disable-trust-manager=true"
+    # Uncomment the lines below to make changes to the Keycloak theme, this will ensure that changes become immediately visible.
+    # - "--spi-theme-static-max-age=-1"
+    # - "--spi-theme-cache-themes=false"
+    # - "--spi-theme-cache-templates=false"
     restart: unless-stopped
     networks:
       - external
@@ -33,6 +41,7 @@ services:
     volumes:
       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
       - keycloak-data:/opt/keycloak/data/
+      - ./themes/:/opt/keycloak/themes/
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.keycloak-sub-secure.rule=Host(`keycloak.local`)"
