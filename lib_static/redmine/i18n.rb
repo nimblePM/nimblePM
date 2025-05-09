@@ -69,10 +69,27 @@ module Redmine
       ("%.2f" % hours.to_f)
     end
 
-    def format_date(date)
-      return nil unless date
+    # Formats the given date or datetime as a date string according to the user's time zone
+    # and optional specified or system default format.
+    #
+    # @param date_or_time [Date|Time] The date or time object to format.
+    # @param time_zone [ActiveSupport::TimeZone] Use a different time zone than the current users's.
+    #   If provided, will output the time zone identifier
+    # @param format [String, nil] The strftime format to use for the date. If nil, the default
+    #   date format from `Setting.date_format` is used.
+    def format_date(date_or_time, time_zone: nil, format: Setting.date_format)
+      return nil unless date_or_time
 
-      Setting.date_format.blank? ? ::I18n.l(date.to_date) : date.strftime(Setting.date_format)
+      local =
+        if time_zone
+          date_or_time.in_time_zone(time_zone).to_date
+        elsif date_or_time.is_a?(Date)
+          date_or_time
+        else
+          in_user_zone(time).to_date
+        end
+
+      format.blank? ? ::I18n.l(local) : date.strftime(format)
     end
 
     ##
@@ -116,25 +133,6 @@ module Redmine
     #   - `name`
     def link_regex
       /(\[(.+?)\]\((.+?)\))/
-    end
-
-    # Formats the given time as a date string according to the user's time zone and
-    # optional specified format.
-    #
-    # @param time [Time] The time to format.
-    # @param format [String, nil] The strftime format to use for the date. If nil, the default
-    #   date format from `Setting.date_format` is used.
-    # @return [String, nil] The formatted date string, or nil if the time is not provided.
-    def format_time_as_date(time, format: nil)
-      return nil unless time
-
-      local_date = in_user_zone(time).to_date
-
-      if format
-        local_date.strftime(format)
-      else
-        format_date(local_date)
-      end
     end
 
     # Formats the given time as a time string according to the user's time zone

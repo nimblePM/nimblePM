@@ -82,7 +82,7 @@ module WorkPackages
       end
 
       def remind_at_date_initial_value
-        format_time_as_date(@reminder.remind_at, format: "%Y-%m-%d")
+        format_date(@reminder.remind_at, format: "%Y-%m-%d")
       end
 
       def remind_at_time_initial_value

@@ -37,7 +37,7 @@ module OpenProject
     let(:format) { "%d/%m/%Y" }
     let(:user) { build_stubbed(:user) }
 
-    describe "#format_time_as_date" do
+    describe "#format_date with time" do
       current_user { build_stubbed(:user, preferences: { time_zone: user_time_zone }) }
 
       describe "with user time zone" do
@@ -45,12 +45,12 @@ module OpenProject
 
         it "returns a date string in the user timezone for a utc timestamp" do
           time = ActiveSupport::TimeZone["UTC"].local(2013, 6, 30, 23, 59)
-          expect(format_time_as_date(time, format:)).to eq "01/07/2013"
+          expect(format_date(time, format:)).to eq "01/07/2013"
         end
 
         it "returns a date string in the user timezone for a non-utc timestamp" do
           time = ActiveSupport::TimeZone["Berlin"].local(2013, 6, 30, 23, 59)
-          expect(format_time_as_date(time, format:)).to eq "01/07/2013"
+          expect(format_date(time, format:)).to eq "01/07/2013"
         end
       end
 
@@ -59,12 +59,12 @@ module OpenProject
 
         it "returns a date string in the utc timezone for a utc timestamp" do
           time = ActiveSupport::TimeZone["UTC"].local(2013, 6, 30, 23, 59)
-          expect(format_time_as_date(time, format:)).to eq "30/06/2013"
+          expect(format_date(time, format:)).to eq "30/06/2013"
         end
 
         it "returns a date string in the utc timezone for a non-utc timestamp" do
           time = ActiveSupport::TimeZone["Berlin"].local(2013, 6, 30, 23, 59)
-          expect(format_time_as_date(time, format:)).to eq "30/06/2013"
+          expect(format_date(time, format:)).to eq "30/06/2013"
         end
       end
     end

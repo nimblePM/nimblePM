@@ -54,7 +54,7 @@ See COPYRIGHT and LICENSE files for more details.
               <%= I18n.t(:label_recurring_meeting_next_occurrence) %>
             </td>
             <td style="<%= placeholder_text_styles %>">
-              <%= format_time_as_date @next_occurrence %> <%= format_time @next_occurrence, include_date: false %>
+              <%= format_date @next_occurrence %> <%= format_time @next_occurrence, include_date: false %>
               (<%= formatted_time_zone_offset %>)
             </td>
           </tr>
