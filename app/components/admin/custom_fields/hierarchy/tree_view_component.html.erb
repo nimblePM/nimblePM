@@ -26,19 +26,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
-
-<% html_title t(:label_administration), "#{CustomField.model_name.human} #{h @custom_field.name}", t(:label_item_plural) %>
-
-<%= render(Admin::CustomFields::EditFormHeaderComponent.new(custom_field: @custom_field, selected: :items)) %>
+<%= render(Primer::Beta::Heading.new(tag: :h4, mb: 2)) { @custom_field.name } %>
 
 <%=
-  render(Primer::Alpha::Layout.new(stacking_breakpoint: :md)) do |content|
-    content.with_main do
-      render(Admin::CustomFields::Hierarchy::ItemsComponent.new(item: @active_item))
-    end
-
-    content.with_sidebar(row_placement: :start, col_placement: :start, border: true, border_radius: 2, p: 3) do
-      render(Admin::CustomFields::Hierarchy::TreeViewComponent.new(custom_field: @custom_field, active_item: @active_item))
+  render(Primer::OpenProject::TreeView.new) do |tree_view|
+    hierarchy_items.each do |item|
+      add_sub_tree(tree_view, item)
     end
   end
 %>
