@@ -44,7 +44,7 @@ module DemoData
     end
 
     def applicable?
-      Project.count.zero?
+      Project.count.zero? && seed_data.reference_exists?(:default_role_project_admin)
     end
 
     def seed_settings

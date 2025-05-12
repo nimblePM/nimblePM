@@ -53,7 +53,7 @@ class Source::SeedData
   def find_reference(reference, *fallbacks, default: :__unset__)
     return if reference.nil?
 
-    existing_ref = [reference, *fallbacks].find { |ref| registry.key?(ref) }
+    existing_ref = [reference, *fallbacks].find { |ref| reference_exists?(ref) }
     if existing_ref
       registry[existing_ref]
     elsif default != :__unset__
@@ -70,6 +70,10 @@ class Source::SeedData
 
   def find_references(references, default: :__unset__)
     Array(references).map { |reference| find_reference(reference, default:) }
+  end
+
+  def reference_exists?(reference)
+    registry.key?(reference)
   end
 
   # Get a `SeedData` instance with only the given top level keys.
