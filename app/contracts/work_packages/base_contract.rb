@@ -658,7 +658,13 @@ module WorkPackages
                                user_is_author?,
                                user_was_or_is_assignee?)
 
-      Status.where(id: workflows.select(:new_status_id))
+      statuses = Status.where(id: workflows.select(:new_status_id))
+
+      if model.project && model.project.allowed_statuses.exists?
+        statuses = statuses.where(id: model.project.allowed_statuses.select(:id))
+      end
+
+      statuses
     end
 
     def user_was_or_is_assignee?

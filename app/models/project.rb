@@ -65,6 +65,9 @@ class Project < ApplicationRecord
   has_and_belongs_to_many :types, -> {
     order("#{::Type.table_name}.position")
   }
+  has_and_belongs_to_many :allowed_statuses,
+                          join_table: :projects_statuses,
+                          class_name: 'Status'
   has_many :work_packages, -> {
     order("#{WorkPackage.table_name}.created_at DESC")
       .includes(:status, :type)

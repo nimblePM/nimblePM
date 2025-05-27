@@ -79,12 +79,17 @@ class Workflow < ApplicationRecord
 
   # Find potential statuses the user could be allowed to switch issues to
   def self.available_statuses(project, user = User.current)
-    Workflow
-      .includes(:new_status)
-      .where(role_id: user.roles_for_project(project).map(&:id))
-      .filter_map(&:new_status)
-      .uniq
-      .sort
+    statuses = Workflow
+               .includes(:new_status)
+               .where(role_id: user.roles_for_project(project).map(&:id))
+               .filter_map(&:new_status)
+               .uniq
+
+    if project.allowed_statuses.exists?
+      statuses &= project.allowed_statuses.to_a
+    end
+
+    statuses.sort
   end
 
   # Copies workflows from source to targets
