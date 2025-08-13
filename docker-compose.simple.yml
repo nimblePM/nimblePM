@@ -1,0 +1,72 @@
+version: '3.8'
+
+networks:
+  network:
+
+volumes:
+  opdata:
+  
+services:
+  cache:
+    image: memcached
+    restart: unless-stopped
+    networks:
+      - network
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/prod/Dockerfile
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      # External database connection
+      DATABASE_URL: postgresql://${DB_USER:-openproject}:${DB_PASSWORD:-openproject}@${DB_HOST:-192.168.3.18}:${DB_PORT:-5432}/${DB_NAME:-openproject}
+      OPENPROJECT_CACHE__MEMCACHE__SERVER: cache:11211
+      OPENPROJECT_RAILS__CACHE__STORE: memcache
+      OPENPROJECT_WEB_WORKERS: ${WEB_WORKERS:-2}
+      OPENPROJECT_WEB_MIN__THREADS: ${WEB_MIN_THREADS:-2}
+      OPENPROJECT_WEB_MAX__THREADS: ${WEB_MAX_THREADS:-4}
+      OPENPROJECT_RAILS__SERVE__STATIC__FILES: 'true'
+      OPENPROJECT_EDITION: ${OPENPROJECT_EDITION:-standard}
+      # Host configuration
+      OPENPROJECT_HOST__NAME: ${OPENPROJECT_HOST__NAME:-localhost}
+      OPENPROJECT_PROTOCOL: ${OPENPROJECT_PROTOCOL:-http}
+      OPENPROJECT_HTTPS: ${OPENPROJECT_HTTPS:-false}
+      # Default admin account
+      OPENPROJECT_SEED_ADMIN_USER__PASSWORD: ${ADMIN_PASSWORD:-admin}
+    volumes:
+      - opdata:/var/openproject/assets
+      - ./files:/var/openproject/files
+    networks:
+      - network
+    ports:
+      - "${PORT:-3000}:80"
+    depends_on:
+      - cache
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  worker:
+    build:
+      context: .
+      dockerfile: ./docker/prod/Dockerfile
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      # External database connection
+      DATABASE_URL: postgresql://${DB_USER:-openproject}:${DB_PASSWORD:-openproject}@${DB_HOST:-192.168.3.18}:${DB_PORT:-5432}/${DB_NAME:-openproject}
+      OPENPROJECT_CACHE__MEMCACHE__SERVER: cache:11211
+      OPENPROJECT_RAILS__CACHE__STORE: memcache
+      OPENPROJECT_EDITION: ${OPENPROJECT_EDITION:-standard}
+    volumes:
+      - opdata:/var/openproject/assets
+      - ./files:/var/openproject/files
+    networks:
+      - network
+    depends_on:
+      - cache
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
