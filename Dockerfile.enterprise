@@ -1,0 +1,10 @@
+# Extend the existing nimblePM production image with enterprise features patch
+FROM nimblepm-web:latest
+
+# Copy the patched enterprise_token.rb file
+COPY enterprise_token_patch.rb /app/app/models/enterprise_token.rb
+
+# Ensure correct permissions
+USER root
+RUN chown app:app /app/app/models/enterprise_token.rb
+USER app
