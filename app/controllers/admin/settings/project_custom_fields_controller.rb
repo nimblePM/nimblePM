@@ -147,9 +147,15 @@ module Admin::Settings
     end
 
     def destroy
-      @custom_field.destroy
+      result = CustomFields::DeleteService.new(user: current_user, model: @custom_field).call
 
-      update_section_via_turbo_stream(project_custom_field_section: @custom_field.project_custom_field_section.reload)
+      if result.success?
+        update_section_via_turbo_stream(project_custom_field_section: @custom_field.project_custom_field_section.reload)
+      else
+        render_error_flash_message_via_turbo_stream(
+          message: join_flash_messages(result.errors)
+        )
+      end
 
       respond_with_turbo_streams
     end
