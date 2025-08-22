@@ -1,0 +1,96 @@
+version: '3.8'
+
+networks:
+  network:
+
+volumes:
+  opdata:
+  
+services:
+  cache:
+    image: memcached:alpine
+    restart: unless-stopped
+    networks:
+      - network
+
+  web:
+    image: openproject/openproject:${TAG:-16-slim}
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      DATABASE_URL: ${DATABASE_URL}
+      OPENPROJECT_CACHE__MEMCACHE__SERVER: cache:11211
+      OPENPROJECT_RAILS__CACHE__STORE: memcache
+      OPENPROJECT_WEB_WORKERS: ${WEB_WORKERS:-2}
+      OPENPROJECT_WEB_MIN__THREADS: ${WEB_MIN_THREADS:-2}
+      OPENPROJECT_WEB_MAX__THREADS: ${WEB_MAX_THREADS:-4}
+      OPENPROJECT_RAILS__SERVE__STATIC__FILES: 'true'
+      OPENPROJECT_EDITION: ${OPENPROJECT_EDITION:-standard}
+      # Host configuration
+      OPENPROJECT_HOST__NAME: ${OPENPROJECT_HOST__NAME:-nimblepm.ca}
+      OPENPROJECT_PROTOCOL: ${OPENPROJECT_PROTOCOL:-https}
+      OPENPROJECT_HTTPS: ${OPENPROJECT_HTTPS:-true}
+      # Default admin account
+      OPENPROJECT_SEED_ADMIN_USER__PASSWORD: ${ADMIN_PASSWORD:-admin}
+    volumes:
+      - opdata:/var/openproject/assets
+      - ./files:/var/openproject/files
+      # Mount the enterprise token patch
+      - ./enterprise_token_patch.rb:/app/app/models/enterprise_token.rb:ro
+    networks:
+      - network
+    ports:
+      - "${PORT:-3000}:8080"
+    depends_on:
+      - cache
+    command: ./docker/prod/web
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  worker:
+    image: openproject/openproject:${TAG:-16-slim}
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      DATABASE_URL: ${DATABASE_URL}
+      OPENPROJECT_CACHE__MEMCACHE__SERVER: cache:11211
+      OPENPROJECT_RAILS__CACHE__STORE: memcache
+      OPENPROJECT_EDITION: ${OPENPROJECT_EDITION:-standard}
+    volumes:
+      - opdata:/var/openproject/assets
+      - ./files:/var/openproject/files
+      # Mount the enterprise token patch
+      - ./enterprise_token_patch.rb:/app/app/models/enterprise_token.rb:ro
+    networks:
+      - network
+    depends_on:
+      - cache
+    command: bundle exec good_job start --max-threads=${WORKER_MAX_THREADS:-5}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  seeder:
+    image: openproject/openproject:${TAG:-16-slim}
+    restart: "no"
+    environment:
+      RAILS_ENV: production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      DATABASE_URL: ${DATABASE_URL}
+      OPENPROJECT_CACHE__MEMCACHE__SERVER: cache:11211
+      OPENPROJECT_RAILS__CACHE__STORE: memcache
+      OPENPROJECT_EDITION: ${OPENPROJECT_EDITION:-standard}
+      OPENPROJECT_SEED_ADMIN_USER__PASSWORD: ${ADMIN_PASSWORD:-admin}
+    volumes:
+      - opdata:/var/openproject/assets
+      - ./files:/var/openproject/files
+      # Mount the enterprise token patch
+      - ./enterprise_token_patch.rb:/app/app/models/enterprise_token.rb:ro
+    networks:
+      - network
+    depends_on:
+      - cache
+    command: ./docker/prod/seeder
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
