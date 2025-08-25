@@ -108,7 +108,6 @@ en:
           updated_html: "changed from <i>%{old_value}</i> to <i>%{value}</i>"
 
   description_attended: "attended"
-  description_invite: "invited"
 
   events:
     meeting: Meeting edited
