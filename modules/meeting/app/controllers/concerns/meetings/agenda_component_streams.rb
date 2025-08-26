@@ -83,12 +83,15 @@ module Meetings
         )
       end
 
-      def update_sidebar_participants_form_component_via_turbo_stream(meeting: @meeting)
+      def update_add_user_form_component_via_turbo_stream(meeting: @meeting)
         update_via_turbo_stream(
-          component: Meetings::SidePanel::ParticipantsFormComponent.new(
-            meeting:
-          ),
-          status: :bad_request # TODO: why bad_request?
+          component: Meetings::Participants::AddUserFormComponent.new(meeting:)
+        )
+      end
+
+      def update_list_component_via_turbo_stream(meeting: @meeting)
+        update_via_turbo_stream(
+          component: Meetings::Participants::ListComponent.new(meeting:)
         )
       end
 

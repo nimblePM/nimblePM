@@ -103,17 +103,14 @@ RSpec.describe "Recurring meetings creation",
       # Add participants
       template_page.open_participant_form
       template_page.in_participant_form do
-        template_page.expect_participant_invited(user, invited: true)
-        template_page.expect_participant_invited(other_user, invited: false)
+        template_page.expect_participant(user, editable: false)
+        template_page.expect_available_participants(count: 1)
+
+        template_page.select_participant(other_user)
+        template_page.expect_participant(other_user, editable: false)
         template_page.expect_available_participants(count: 2)
-        expect(page).to have_button("Save")
 
-        template_page.invite_participant(other_user)
-
-        template_page.expect_participant_invited(user, invited: true)
-        template_page.expect_participant_invited(other_user, invited: true)
-
-        click_on("Save")
+        page.find(".close-button").click
       end
       wait_for_network_idle
 

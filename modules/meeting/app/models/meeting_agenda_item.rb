@@ -67,12 +67,8 @@ class MeetingAgendaItem < ApplicationRecord
             allow_nil: true
 
   before_validation :add_to_latest_meeting_section
-  after_save :trigger_meeting_agenda_item_time_slots_calculation, if: Proc.new { |item|
-    item.duration_in_minutes_previously_changed? || item.position_previously_changed?
-  }
   before_save :update_meeting_to_match_section
   after_update :delete_default_section_if_last_item_moved, if: :saved_change_to_meeting_section_id?
-  after_destroy :trigger_meeting_agenda_item_time_slots_calculation
   after_destroy :delete_default_section_if_last_item_deleted
 
   def add_to_latest_meeting_section
@@ -113,10 +109,6 @@ class MeetingAgendaItem < ApplicationRecord
   def update_meeting_to_match_section
     # TODO - see #63561
     self.meeting = meeting_section.meeting
-  end
-
-  def trigger_meeting_agenda_item_time_slots_calculation
-    meeting.calculate_agenda_item_time_slots
   end
 
   def linked_work_package?

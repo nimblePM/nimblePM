@@ -23,7 +23,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
@@ -50,7 +50,7 @@ RSpec.describe CustomFields::Hierarchy::HierarchicalItemService, with_ee: [:cust
     it "requires a custom field of type hierarchy" do
       result = service.generate_root(invalid_custom_field).failure
 
-      expect(result.errors[:custom_field]).to eq(["must have field format 'hierarchy'"])
+      expect(result.errors[:custom_field]).to eq(["format 'text' is unsupported."])
     end
 
     context "with persistence of hierarchy root fails" do

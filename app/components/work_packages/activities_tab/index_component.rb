@@ -66,19 +66,20 @@ module WorkPackages
           ].join(" ")
         }
         stimulus_controller_values = {
+          editor_stimulus_controller("-unsaved-changes-confirmation-message-value") => unsaved_changes_confirmation_message,
           index_stimulus_controller("-notification-center-path-name-value") => notifications_path,
-          index_stimulus_controller("-update-streams-path-value") => update_streams_work_package_activities_path(work_package),
           index_stimulus_controller("-sorting-value") => journal_sorting,
           index_stimulus_controller("-filter-value") => filter,
           index_stimulus_controller("-user-id-value") => User.current.id,
           index_stimulus_controller("-work-package-id-value") => work_package.id,
-          index_stimulus_controller("-polling-interval-in-ms-value") => polling_interval,
-          index_stimulus_controller("-show-conflict-flash-message-url-value") => show_conflict_flash_message_work_packages_path,
-          index_stimulus_controller("-last-server-timestamp-value") => last_server_timestamp,
-          index_stimulus_controller("-unsaved-changes-confirmation-message-value") => unsaved_changes_confirmation_message
+          polling_stimulus_controller("-last-server-timestamp-value") => last_server_timestamp,
+          polling_stimulus_controller("-polling-interval-in-ms-value") => polling_interval,
+          polling_stimulus_controller("-show-conflict-flash-message-url-value") => show_conflict_flash_message_work_packages_path,
+          polling_stimulus_controller("-update-streams-path-value") => update_streams_work_package_activities_path(work_package)
         }
         stimulus_controller_outlets = {
           editor_stimulus_controller("-#{auto_scrolling_stimulus_controller}-outlet") => index_component_dom_selector,
+          editor_stimulus_controller("-#{polling_stimulus_controller}-outlet") => index_component_dom_selector,
           editor_stimulus_controller("-#{stems_stimulus_controller}-outlet") => index_component_dom_selector,
           polling_stimulus_controller("-#{auto_scrolling_stimulus_controller}-outlet") => index_component_dom_selector,
           polling_stimulus_controller("-#{stems_stimulus_controller}-outlet") => index_component_dom_selector

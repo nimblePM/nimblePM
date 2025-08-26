@@ -115,29 +115,5 @@ RSpec.describe Storages::Admin::SidePanel::HealthNotificationsComponent, type: :
         end
       end
     end
-
-    describe "email notifications" do
-      context "when subscribed to email notifications" do
-        let(:storage) { build_stubbed(:nextcloud_storage, :with_health_notifications_enabled, :as_automatically_managed) }
-
-        it "renders an unsubscribe option with info" do
-          expect(page).to have_css("input[type=hidden][value='0']", visible: :hidden)
-          text = "All administrators receive health status email notifications for this storage."
-          expect(page).to have_test_selector("storage-health-notifications-description", text: text)
-          expect(page).to have_button("Unsubscribe")
-        end
-      end
-
-      context "when unsubscribed to email notifications" do
-        let(:storage) { build_stubbed(:nextcloud_storage, :with_health_notifications_disabled, :as_automatically_managed) }
-
-        it "renders an unsubscribe option with info" do
-          expect(page).to have_css("input[type=hidden][value='1']", visible: :hidden)
-          text = "Health status email notifications for this storage have been turned off for all administrators."
-          expect(page).to have_test_selector("storage-health-notifications-description", text:)
-          expect(page).to have_button("Subscribe")
-        end
-      end
-    end
   end
 end

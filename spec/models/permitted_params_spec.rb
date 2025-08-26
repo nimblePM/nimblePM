@@ -261,19 +261,19 @@ RSpec.describe PermittedParams do
     let(:hash_key) { "project" }
 
     context "with minimal params" do
-      let(:hash) { { "name" => "Brand New Project" } }
+      let(:hash) { { "name" => "Brand New Project", "workspace_type" => "project" } }
 
       it_behaves_like "allows params"
     end
 
     context "with parent_id" do
-      let(:hash) { { "name" => "Brand New Project", "parent_id" => "19" } }
+      let(:hash) { { "name" => "Brand New Project", "workspace_type" => "project", "parent_id" => "19" } }
 
       it_behaves_like "allows params"
     end
 
     context "with custom_field_values" do
-      let(:hash) { { "name" => "Brand New Project", "custom_field_values" => { "4" => "21" } } }
+      let(:hash) { { "name" => "Brand New Project", "workspace_type" => "project", "custom_field_values" => { "4" => "21" } } }
 
       it_behaves_like "allows params"
     end

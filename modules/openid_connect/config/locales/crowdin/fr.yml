@@ -15,6 +15,7 @@ fr:
         client_id: ID du client
         client_secret: Clé secrète du client
         groups_claim: Revendication des groupes
+        group_regexes: Motifs (expressions régulières)
         secret: Secret
         scope: Périmètre
         sync_groups: Synchroniser les groupes
@@ -58,14 +59,14 @@ fr:
     delete_title: "Supprimer le fournisseur OpenID Connect"
     group_links_heading: Liens du groupe OpenID Connect
     instructions:
-      redirect_url: C'est l'URL de redirection que le fournisseur OpenID Connect doit utiliser pour rediriger le client vers OpenProject après une connexion réussie.
       endpoint_url: L'URL du point de terminaison qui vous a été communiquée par le fournisseur OpenID Connect
       group_regexes: Un motif d'expression régulière par ligne. Veuillez lire [la documentation](docs_url) pour en savoir plus sur la manière de procéder.
-      group_regexes_detail: Définissez des motifs à l'aide d'expressions régulières pour faire correspondre les noms de groupes à partir de la revendication de groupes. Par exemple, la saisie d'un motif tel que <code>^Level1/Level2/([\w/]+)$</code> permettra d'extraire le groupe « Groupname/SubGroup » d'une réponse comprenant « Level1/Level2/GroupName/SubGroup ».
+      group_regexes_detail: Vous pouvez également définir des motifs à l'aide d'expressions régulières pour faire correspondre les noms de groupes aux revendications de groupes. Par exemple, si vous saisissez un motif tel que <code>^Level1/Level2/([\w/]+)$</code>, le groupe « Groupname/SubGroup » sera extrait d'une réponse comprenant « Level1/Level2/GroupName/SubGroup ». Si aucun motif ne correspond, le groupe est ignoré. Laissez le champ vide pour synchroniser tous les groupes en utilisant leur nom complet.
       group_sync: Extraire et synchroniser automatiquement les informations relatives à l'appartenance à un groupe à partir du fournisseur d'identité.
       groups_claim: Indiquez le nom de la revendication censée indiquer les noms des groupes dont l'utilisateur est membre.
       metadata_none: Je ne dispose pas de cette information
       metadata_url: J'ai une URL de point de terminaison de découverte
+      oidc_information: These values are needed to configure the OpenID Connect provider.
       client_id: Il s'agit de l'ID de client qui vous a été attribué par votre fournisseur OpenID Connect
       client_secret: Il s'agit de la clé secrète du client qui vous a été communiquée par votre fournisseur OpenID Connect
       limit_self_registration: Si cette option est activée, les utilisateurs peuvent s'inscrire par le biais de ce fournisseur uniquement si la configuration du côté du fournisseur le permet.
@@ -108,7 +109,6 @@ fr:
       label_empty_title: Aucun fournisseur OpenID n'a encore été configuré.
       label_empty_description: Ajoutez un fournisseur pour le voir ici.
       label_group_mapping: Mappage des groupes
-      label_group_regexes: Motif (expression régulière)
       label_metadata: Point de terminaison de découverte OpenID Connect
       label_automatic_configuration: Configuration automatique
       label_optional_configuration: Configuration facultative

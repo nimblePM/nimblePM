@@ -52,6 +52,7 @@ module OpenProject::Storages
 
     initializer "openproject_storages.feature_decisions" do
       OpenProject::FeatureDecisions.add :storage_file_picking_select_all
+      OpenProject::FeatureDecisions.add :sharepoint_storage
     end
 
     initializer "openproject_storages.event_subscriptions" do
@@ -261,7 +262,7 @@ module OpenProject::Storages
       Storages::Storage::InexistentStorage
       Storages::OneDriveStorage
       Storages::NextcloudStorage
-      Storages::SharePointStorage
+      Storages::SharepointStorage
 
       # Allow the browser to connect to external servers for direct file uploads.
       AppendStoragesHostsToCspHook

@@ -50,7 +50,7 @@ export default class StemsController extends BaseController {
 
   private handleStemVisibilityForMobile() {
     if (this.isMobile()) {
-      if (this.indexOutlet.sortingValue === 'asc') return;
+      if (this.indexOutlet.sortingAscending) return;
 
       const initialJournalContainer = (this.element).querySelector('.work-packages-activities-tab-journals-item-component-details--journal-details-container[data-initial="true"]');
 
@@ -68,7 +68,7 @@ export default class StemsController extends BaseController {
       container.classList.remove('work-packages-activities-tab-journals-item-component-details--journal-details-container--hidden');
     });
 
-    if (this.indexOutlet.sortingValue === 'asc' || this.indexOutlet.filterValue === 'only_changes') return;
+    if (this.indexOutlet.sortingAscending || this.indexOutlet.filterValue === 'only_changes') return;
 
     // then hide the last one again
     if (emptyLines.length > 0) {

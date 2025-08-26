@@ -283,7 +283,6 @@ class PermittedParams
                                                 :templated,
                                                 :status_code,
                                                 :status_explanation,
-                                                custom_fields: [],
                                                 work_package_custom_field_ids: [],
                                                 type_ids: [],
                                                 enabled_module_names: [])
@@ -297,7 +296,7 @@ class PermittedParams
 
   def new_project
     params
-      .expect(project: %i[name parent_id])
+      .expect(project: %i[name parent_id workspace_type])
       .merge(custom_field_values(:project))
   end
 

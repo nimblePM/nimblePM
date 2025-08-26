@@ -21,11 +21,11 @@ ru:
         project_folder_mode: Режим папки проекта
         storage: Хранилище
         storage_url: URL хранилища
-      storages/share_point_storage:
-        host: URL сервера Sharepoint
-        library: ID библиотеки
-        name: Название
-        site: ID сайта
+      storages/sharepoint_storage:
+        host: Sharepoint Site URL
+        library: Library ID
+        name: Name
+        site: Site ID
       storages/storage:
         authentication_method: Метод аутентификации
         creator: Автор
@@ -195,10 +195,10 @@ ru:
       oauth_client_incomplete:
         nextcloud: Разрешить OpenProject доступ к данным Nextcloud с помощью OAuth.
         one_drive: Разрешить OpenProject доступ к данным Azure, используя OAuth для подключения OneDrive.
-        share_point: Allow OpenProject to access SharePoint data using OAuth.
+        sharepoint: Allow OpenProject to access SharePoint data using OAuth.
       redirect_uri_incomplete:
         one_drive: Завершите установку с правильным перенаправлением URI.
-        share_point: Complete the setup with the correct URI redirection.
+        sharepoint: Complete the setup with the correct URI redirection.
     confirm_replace_oauth_application: Это действие приведет к сбросу текущих учетных данных OAuth. После подтверждения вам придется повторно ввести учетные данные у поставщика хранилища, и всем удаленным пользователям придется снова авторизоваться в OpenProject. Вы уверены, что хотите продолжить?
     confirm_replace_oauth_client: Это действие приведет к сбросу текущих учетных данных OAuth. После подтверждения вам нужно будет ввести новые учетные данные от поставщика хранилища, и всем пользователям придется снова авторизоваться в %{provider_type}. Вы уверены, что хотите продолжить?
     delete_warning:
@@ -323,6 +323,15 @@ ru:
         oidc_token_acquisition_failed: Ваша настройка OpenID Connect не обеспечивает необходимую аудиторию и не предоставляет возможности обмена токенами. Пожалуйста, ознакомьтесь с нашей документацией для получения дополнительной информации.
         oidc_token_exchange_failed: Похоже, возникла проблема с настройкой Token Exchange вашего провайдера OpenID Connect. Пожалуйста, проверьте его конфигурацию и повторите попытку.
         oidc_token_refresh_failed: Произошла ошибка во время проверки Вашего доступа к хранилищу. Пожалуйста, проверьте журналы сервера для получения дополнительной информации.
+        sp_client_cant_delete_folder: The client is having trouble deleting folders in SharePoint. Please check the setup documentation for your storage.
+        sp_client_id_missing: The configured OAuth 2 client id is missing for SharePoint. Please check the configuration.
+        sp_client_secret_missing: The configured OAuth 2 client secret is missing for SharePoint. Please check the configuration.
+        sp_client_write_permission_missing: The client seems to have write permissions missing in SharePoint. Please check the setup documentation for your storage.
+        sp_existing_test_folder: The folder %{folder_name} needed for testing already exists in SharePoint. Please delete it and try again.
+        sp_oauth_request_error: The user-bound request to SharePoint failed. Please check the server logs for further information.
+        sp_oauth_token_missing: OpenProject cannot test the user level communication with SharePoint as the user did not yet link their SharePoint account.
+        sp_tenant_id_missing: The configured directory (tenant) id is missing for SharePoint. Please check the configuration.
+        sp_unexpected_content: Unexpected content found in the SharePoint drive.
         unknown_error: Соединение не удалось подтвердить. Произошла неизвестная ошибка. Пожалуйста, проверьте журналы сервера для получения дополнительной информации.
       label_error: Ошибка
       label_failed: Ошибка
@@ -343,12 +352,10 @@ ru:
         warning: Некоторые проверки вернули предупреждение. Это может привести к неожиданному поведению.
       title: Отчёт о состоянии хранилища
     health_email_notifications:
-      description_subscribed: Все администраторы получают уведомления о состоянии здоровья этого хранилища.
-      description_unsubscribed: Уведомления о состоянии здоровья этого хранилища были отключены для всех администраторов.
+      description_disabled: Admins will not receive updates by email when there are important updates.
+      description_enabled: Admins will receive updates by email when there are important updates.
       error_could_not_be_saved: Не удалось сохранить настройки уведомления по электронной почте. Пожалуйста, попробуйте еще раз.
-      subscribe: Подписаться
-      title: Уведомления по электронной почте
-      unsubscribe: Отписаться
+      title: Уведомлять администраторов по электронной почте
     help_texts:
       project_folder: Папка проекта является папкой по умолчанию для загрузки файлов для этого проекта. Тем не менее, пользователи по-прежнему могут загружать файлы в другие места.
       project_folder_bulk: Папка проекта - это папка по умолчанию для загрузки файлов для всех выбранных проектов. Вы можете изменить этот параметр в настройках каждого проекта. Тем не менее, пользователи могут загружать файлы в другие места.
@@ -392,11 +399,11 @@ ru:
       setting_up_additional_storages_non_admin: Администраторы могут настроить дополнительные файловые хранилища в Администрирование / Файловые хранилища.
       setting_up_storages: Для настройки файловых хранилищ посетите
       setting_up_storages_non_admin: Администраторы могут настроить файловые хранилища в Администрирование / Файловые хранилища.
-      share_point:
+      sharepoint:
         application_link_text: SharePoint site
         integration: SharePoint Administration / OpenProject
         oauth_configuration: Copy these values from the desired application in the %{application_link_text}.
-        provider_configuration: Please make sure you have administration privileges in your SharePoint instance and the OpenProject integration app is installed before doing the setup.
+        provider_configuration: Please make sure you have administration privileges in the %{application_link_text} or contact your Microsoft administrator before doing the setup. In the portal, you also need to register an Azure application or use an existing one for authentication.
       type: 'Перед установкой убедитесь, что у вас есть права администрирования в вашем экземпляре Nextcloud и что перед установкой установлено следующее приложение:'
       type_link_text: "«Интеграционный OpenProject»"
     label_active: Активно
@@ -497,11 +504,11 @@ ru:
         label_oauth_client_secret: Секретное значение клиента Azure OAuth
         name: OneDrive
         name_placeholder: напр. OneDrive
-      share_point:
-        label_oauth_client_id: Идентификатор приложения (клиента) Azure OAuth
-        label_oauth_client_secret: Секретное значение клиента Azure OAuth
+      sharepoint:
+        label_oauth_client_id: Azure OAuth Application (client) ID
+        label_oauth_client_secret: Azure OAuth Client Secret Value
         name: SharePoint
-        name_placeholder: напр. SharePoint
+        name_placeholder: e.g. SharePoint
     show_attachments_toggle:
       description: Отключение этой опции скроет список вложений на вкладке "Файлы" у пакетов работ. Файлы, прикрепленные в описании пакета работ, по-прежнему будут загружаться во внутреннее хранилище вложений.
       label: Показывать вложения во вкладке "Файлы" пакетов работ

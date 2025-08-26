@@ -130,3 +130,7 @@ register_chrome "en", name: :chrome_revit_add_in do |options|
 end
 
 register_chrome "en", name: :chrome_new_york_time_zone, override_time_zone: "America/New_York"
+
+register_chrome "en", name: :chrome_dark_mode do |options|
+  options.add_argument("--force-dark-mode")
+end

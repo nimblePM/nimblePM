@@ -33,28 +33,18 @@ import { ViewPortService } from './services/view-port-service';
 
 export default class IndexController extends Controller<HTMLElement> {
   static values = {
-    updateStreamsPath: String,
-    sorting: String,
-    pollingIntervalInMs: Number,
     filter: String,
+    notificationCenterPathName: String,
+    sorting: String,
     userId: Number,
     workPackageId: Number,
-    notificationCenterPathName: String,
-    lastServerTimestamp: String,
-    showConflictFlashMessageUrl: String,
-    unsavedChangesConfirmationMessage: String,
   };
 
-  declare updateStreamsPathValue:string;
-  declare sortingValue:string;
-  declare lastServerTimestampValue:string;
-  declare pollingIntervalInMsValue:number;
-  declare notificationCenterPathNameValue:string;
   declare filterValue:string;
+  declare notificationCenterPathNameValue:string;
+  declare sortingValue:string;
   declare userIdValue:number;
   declare workPackageIdValue:number;
-  declare showConflictFlashMessageUrlValue:string;
-  declare unsavedChangesConfirmationMessageValue:string;
 
   static targets = ['journalsContainer'];
   declare readonly journalsContainerTarget:HTMLElement;
@@ -77,6 +67,9 @@ export default class IndexController extends Controller<HTMLElement> {
   setFilterToOnlyChanges() { this.filterValue = 'only_changes'; }
   unsetFilter() { this.filterValue = ''; }
 
+  get sortingAscending():boolean { return this.sortingValue === 'asc'; }
+  get sortingDescending():boolean { return this.sortingValue === 'desc'; }
+
   adjustJournalContainerMarginWith(marginBottomPx:string) {
     // don't do this on mobile screens
     if (this.viewPortService.isMobile()) { return; }
@@ -88,12 +81,6 @@ export default class IndexController extends Controller<HTMLElement> {
 
     this.journalsContainerTarget.style.marginBottom = '';
     this.journalsContainerTarget.classList.add('work-packages-activities-tab-index-component--journals-container_with-initial-input-compensation');
-  }
-
-  setLastServerTimestampViaHeaders(headers:Headers) {
-    if (headers.has('X-Server-Timestamp')) {
-      this.lastServerTimestampValue = headers.get('X-Server-Timestamp') as string;
-    }
   }
 
   showJournalsContainerInput() {

@@ -63,6 +63,8 @@ RSpec.describe "Edit project custom fields on project overview page", :js, :sele
           expect(containers[4].text).to include("Date field")
           expect(containers[5].text).to include("Link field")
           expect(containers[6].text).to include("Text field")
+          expect(containers[7].text).to include("Calculated field using int")
+          expect(containers[8].text).to include("Calculated field using int and float")
 
           expect(page).to have_no_text(boolean_project_custom_field_activated_in_other_project.name)
         end
@@ -83,6 +85,8 @@ RSpec.describe "Edit project custom fields on project overview page", :js, :sele
           expect(containers[4].text).to include("Date field")
           expect(containers[5].text).to include("Link field")
           expect(containers[6].text).to include("Text field")
+          expect(containers[7].text).to include("Calculated field using int")
+          expect(containers[8].text).to include("Calculated field using int and float")
 
           expect(page).to have_no_text(boolean_project_custom_field_activated_in_other_project.name)
         end
@@ -333,6 +337,27 @@ RSpec.describe "Edit project custom fields on project overview page", :js, :sele
         let(:field) { FormFields::Primerized::EditorFormField.new(custom_field) }
 
         it_behaves_like "a custom field input"
+      end
+
+      describe "with calculated value CFs" do
+        before do
+          # prevent calculation from happening
+          integer_project_custom_field.custom_values.delete_all
+        end
+
+        describe "using int" do
+          let(:custom_field) { calculated_from_int_project_custom_field }
+          let(:field) { FormFields::Primerized::InputField.new(custom_field) }
+
+          it_behaves_like "a custom field input"
+        end
+
+        describe "using int and float" do
+          let(:custom_field) { calculated_from_int_and_float_project_custom_field }
+          let(:field) { FormFields::Primerized::InputField.new(custom_field) }
+
+          it_behaves_like "a custom field input"
+        end
       end
     end
 

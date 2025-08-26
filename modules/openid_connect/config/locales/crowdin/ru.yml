@@ -15,6 +15,7 @@ ru:
         client_id: Идентификатор клиента
         client_secret: Закрытый ключ клиента
         groups_claim: Groups claim
+        group_regexes: Шаблон (регулярное выражение)
         secret: Закрытый ключ
         scope: Масштаб
         sync_groups: Синхронизировать группы
@@ -58,14 +59,14 @@ ru:
     delete_title: "Удалить провайдера OpenID Connect"
     group_links_heading: OpenID Connect group links
     instructions:
-      redirect_url: Это URL, который провайдер OpenID Connect должен использовать для перенаправления обратно на OpenProject после успешного входа в систему.
       endpoint_url: URL-адрес конечной точки, указанный поставщиком OpenID Connect
       group_regexes: По одному регулярному выражению на строку. Пожалуйста, прочитайте [документацию](docs_url) для получения дополнительной информации о том, как это сделать.
-      group_regexes_detail: Определите шаблоны с помощью регулярных выражений, чтобы сопоставить имена групп. Например, шаблон <code>^Level1/Level2/([\w/]+)$</code> извлечет группу "Groupname/SubGroup" из ответа, включающего "Level1/Level2/GroupName/SubGroup".
+      group_regexes_detail: Optionally define patterns using regular expressions to match group names from the groups claim. For example, entering a pattern like <code>^Level1/Level2/([\w/]+)$</code> will extract the group “Groupname/SubGroup” from a response including “Level1/Level2/GroupName/SubGroup”. If no pattern matches, the group is ignored. Leave empty to synchronize all groups using their full group name.
       group_sync: Автоматически извлекать и синхронизировать информацию о членстве в группах от поставщика идентификационных данных.
       groups_claim: Specify the name of the claim that's expected to indicate the group names that the user is a member of.
       metadata_none: У меня нет этой информации
       metadata_url: У меня есть URL конечной точки обнаружения
+      oidc_information: These values are needed to configure the OpenID Connect provider.
       client_id: Это идентификатор клиента, присвоенный вам провайдером OpenID Connect
       client_secret: Это ключ клиента, предоставленный вам провайдером OpenID Connect
       limit_self_registration: Если эта опция включена, пользователи смогут регистрироваться у этого провайдера только в том случае, если конфигурация провайдера позволяет это делать.
@@ -108,7 +109,6 @@ ru:
       label_empty_title: Провайдеры OpenID еще не настроены.
       label_empty_description: Добавьте провайдера, чтобы увидеть их здесь.
       label_group_mapping: Сопоставление групп
-      label_group_regexes: Шаблон (регулярное выражение)
       label_metadata: Конечная точка обнаружения OpenID Connect
       label_automatic_configuration: Автоматическая настройка
       label_optional_configuration: Необязательные настройки

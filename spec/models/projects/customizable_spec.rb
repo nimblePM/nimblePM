@@ -168,7 +168,7 @@ RSpec.describe Project, "customizable" do
               .to eq("foo")
             expect(project.custom_value_for(bool_custom_field).typed_value)
               .to be_truthy
-            expect(project.custom_value_for(list_custom_field).typed_value)
+            expect(project.custom_value_for(list_custom_field))
               .to be_nil
           end
 

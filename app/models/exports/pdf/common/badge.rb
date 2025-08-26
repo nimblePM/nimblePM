@@ -35,6 +35,11 @@ module Exports::PDF::Common::Badge
       @document = options[:document]
       @radius = options[:radius] || 0
       @offset = options[:offset] || 0
+      @line_height = options[:line_height] || 8
+    end
+
+    def badge_line_height
+      @line_height + 2
     end
 
     def render_behind(fragment)
@@ -64,10 +69,22 @@ module Exports::PDF::Common::Badge
     brightness < 130 ? "FFFFFF" : "000000"
   end
 
-  def prawn_badge(text, color, offset: 0, radius: 8, font_size: 8)
-    badge = BadgeCallback.new({ color: color, radius:, document: pdf, offset: })
+  def prawn_badge_draw_text_callback(badge_text, offset)
+    # prawn does not support vertical alignment of text fragments, so we need to adjust the y position of the badge
+    ->(text, opts) do
+      opts[:at][1] += offset if text.include? prawn_badge_text_stuffing(badge_text)
+      pdf.draw_text!(text, opts)
+    end
+  end
+
+  def prawn_badge_text_stuffing(text)
+    (Prawn::Text::NBSP * 4) + text.tr(" ", Prawn::Text::NBSP) + (Prawn::Text::NBSP * 4)
+  end
+
+  def prawn_badge(text, color, offset: 0, radius: 8, font_size: 8, line_height: 8)
+    badge = BadgeCallback.new({ color: color, radius:, document: pdf, offset:, line_height: })
     {
-      text: (Prawn::Text::NBSP * 3) + text + (Prawn::Text::NBSP * 3),
+      text: prawn_badge_text_stuffing(text),
       size: font_size,
       color: readable_color(color),
       callback: badge

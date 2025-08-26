@@ -102,7 +102,7 @@ ca:
     button_save: "Desa"
     button_settings: "Configuració"
     button_uncheck_all: "Desmarca-ho tot"
-    button_update: "Actualitzar"
+    button_update: "Actualitza"
     button_export-atom: "Descarregar Atom"
     button_generate_pdf: "Generate PDF"
     button_create: "Crear"
@@ -1080,6 +1080,8 @@ ca:
     notice_successful_delete: "Eliminat correctament."
     notice_successful_update: "Actualitzat correctament."
     notice_job_started: "feina començada."
+    no_job_id: "No job ID returned from server."
+    invalid_job_response: "Invalid response from server."
     notice_bad_request: "Sol·licitud incorrecta."
     relations:
       empty: No existeix cap relació
@@ -1223,12 +1225,14 @@ ca:
         all: "Tots els projectes"
         selected: "Només seleccionats"
       search_placeholder: "Cerca projecte..."
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "Inclou tots els subprojectes"
       tooltip:
         include_all_selected: "Projecte ja inclòs, ja que \"Inclou tots els subprojectes\" està activat."
         current_project: "Aquest és el projecte actual."
         does_not_match_search: "El projecte no coincideix amb la cerca."
       no_results: "Cap projecte s'ajusta a la teva cerca."
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "Base de referència"
       clear: "Esborra"

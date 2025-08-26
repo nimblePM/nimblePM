@@ -31,8 +31,8 @@
 import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
 import type AutoScrollingController from './auto-scrolling.controller';
-import StemsController from './stems.controller';
 import BaseController from './base.controller';
+import type StemsController from './stems.controller';
 
 export default class PollingController extends BaseController {
   static outlets = ['work-packages--activities-tab--auto-scrolling', 'work-packages--activities-tab--stems'];
@@ -40,6 +40,18 @@ export default class PollingController extends BaseController {
   declare readonly workPackagesActivitiesTabStemsOutlet:StemsController;
   private get autoScrollingOutlet() { return this.workPackagesActivitiesTabAutoScrollingOutlet; }
   private get stemsOutlet() { return this.workPackagesActivitiesTabStemsOutlet; }
+
+  static values = {
+    lastServerTimestamp: String,
+    pollingIntervalInMs: { type: Number, default: 10000 },
+    showConflictFlashMessageUrl: String,
+    updateStreamsPath: String,
+  };
+
+  declare lastServerTimestampValue:string;
+  declare pollingIntervalInMsValue:number;
+  declare showConflictFlashMessageUrlValue:string;
+  declare updateStreamsPathValue:string;
 
   static targets = ['editForm', 'reactionButton'];
   declare readonly editFormTargets:HTMLFormElement[];
@@ -97,12 +109,18 @@ export default class PollingController extends BaseController {
       });
   }
 
+  setLastServerTimestampViaHeaders(headers:Headers) {
+    if (headers.has('X-Server-Timestamp')) {
+      this.lastServerTimestampValue = headers.get('X-Server-Timestamp') as string;
+    }
+  }
+
   private startPolling() {
     if (this.intervallId) {
       this.stopPolling();
     }
 
-    this.intervallId = window.setInterval(() => this.updateActivitiesList(), this.indexOutlet.pollingIntervalInMsValue);
+    this.intervallId = window.setInterval(() => this.updateActivitiesList(), this.pollingIntervalInMsValue);
   }
 
   private stopPolling() {
@@ -166,11 +184,11 @@ export default class PollingController extends BaseController {
 
   private prepareUpdateStreamsUrl(editingJournals:Set<string>):string {
     const baseUrl = window.location.origin;
-    const url = new URL(this.indexOutlet.updateStreamsPathValue, baseUrl);
+    const url = new URL(this.updateStreamsPathValue, baseUrl);
 
     url.searchParams.set('sortBy', this.indexOutlet.sortingValue);
     url.searchParams.set('filter', this.indexOutlet.filterValue);
-    url.searchParams.set('last_update_timestamp', this.indexOutlet.lastServerTimestampValue);
+    url.searchParams.set('last_update_timestamp', this.lastServerTimestampValue);
 
     if (editingJournals.size > 0) {
       url.searchParams.set('editing_journals', Array.from(editingJournals).join(','));
@@ -185,7 +203,7 @@ export default class PollingController extends BaseController {
     // a specific signal would be way better than a static timeout, but I couldn't find a suitable one
     setTimeout(() => {
       this.stemsOutlet.handleStemVisibility();
-      this.indexOutlet.setLastServerTimestampViaHeaders(headers);
+      this.setLastServerTimestampViaHeaders(headers);
       this.checkForAndHandleWorkPackageUpdate(html);
       this.checkForNewNotifications(html);
       this.performAutoScrolling(html, journalsContainerAtBottom);
@@ -249,7 +267,7 @@ export default class PollingController extends BaseController {
     // currently we do not have a programmatic way to show the primer flash messages
     // so we just do a request to the server to show it
     // should be refactored once we have a programmatic way to show the primer flash messages!
-    const url = `${this.indexOutlet.showConflictFlashMessageUrlValue}?scheme=warning`;
+    const url = `${this.showConflictFlashMessageUrlValue}?scheme=warning`;
     void this.turboRequests.request(url, { method: 'GET' });
   }
 

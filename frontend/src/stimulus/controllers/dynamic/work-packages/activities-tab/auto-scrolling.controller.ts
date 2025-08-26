@@ -72,7 +72,7 @@ export default class AutoScrollingController extends BaseController {
   }
 
   performAutoScrollingOnStreamsUpdate(journalsContainerAtBottom:boolean = false) {
-    if (this.indexOutlet.sortingValue === 'asc' && journalsContainerAtBottom) {
+    if (this.indexOutlet.sortingAscending && journalsContainerAtBottom) {
       // scroll to (new) bottom if sorting is ascending and journals container was already at bottom before a new activity was added
       if (this.isMobile()) {
         this.scrollInputContainerIntoView(300);
@@ -88,7 +88,7 @@ export default class AutoScrollingController extends BaseController {
       // timeout amount tested on mobile devices for best possible user experience
       this.scrollInputContainerIntoView(800);
     } else {
-      this.scrollJournalContainer(this.indexOutlet.sortingValue === 'asc', true);
+      this.scrollJournalContainer(this.indexOutlet.sortingAscending, true);
     }
   }
 
@@ -98,7 +98,7 @@ export default class AutoScrollingController extends BaseController {
       if (inputContainer) {
         inputContainer.scrollIntoView({
           behavior,
-          block: this.indexOutlet.sortingValue === 'desc' ? 'nearest' : 'start',
+          block: this.indexOutlet.sortingDescending ? 'nearest' : 'start',
         });
       }
     }, timeout);
@@ -124,7 +124,7 @@ export default class AutoScrollingController extends BaseController {
 
     if (activityIdMatch && activityIdMatch.length === 3) {
       this.scrollToActivity(activityIdMatch[1] as AnchorType, activityIdMatch[2]);
-    } else if (this.indexOutlet.sortingValue === 'asc' && (!this.isMobile() || this.isWithinNotificationCenter())) {
+    } else if (this.indexOutlet.sortingAscending && (!this.isMobile() || this.isWithinNotificationCenter())) {
       this.scrollToBottom();
     }
   }

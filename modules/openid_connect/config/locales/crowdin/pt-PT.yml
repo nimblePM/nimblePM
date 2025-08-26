@@ -15,6 +15,7 @@ pt-PT:
         client_id: ID de cliente
         client_secret: Segredo do cliente
         groups_claim: Reivindicação de grupos
+        group_regexes: Padrões (expressões regulares)
         secret: Segredo
         scope: Âmbito
         sync_groups: Sincronizar grupos
@@ -58,14 +59,14 @@ pt-PT:
     delete_title: "Eliminar o fornecedor OpenID Connect"
     group_links_heading: Ligações de grupos OpenID Connect
     instructions:
-      redirect_url: Este é o URL de redirecionamento que o fornecedor OpenID Connect deve usar para redirecionar de volta para o OpenProject após um início de sessão bem-sucedido.
       endpoint_url: O URL do endpoint que lhe foi fornecido pelo fornecedor do OpenID Connect
       group_regexes: Um padrão de expressão regular por linha. Leia [a documentação](docs_url) para mais informações sobre como fazer isto.
-      group_regexes_detail: Defina padrões com expressões regulares para identificar nomes de grupos na reivindicação de grupos. Por exemplo, o padrão <code>^Level1/Level2/([\w/]+)$</code> extrai “GroupName/SubGroup” de uma resposta que contenha “Level1/Level2/GroupName/SubGroup”.
+      group_regexes_detail: Opcionalmente, defina padrões usando expressões regulares para corresponder aos nomes de grupos da declaração de grupos. Por exemplo, introduzir um padrão como <code>^Level1/Level2/([\w/]+)$</code> extrairá o grupo "Groupname/SubGroup" de uma resposta que inclua "Level1/Level2/GroupName/SubGroup". Se nenhum padrão corresponder, o grupo é ignorado. Deixe em branco para sincronizar todos os grupos utilizando o seu nome de grupo completo.
       group_sync: Extraia e sincronize automaticamente as informações de associação de grupos do fornecedor de identidade.
       groups_claim: Especifique o nome da afirmação que se espera que indique os nomes dos grupos de que o utilizador é membro.
       metadata_none: Não tenho esta informação
       metadata_url: Tenho um URL de endpoint de descoberta
+      oidc_information: These values are needed to configure the OpenID Connect provider.
       client_id: Este é o ID de cliente que lhe foi atribuído pelo seu fornecedor OpenID Connect
       client_secret: Este é o segredo do cliente que lhe foi atribuído pelo seu fornecedor OpenID Connect
       limit_self_registration: Se estiver ativado, os utilizadores só podem registar-se utilizando este fornecedor se a configuração do fornecedor o permitir.
@@ -108,7 +109,6 @@ pt-PT:
       label_empty_title: Ainda não existem fornecedores OpenID configurados.
       label_empty_description: Adicione um fornecedor para vê-lo aqui.
       label_group_mapping: Mapeamento de grupos
-      label_group_regexes: Padrão (expressão regular)
       label_metadata: Endpoint de descoberta do OpenID Connect
       label_automatic_configuration: Configuração automática
       label_optional_configuration: Configuração opcional

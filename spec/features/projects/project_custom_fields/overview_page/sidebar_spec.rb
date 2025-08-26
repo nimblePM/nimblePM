@@ -84,7 +84,7 @@ RSpec.describe "Show project custom fields on project overview page", :js do
         overview_page.within_custom_field_section_container(section_for_input_fields) do
           fields = page.all(".op-project-custom-field-container")
 
-          expect(fields.size).to eq(7)
+          expect(fields.size).to eq(9)
 
           expect(fields[0].text).to include("Boolean field")
           expect(fields[1].text).to include("String field")
@@ -93,6 +93,8 @@ RSpec.describe "Show project custom fields on project overview page", :js do
           expect(fields[4].text).to include("Date field")
           expect(fields[5].text).to include("Link field")
           expect(fields[6].text).to include("Text field")
+          expect(fields[7].text).to include("Calculated field using int")
+          expect(fields[8].text).to include("Calculated field using int and float")
         end
 
         overview_page.within_custom_field_section_container(section_for_select_fields) do
@@ -124,7 +126,7 @@ RSpec.describe "Show project custom fields on project overview page", :js do
         overview_page.within_custom_field_section_container(section_for_input_fields) do
           fields = page.all(".op-project-custom-field-container")
 
-          expect(fields.size).to eq(7)
+          expect(fields.size).to eq(9)
 
           expect(fields[0].text).to include("Boolean field")
           expect(fields[1].text).to include("Integer field")
@@ -132,7 +134,9 @@ RSpec.describe "Show project custom fields on project overview page", :js do
           expect(fields[3].text).to include("Date field")
           expect(fields[4].text).to include("Link field")
           expect(fields[5].text).to include("Text field")
-          expect(fields[6].text).to include("String field")
+          expect(fields[6].text).to include("Calculated field using int")
+          expect(fields[7].text).to include("Calculated field using int and float")
+          expect(fields[8].text).to include("String field")
         end
       end
     end
@@ -566,6 +570,72 @@ RSpec.describe "Show project custom fields on project overview page", :js do
             end
 
             overview_page.expect_text_not_truncated(text_project_custom_field)
+          end
+        end
+      end
+    end
+
+    describe "with calculated value CFs" do
+      describe "with value set by user" do
+        it "shows the correct value for the project custom field if given" do
+          overview_page.visit_page
+
+          overview_page.within_project_attributes_sidebar do
+            overview_page.within_custom_field_container(calculated_from_int_project_custom_field) do
+              expect(page).to have_text "Calculated field using int"
+              expect(page).to have_text "234"
+            end
+
+            overview_page.within_custom_field_container(calculated_from_int_and_float_project_custom_field) do
+              expect(page).to have_text "Calculated field using int and float"
+              expect(page).to have_text "15,185.088"
+            end
+          end
+        end
+      end
+
+      describe "with value unset by user" do
+        before do
+          calculated_from_int_project_custom_field.custom_values.where(customized: project).first.update!(value: "")
+          calculated_from_int_and_float_project_custom_field.custom_values.where(customized: project).first.update!(value: "")
+        end
+
+        it "shows the correct value for the project custom field if given" do
+          overview_page.visit_page
+
+          overview_page.within_project_attributes_sidebar do
+            overview_page.within_custom_field_container(calculated_from_int_project_custom_field) do
+              expect(page).to have_text "Calculated field using int"
+              expect(page).to have_text I18n.t("placeholders.default")
+            end
+
+            overview_page.within_custom_field_container(calculated_from_int_and_float_project_custom_field) do
+              expect(page).to have_text "Calculated field using int and float"
+              expect(page).to have_text I18n.t("placeholders.default")
+            end
+          end
+        end
+      end
+
+      describe "with no value set by user" do
+        before do
+          calculated_from_int_project_custom_field.custom_values.where(customized: project).destroy_all
+          calculated_from_int_and_float_project_custom_field.custom_values.where(customized: project).destroy_all
+        end
+
+        it "shows an N/A text for the project custom field if no value given" do
+          overview_page.visit_page
+
+          overview_page.within_project_attributes_sidebar do
+            overview_page.within_custom_field_container(calculated_from_int_project_custom_field) do
+              expect(page).to have_text "Calculated field using int"
+              expect(page).to have_text I18n.t("placeholders.default")
+            end
+
+            overview_page.within_custom_field_container(calculated_from_int_and_float_project_custom_field) do
+              expect(page).to have_text "Calculated field using int and float"
+              expect(page).to have_text I18n.t("placeholders.default")
+            end
           end
         end
       end

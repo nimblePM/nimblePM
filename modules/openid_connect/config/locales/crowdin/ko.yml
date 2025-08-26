@@ -15,6 +15,7 @@ ko:
         client_id: 클라이언트 ID
         client_secret: 클라이언트 비밀번호
         groups_claim: 그룹 클레임
+        group_regexes: 패턴(정규 표현식)
         secret: 비밀번호
         scope: 범위
         sync_groups: 그룹 동기화
@@ -58,14 +59,14 @@ ko:
     delete_title: "OpenID Connect 공급자 삭제"
     group_links_heading: OpenID Connect 그룹 링크
     instructions:
-      redirect_url: 로그인 성공 후 OpenID Connect 공급자가 OpenProject로 다시 리디렉션할 때 사용해야 하는 리디렉션 URL입니다.
       endpoint_url: OpenID Connect 공급자가 귀하에게 제공한 엔드포인트 URL
       group_regexes: 라인별로 하나의 정규 표현식 패턴을 사용하세요. 작업 방법에 대한 자세한 내용은 [설명서](docs_url)를 참조하세요.
-      group_regexes_detail: 정규 표현식을 사용하여 그룹 클레임의 그룹 이름과 일치하는 패턴을 정의합니다. 예를 들어, <code>^Level1/Level2/([\w/]+)$</code> 같은 패턴을 입력하면 응답에서 “Level1/Level2/GroupName/SubGroup”을 포함한 “Groupname/SubGroup” 그룹이 추출됩니다.
+      group_regexes_detail: 선택적으로 정규 표현식을 사용하여 그룹 클레임의 그룹 이름과 일치하는 패턴을 정의할 수 있습니다. 예를 들어, <code>^Level1/Level2/([\w/]+)$</code> 같은 패턴을 입력하면 응답에서 “Level1/Level2/GroupName/SubGroup”을 포함한 “Groupname/SubGroup” 그룹이 추출됩니다. 일치하는 패턴이 없으면 해당 그룹은 무시됩니다. 전체 그룹 이름을 사용하여 모든 그룹을 동기화하려면 비워 두세요.
       group_sync: ID 공급자로부터 그룹 멤버십 정보를 자동으로 추출하고 동기화합니다.
       groups_claim: 사용자가 속한 그룹 이름을 나타내는 클레임의 이름을 지정합니다.
       metadata_none: 이 정보가 없습니다
       metadata_url: 검색 엔드포인트 URL이 있습니다
+      oidc_information: These values are needed to configure the OpenID Connect provider.
       client_id: OpenID Connect 공급자가 귀하에게 제공한 클라이언트 ID입니다
       client_secret: OpenID Connect 공급자가 귀하에게 제공한 클라이언트 비밀번호입니다
       limit_self_registration: 활성화된 경우, 사용자는 공급자 측의 구성에서 허용하는 경우에만 이 공급자를 사용하여 등록할 수 있습니다.
@@ -108,7 +109,6 @@ ko:
       label_empty_title: 아직 구성된 OpenID 공급자가 없습니다.
       label_empty_description: 여기에서 보려면 공급자를 추가합니다.
       label_group_mapping: 그룹 매핑
-      label_group_regexes: 패턴(정규 표현식)
       label_metadata: OpenID Connect 검색 엔드포인트
       label_automatic_configuration: 자동 구성
       label_optional_configuration: 옵션 구성

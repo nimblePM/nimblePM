@@ -298,10 +298,9 @@ RSpec.describe "Meetings CRUD",
 
     show_page.open_participant_form
     show_page.in_participant_form do
-      check(id: "checkbox_invited_#{other_user.id}")
-      check(id: "checkbox_attended_#{other_user.id}")
+      show_page.select_participant(other_user)
 
-      click_on("Save")
+      page.find(".close-button").click
     end
 
     wait_for_network_idle
@@ -327,16 +326,20 @@ RSpec.describe "Meetings CRUD",
     click_on "Create meeting"
 
     new_meeting = Meeting.last
+    copied_meeting_page = Pages::Meetings::Show.new(new_meeting)
     expect(page).to have_current_path "/projects/#{project.identifier}/meetings/#{new_meeting.id}"
 
     # check for copied agenda items
-    expect(page).to have_content "My agenda item"
+    copied_meeting_page.expect_agenda_item title: "My agenda item"
+
+    copied_meeting_page.start_meeting
 
     # check for copied participants with attended status reset
-    page.find_test_selector("manage-participants-button").click
-    expect(page).to have_modal("Participants")
-    expect(page).to have_field(id: "checkbox_invited_#{other_user.id}", checked: true)
-    expect(page).to have_field(id: "checkbox_attended_#{other_user.id}", checked: false)
+    copied_meeting_page.open_participant_form
+    copied_meeting_page.in_participant_form do
+      copied_meeting_page.expect_participant(user)
+      copied_meeting_page.expect_participant(other_user)
+    end
 
     # check for email notifications for both participants
     perform_enqueued_jobs

@@ -10,7 +10,7 @@ import { applyTurboNavigationPatch } from './turbo-navigation-patch';
 import { debugLog, whenDebugging } from 'core-app/shared/helpers/debug_output';
 import { TURBO_EVENTS } from './constants';
 import { StreamActions } from '@hotwired/turbo';
-import { addTurboAngularWrapper } from "core-turbo/turbo-angular-wrapper";
+import { addTurboAngularWrapper } from 'core-turbo/turbo-angular-wrapper';
 
 Turbo.session.drive = true;
 Turbo.setProgressBarDelay(100);

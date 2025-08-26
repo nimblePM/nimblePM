@@ -294,6 +294,7 @@ nl:
         placeholder:
           label: "Item label"
           short: "Verkorte Naam"
+          score: "Score"
       notice:
         remember_items_and_projects: "Vergeet niet om items en projecten in te stellen op de respectievelijke tabbladen voor dit aangepaste veld."
       hierarchy:
@@ -329,6 +330,7 @@ nl:
     single: "of"
   dry_validation:
     errors:
+      defined: "must not be defined."
       int?: "moet een geheel getal zijn."
       filled?: "moet ingevuld zijn."
       greater_or_equal_zero: "moet groter dan, of gelijk zijn aan 0."
@@ -336,6 +338,8 @@ nl:
       rules:
         copy_workflow_from:
           workflow_missing: "has no own workflow."
+        custom_field:
+          format_not_supported: "format '%{field_format}' is unsupported."
         item:
           root_item: "kan geen root-item zijn."
           not_persisted: "moet een reeds bestaand item zijn."
@@ -371,7 +375,7 @@ nl:
       description: By grouping users together, you can add them as members to the same projects or assign the same global roles to them.
     table_component:
       blank_slate:
-        description: You can define groups of users with specific names
+        description: You can define named groups of users with specific permissions.
         title: No groups set up yet
       user_count: User count
     users:
@@ -461,7 +465,7 @@ nl:
       life_cycle:
         header:
           title: "Project life cycle"
-          description_html: "The active project phases define this project's life cycle and are defined in the <a href=%{admin_settings_url} target=\"_blank\">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target=\"_blank\">project overview</a>."
+          description_html: 'The active project phases define this project''s life cycle and are defined in the <a href=%{admin_settings_url} target="_blank">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target="_blank">project overview</a>.'
         non_defined: "No phases are currently defined."
         section_header: "Phases"
         step:
@@ -570,26 +574,26 @@ nl:
       will_revoke_access_to_all: "Door deze actie wordt hun toegang tot alle items ingetrokken."
   my:
     access_token:
-      create_dialog:
-        title: Token generated
-        header: The %{type} token has been generated
-        warning: Note that this is the only time you will see this token, make sure to copy it now.
+      dialog:
+        token/api:
+          dialog_title: "Create new API token"
+          attention_text: "Treat API tokens like passwords. Anyone with this token will have access to information from this instance, share it only with trusted users."
+          dialog_body: "This token will allow third-party applications to communicate with your instance. To differentiate the new API token, please give it a name."
+          create_button: "Create"
+          name_label: "Token name"
+      created_dialog:
+        token/api:
+          title: "The API token has been generated"
+          warning: "This is the only time you will see this token. Make sure to copy it now."
       errors:
         token_name_blank: "Geef een API-sleutel naam op"
         token_name_in_use: "Deze API token naam is al in gebruik, kies een andere a.u.b."
-      new_access_token_dialog_title: "Nieuwe API-sleutel aanmaken"
-      new_access_token_dialog_show_button_text: "API-sleutel"
-      new_access_token_dialog_text_field_placeholder_text: "Mijn API-sleutel"
-      new_access_token_dialog_text_field_label: "Naam"
-      new_access_token_dialog_submit_button_text: "Maken"
-      new_access_token_dialog_text: "Deze sleutel zal applicaties van derden in staat stellen om met uw instantie te communiceren. Geef het nieuwe API-sleutel een naam om deze te onderscheiden."
-      new_access_token_dialog_attention_text: "Behandel API-sleutels als wachtwoorden. Iedereen met deze link heeft toegang tot informatie van deze instantie, deel het alleen met vertrouwde gebruikers."
       failed_to_reset_token: "Reset-toegangstoken mislukt: %{error}"
       failed_to_create_token: "Aanmaken van toegang sleutel is mislukt: %{error}"
       failed_to_revoke_token: "Intrekken van toegang sleutel mislukt: %{error}"
       notice_reset_token: "Een nieuwe %{type} -token is gegenereerd. Uw toegangstoken is:"
       token_value_warning: "Opmerking: Dit is de enige keer dat u dit token ziet, zorg ervoor dat u het nu kopiëren."
-      no_results_title_text: Er zijn momenteel geen toegangstokens beschikbaar.
+      no_results_title_text: "Er zijn momenteel geen toegangstokens beschikbaar."
       notice_api_token_revoked: "The API token has been deleted. To create a new token please use the button in the API section."
       notice_rss_token_revoked: "Het RSS-sleutel is verwijderd. Gebruik de link in het gedeelte RSS om een nieuwe sleutel aan te maken."
       notice_ical_token_revoked: 'iCalendar token "%{token_name}" voor kalender "%{calendar_name}" van project "%{project_name}" is ingetrokken. De iCalendar URL met deze token is nu ongeldig.'
@@ -682,8 +686,10 @@ nl:
         excluded_from_totals: "Uitgesloten van totalen"
   themes:
     dark: "Donker"
+    dark_high_contrast: "Dark high contrast"
     light: "Licht"
     light_high_contrast: "Licht hoog contrast"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Er zijn momenteel geen types.
@@ -716,7 +722,7 @@ nl:
         pattern:
           label: "Onderwerp patroon"
           caption: Create patterns by adding text, or type "/" to search for [supported attributes](attributes_url).
-          insert_as_text: "No attributes found. Add as text: \"%{word}\""
+          insert_as_text: 'No attributes found. Add as text: "%{word}"'
       export_configuration:
         tab: "Generate PDF"
         intro: "Select which templates from those that are available you would like to enable for this type. The template determines the design and attributes visible in the exported PDF of a work package using this type. The first template on the list is selected by default."
@@ -1058,6 +1064,7 @@ nl:
         types: "Typen"
         versions: "Versies"
         work_packages: "Werkpakketten"
+        workspace_type: "Workspace type"
       project_custom_field:
         is_required: "Vereist voor alle projecten"
         custom_field_section: Sectie
@@ -1287,6 +1294,7 @@ nl:
         odd: "moet oneven zijn."
         regex_match_failed: "does not match the regular expression %{expression}."
         regex_invalid: "kon niet worden gevalideerd met de bijbehorende reguliere expressie."
+        regex_list_invalid: "could not be parsed as regular expression in lines %{invalid_lines}."
         hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
         smaller_than_or_equal_to_max_length: "moet kleiner zijn dan of even groot zijn als de maximale lengte."
         taken: "is al in gebruik."
@@ -1553,8 +1561,7 @@ nl:
               cant_exceed_work: "kan niet hoger zijn dan Werk."
               must_be_set_when_work_is_set: "vereist wanneer Werk is ingesteld."
               must_be_set_when_work_and_percent_complete_are_set: "vereist wanneer Werk en % Voltooid zijn ingesteld."
-              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: >-
-                moet 0h zijn als Werk is ingesteld en % Voltooid 100% is.
+              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: '>- must be 0h when Work is set and % Complete is 100%.'
               must_be_empty_when_work_is_empty_and_percent_complete_is_100p: >-
                 moet leeg zijn als Werk leeg is en % Voltooid 100% is.
           readonly_status: "Het werkpakket heeft een alleen-lezen status dus kunne attributen niet worden gewijzigd."
@@ -1618,6 +1625,7 @@ nl:
         one: "Authentication provider"
         other: "Authentication providers"
       category: "Categorie"
+      color: "Color"
       comment: "Commentaar"
       custom_action: "Aangepaste actie"
       custom_field: "Aangepast veld"
@@ -1963,11 +1971,11 @@ nl:
       succeeded: 'Gekopieerde project "%{source_project_name}" naar "%{target_project_name}".'
     source_project_label: "Project copied"
     copy_options:
-      dependencies_label: 'Copy from project'
+      dependencies_label: "Copy from project"
   create_project:
     template_label: "Use template"
     copy_options:
-      dependencies_label: 'Copy from template'
+      dependencies_label: "Copy from template"
   create_wiki_page: "Create new wiki page"
   create_wiki_page_button: "Wikipagina"
   date:
@@ -2143,7 +2151,7 @@ nl:
       project_list_sharing: Project List Sharing
       readonly_work_packages: Readonly Work Packages
       scim_api: SCIM server API
-      sso_auth_providers: Single sign-on
+      sso_auth_providers: Single Sign-On
       team_planner_view: Team Planner View
       virus_scanning: Antivirus Scanning
       work_package_query_relation_columns: Work Package Query Relation Columns
@@ -2212,6 +2220,9 @@ nl:
       scim_api:
         title: "SCIM clients"
         description: "Automate user management in OpenProject by seamlessly integrating external identity services like Microsoft Entra or Keycloak through our SCIM Server API. Available starting with the Enterprise corporate plan."
+      sso_auth_providers:
+        title: "Single Sign-On (SSO)"
+        description: "Enable users to log in via external SSO providers using SAML or OpenID Connect for seamless access and integration with existing identity systems."
       virus_scanning:
         description: "Ensure uploaded files in OpenProject are scanned for viruses before being accessible by other users."
       placeholder_users:
@@ -2249,6 +2260,13 @@ nl:
         I want to receive the OpenProject <a target="_blank" href="https://www.openproject.org/newsletter/">newsletter</a>.
       consent_html: >
         I agree with the <a target="_blank" href="https://www.openproject.org/terms-of-service/">terms of service</a> and the <a target="_blank" href="https://www.openproject.org/data-privacy-and-security/">privacy policy</a>.
+  email_calendar_updates:
+    state:
+      disabled: "Disabled."
+      enabled: "Enabled."
+    button:
+      disabled: "Enable"
+      enabled: "Disable"
   enumeration_activities: "Activiteiten voor het bijhouden van tijd"
   enumeration_work_package_priorities: "Werkpakket prioriteiten"
   enumeration_reported_project_statuses: "Gerapporteerde projectstatus"
@@ -2394,6 +2412,7 @@ nl:
           label: "Include descriptions"
           caption: "This option will add a description column in raw format."
     your_work_packages_export: "Work packages are being exported"
+    your_projects_export: "Projects are being exported"
     succeeded: "Export completed"
     failed: "An error has occurred while trying to export the work packages: %{message}"
     errors:
@@ -2456,6 +2475,13 @@ nl:
       xls2csv: "Xls2csv beschikbaar (optioneel)"
       catppt: "Catppt beschikbaar (optioneel)"
       tesseract: "Tesseract beschikbaar (optioneel)"
+  filterable_tree_view:
+    filter_mode:
+      all: "All"
+      label: "Filter mode"
+      selected: "Selected"
+    include_sub_items: "Include sub-items"
+    no_results_text: "No results"
   general_csv_decimal_separator: "."
   general_csv_encoding: "UTF-8"
   general_csv_separator: ","
@@ -2561,11 +2587,13 @@ nl:
         expiration: "Verloopt"
       indefinite_expiration: "Nooit"
       simple_revoke_confirmation: "Weet u zeker dat u deze token wilt intrekken?"
-      api:
+      token/api:
         title: "API"
         text_hint: "API tokens allow third-party applications to communicate with this OpenProject instance via REST APIs."
-        static_token_name: "API-sleutel"
         disabled_text: "API tokens are not enabled by the administrator. Please contact your administrator to use this feature."
+        add_button: "API Token"
+      api:
+        static_token_name: "API-sleutel"
       ical:
         title: "iCalendar"
         text_hint: 'iCalendar tokens allow users to <a href="%{path}" target="_blank">subscribe to OpenProject calendars</a> and view up-to-date work package information from external clients.'
@@ -2888,6 +2916,7 @@ nl:
   label_invite_user: "Gebruiker uitnodigen"
   label_item: "Item"
   label_item_plural: "Items"
+  label_scored_list: "Scored list"
   label_share: "Deel"
   label_share_project_list: "Projectlijst delen"
   label_share_work_package: "Werkpakket delen"
@@ -2923,6 +2952,7 @@ nl:
   label_custom_logo: "Eigen logo"
   label_custom_export_logo: "Custom export logo"
   label_custom_export_cover: "Custom export cover background"
+  label_custom_export_footer: "Custom export footer image"
   label_custom_export_cover_overlay: "Custom export cover background overlay"
   label_custom_export_cover_text_color: "Tekstkleur"
   label_custom_pdf_export_settings: "Aangepaste PDF-exportinstellingen"
@@ -3076,6 +3106,10 @@ nl:
   label_project_view_all: "Bekijk alle projecten"
   label_project_show_details: "Toon project details"
   label_project_hide_details: "Verberg project details"
+  label_portfolio: "Portfolio"
+  label_portfolio_new: "New portfolio"
+  label_program: "Program"
+  label_program_new: "New program"
   label_public_projects: "Publieke projecten"
   label_query_new: "Nieuwe query"
   label_query_plural: "Aangepaste query 's"
@@ -3224,6 +3258,8 @@ nl:
   label_watched_work_packages: "Gevolgde werkpakketten"
   label_what_is_this: "Wat is dit?"
   label_week: "Week"
+  label_widget: "Widget"
+  label_widget_new: "New widget"
   label_wiki_content_added: "Wiki-pagina toegevoegd"
   label_wiki_content_updated: "Wiki-pagina bijgewerkt"
   label_wiki_toc: "Inhoudsopgave"
@@ -3570,6 +3606,8 @@ nl:
   permission_add_work_packages: "Werkpakketten toevoegen"
   permission_add_messages: "Berichten posten"
   permission_add_project: "Projecten aanmaken"
+  permission_add_portfolios: "Create portfolios"
+  permission_add_programs: "Create programs"
   permission_add_work_package_attachments: "Bijlagen toevoegen"
   permission_add_work_package_attachments_explanation: "Allows adding attachments without Edit work packages permission"
   permission_add_internal_comments: "Write internal comments"
@@ -3866,6 +3904,7 @@ nl:
   setting_attachment_whitelist: "Bijlage upload whitelist"
   setting_email_delivery_method: "Kies verzendmethode"
   setting_emails_salutation: "Address user in emails with"
+  setting_oauth_allow_remapping_of_existing_users: "Allow remapping of existing users"
   setting_sendmail_location: "Locatie van het uitvoerbare sendmail"
   setting_smtp_enable_starttls_auto: "Gebruik STARTTLS automatisch wanneer deze beschikbaar is"
   setting_smtp_ssl: "SSL-verbinding gebruikt"
@@ -4026,11 +4065,13 @@ nl:
   setting_working_days: "Werkdagen"
   settings:
     authentication:
-      login_and_sso: "Login and SSO"
+      login: "Login"
       registration: "Registration"
-      single_sign_on: "Single Sign-On"
+      sso: "Single Sign-On (SSO)"
       omniauth_direct_login_hint_html: >
         If this option is active, login requests will redirect to the configured omniauth provider. The login dropdown and sign-in page will be disabled. <br/> <strong>Note:</strong> Unless you also disable password logins, with this option enabled, users can still log in internally by visiting the <code>%{internal_path}</code> login page.
+      remapping_existing_users_hint: >
+        If enabled, allows any configured identity provider to login existing users based on their email address, even if the user never signed in through that provider before. This can be useful when migrating the OpenProject instance to a new SSO provider, but is not recommended when using a provider that is not trusted by all users of your instance.
     attachments:
       whitelist_text_html: >
         Definieer een lijst met geldige bestandsextensies en/of MIME-types voor geüploade bestanden. <br/> Vul de bestandsextensies in (bijv. <code>%{ext_example}</code>) of MIME-types (bijv. ., <code>%{mime_example}</code>). <br/> Laat leeg om elk bestandstype te kunnen uploaden. Meerdere waarden toegestaan (één regel voor elke waarde).
@@ -4174,6 +4215,8 @@ nl:
     This is the logo that appears in your PDF exports. It needs to be a PNG or JPEG image file. A black or colored logo on transparent or white background is recommended.
   text_custom_export_cover_instructions: >
     This is the image that appears in the background of a cover page in your PDF exports. It needs to be an about 800px width by 500px height sized PNG or JPEG image file.
+  text_custom_export_footer_instructions: >
+    PDF exports will include a graphical element positioned to the left of the footer. This image must be a PNG or JPEG file with approximately 200 pixels in width.
   text_custom_favicon_instructions: >
     This is the tiny icon that appears in your browser window/tab next to the page's title. It needs to be a squared 32 by 32 pixels sized PNG image file with a transparent background.
   text_custom_touch_icon_instructions: >
@@ -4513,6 +4556,8 @@ nl:
       code_500_missing_enterprise_token: "The request can not be handled due to invalid or missing Enterprise token."
       bad_request:
         emoji_reactions_activity_type_not_supported: "This activity type does not support emoji reactions."
+        invalid_link: "The link under key '%{key}' is not valid."
+        links_not_an_object: "_links must be a JSON object."
       conflict:
         multiple_reminders_not_allowed: |-
           You can only set one reminder at a time for a work package. Please delete or update the existing reminder.
@@ -4715,3 +4760,6 @@ nl:
     description: "Adds the OmniAuth SAML provider to OpenProject"
   enterprise_plans:
     legacy_enterprise: "Enterprise Plan"
+  token:
+    hashed_token:
+      display_value_placeholder: "***"

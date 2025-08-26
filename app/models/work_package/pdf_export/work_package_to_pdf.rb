@@ -61,6 +61,8 @@ class WorkPackage::PDFExport::WorkPackageToPdf < Exports::Exporter
   rescue StandardError => e
     Rails.logger.error "Failed to generate PDF export:  #{e.message}:\n#{e.backtrace.join("\n")}"
     error(I18n.t(:error_pdf_failed_to_export, error: e.message))
+  ensure
+    delete_all_resized_images
   end
 
   def setup_page!
@@ -89,30 +91,21 @@ class WorkPackage::PDFExport::WorkPackageToPdf < Exports::Exporter
   def write_wp_title!(work_package)
     badge_text = work_package.status.name.downcase
     offset = 2
+    style = styles.page_heading
     with_margin(styles.page_heading_margins) do
       pdf.formatted_text(
         [
-          wp_title_formatted_text(work_package),
+          wp_title_formatted_text(work_package, style),
           { text: " " },
-          prawn_badge(badge_text, wp_status_prawn_color(work_package), offset:)
+          prawn_badge(badge_text, wp_status_prawn_color(work_package), offset:, line_height: style[:size])
         ],
-        styles.page_heading.merge({ draw_text_callback: prawn_badge_draw_text_callback(badge_text, offset) })
+        style.merge({ draw_text_callback: prawn_badge_draw_text_callback(badge_text, offset) })
       )
     end
   end
 
-  def wp_title_formatted_text(work_package)
-    styles.page_heading.merge({ text: heading, link: url_helpers.work_package_url(work_package) })
-  end
-
-  def prawn_badge_draw_text_callback(badge_text, offset)
-    # prawn does not support vertical alignment of text fragments, so we need to adjust the y position of the badge
-    ->(text, opts) do
-      if text.include? badge_text
-        opts[:at][1] += offset
-      end
-      pdf.draw_text!(text, opts)
-    end
+  def wp_title_formatted_text(work_package, style)
+    style.merge({ text: heading, link: url_helpers.work_package_url(work_package) })
   end
 
   def heading

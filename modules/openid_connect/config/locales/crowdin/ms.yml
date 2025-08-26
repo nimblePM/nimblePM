@@ -15,6 +15,7 @@ ms:
         client_id: ID pelanggan
         client_secret: Rahsia pelanggan
         groups_claim: Groups claim
+        group_regexes: Patterns (regular expressions)
         secret: Sulit
         scope: Skop
         sync_groups: Synchronize groups
@@ -58,14 +59,14 @@ ms:
     delete_title: "Padam pembekal OpenID Connect"
     group_links_heading: OpenID Connect group links
     instructions:
-      redirect_url: Ini ialah URL ubah hala yang harus digunakan oleh pembekal OpenID Connect untuk mengubah hala semula ke OpenProject selepas log masuk berjaya.
       endpoint_url: URL titik akhir yang diberikan kepada anda oleh pembekal OpenID Connect
       group_regexes: One regular expression pattern per line. Please read [the documentation](docs_url) for more information on how to do this.
-      group_regexes_detail: Define patterns using regular expressions to match group names from the groups claim. For example, entering a pattern like <code>^Level1/Level2/([\w/]+)$</code> will extract the group “Groupname/SubGroup” from a response including “Level1/Level2/GroupName/SubGroup”.
+      group_regexes_detail: Optionally define patterns using regular expressions to match group names from the groups claim. For example, entering a pattern like <code>^Level1/Level2/([\w/]+)$</code> will extract the group “Groupname/SubGroup” from a response including “Level1/Level2/GroupName/SubGroup”. If no pattern matches, the group is ignored. Leave empty to synchronize all groups using their full group name.
       group_sync: Automatically extract and synchronise group membership information from the identity provider.
       groups_claim: Specify the name of the claim that's expected to indicate the group names that the user is a member of.
       metadata_none: Saya tidak mempunyai maklumat ini
       metadata_url: Saya mempunyai URL titik akhir penemuan
+      oidc_information: These values are needed to configure the OpenID Connect provider.
       client_id: Ini ialah ID klien yang diberikan kepada anda oleh pembekal OpenID Connect anda
       client_secret: Ini ialah rahsia pelanggan yang diberikan kepada anda oleh pembekal OpenID Connect anda
       limit_self_registration: Jika didayakan, pengguna hanya boleh mendaftar menggunakan pembekal ini jika konfigurasi di hujung pembekal membenarkannya.
@@ -108,7 +109,6 @@ ms:
       label_empty_title: Tiada pembekal OpenID dikonfigurasikan lagi.
       label_empty_description: Tambah pembekal untuk melihat mereka di sini.
       label_group_mapping: Group mapping
-      label_group_regexes: Pattern (regular expression)
       label_metadata: OpenID Connect Discovery Endpoint
       label_automatic_configuration: Konfigurasi automatik
       label_optional_configuration: Konfigurasi pilihan

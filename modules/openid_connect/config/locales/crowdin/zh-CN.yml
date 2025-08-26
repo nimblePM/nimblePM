@@ -15,6 +15,7 @@ zh-CN:
         client_id: 客户端ID
         client_secret: 客户端密钥
         groups_claim: 群组声明
+        group_regexes: 模式（正则表达式）
         secret: 密钥
         scope: 范围
         sync_groups: 同步群组
@@ -58,14 +59,14 @@ zh-CN:
     delete_title: "删除 OpenID Connect 提供商"
     group_links_heading: OpenID Connect 群组链接
     instructions:
-      redirect_url: 这是 OpenID Connect 提供程序在成功登录后应当用于重定向回 OpenProject 的重定向 URL。
       endpoint_url: OpenID Connect 提供商给您的端点 URL
       group_regexes: 每行一个正则表达式模式。有关如何操作的更多信息，请阅读[文档](docs_url)。
-      group_regexes_detail: 使用正则表达式定义模式，以匹配群组声明中的群组名称。例如，输入类似 <code>^Level1/Level2/([\w/]+)$</code> 的模式将从包含“Level1/Level2/GroupName/SubGroup”的响应中提取群组“Groupname/SubGroup”。
+      group_regexes_detail: 可选择使用正则表达式定义模式，以匹配群组声明中的群组名称。例如，输入类似 <code>^Level1/Level2/([\w/]+)$</code> 的模式将从包含“Level1/Level2/GroupName/SubGroup”的响应中提取群组“Groupname/SubGroup”。如果没有模式匹配，则会忽略该群组。留空可使用完整群组名称同步所有群组。
       group_sync: 自动从身份提供商提取并同步群组成员信息。
       groups_claim: 指定预期表示用户所属群组名称的声明的名称。
       metadata_none: 我没有这个信息
       metadata_url: 我有一个发现端点网址
+      oidc_information: These values are needed to configure the OpenID Connect provider.
       client_id: 这是您的 OpenID Connect 提供商给您的客户端 ID
       client_secret: 这是您的 OpenID Connect 提供商给您的客户端密钥
       limit_self_registration: 如果启用，用户只能在提供商的配置允许的情况下使用该提供商进行注册。
@@ -108,7 +109,6 @@ zh-CN:
       label_empty_title: 尚未配置 OpenID 提供商。
       label_empty_description: 在这里添加一个提供商以查看它们。
       label_group_mapping: 群组映射
-      label_group_regexes: 模式（正则表达式）
       label_metadata: OpenID Connect 发现端点
       label_automatic_configuration: 自动配置
       label_optional_configuration: 可选配置

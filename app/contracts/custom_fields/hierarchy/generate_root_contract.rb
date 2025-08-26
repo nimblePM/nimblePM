@@ -23,7 +23,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
@@ -31,13 +31,16 @@
 module CustomFields
   module Hierarchy
     class GenerateRootContract < Dry::Validation::Contract
+      config.messages.backend = :i18n
+
       params do
         required(:custom_field).filled(type?: CustomField)
       end
 
       rule(:custom_field) do
-        key.failure("must have field format 'hierarchy'") if value.field_format != "hierarchy"
-        key.failure("cannot be defined") if value.hierarchy_root.present?
+        field_format = value.field_format
+        key.failure(:format_not_supported, field_format:) if %w[hierarchy scored_list].exclude?(field_format)
+        key.failure(:defined) if value.hierarchy_root.present?
       end
     end
   end

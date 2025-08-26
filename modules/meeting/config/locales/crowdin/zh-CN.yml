@@ -58,8 +58,13 @@ zh-CN:
         end_after: "会议系列结束"
         end_date: "结束日期"
         iterations: "事件"
+      meeting_participant:
+        invited: "Invited"
+        attended: "Attended"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "该系列会议中有一次公开会议未列入新时间表。请调整时间表，将会议包含在内。"
@@ -73,6 +78,8 @@ zh-CN:
       meeting_agenda_item: "议程项目"
       meeting_agenda: "议程"
       meeting_section: "节"
+      token/ical_meeting:
+        other: "iCal Meeting subscription"
   activity:
     filter:
       meeting: "会议"
@@ -90,7 +97,6 @@ zh-CN:
           updated: "从 %{old_value} 更改为 %{value}"
           updated_html: "从 <i>%{old_value}</i>改为 <i>%{value}</i>"
   description_attended: "已出席"
-  description_invite: "已邀请"
   events:
     meeting: 会议已编辑
     meeting_agenda: 会议议程已编辑
@@ -166,9 +172,25 @@ zh-CN:
   label_version: "版本"
   label_time_zone: "时区"
   label_start_date: "开始日期"
+  label_subscribe_icalendar: "Subscribe to calendar"
   meeting:
     participants:
-      template: "这些与会者将被自动邀请参加之后创建的所有会议。"
+      label:
+        participants: "Participants"
+        attended: "Attended"
+        mark_as_attended: "Mark as attended"
+        mark_all_as_attended: "Mark all as attended"
+        remove_participant: "Remove participant"
+        manage_participants: "Manage participants"
+        no_participants: "No participants"
+        show_all: "Show all"
+      text:
+        template: "These participants will be invited automatically to all future meetings as they are created."
+        manage_participants: "Search for and add project members as participants to this meeting."
+        search_for_members: "Search for project members"
+      blankslate:
+        heading: "No participants"
+        description: "There are no participants yet."
     attachments:
       template: "这些文件将被自动添加到之后创建的所有系列会议中。"
       text: "所有与会者都可以查看附件。您还可以将这些文件拖放到议程项目注释中。"
@@ -191,11 +213,11 @@ zh-CN:
       series:
         title: "[%{project_name}] 会议系列 '%{title}'"
         summary: "%{actor} 设置了一个新的会议系列 '%{title}'"
-      series_rescheduled:
-        title: "[%{project_name}] 会议系列 '%{title}' 已重新安排"
-        summary: "%{actor} 已更改会议系列 '%{title}' 的时间表"
-        old_schedule: "旧时间表"
-        new_schedule: "新时间表"
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
+        old_schedule: "Old schedule"
+        new_schedule: "New schedule"
       invited:
         summary: "%{actor} 向您发送了会议 '%{title}' 的邀请"
       cancelled:
@@ -206,13 +228,15 @@ zh-CN:
         summary_series: "%{actor} 已取消会议系列 '%{title}'。"
         summary: "%{actor} 已取消 '%{title}'。"
         date_time: "预定日期/时间"
-      rescheduled:
-        header: "会议 '%{title}' 已经重新安排"
-        summary: "会议 '%{title}' 已经由 %{actor} 重新安排"
-        body: "会议 '%{title}' 已经由 %{actor} 重新安排。"
-        old_date_time: "旧日期/时间"
-        new_date_time: "新日期/时间"
-    label_mail_all_participants: "使用电子邮件向所有与会者发送日历邀请"
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
+        old_date_time: "Old date/time"
+        new_date_time: "New date/time"
+        old_location: "Old location"
+        new_location: "New location"
+    label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "动态"
       recurring: "定期"
@@ -238,9 +262,29 @@ zh-CN:
     label_export_pdf: "导出 PDF"
     export:
       your_meeting_export: "会议正在导出"
+      minutes:
+        footer_page_numbers: "P. %{current_page} of %{total_pages}"
+        author: "Author"
+        date: "Date"
+        time: "Time"
+        location: "Location"
+        title: "Minutes"
     export_pdf_dialog:
       title: 导出 PDF
       description: 生成当前状态下此会议的可打印 PDF 文件。
+      templates:
+        default:
+          label: Default
+          caption: The default template is suitable for most meetings and represent the current state.
+        minutes:
+          label: Minutes
+          caption: The minutes template is suitable for closed and archived meetings.
+      first_page_header_left:
+        label: First page header left
+        caption: This text will appear on the first page at the left of the header.
+      author:
+        label: Author
+        caption: The author of the minutes will be displayed in the subtitle.
       include_participants:
         label: 包含与会者名单
         caption: 与会者名单将列在会议议程上方。
@@ -260,16 +304,10 @@ zh-CN:
     notifications:
       sidepanel:
         title: "电子邮件日历更新"
-        state:
-          disabled: "已禁用。"
-          enabled: "已启用。"
         description:
           disabled: "与会者不会收到向其通知更改的电子邮件。"
           enabled: "所有与会者都将通过电子邮件收到更新的日历邀请，向其通知相关更改。"
           change_via_template: "要更改此设置，请编辑系列模板。"
-        button:
-          disable: "禁用"
-          enable: "启用"
       dialog:
         title:
           enable: "启用电子邮件日历更新？"
@@ -283,6 +321,11 @@ zh-CN:
           enable: "启用电子邮件更新"
           disable: "禁用电子邮件更新"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             所有与会者都将通过电子邮件收到更新的日历邀请，向其通知您所做的更改。
@@ -462,8 +505,8 @@ zh-CN:
   text_series_backlog_clear_description: >
     此待办事项为系列会议待办事项，这将同时从此会议及其系列会议中删除。 您确定要继续吗？此操作不可逆。
   text_agenda_item_title: '议程项目 "%{title}"'
-  text_agenda_work_package_deleted: '删除工作包的议程项目'
-  text_deleted_agenda_item: '删除的议程项目'
+  text_agenda_work_package_deleted: "删除工作包的议程项目"
+  text_deleted_agenda_item: "删除的议程项目"
   label_initial_meeting_details: "会议"
   label_meeting_details: "会议详情"
   label_meeting_series_details: "会议系列详情"
@@ -479,17 +522,12 @@ zh-CN:
   label_meeting_reopen_action: "重新开放会议"
   label_meeting_close_action: "关闭会议"
   label_meeting_in_progress_action: "开始会议"
-  text_meeting_open_description: "本次会议已打开。您可以添加/删除议程项目并随时编辑。 一旦议程就绪，就将其记载为正在取得的成果。"
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "此会议已关闭。您不能再添加/移除议程项目。"
-  text_meeting_in_progress_description: "本次会议正在进行中。您可以记录每个议程项目的结果，重新排列，甚至添加新的项目。 一旦会议完成，您可以将其标记为关闭以便锁定。"
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "任何现有成果都将继续存在，但用户将无法添加新成果。"
   text_meeting_in_progress_dropdown_description: "记录会议期间的信息需求或决策等成果。"
   text_meeting_closed_dropdown_description: "此会议已关闭。您不能再修改议程项目或成果。"
-  label_meeting_manage_participants: "管理与会者"
-  label_meeting_no_participants: "沒有与会者"
-  label_meeting_show_hide_participants: "显示/隐藏 %{count} 更多"
-  label_meeting_show_all_participants: "显示全部"
-  label_meeting_add_participants: "添加与会者"
   text_meeting_not_editable_anymore: "本次会议已不可编辑。"
   text_meeting_not_present_anymore: "此次会议已被删除。请选择另一次会议。"
   label_add_work_package_to_meeting_dialog_title: "将工作包添加到会议"
@@ -506,4 +544,29 @@ zh-CN:
   text_work_package_has_no_past_meeting_agenda_items: "在过往会议中没有提及过该工作包。"
   text_email_updates_muted: "电子邮件日历更新已静音。当您进行更改时，与会者将不会通过电子邮件收到更新的邀请。"
   text_email_updates_enabled: "电子邮件日历更新已启用。当您进行更改时，所有与会者都会通过电子邮件收到更新的邀请。"
-
+  my_account:
+    access_tokens:
+      token/ical_meeting:
+        title: "iCalendar for meetings"
+        text_hint: "iCalendar meeting tokens allow users to subscribe to all their meetings and view up-to-date meeting information in external clients."
+        disabled_text: "iCalendar meeting subscriptions are not enabled by the administrator. Please contact your administrator to use this feature."
+        empty_text_hint: 'To add an iCalendar meeting token, go to the <a href="%{path}">meetings section</a> and subscribe from there.'
+        add_button: "Subscribe to calendar"
+  my:
+    access_token:
+      dialog:
+        token/ical_meeting:
+          dialog_title: "New iCal subscription token for meetings"
+          dialog_body: "This token will generate an iCal subscription URL that lets you view all your meetings in an external calendar application."
+          create_button: "Create subscription"
+          name_label: "Token name"
+          name_caption: 'You can name it after where you will use it, such as"My phone" or "Work computer.'
+      created_dialog:
+        token/ical_meeting:
+          title: "An iCal meeting subscription token has been generated"
+          body: "Treat the following URL as you would a password. Anyone who has access to it can view all your meetings."
+          warning: "This is the only time you will see this token. Make sure to copy it now."
+      revocation:
+        token/ical_meeting:
+          notice_success: "The iCalendar meeting subscription has been revoked successfully."
+          notice_failure: "Failed to revoke iCalendar meeting subscription: %{error}"

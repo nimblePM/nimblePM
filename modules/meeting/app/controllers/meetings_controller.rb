@@ -38,7 +38,7 @@ class MeetingsController < ApplicationController
   before_action :redirect_to_project, only: %i[show]
   before_action :set_activity, only: %i[history]
   before_action :find_copy_from_meeting, only: %i[create]
-  before_action :convert_params, only: %i[create update update_participants]
+  before_action :convert_params, only: %i[create update]
   before_action :prevent_template_destruction, only: :destroy
 
   helper :watchers
@@ -239,18 +239,6 @@ class MeetingsController < ApplicationController
 
   def details_dialog; end
 
-  def participants_dialog; end
-
-  def update_participants
-    @meeting.participants_attributes = @converted_params.delete(:participants_attributes)
-    @meeting.save
-
-    update_sidebar_details_component_via_turbo_stream
-    update_sidebar_participants_component_via_turbo_stream
-
-    respond_with_turbo_streams
-  end
-
   def update_title
     @meeting.update(title: meeting_params[:title])
 
@@ -345,7 +333,7 @@ class MeetingsController < ApplicationController
   end
 
   def toggle_notifications
-    @meeting.update!(notify: !@meeting.notify)
+    @meeting.toggle!(:notify)
 
     if @meeting.notify?
       handle_notification(type: :toggle_notifications)

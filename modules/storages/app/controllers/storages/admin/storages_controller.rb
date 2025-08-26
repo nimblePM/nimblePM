@@ -159,10 +159,8 @@ class Storages::Admin::StoragesController < ApplicationController
   end
 
   def change_health_notifications_enabled
-    return head :bad_request unless %w[1 0].include?(permitted_storage_params[:health_notifications_enabled])
-
-    if @storage.update(health_notifications_enabled: permitted_storage_params[:health_notifications_enabled])
-      update_via_turbo_stream(component: Storages::Admin::SidePanel::HealthNotificationsComponent.new(storage: @storage))
+    if @storage.update(health_notifications_enabled: !@storage.health_notifications_enabled)
+      update_via_turbo_stream(component: Storages::Admin::SidePanel::EmailUpdatesModeSelectorComponent.new(storage: @storage))
       respond_with_turbo_streams
     else
       flash.now[:error] = I18n.t("storages.health_email_notifications.error_could_not_be_saved")

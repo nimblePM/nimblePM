@@ -98,13 +98,15 @@ module My
         end
       end
 
-      def collapsed?(date)
+      def collapsed?(date) # rubocop:disable Metrics/AbcSize
         return false if mode == :day
+        return false if mode.in?(%i[week workweek]) && range.exclude?(Date.current)
+        return false if mode == :month && range.exclude?(Date.current.beginning_of_week)
 
-        if range.include?(Date.current)
-          !date.today?
+        if mode == :month
+          Date.current.cweek != date.cweek
         else
-          false
+          !date.today?
         end
       end
 

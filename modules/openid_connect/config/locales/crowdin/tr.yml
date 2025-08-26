@@ -15,6 +15,7 @@ tr:
         client_id: İstemci ID
         client_secret: İstemci gizliliği
         groups_claim: Groups claim
+        group_regexes: Patterns (regular expressions)
         secret: Gizli Anahtar
         scope: Kapsam
         sync_groups: Synchronize groups
@@ -58,14 +59,14 @@ tr:
     delete_title: "OpenID Connect sağlayıcısını sil"
     group_links_heading: OpenID Connect group links
     instructions:
-      redirect_url: Bu, OpenID Connect sağlayıcısının başarılı bir oturum açma işleminden sonra OpenProject'e geri yönlendirmek için kullanması gereken yönlendirme adresidir.
       endpoint_url: OpenID Connect sağlayıcısı tarafından size verilen uç nokta URL'si
       group_regexes: One regular expression pattern per line. Please read [the documentation](docs_url) for more information on how to do this.
-      group_regexes_detail: Define patterns using regular expressions to match group names from the groups claim. For example, entering a pattern like <code>^Level1/Level2/([\w/]+)$</code> will extract the group “Groupname/SubGroup” from a response including “Level1/Level2/GroupName/SubGroup”.
+      group_regexes_detail: Optionally define patterns using regular expressions to match group names from the groups claim. For example, entering a pattern like <code>^Level1/Level2/([\w/]+)$</code> will extract the group “Groupname/SubGroup” from a response including “Level1/Level2/GroupName/SubGroup”. If no pattern matches, the group is ignored. Leave empty to synchronize all groups using their full group name.
       group_sync: Automatically extract and synchronise group membership information from the identity provider.
       groups_claim: Specify the name of the claim that's expected to indicate the group names that the user is a member of.
       metadata_none: Bu bilgiye sahip değilim
       metadata_url: Bir keşif uç noktası URL'im var
+      oidc_information: These values are needed to configure the OpenID Connect provider.
       client_id: OpenID Connect sağlayıcısı tarafından size verilen istemci URL'si
       client_secret: OpenID Connect sağlayıcısı tarafından size verilen gizlilik URL'si
       limit_self_registration: Etkinleştirilirse, kullanıcılar yalnızca sağlayıcı tarafındaki yapılandırma izin veriyorsa bu sağlayıcıyı kullanarak kaydolabilir.
@@ -108,7 +109,6 @@ tr:
       label_empty_title: No OpenID providers configured yet.
       label_empty_description: Add a provider to see them here.
       label_group_mapping: Group mapping
-      label_group_regexes: Pattern (regular expression)
       label_metadata: OpenID Connect Discovery Endpoint
       label_automatic_configuration: Otomatik yapılandırma
       label_optional_configuration: İsteğe bağlı yapılandırma

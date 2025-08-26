@@ -82,13 +82,13 @@ RSpec.describe "OIDC administration CRUD",
       enabled_checkbox = page.find_by_id("openid_connect_provider_sync_groups")
       expect(enabled_checkbox).not_to be_checked
       expect(page).to have_no_field " Groups claim"
-      expect(page).to have_no_field "Pattern (regular expression)"
+      expect(page).to have_no_field "Patterns (regular expressions)"
 
       check "Synchronize groups"
       expect(page).to have_field("Groups claim", with: "groups")
-      expect(page).to have_field("Pattern (regular expression)", with: "")
+      expect(page).to have_field("Patterns (regular expressions)", with: "")
       fill_in "Groups claim", with: "custom-groups"
-      fill_in "Pattern (regular expression)", with: "Foo\nBar"
+      fill_in "Patterns (regular expressions)", with: "Foo\nBar"
 
       click_link_or_button "Continue"
 

@@ -244,8 +244,8 @@ module ApplicationHelper
     css = ["theme-#{OpenProject::CustomStyles::Design.identifier}"]
 
     if controller_path && action_name
-      css << ("controller-#{controller_path}")
-      css << ("action-#{action_name}")
+      css << "controller-#{controller_path}"
+      css << "action-#{action_name}"
     end
 
     if EnterpriseToken.hide_banners?
@@ -294,7 +294,9 @@ module ApplicationHelper
     [
       [I18n.t("themes.light"), "light"],
       [I18n.t("themes.light_high_contrast"), "light_high_contrast"],
-      [I18n.t("themes.dark"), "dark"]
+      [I18n.t("themes.dark"), "dark"],
+      [I18n.t("themes.dark_high_contrast"), "dark_high_contrast"],
+      [I18n.t("themes.sync_with_os"), "sync_with_os"]
     ]
   end
 
@@ -305,7 +307,7 @@ module ApplicationHelper
 
   def body_data_attributes(local_assigns)
     {
-      controller: "application hover-card-trigger beforeunload",
+      controller: "application auto-theme-switcher hover-card-trigger beforeunload",
       relative_url_root: root_path,
       overflowing_identifier: ".__overflowing_body",
       rendered_at: Time.zone.now.iso8601,
@@ -315,11 +317,18 @@ module ApplicationHelper
   end
 
   def user_theme_data_attributes
-    mode, _theme_suffix = User.current.pref.theme.split("_", 2)
-    {
-      color_mode: mode,
-      "#{mode}_theme": User.current.pref.theme
-    }
+    if User.current.pref.sync_with_os_theme?
+      # Theme will be set by inline script before body renders to prevent flickering
+      { auto_theme_switcher_mode_value: User.current.pref.theme,
+        auto_theme_switcher_desktop_light_high_contrast_logo_class: "op-logo--link_high_contrast",
+        auto_theme_switcher_mobile_white_logo_class: "op-logo--icon_white" }
+    else
+      mode, _theme_suffix = User.current.pref.theme.split("_", 2)
+      {
+        color_mode: mode,
+        "#{mode}_theme": User.current.pref.theme
+      }
+    end
   end
 
   def highlight_default_language(lang_options)

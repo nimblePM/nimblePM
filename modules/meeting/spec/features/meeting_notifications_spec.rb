@@ -99,7 +99,7 @@ RSpec.describe "Meeting notifications", :js do
       show_page.visit!
 
       # check calendar updates sidepanel component
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         expect(page).to have_text("Email calendar updates")
         expect(page).to have_text("Enabled.")
         expect(page).to have_text("All participants will receive updated calendar invites via email informing them of changes.")
@@ -125,7 +125,7 @@ RSpec.describe "Meeting notifications", :js do
       ActionMailer::Base.deliveries.clear
 
       # disable updates from the sidepanel
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         click_on "Disable"
       end
 
@@ -139,7 +139,7 @@ RSpec.describe "Meeting notifications", :js do
       # check that updates are now disabled
       expect(meeting.reload.notify).to be false
 
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         expect(page).to have_text("Email calendar updates")
         expect(page).to have_text("Disabled.")
         expect(page).to have_text("Participants will not receive an email informing them of changes.")
@@ -160,7 +160,7 @@ RSpec.describe "Meeting notifications", :js do
       wait_for_network_idle
 
       # enable updates and check that an email is sent out immediately
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         click_on "Enable"
       end
 
@@ -178,7 +178,7 @@ RSpec.describe "Meeting notifications", :js do
       ActionMailer::Base.deliveries.clear
 
       # check that no mails are sent on edit/delete when disabled
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         click_on "Disable"
       end
 
@@ -259,7 +259,7 @@ RSpec.describe "Meeting notifications", :js do
       template_page.visit!
 
       # check sidepanel component
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         expect(page).to have_text("Email calendar updates")
         expect(page).to have_text("Enabled.")
         expect(page).to have_text("All participants will receive updated calendar invites via email informing them of changes.")
@@ -289,7 +289,7 @@ RSpec.describe "Meeting notifications", :js do
       # switch to occurrence and check sidepanel component
       occurrence_page.visit!
 
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         expect(page).to have_text("Email calendar updates")
         expect(page).to have_text("Enabled.")
         expect(page).to have_text("All participants will receive updated calendar invites via email informing them of changes.")
@@ -320,7 +320,7 @@ RSpec.describe "Meeting notifications", :js do
       # turn off updates from the template
       template_page.visit!
 
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         click_on "Disable"
       end
 
@@ -336,7 +336,7 @@ RSpec.describe "Meeting notifications", :js do
       # check that this is reflected for occurrences too
       occurrence_page.visit!
 
-      page.within("[data-test-selector='notifications-button']") do
+      page.within("[data-test-selector='email-updates-mode-selector']") do
         expect(page).to have_text("Email calendar updates")
         expect(page).to have_text("Disabled.")
         expect(page).to have_text("Participants will not receive an email informing them of changes.")
@@ -371,7 +371,7 @@ RSpec.describe "Meeting notifications", :js do
     it "does not show the sidebar component" do
       show_page.visit!
 
-      expect(page).to have_no_css("[data-test-selector='notifications-button']")
+      expect(page).to have_no_css("[data-test-selector='email-updates-mode-selector']")
     end
   end
 
@@ -392,7 +392,7 @@ RSpec.describe "Meeting notifications", :js do
     it "does not show the sidebar component" do
       show_page.visit!
 
-      expect(page).to have_no_css("[data-test-selector='notifications-button']")
+      expect(page).to have_no_css("[data-test-selector='email-updates-mode-selector']")
     end
   end
 end

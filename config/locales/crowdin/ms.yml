@@ -296,6 +296,7 @@ ms:
         placeholder:
           label: "Label item"
           short: "Nama pendek"
+          score: "Score"
       notice:
         remember_items_and_projects: "Ingat untuk menetapkan item dan projek dalam tab masing-masing untuk medan tersuai ini."
       hierarchy:
@@ -331,6 +332,7 @@ ms:
     single: "atau"
   dry_validation:
     errors:
+      defined: "must not be defined."
       int?: "mestilah integer."
       filled?: "mesti diisi."
       greater_or_equal_zero: "mestilah lebih besar atau sama dengan 0."
@@ -338,6 +340,8 @@ ms:
       rules:
         copy_workflow_from:
           workflow_missing: "has no own workflow."
+        custom_field:
+          format_not_supported: "format '%{field_format}' is unsupported."
         item:
           root_item: "tidak boleh menjadi punca item."
           not_persisted: "mestilah item yang sedia ada."
@@ -373,7 +377,7 @@ ms:
       description: By grouping users together, you can add them as members to the same projects or assign the same global roles to them.
     table_component:
       blank_slate:
-        description: You can define groups of users with specific names
+        description: You can define named groups of users with specific permissions.
         title: No groups set up yet
       user_count: User count
     users:
@@ -463,7 +467,7 @@ ms:
       life_cycle:
         header:
           title: "Project life cycle"
-          description_html: "The active project phases define this project's life cycle and are defined in the <a href=%{admin_settings_url} target=\"_blank\">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target=\"_blank\">project overview</a>."
+          description_html: 'The active project phases define this project''s life cycle and are defined in the <a href=%{admin_settings_url} target="_blank">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target="_blank">project overview</a>.'
         non_defined: "No phases are currently defined."
         section_header: "Phases"
         step:
@@ -566,26 +570,26 @@ ms:
       will_revoke_access_to_all: "Tindakan ini akan membatalkan akses mereka kepada semuanya."
   my:
     access_token:
-      create_dialog:
-        title: Token generated
-        header: Token %{type} telah dihasilkan
-        warning: Ambil perhatian bahawa ini adalah satu-satunya masa anda akan melihat token ini, pastikan anda menyalinnya sekarang.
+      dialog:
+        token/api:
+          dialog_title: "Create new API token"
+          attention_text: "Treat API tokens like passwords. Anyone with this token will have access to information from this instance, share it only with trusted users."
+          dialog_body: "This token will allow third-party applications to communicate with your instance. To differentiate the new API token, please give it a name."
+          create_button: "Create"
+          name_label: "Token name"
+      created_dialog:
+        token/api:
+          title: "The API token has been generated"
+          warning: "This is the only time you will see this token. Make sure to copy it now."
       errors:
         token_name_blank: "Sila berikan nama token API"
         token_name_in_use: "Nama token API ini sudah digunakan, sila pilih yang lain"
-      new_access_token_dialog_title: "Cipta token API baharu"
-      new_access_token_dialog_show_button_text: "Token API"
-      new_access_token_dialog_text_field_placeholder_text: "Token API saya"
-      new_access_token_dialog_text_field_label: "Nama"
-      new_access_token_dialog_submit_button_text: "Cipta"
-      new_access_token_dialog_text: "Token ini akan membenarkan aplikasi pihak ketiga berkomunikasi dengan contoh anda. Untuk membezakan token API baharu, sila beri nama."
-      new_access_token_dialog_attention_text: "Rawat token API seperti kata laluan. Sesiapa sahaja yang mempunyai pautan ini akan mempunyai akses kepada maklumat daripada kejadian ini, berkongsinya hanya dengan pengguna yang dipercayai."
       failed_to_reset_token: "Gagal untuk set semula token akses: %{error}"
       failed_to_create_token: "Gagal membuat token akses: %{error}"
       failed_to_revoke_token: "Gagal menarik balik token akses: %{error}"
       notice_reset_token: "Token %{type} yang baharu telah dijanakan. Token akses anda ialah:"
       token_value_warning: "Perhatian: Ini adalah satu-satunya masa anda akan melihat token ini, pastikan untuk menyalinnya sekarang."
-      no_results_title_text: Tiada token akses tersedia buat masa ini.
+      no_results_title_text: "Tiada token akses tersedia buat masa ini."
       notice_api_token_revoked: "Token API telah dipadam. Sila gunakan butang di bahagian API untuk mencipta token baharu."
       notice_rss_token_revoked: "Token RSS telah dipadamkan. Untuk mencipta token baharu sila gunakan pautan di bahagian RSS."
       notice_ical_token_revoked: 'Token iCalendar "%{token_name}" untuk kalendar "%{calendar_name}" projek "%{project_name}" telah dibatalkan. URL iCalendar serta token ini sudah tidak sah.'
@@ -677,8 +681,10 @@ ms:
         excluded_from_totals: "Dikecualikan daripada jumlah"
   themes:
     dark: "Gelap"
+    dark_high_contrast: "Dark high contrast"
     light: "Terang"
     light_high_contrast: "Kontras tinggi yang terang"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Tiada jenis buat masa ini.
@@ -711,7 +717,7 @@ ms:
         pattern:
           label: "Corak subjek"
           caption: Create patterns by adding text, or type "/" to search for [supported attributes](attributes_url).
-          insert_as_text: "No attributes found. Add as text: \"%{word}\""
+          insert_as_text: 'No attributes found. Add as text: "%{word}"'
       export_configuration:
         tab: "Hasilkan PDF"
         intro: "Select which templates from those that are available you would like to enable for this type. The template determines the design and attributes visible in the exported PDF of a work package using this type. The first template on the list is selected by default."
@@ -1052,6 +1058,7 @@ ms:
         types: "Jenis"
         versions: "Versi-versi"
         work_packages: "Pakej Kerja"
+        workspace_type: "Workspace type"
       project_custom_field:
         is_required: "Diperlukan untuk semua projek"
         custom_field_section: Bahagian
@@ -1281,6 +1288,7 @@ ms:
         odd: "mesti ganjil."
         regex_match_failed: "tidak padan dengan ungkapan biasa %{expression}."
         regex_invalid: "tidak dapat disahkan dengan ungkapan biasa yang berkaitan."
+        regex_list_invalid: "could not be parsed as regular expression in lines %{invalid_lines}."
         hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
         smaller_than_or_equal_to_max_length: "perlu kurang daripada atau sama dengan panjang maksima."
         taken: "sudah diguna pakai."
@@ -1547,8 +1555,7 @@ ms:
               cant_exceed_work: "tidak boleh lebih tinggi daripada Kerja."
               must_be_set_when_work_is_set: "diperlukan apabila Kerja ditetapkan."
               must_be_set_when_work_and_percent_complete_are_set: "diperlukan apabila Kerja dan % Selesai ditetapkan."
-              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: >-
-                mestilah 0j apabila Kerja ditetapkan dan % Selesai ialah 100%.
+              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: '>- must be 0h when Work is set and % Complete is 100%.'
               must_be_empty_when_work_is_empty_and_percent_complete_is_100p: >-
                 mesti kosong apabila Kerja kosong dan % Selesai ialah 100%.
           readonly_status: "Pakej kerja berada dalam status baca sahaja maka atributnya tidak boleh diubah."
@@ -1609,6 +1616,7 @@ ms:
       auth_provider:
         other: "Authentication providers"
       category: "Kategori"
+      color: "Color"
       comment: "Komen"
       custom_action: "Tindakan tersuai"
       custom_field: "Ruang tersuai"
@@ -1942,11 +1950,11 @@ ms:
       succeeded: 'Menyalin projek "%{source_project_name}" ke "%{target_project_name}".'
     source_project_label: "Project copied"
     copy_options:
-      dependencies_label: 'Copy from project'
+      dependencies_label: "Copy from project"
   create_project:
     template_label: "Use template"
     copy_options:
-      dependencies_label: 'Copy from template'
+      dependencies_label: "Copy from template"
   create_wiki_page: "Create new wiki page"
   create_wiki_page_button: "Halaman wiki"
   date:
@@ -2102,7 +2110,7 @@ ms:
       project_list_sharing: Project List Sharing
       readonly_work_packages: Readonly Work Packages
       scim_api: SCIM server API
-      sso_auth_providers: Single sign-on
+      sso_auth_providers: Single Sign-On
       team_planner_view: Team Planner View
       virus_scanning: Antivirus Scanning
       work_package_query_relation_columns: Work Package Query Relation Columns
@@ -2171,6 +2179,9 @@ ms:
       scim_api:
         title: "SCIM clients"
         description: "Automate user management in OpenProject by seamlessly integrating external identity services like Microsoft Entra or Keycloak through our SCIM Server API. Available starting with the Enterprise corporate plan."
+      sso_auth_providers:
+        title: "Single Sign-On (SSO)"
+        description: "Enable users to log in via external SSO providers using SAML or OpenID Connect for seamless access and integration with existing identity systems."
       virus_scanning:
         description: "Pastikan fail yang dimuat naik dalam OpenProject diimbas untuk virus sebelum boleh diakses oleh pengguna lain."
       placeholder_users:
@@ -2207,6 +2218,13 @@ ms:
         I want to receive the OpenProject <a target="_blank" href="https://www.openproject.org/newsletter/">newsletter</a>.
       consent_html: >
         I agree with the <a target="_blank" href="https://www.openproject.org/terms-of-service/">terms of service</a> and the <a target="_blank" href="https://www.openproject.org/data-privacy-and-security/">privacy policy</a>.
+  email_calendar_updates:
+    state:
+      disabled: "Disabled."
+      enabled: "Enabled."
+    button:
+      disabled: "Enable"
+      enabled: "Disable"
   enumeration_activities: "Aktiviti penjejakan masa"
   enumeration_work_package_priorities: "Keutamaan pakej kerja"
   enumeration_reported_project_statuses: "Status projek yang dilaporkan"
@@ -2352,6 +2370,7 @@ ms:
           label: "Sertakan penerangan"
           caption: "Pilihan ini akan menambah lajur penerangan dalam format mentah."
     your_work_packages_export: "Pakej kerja sedang dieksport"
+    your_projects_export: "Projects are being exported"
     succeeded: "Eksport selesai"
     failed: "Ralat telah berlaku semasa cuba mengeksport pakej kerja: %{message}"
     errors:
@@ -2414,6 +2433,13 @@ ms:
       xls2csv: "Xls2csv tersedia (pilihan)"
       catppt: "Catppt tersedia (pilihan)"
       tesseract: "Tesseract tersedia (pilihan)"
+  filterable_tree_view:
+    filter_mode:
+      all: "All"
+      label: "Filter mode"
+      selected: "Selected"
+    include_sub_items: "Include sub-items"
+    no_results_text: "No results"
   general_csv_decimal_separator: "."
   general_csv_encoding: "UTF-8"
   general_csv_separator: ","
@@ -2519,11 +2545,13 @@ ms:
         expiration: "Tamat tempoh"
       indefinite_expiration: "Tidak akan"
       simple_revoke_confirmation: "Adakah anda pasti anda mahu membatalkan token ini?"
-      api:
+      token/api:
         title: "API"
-        text_hint: "Token API membenarkan aplikasi pihak ketiga untuk berkomunikasi dengan OpenProject ini, contohnya, melalui REST API."
+        text_hint: "API tokens allow third-party applications to communicate with this OpenProject instance via REST APIs."
+        disabled_text: "API tokens are not enabled by the administrator. Please contact your administrator to use this feature."
+        add_button: "API Token"
+      api:
         static_token_name: "Token API"
-        disabled_text: "Token API tidak didayakan oleh pentadbir. Sila hubungi pentadbir anda untuk menggunakan fitur ini."
       ical:
         title: "iCalendar"
         text_hint: 'Token iCalendar membenarkan pengguna untuk <a href="%{path}" target="_blank">melanggan kalendar OpenProject</a> dan lihat maklumat pakej kerja terkini daripada pelanggan luaran.'
@@ -2846,6 +2874,7 @@ ms:
   label_invite_user: "Jemput pengguna"
   label_item: "Item"
   label_item_plural: "Item"
+  label_scored_list: "Scored list"
   label_share: "Kongsi"
   label_share_project_list: "Kongsi senarai projek"
   label_share_work_package: "Kongsi pakej kerja"
@@ -2881,6 +2910,7 @@ ms:
   label_custom_logo: "Logo tersuai"
   label_custom_export_logo: "Logo eksport tersuai"
   label_custom_export_cover: "Latar belakang penutup eksport tersuai"
+  label_custom_export_footer: "Custom export footer image"
   label_custom_export_cover_overlay: "Lapisan latar belakang penutup eksport tersuai"
   label_custom_export_cover_text_color: "Warna teks"
   label_custom_pdf_export_settings: "Tetapan eksport PDF tersuai"
@@ -3034,6 +3064,10 @@ ms:
   label_project_view_all: "Lihat semua projek"
   label_project_show_details: "Paparkan butiran projek"
   label_project_hide_details: "Sembunyikan butiran projek"
+  label_portfolio: "Portfolio"
+  label_portfolio_new: "New portfolio"
+  label_program: "Program"
+  label_program_new: "New program"
   label_public_projects: "Projek awam"
   label_query_new: "Pertanyaan baharu"
   label_query_plural: "Pertanyaan tersuai"
@@ -3182,6 +3216,8 @@ ms:
   label_watched_work_packages: "Pakej kerja yang dipantau"
   label_what_is_this: "Apakah ini?"
   label_week: "Minggu"
+  label_widget: "Widget"
+  label_widget_new: "New widget"
   label_wiki_content_added: "Halaman wiki ditambah"
   label_wiki_content_updated: "Halaman wiki dikemas kini"
   label_wiki_toc: "Jadual Kandungan"
@@ -3526,6 +3562,8 @@ ms:
   permission_add_work_packages: "Tambah pakej kerja"
   permission_add_messages: "Pos mesej"
   permission_add_project: "Cipta projek"
+  permission_add_portfolios: "Create portfolios"
+  permission_add_programs: "Create programs"
   permission_add_work_package_attachments: "Tambah lampiran"
   permission_add_work_package_attachments_explanation: "Benarkan penambahan lampiran tanpa kebenaran Edit pakej kerja"
   permission_add_internal_comments: "Write internal comments"
@@ -3822,6 +3860,7 @@ ms:
   setting_attachment_whitelist: "Lampiran memuat naik senarai putih"
   setting_email_delivery_method: "Kaedah penghantaran e-mel"
   setting_emails_salutation: "Menggelar pengguna dalam e-mel dengan"
+  setting_oauth_allow_remapping_of_existing_users: "Allow remapping of existing users"
   setting_sendmail_location: "Lokasi sendmail boleh dilaksanakan"
   setting_smtp_enable_starttls_auto: "Gunakan STARTTLS secara automatik jika tersedia"
   setting_smtp_ssl: "Guna sambungan SSL"
@@ -3982,11 +4021,13 @@ ms:
   setting_working_days: "Hari bekerja"
   settings:
     authentication:
-      login_and_sso: "Login and SSO"
+      login: "Login"
       registration: "Registration"
-      single_sign_on: "Single Sign-On"
+      sso: "Single Sign-On (SSO)"
       omniauth_direct_login_hint_html: >
         Jika pilihan ini aktif, permintaan log masuk akan mengubah hala ke penyedia omniaut yang dikonfigurasikan. Halaman lungsur turun dan log masuk log masuk akan dilumpuhkan. <br/> <strong>Nota:</strong> Melainkan anda juga melumpuhkan log masuk kata laluan, dengan pilihan ini didayakan, pengguna masih boleh log masuk secara dalaman dengan melawati halaman log masuk <code>%{internal_path}</code>.
+      remapping_existing_users_hint: >
+        If enabled, allows any configured identity provider to login existing users based on their email address, even if the user never signed in through that provider before. This can be useful when migrating the OpenProject instance to a new SSO provider, but is not recommended when using a provider that is not trusted by all users of your instance.
     attachments:
       whitelist_text_html: >
         Jelaskan senarai sambungan fail yang sah dan/atau jenis mime bagi fail yang telah dimuat naik. <br/> Masukkan sambungan fail (cth., <code>%{ext_example}</code>) atau jenis mime (cth., <code>%{mime_example}</code>). <br/> Tinggalkan kosong untuk benarkan sebarang jenis fail untuk dimuat naik. Pelbagai nilai juga dibenarkan. (satu baris untuk setiap nilai)
@@ -4130,6 +4171,8 @@ ms:
     Ini merupakan logo yang akan muncul dalam eksport PDF anda. Ia perlu menjadi fail imej PNG atau JPEG. Logo hitam atau bewarna pada latar belakang telus atau putih disarankan.
   text_custom_export_cover_instructions: >
     Ini merupakan imej yang akan muncul pada latar belakang muka hadapan eksport PDF anda. Ia perlu menjadi fail imej PNG atau JPEG berukuran kira-kira 800px lebar dan 500px tinggi.
+  text_custom_export_footer_instructions: >
+    PDF exports will include a graphical element positioned to the left of the footer. This image must be a PNG or JPEG file with approximately 200 pixels in width.
   text_custom_favicon_instructions: >
     ini ialah ikon kecil yang akan dipaparkan di tetingkap pelayar/tab di sebelah tajuk halaman tersebut. Ia perlulah menggunakan fail imej PNG yang bersaiz 32 kali 32 piksel kuasa dua bersertaan latar belakang telus.
   text_custom_touch_icon_instructions: >
@@ -4469,6 +4512,8 @@ ms:
       code_500_missing_enterprise_token: "Permintaan tidak boleh dikendalikan kerana token Enterprise yang tidak sah atau hilang."
       bad_request:
         emoji_reactions_activity_type_not_supported: "This activity type does not support emoji reactions."
+        invalid_link: "The link under key '%{key}' is not valid."
+        links_not_an_object: "_links must be a JSON object."
       conflict:
         multiple_reminders_not_allowed: |-
           You can only set one reminder at a time for a work package. Please delete or update the existing reminder.
@@ -4670,3 +4715,6 @@ ms:
     description: "Tambah penyediaan SAML OmniAuth ke OpenProject"
   enterprise_plans:
     legacy_enterprise: "Enterprise Plan"
+  token:
+    hashed_token:
+      display_value_placeholder: "***"

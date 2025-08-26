@@ -82,6 +82,12 @@ module Token
       SecureRandom.hex(32)
     end
 
+    ##
+    # Get the value for the token.
+    def display_value
+      value
+    end
+
     protected
 
     ##

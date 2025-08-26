@@ -30,7 +30,12 @@
 
 module Projects
   class CreateContract < BaseContract
+    # TODO: differentiate on allowed types based on permissions.
+    # Permissions will need to be added: project, program, portfolio.
+    attribute :workspace_type
+
     include AdminWritableTimestamps
+
     # Projects update their updated_at timestamp due to awesome_nested_set
     # so allowing writing here would be useless.
     allow_writable_timestamps :created_at
@@ -65,9 +70,30 @@ module Projects
     def without_custom_fields(changes) = changes.grep_v(/^custom_field_/)
 
     def validate_user_allowed_to_manage
+      if model.project?
+        validate_user_allowed_to_manage_projects
+      elsif model.portfolio?
+        validate_user_allowed_to_manage_portfolios
+      elsif model.program?
+        validate_user_allowed_to_manage_programs
+      end
+    end
+
+    def validate_user_allowed_to_manage_portfolios
+      unless user.allowed_globally?(:add_portfolios)
+        errors.add :base, :error_unauthorized
+      end
+    end
+
+    def validate_user_allowed_to_manage_programs
+      unless user.allowed_globally?(:add_programs)
+        errors.add :base, :error_unauthorized
+      end
+    end
+
+    def validate_user_allowed_to_manage_projects
       unless user.allowed_globally?(:add_project) ||
              (model.parent && user.allowed_in_project?(:add_subprojects, model.parent))
-
         errors.add :base, :error_unauthorized
       end
     end

@@ -147,18 +147,20 @@ RSpec.describe "API v3 Project resource update", content_type: :json do
       end
 
       it "does not set the cf value" do
-        expect(project.reload.custom_values)
-          .to be_empty
+        expect(project.reload.custom_values.find_by(custom_field: admin_only_custom_field))
+          .to have_attributes(value: nil)
       end
 
       context "when the hidden field has a value already" do
-        it "does not change the cf value" do
-          project.custom_field_values = { admin_only_custom_field.id => "1234" }
-          project.save
-          patch path, body.to_json
+        before do
+          project.update!(custom_field_values: { admin_only_custom_field.id => "1234" })
 
-          expect(project.reload.custom_values.find_by(custom_field: admin_only_custom_field).value)
-            .to eq "1234"
+          patch path, body.to_json
+        end
+
+        it "does not change the cf value" do
+          expect(project.reload.custom_values.find_by(custom_field: admin_only_custom_field))
+            .to have_attributes(value: "1234")
         end
       end
 

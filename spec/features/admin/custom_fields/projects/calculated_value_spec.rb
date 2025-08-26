@@ -122,6 +122,19 @@ RSpec.describe "Edit project custom field calculated value", :js, with_flag: { c
 
       expect(calculated_value.reload.formula_string).to eq(original_formula)
     end
+
+    it "allows submitting formula by pressing Enter/Return" do
+      # ensure multiple spaces are handled without problems
+      formula = "2 +  (1   +1)"
+
+      pattern_input = find(:xpath, "//input[@id='custom_field_formula']/parent::div//div[@contenteditable='true']")
+
+      pattern_input.set("#{formula}\n")
+
+      expect(page).to have_text("Successful update")
+
+      expect(calculated_value.reload.formula_string).to eq(formula)
+    end
   end
 
   context "without the feature flag", with_flag: { calculated_value_project_attribute: false } do

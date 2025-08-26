@@ -100,6 +100,9 @@ RSpec.describe "Arbitrary WorkPackage query graph widget dashboard",
 
   context "with the permission to save queries" do
     it "can add the widget and see the work packages of the filtered for types" do
+      # Displayed by default as the dashboard is created on first visiting the page.
+      dashboard_page.expect_and_dismiss_toaster(message: "Successful update.")
+
       expect(page)
         .to have_content(type_work_package.subject)
 

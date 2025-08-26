@@ -247,4 +247,53 @@ RSpec.describe UserPreference do
       end
     end
   end
+
+  describe "#theme" do
+    context "when none is specified" do
+      it "defaults to light" do
+        expect(subject.theme).to eq("light")
+        expect(subject).to be_a_light_theme
+        expect(subject).to be_a_base_theme_light
+      end
+    end
+
+    context "with a dark theme specified" do
+      let(:settings) { { "theme" => "dark" } }
+
+      it "returns the dark theme" do
+        expect(subject.theme).to eq("dark")
+        expect(subject).to be_a_dark_theme
+        expect(subject).to be_a_base_theme_dark
+      end
+    end
+
+    context "with a light high contrast theme specified" do
+      let(:settings) { { "theme" => "light_high_contrast" } }
+
+      it "returns the light high contrast theme" do
+        expect(subject.theme).to eq("light_high_contrast")
+        expect(subject).to be_a_light_high_contrast_theme
+        expect(subject).to be_a_base_theme_light
+      end
+    end
+
+    context "with a dark high contrast theme specified" do
+      let(:settings) { { "theme" => "dark_high_contrast" } }
+
+      it "returns the dark high contrast theme" do
+        expect(subject.theme).to eq("dark_high_contrast")
+        expect(subject).to be_a_dark_high_contrast_theme
+        expect(subject).to be_a_base_theme_dark
+      end
+    end
+
+    context "with system theme specified" do
+      let(:settings) { { "theme" => "sync_with_os" } }
+
+      it "returns the system theme" do
+        expect(subject.theme).to eq("sync_with_os")
+        expect(subject).to be_a_sync_with_os_theme
+      end
+    end
+  end
 end
