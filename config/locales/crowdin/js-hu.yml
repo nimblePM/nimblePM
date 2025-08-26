@@ -1224,12 +1224,14 @@ hu:
         all: "Minden projekt"
         selected: "Csak a kijelölt"
       search_placeholder: "Projektek keresése"
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "Összes alprojekt bevonása"
       tooltip:
         include_all_selected: "Project already included since Include all sub-projects is enabled."
         current_project: "Ez a jelenlegi projekt, amiben vagyunk."
         does_not_match_search: "Project does not match the search criteria."
       no_results: "No project matches your search criteria."
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "Baseline"
       clear: "Törlés"

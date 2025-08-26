@@ -59,8 +59,13 @@ fr:
         end_after: "La série de réunions se termine"
         end_date: "Échéance"
         iterations: "Occurrences"
+      meeting_participant:
+        invited: "Invited"
+        attended: "Attended"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "Il y a une réunion ouverte dans la série qui n'est pas couverte par le nouvel horaire. Modifiez l'horaire pour inclure toutes les réunions existantes."
@@ -94,7 +99,6 @@ fr:
           updated: "modifié de %{old_value} à %{value}"
           updated_html: "modifié de <i>%{old_value}</i> à <i>%{value}</i>"
   description_attended: "ont participé"
-  description_invite: "invité"
   events:
     meeting: Réunion modifiée
     meeting_agenda: Ordre du jour de la réunion modifié
@@ -214,11 +218,11 @@ fr:
       series:
         title: "[%{project_name}] Série de réunions « %{title} »"
         summary: "%{actor} a mis en place une nouvelle série de réunions « %{title} »"
-      series_rescheduled:
-        title: "[%{project_name}] La série de réunions « %{title} » a été reprogrammée"
-        summary: "%{actor} a modifié le calendrier de la série de réunions « %{title} »"
-        old_schedule: "Ancienne planification"
-        new_schedule: "Nouvelle planification"
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
+        old_schedule: "Old schedule"
+        new_schedule: "New schedule"
       invited:
         summary: "%{actor} vous a envoyé une invitation pour la réunion « %{title} »"
       cancelled:
@@ -229,12 +233,14 @@ fr:
         summary_series: "La série de réunions « %{title} » a été annulée par %{actor}."
         summary: "« %{title} » a été annulée par %{actor}."
         date_time: "Date/heure prévue"
-      rescheduled:
-        header: "La réunion « %{title} » a été reprogrammée"
-        summary: "La réunion « %{title} » a été reprogrammée par %{actor}"
-        body: "La réunion « %{title} » a été reprogrammée par %{actor}."
-        old_date_time: "Ancienne date/heure"
-        new_date_time: "Nouvelle date/heure"
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
+        old_date_time: "Old date/time"
+        new_date_time: "New date/time"
+        old_location: "Old location"
+        new_location: "New location"
     label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "Ponctuelle"
@@ -320,6 +326,11 @@ fr:
           enable: "Activer les mises à jour par e-mail"
           disable: "Désactiver les mises à jour par e-mail"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             Tous les participants recevront des invitations de calendrier mises à jour par e-mail les informant de vos modifications.
@@ -518,9 +529,9 @@ fr:
   label_meeting_reopen_action: "Réouvrir la réunion"
   label_meeting_close_action: "Clôturer la réunion"
   label_meeting_in_progress_action: "Démarrer la réunion"
-  text_meeting_open_description: "Cette réunion est ouverte. Vous pouvez ajouter/supprimer des points de l'ordre du jour et les modifier comme vous le souhaitez. Une fois l'ordre du jour prêt, marquez-le comme étant en cours pour documenter les résultats."
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "Cette réunion est clôturée. Vous ne pouvez plus ajouter/supprimer des points de l'ordre du jour."
-  text_meeting_in_progress_description: "Cette réunion est en cours. Vous pouvez documenter les résultats pour chaque point de l'ordre du jour, les réorganiser et même en ajouter de nouveaux. Une fois la réunion terminée, vous pouvez la marquer comme étant fermée pour la verrouiller."
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "Tous les résultats existants resteront, mais les utilisateurs ne pourront pas ajouter de nouveaux résultats."
   text_meeting_in_progress_dropdown_description: "Documentez les résultats tels que les besoins d'information ou les décisions prises pendant la réunion."
   text_meeting_closed_dropdown_description: "Cette réunion est terminée. Vous ne pouvez plus modifier les points de l'ordre du jour ou les résultats."

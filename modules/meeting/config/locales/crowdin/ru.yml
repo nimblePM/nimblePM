@@ -61,8 +61,13 @@ ru:
         end_after: "Серия совещаний заканчивается"
         end_date: "Дате окончания"
         iterations: "События"
+      meeting_participant:
+        invited: "Invited"
+        attended: "Attended"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "В серии есть одно открытое совещание, которое не включено в новый график. Измените график, чтобы включить все существующие совещания."
@@ -98,7 +103,6 @@ ru:
           updated: "изменено с %{old_value} на %{value}"
           updated_html: "изменено с <i>%{old_value}</i> на <i>%{value}</i>"
   description_attended: "участие"
-  description_invite: "приглашено"
   events:
     meeting: Совещание изменено
     meeting_agenda: Повестка совещания изменена
@@ -224,11 +228,11 @@ ru:
       series:
         title: "[%{project_name}] Серия совещаний '%{title}'"
         summary: "%{actor} создал новую серию совещаний '%{title}'"
-      series_rescheduled:
-        title: "[%{project_name}] Серия совещаний '%{title}' перенесена"
-        summary: "%{actor} изменил расписание серии совещаний '%{title}'"
-        old_schedule: "Старое расписание"
-        new_schedule: "Новое расписание"
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
+        old_schedule: "Old schedule"
+        new_schedule: "New schedule"
       invited:
         summary: "%{actor} отправил вам приглашение на совещание '%{title}'"
       cancelled:
@@ -239,12 +243,14 @@ ru:
         summary_series: "Серия совещаний '%{title}' была отменена %{actor}."
         summary: "'%{title}' было отменено %{actor}."
         date_time: "Запланированная дата/время"
-      rescheduled:
-        header: "Совещание '%{title}' было перенесено"
-        summary: "Совещание '%{title}' было перенесено %{actor}"
-        body: "Совещание '%{title}' было перенесено %{actor}."
-        old_date_time: "Старые дата/время"
-        new_date_time: "Новые дата/время"
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
+        old_date_time: "Old date/time"
+        new_date_time: "New date/time"
+        old_location: "Old location"
+        new_location: "New location"
     label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "Однократная"
@@ -330,6 +336,11 @@ ru:
           enable: "Включить уведомления по электронной почте"
           disable: "Отключить уведомления по электронной почте"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             Все участники получат по электронной почте обновленные приглашения календаря, информирующие их о Ваших изменениях.
@@ -532,9 +543,9 @@ ru:
   label_meeting_reopen_action: "Открыть совещание заново"
   label_meeting_close_action: "Закрыть совещание"
   label_meeting_in_progress_action: "Начать совещание"
-  text_meeting_open_description: "Совещание открыто. Вы можете добавлять/удалять пункты повестки дня и редактировать их так, как захотите. Как только повестка дня будет готова, отметьте ее как \"в процессе\" для документирования результатов."
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "Это совещание является закрытым. Вы не можете добавлять/удалять пункты повестки."
-  text_meeting_in_progress_description: "Совещание в процессе. Вы можете документировать результаты для каждого пункта повестки дня, переупорядочить их и даже добавить новые. После завершения совещания вы можете пометить его как закрытое для блокировки."
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "Любые существующие результаты останутся, но пользователи не смогут добавлять новые результаты."
   text_meeting_in_progress_dropdown_description: "Итоги совещания, такие как информация или решения, принятые в ходе совещания."
   text_meeting_closed_dropdown_description: "Совещание закрыто. Вы больше не можете изменять пункты повестки дня или его результаты."

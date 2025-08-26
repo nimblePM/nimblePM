@@ -1224,12 +1224,14 @@ de:
         all: "Alle Projekte"
         selected: "Nur ausgewählte"
       search_placeholder: "Projekt durchsuchen..."
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "Alle Unterprojekte einbeziehen"
       tooltip:
         include_all_selected: "Das Projekt ist bereits enthalten, da alle Unterprojekte einbezogen sind."
         current_project: "Dies ist das aktuelle Projekt, in dem Sie sich befinden."
         does_not_match_search: "Projekt entspricht nicht den Suchkriterien."
       no_results: "Kein Projekt entspricht Ihren Suchkriterien."
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "Grundlinie"
       clear: "Zurücksetzen"

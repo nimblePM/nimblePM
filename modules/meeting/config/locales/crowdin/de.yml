@@ -59,8 +59,13 @@ de:
         end_after: "Ende der Terminserie"
         end_date: "Enddatum"
         iterations: "Ereignisse"
+      meeting_participant:
+        invited: "Invited"
+        attended: "Attended"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "Es gibt eine offene Besprechung in der Terminserie, die nicht durch den neuen Zeitplan abgedeckt ist. Passen Sie den Zeitplan an, um alle bestehenden Meetings einzuschließen."
@@ -94,7 +99,6 @@ de:
           updated: "von %{old_value} zu %{value} geändert"
           updated_html: "von <i>%{old_value}</i> zu <i>%{value}</i> geändert"
   description_attended: "teilgenommen"
-  description_invite: "eingeladen"
   events:
     meeting: Besprechung bearbeitet
     meeting_agenda: Agenda bearbeitet
@@ -214,11 +218,11 @@ de:
       series:
         title: "[%{project_name}] Terminserie '%{title}'"
         summary: "%{actor} hat eine neue Terminserie '%{title}' eingerichtet"
-      series_rescheduled:
-        title: "[%{project_name}] Terminserie ''%{title}' verschoben"
-        summary: "%{actor} hat den Zeitplan für die Terminserie '%{title}' geändert"
-        old_schedule: "Alter Zeitplan"
-        new_schedule: "Neuer Zeitplan"
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
+        old_schedule: "Old schedule"
+        new_schedule: "New schedule"
       invited:
         summary: "%{actor} hat Ihnen eine Einladung für die folgende Besprechung gesendet: '%{title}'"
       cancelled:
@@ -229,12 +233,14 @@ de:
         summary_series: "Die Terminserie '%{title}' wurde von %{actor} abgesagt."
         summary: "Besprechung '%{title}' wurde von %{actor} abgesagt."
         date_time: "Geplanter Zeitpunkt"
-      rescheduled:
-        header: "Besprechung '%{title}' wurde verschoben"
-        summary: "Die Besprechung '%{title}' wurde durch %{actor} verschoben"
-        body: "Die Besprechung '%{title}' wurde durch %{actor} verschoben."
-        old_date_time: "Alte(s) Datum/Zeit"
-        new_date_time: "Neue(s) Datum/Zeit"
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
+        old_date_time: "Old date/time"
+        new_date_time: "New date/time"
+        old_location: "Old location"
+        new_location: "New location"
     label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "Einmalig"
@@ -320,6 +326,11 @@ de:
           enable: "E-Mail-Aktualisierungen aktivieren"
           disable: "E-Mail-Aktualisierungen deaktivieren"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             Alle Teilnehmenden erhalten aktualisierte Kalendereinladungen per E-Mail durch Ihre Änderungen an der Besprechung.
@@ -518,9 +529,9 @@ de:
   label_meeting_reopen_action: "Besprechung wiedereröffnen"
   label_meeting_close_action: "Besprechung schließen"
   label_meeting_in_progress_action: "Besprechung starten"
-  text_meeting_open_description: "Diese Besprechung ist offen. Sie können Tagesordnungspunkte hinzufügen oder entfernen und bearbeiten. Sobald die Tagesordnung fertig ist, wechseln Sie auf In Durchführung, um Ergebnisse zu dokumentieren."
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "Diese Besprechung ist abgeschlossen. Sie können keine Tagesordnungspunkte mehr hinzufügen/entfernen."
-  text_meeting_in_progress_description: "Diese Besprechung befindet sich in Durchführung. Sie können die Ergebnisse für jeden Tagesordnungspunkt dokumentieren, neu anordnen und neue Punkte hinzufügen. Sobald die Besprechung abgeschlossen ist, können Sie es als geschlossen markieren, um es zu sperren."
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "Alle bestehenden Ergebnisse bleiben bestehen, aber die Benutzer werden nicht in der Lage sein, neue Ergebnisse hinzuzufügen."
   text_meeting_in_progress_dropdown_description: "Ergebnisse der Besprechung festhalten, wie z. B. Informationsbedarf oder Entscheidungen, die während der Besprechung getroffen werden."
   text_meeting_closed_dropdown_description: "Diese Besprechung ist geschlossen. Sie können keine Tagesordnungspunkte mehr hinzufügen/entfernen."

@@ -1220,12 +1220,14 @@ zh-TW:
         all: "所有專案"
         selected: "僅所選專案"
       search_placeholder: "搜尋專案 ..."
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "包含子專案"
       tooltip:
         include_all_selected: "自啓用“包含所有子項目”後已包含的項目。"
         current_project: "這是您當前所在的專案。"
         does_not_match_search: "沒有符合搜尋條件"
       no_results: "沒有符合搜尋條件"
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "差異線"
       clear: "清除"

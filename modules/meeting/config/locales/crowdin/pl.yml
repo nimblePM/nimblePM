@@ -61,8 +61,13 @@ pl:
         end_after: "Seria spotkań kończy się"
         end_date: "Data zakończenia"
         iterations: "Wystąpienia"
+      meeting_participant:
+        invited: "Invited"
+        attended: "Attended"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "W serii znajduje się jedno otwarte spotkanie, które nie jest uwzględnione w nowym harmonogramie. Dostosuj harmonogram tak, aby obejmował wszystkie istniejące spotkania."
@@ -98,7 +103,6 @@ pl:
           updated: "zmieniono z %{old_value} na %{value}"
           updated_html: "zmieniono z <i>%{old_value}</i> na <i>%{value}</i>"
   description_attended: "Obecny"
-  description_invite: "Zaproszony"
   events:
     meeting: Spotkanie zmienione
     meeting_agenda: Zmieniono plan spotkania
@@ -224,11 +228,11 @@ pl:
       series:
         title: "[%{project_name}] Seria spotkań „%{title}”"
         summary: "Użytkownik %{actor} utworzył nową serię spotkań „%{title}”"
-      series_rescheduled:
-        title: "[%{project_name}] Zmieniono terminy serii spotkań „%{title}”"
-        summary: "Użytkownik %{actor} zmienił harmonogram serii spotkań „%{title}”"
-        old_schedule: "Stary harmonogram"
-        new_schedule: "Nowy harmonogram"
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
+        old_schedule: "Old schedule"
+        new_schedule: "New schedule"
       invited:
         summary: "Użytkownik %{actor} wysłał Ci zaproszenie na spotkanie „%{title}”"
       cancelled:
@@ -239,12 +243,14 @@ pl:
         summary_series: "Seria spotkań „%{title}” została anulowana przez użytkownika %{actor}."
         summary: "„%{title}” anulował użytkownik %{actor}."
         date_time: "Zaplanowana data/godzina"
-      rescheduled:
-        header: "Spotkanie „%{title}” zostało przełożone"
-        summary: "Spotkanie „%{title}” zostało przełożone przez użytkownika %{actor}"
-        body: "Spotkanie „%{title}” zostało przełożone przez użytkownika %{actor}."
-        old_date_time: "Stara data/godzina"
-        new_date_time: "Nowa data/godzina"
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
+        old_date_time: "Old date/time"
+        new_date_time: "New date/time"
+        old_location: "Old location"
+        new_location: "New location"
     label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "Jednorazowe"
@@ -330,6 +336,11 @@ pl:
           enable: "Włącz wysyłanie aktualizacji pocztą elektroniczną"
           disable: "Wyłącz wysyłanie aktualizacji pocztą elektroniczną"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             Wszyscy uczestnicy będą otrzymywać aktualizowane zaproszenia do kalendarza pocztą elektroniczną z informacjami o zmianach.
@@ -532,9 +543,9 @@ pl:
   label_meeting_reopen_action: "Otwórz ponownie spotkanie"
   label_meeting_close_action: "Zamknij spotkanie"
   label_meeting_in_progress_action: "Rozpocznij spotkanie"
-  text_meeting_open_description: "To spotkanie jest otwarte. Możesz dodać/usunąć punkty planu spotkania i edytować je tak, jak chcesz. Gdy plan spotkania będzie gotowy, należy oznaczyć go jako „w toku” w celu dokumentowania wyników."
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "To spotkanie jest zamknięte. Nie można już dodawać/usuwać elementów planu spotkania."
-  text_meeting_in_progress_description: "To spotkanie jest w toku. Możesz udokumentować wyniki każdego punktu planu spotkania, zmienić ich kolejność, a nawet dodać nowe. Gdy spotkanie zostanie ukończone, możesz oznaczyć je jako zamknięte, aby je zablokować."
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "Wszelkie dotychczasowe wyniki pozostaną niezmienione, ale użytkownicy nie będą mogli dodawać nowych wyników."
   text_meeting_in_progress_dropdown_description: "Udokumentuj wyniki, takie jak potrzeby informacyjne lub decyzje podjęte podczas spotkania."
   text_meeting_closed_dropdown_description: "To spotkanie jest zamknięte. Nie można już modyfikować pozycji planu spotkania ani wyników."

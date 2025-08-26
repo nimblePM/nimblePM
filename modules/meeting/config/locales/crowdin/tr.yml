@@ -59,8 +59,13 @@ tr:
         end_after: "Toplantı serisi bitişi"
         end_date: "Bitiş tarihi"
         iterations: "Yineleme sayısı"
+      meeting_participant:
+        invited: "Invited"
+        attended: "Attended"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "Seride yeni zamanlamaya uymayan ve açık bir toplantı bulunmakta. Mevcut toplantıları kapsaması için zamanlayın."
@@ -94,7 +99,6 @@ tr:
           updated: "%{old_value} değeri %{value} olarak değişti"
           updated_html: "<i>%{old_value}</i> tarihinden <i>%{value}</i> tarihine ayarlandı"
   description_attended: "katıldı"
-  description_invite: "davet et"
   events:
     meeting: Toplantı düzenlendi
     meeting_agenda: Düzenlenen toplantı gündem
@@ -214,11 +218,11 @@ tr:
       series:
         title: "[%{project_name}] Toplantı serisi '%{title}'"
         summary: "%{actor} yeni bir toplantı serisi başlattı '%{title}'"
-      series_rescheduled:
-        title: "[%{project_name}] Toplantı serisi '%{title}' yeniden planlandı"
-        summary: "%{actor} toplantı serisinin programını değiştirdi '%{title}'"
-        old_schedule: "Eski plan"
-        new_schedule: "Yeni plan"
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
+        old_schedule: "Old schedule"
+        new_schedule: "New schedule"
       invited:
         summary: "%{actor} size '%{title}' toplantısı için bir davet gönderdi"
       cancelled:
@@ -229,12 +233,14 @@ tr:
         summary_series: "'%{title}' toplantı serisi %{actor} tarafından iptal edilmiştir."
         summary: "'%{title}' %{actor} tarafından iptal edilmiştir."
         date_time: "Planlanan tarih/saat"
-      rescheduled:
-        header: "'%{title}' toplantısı yeniden planlandı"
-        summary: "'%{title}' toplantısı %{actor} tarafından yeniden planlandı"
-        body: "%{title} toplantısı %{actor} tarafından yeniden planlanmıştır."
-        old_date_time: "Eski tarih/saat"
-        new_date_time: "Yeni tarih/saat"
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
+        old_date_time: "Old date/time"
+        new_date_time: "New date/time"
+        old_location: "Old location"
+        new_location: "New location"
     label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "Tek seferlik"
@@ -320,6 +326,11 @@ tr:
           enable: "Enable email updates"
           disable: "Disable email updates"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             All participants will receive updated calendar invites via email informing them of your changes.
@@ -518,9 +529,9 @@ tr:
   label_meeting_reopen_action: "Toplantıyı tekrar aç"
   label_meeting_close_action: "Toplantıyı kapat"
   label_meeting_in_progress_action: "Toplantıya başla"
-  text_meeting_open_description: "Bu toplantı açık. Gündem maddesi ekleyip kaldırabilirsiniz ve istediğiniz gibi düzenleyebilirsiniz. Gündem hazır olduğunda sonuçları belgelemek için devam etmekte olarak işaretleyin."
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "Toplantı kapatılmış. Artık gündem maddesi ekleyip çıkartamazsınız."
-  text_meeting_in_progress_description: "Bu toplantı devam etmekte. Her bir gündem maddesi için sonuçları belgeleyebilir, yerlerini düzenleyebilir ve hatta yenilerini ekleyebilirsiniz. Toplantı tamamlandığında bunları sabitlemek için kapalı olarak işaretleyin."
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "Mevcut sonuçlar kalacak ama kullanıcılar yeni sonuçlar ekleyemeyecekler."
   text_meeting_in_progress_dropdown_description: "Toplantı sırasında alınan kararları ya da bilgi gereksinimleri sonuçlarını belgeleyin."
   text_meeting_closed_dropdown_description: "Bu toplantı kapalı. Gündem maddelerini ya da sonuçları artık düzenleyemezsiniz."

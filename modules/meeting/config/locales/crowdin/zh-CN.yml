@@ -58,8 +58,13 @@ zh-CN:
         end_after: "会议系列结束"
         end_date: "结束日期"
         iterations: "事件"
+      meeting_participant:
+        invited: "Invited"
+        attended: "Attended"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "该系列会议中有一次公开会议未列入新时间表。请调整时间表，将会议包含在内。"
@@ -92,7 +97,6 @@ zh-CN:
           updated: "从 %{old_value} 更改为 %{value}"
           updated_html: "从 <i>%{old_value}</i>改为 <i>%{value}</i>"
   description_attended: "已出席"
-  description_invite: "已邀请"
   events:
     meeting: 会议已编辑
     meeting_agenda: 会议议程已编辑
@@ -209,11 +213,11 @@ zh-CN:
       series:
         title: "[%{project_name}] 会议系列 '%{title}'"
         summary: "%{actor} 设置了一个新的会议系列 '%{title}'"
-      series_rescheduled:
-        title: "[%{project_name}] 会议系列 '%{title}' 已重新安排"
-        summary: "%{actor} 已更改会议系列 '%{title}' 的时间表"
-        old_schedule: "旧时间表"
-        new_schedule: "新时间表"
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
+        old_schedule: "Old schedule"
+        new_schedule: "New schedule"
       invited:
         summary: "%{actor} 向您发送了会议 '%{title}' 的邀请"
       cancelled:
@@ -224,12 +228,14 @@ zh-CN:
         summary_series: "%{actor} 已取消会议系列 '%{title}'。"
         summary: "%{actor} 已取消 '%{title}'。"
         date_time: "预定日期/时间"
-      rescheduled:
-        header: "会议 '%{title}' 已经重新安排"
-        summary: "会议 '%{title}' 已经由 %{actor} 重新安排"
-        body: "会议 '%{title}' 已经由 %{actor} 重新安排。"
-        old_date_time: "旧日期/时间"
-        new_date_time: "新日期/时间"
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
+        old_date_time: "Old date/time"
+        new_date_time: "New date/time"
+        old_location: "Old location"
+        new_location: "New location"
     label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "动态"
@@ -315,6 +321,11 @@ zh-CN:
           enable: "启用电子邮件更新"
           disable: "禁用电子邮件更新"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             所有与会者都将通过电子邮件收到更新的日历邀请，向其通知您所做的更改。
@@ -511,9 +522,9 @@ zh-CN:
   label_meeting_reopen_action: "重新开放会议"
   label_meeting_close_action: "关闭会议"
   label_meeting_in_progress_action: "开始会议"
-  text_meeting_open_description: "本次会议已打开。您可以添加/删除议程项目并随时编辑。 一旦议程就绪，就将其记载为正在取得的成果。"
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "此会议已关闭。您不能再添加/移除议程项目。"
-  text_meeting_in_progress_description: "本次会议正在进行中。您可以记录每个议程项目的结果，重新排列，甚至添加新的项目。 一旦会议完成，您可以将其标记为关闭以便锁定。"
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "任何现有成果都将继续存在，但用户将无法添加新成果。"
   text_meeting_in_progress_dropdown_description: "记录会议期间的信息需求或决策等成果。"
   text_meeting_closed_dropdown_description: "此会议已关闭。您不能再修改议程项目或成果。"
