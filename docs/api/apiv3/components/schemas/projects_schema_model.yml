@@ -21,6 +21,9 @@ properties:
           type: string
           enum: [ProjectFormCustomFieldSection]
           description: The type identifier for this resource
+        id:
+          type: integer
+          description: The unique identifier of the custom field section
         name:
           type: string
           description: The human-readable name of the custom field section

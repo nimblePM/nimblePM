@@ -113,7 +113,6 @@ module API
           # However caching is still applied further down in the `section_representation` method.
           property :attribute_groups,
                    name_source: ->(*) { I18n.t("activerecord.attributes.project.attribute_groups") },
-                   type: "[]String",
                    as: "_attributeGroups",
                    exec_context: :decorator,
                    uncacheable: true
@@ -122,33 +121,12 @@ module API
             def represented_class
               ::Project
             end
-
-            def attribute_group(property)
-              lambda do
-                key = property.to_s
-                attribute_group_map key
-              end
-            end
           end
 
           def attribute_groups
             project_custom_field_sections.map do |section|
               section_representation(section)
             end
-          end
-
-          ##
-          # Return a map of attribute => group name
-          def attribute_group_map(key)
-            return nil if project_custom_field_sections.empty?
-
-            @attribute_group_map ||= project_custom_field_sections.each_with_object({}) do |section, hash|
-              section.custom_fields.each do |cf|
-                hash[cf.attribute_name(:camel_case)] = section.name
-              end
-            end
-
-            @attribute_group_map[key]
           end
 
           private
@@ -164,9 +142,8 @@ module API
 
           def section_representation(section)
             OpenProject::Cache.fetch(*section_cache_key(section)) do
-              ::JSON::parse(::API::V3::Projects::Schemas::ProjectCustomFieldSectionRepresenter
-                              .new(section, current_user:, embed_links: true)
-                              .to_json)
+              ::API::V3::Projects::Schemas::ProjectCustomFieldSectionRepresenter
+                .new(section, current_user:)
             end
           end
 

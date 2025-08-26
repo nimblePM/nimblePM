@@ -131,13 +131,16 @@ RSpec.describe API::V3::Projects::Schemas::ProjectSchemaRepresenter do
           it "renders section attribute group elements of the schema" do
             expect(subject)
               .to be_json_eql(
-                {
-                  _type: "ProjectFormCustomFieldSection",
-                  name: "Common Project Attributes",
-                  attributes: ["customField#{user_custom_field.id}"]
-                }.to_json
+                [
+                  {
+                    _type: "ProjectFormCustomFieldSection",
+                    id: user_section.id,
+                    name: "Common Project Attributes",
+                    attributes: ["customField#{user_custom_field.id}"]
+                  }
+                ].to_json
               )
-              .at_path("_attributeGroups/0")
+              .at_path("_attributeGroups")
           end
         end
 
@@ -147,23 +150,22 @@ RSpec.describe API::V3::Projects::Schemas::ProjectSchemaRepresenter do
           it "renders section attribute group elements of the schema" do
             expect(subject)
               .to be_json_eql(
-                {
-                  _type: "ProjectFormCustomFieldSection",
-                  name: "Common Project Attributes",
-                  attributes: ["customField#{user_custom_field.id}"]
-                }.to_json
+                [
+                  {
+                    _type: "ProjectFormCustomFieldSection",
+                    id: user_section.id,
+                    name: "Common Project Attributes",
+                    attributes: ["customField#{user_custom_field.id}"]
+                  },
+                  {
+                    _type: "ProjectFormCustomFieldSection",
+                    id: admin_section.id,
+                    name: "Admin Project Attributes",
+                    attributes: ["customField#{admin_custom_field.id}"]
+                  }
+                ].to_json
               )
-              .at_path("_attributeGroups/0")
-
-            expect(subject)
-              .to be_json_eql(
-                {
-                  _type: "ProjectFormCustomFieldSection",
-                  name: "Admin Project Attributes",
-                  attributes: ["customField#{admin_custom_field.id}"]
-                }.to_json
-              )
-              .at_path("_attributeGroups/1")
+              .at_path("_attributeGroups")
           end
         end
       end

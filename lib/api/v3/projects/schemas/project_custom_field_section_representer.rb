@@ -33,6 +33,9 @@ module API
     module Projects
       module Schemas
         class ProjectCustomFieldSectionRepresenter < ::API::Decorators::Single
+          property :id,
+                   exec_context: :decorator
+
           property :name,
                    exec_context: :decorator
 
@@ -43,7 +46,7 @@ module API
             "ProjectFormCustomFieldSection"
           end
 
-          delegate :name, to: :represented
+          delegate :id, :name, to: :represented
 
           def attributes
             represented.custom_fields.map do |cf|
@@ -51,8 +54,8 @@ module API
             end
           end
 
-          def convert_property(attribute)
-            ::API::Utilities::PropertyNameConverter.from_ar_name(attribute)
+          def convert_property(attribute_name)
+            ::API::Utilities::PropertyNameConverter.from_ar_name(attribute_name)
           end
         end
       end
