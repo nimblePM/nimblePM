@@ -23,30 +23,39 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-require "spec_helper"
+module CustomFields
+  module Hierarchy
+    class UpdateListItemContract < Dry::Validation::Contract
+      config.messages.backend = :i18n
 
-RSpec.describe CustomField::Hierarchy::Item, :model, with_ee: [:custom_field_hierarchies] do
-  let(:custom_field) { create(:custom_field, field_format: "hierarchy", hierarchy_root: nil) }
-  let(:service) { CustomFields::Hierarchy::HierarchicalItemService.new }
+      params do
+        required(:item).filled(type?: CustomField::Hierarchy::Item)
+        optional(:label).filled(:string)
+        optional(:short).filled(:string)
+      end
 
-  let(:root) { service.generate_root(custom_field).value! }
+      rule(:item) do
+        key.failure(:not_persisted) if value.new_record?
+        key.failure(:root_item) if value.root?
+      end
 
-  context "when custom field is deleted" do
-    let(:contract_class) { CustomFields::Hierarchy::InsertListItemContract }
-    let!(:luke) { service.insert_item(contract_class:, parent: root, label: "luke").value! }
-    let!(:mara) { service.insert_item(contract_class:, parent: luke, label: "mara").value! }
-    let!(:leia) { service.insert_item(contract_class:, parent: root, label: "leia").value! }
-    let!(:kylo) { service.insert_item(contract_class:, parent: leia, label: "kylo").value! }
+      rule(:label) do
+        next if schema_error?(:item)
 
-    before { custom_field.reload }
+        key.failure(:not_unique) if values[:item].siblings.exists?(label: value)
+      end
 
-    it "removes the entire hierarchy tree" do
-      expect { custom_field.destroy }.to change(described_class, :count).to(0)
+      rule(:short) do
+        next if schema_error?(:item)
+        next unless key?
+
+        key.failure(:not_unique) if values[:item].siblings.exists?(short: value)
+      end
     end
   end
 end
