@@ -782,7 +782,7 @@ fil:
     autocompleter:
       placeholder: "Type to search"
       notFoundText: "No items found"
-      search: "Search"
+      search: "Hanapin"
       project:
         placeholder: "Select project"
     repositories:

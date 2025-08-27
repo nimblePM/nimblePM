@@ -782,7 +782,7 @@ tr:
     autocompleter:
       placeholder: "Aramak için yazın"
       notFoundText: "Hiçbir öge bulunamadı"
-      search: "Search"
+      search: "Ara"
       project:
         placeholder: "Proje seçin"
     repositories:

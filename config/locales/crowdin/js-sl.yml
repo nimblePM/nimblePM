@@ -323,7 +323,7 @@ sl:
     label_added_time_by: 'Added by <a href="%{authorLink}">%{author}</a> at %{age}'
     label_ago: "pred dnevi"
     label_all: "vsi"
-    label_all_projects: "All projects"
+    label_all_projects: "Vsi projekti"
     label_all_uppercase: "Vse"
     label_all_work_packages: "Vsi zahtevki"
     label_and: "in"
@@ -783,7 +783,7 @@ sl:
     autocompleter:
       placeholder: "Iskalni niz"
       notFoundText: "Ni najdenih elementov"
-      search: "Search"
+      search: "Išči"
       project:
         placeholder: "Select project"
     repositories:

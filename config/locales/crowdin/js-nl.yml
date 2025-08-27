@@ -324,7 +324,7 @@ nl:
     label_added_time_by: 'Toegevoegd door <a href="%{authorLink}">%{author}</a> op %{age}'
     label_ago: "dagen geleden"
     label_all: "alle"
-    label_all_projects: "All projects"
+    label_all_projects: "Alle projecten"
     label_all_uppercase: "Alle"
     label_all_work_packages: "alle werkpakketten"
     label_and: "en"
@@ -782,7 +782,7 @@ nl:
     autocompleter:
       placeholder: "Typ om te zoeken"
       notFoundText: "Geen items gevonden"
-      search: "Search"
+      search: "Zoeken"
       project:
         placeholder: "Select project"
     repositories:

@@ -212,7 +212,7 @@ ja:
         already_added_error: "この日付の非稼働日はすでに存在します。一意の日付に対して作成できる非稼働日は1つだけです。"
         change_button: "保存して再スケジュール"
         change_title: "営業日を変更する"
-        removed_title: "You will remove the following days from the non-working days list:"
+        removed_title: "以下の日を非稼働日リストから削除します："
         change_description: "営業日とみなす曜日を変更すると、このインスタンス内のすべてのプロジェクトのすべての作業項目の開始日と終了日に影響を与える可能性があります。"
         warning: >
           変更の反映には時間がかかる場合があります。関連するすべてのワークパッケージとプロジェクトライフサイクルが更新されたら、通知されます。
@@ -306,7 +306,7 @@ ja:
       description: "URL(iCalendar)を使用して、外部クライアントでこのカレンダーを購読し、そこから最新の作業パッケージ情報を表示することができます。"
       warning: "このURLを他のユーザーと共有しないでください。このリンクを持つ誰でもアカウントやパスワードなしで作業項目の詳細を表示することができます。"
       token_name_label: "どこで使うのですか？？"
-      token_name_placeholder: 'Type a name, e.g. "Phone"'
+      token_name_placeholder: '名前を入力してください。例："電話"'
       token_name_description_text: '複数のデバイスからこのカレンダーを購読する場合、この名前は、<a href="my/access_token", target="_blank">アクセストークンリストで</a>それらを区別するのに役立ちます。'
       copy_url_label: "URLをコピー"
       ical_generation_error_text: "カレンダーのURL生成時にエラーが発生しました。"
@@ -572,7 +572,7 @@ ja:
       center:
         label_actor_and: "及び"
         and_more_users:
-          other: "and %{count} others"
+          other: "と %{count} その他"
         no_results:
           at_all: "あなたに関係する活動があると、新しい通知がここに表示されます。"
           with_current_filter: "現在、このビューには通知はありません"
@@ -781,7 +781,7 @@ ja:
       parent_placeholder: "新しい親を選択するか、ESCを押してキャンセルしてください。"
     autocompleter:
       placeholder: "検索キーワードを入力"
-      notFoundText: "No items found"
+      notFoundText: "見つかりませんでした"
       search: "検索"
       project:
         placeholder: "プロジェクトを選択"

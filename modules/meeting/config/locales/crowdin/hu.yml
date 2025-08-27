@@ -45,7 +45,7 @@ hu:
       meeting_agenda_item:
         title: "Cím"
         author: "Szerző"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Időtartam"
         description: "Jegyzet"
         presenter: "Bemutató"
       meeting_section:
@@ -60,7 +60,7 @@ hu:
         end_date: "Záró dátuma"
         iterations: "Előfordulások"
       meeting_participant:
-        invited: "Invited"
+        invited: "Meghívott"
         attended: "Attended"
     errors:
       models:
@@ -181,20 +181,20 @@ hu:
   meeting:
     participants:
       label:
-        participants: "Participants"
+        participants: "Közreműködők"
         attended: "Attended"
         mark_as_attended: "Mark as attended"
         mark_all_as_attended: "Mark all as attended"
         remove_participant: "Remove participant"
-        manage_participants: "Manage participants"
-        no_participants: "No participants"
-        show_all: "Show all"
+        manage_participants: "Résztvevők kezelése"
+        no_participants: "Nincsenek résztvevők"
+        show_all: "Minden megjelenítése"
       text:
         template: "These participants will be invited automatically to all future meetings as they are created."
         manage_participants: "Search for and add project members as participants to this meeting."
         search_for_members: "Search for project members"
       blankslate:
-        heading: "No participants"
+        heading: "Nincsenek résztvevők"
         description: "There are no participants yet."
     attachments:
       template: "These attached files will be included in all future meetings in the series."
@@ -207,7 +207,7 @@ hu:
       agenda_items: "Copy agenda items"
       agenda_text: "A régi megbeszélés napirendjének másolása"
       participants: "Copy list of participants"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "Másolás a vágólapra"
     email:
       send_emails: "Email participants"
       send_invitation_emails: >
@@ -237,8 +237,8 @@ hu:
         header: "Meeting '%{title}' has been updated"
         summary: "Meeting '%{title}' has been updated by %{actor}"
         body: "The meeting '%{title}' has been updated by %{actor}."
-        old_date_time: "Old date/time"
-        new_date_time: "New date/time"
+        old_date_time: "Régi időpont"
+        new_date_time: "Új időpont"
         old_location: "Old location"
         new_location: "New location"
     label_mail_all_participants: "Send email invite to participants"
@@ -269,26 +269,26 @@ hu:
       your_meeting_export: "Meeting is being exported"
       minutes:
         footer_page_numbers: "P. %{current_page} of %{total_pages}"
-        author: "Author"
-        date: "Date"
-        time: "Time"
-        location: "Location"
-        title: "Minutes"
+        author: "Szerző"
+        date: "dátum"
+        time: "Idő"
+        location: "Helyszín"
+        title: "Jegyzőkönyv"
     export_pdf_dialog:
       title: Export PDF
       description: Generate a printable PDF file of this meeting at the current state.
       templates:
         default:
-          label: Default
+          label: alapértelmezett
           caption: The default template is suitable for most meetings and represent the current state.
         minutes:
-          label: Minutes
+          label: Jegyzőkönyv
           caption: The minutes template is suitable for closed and archived meetings.
       first_page_header_left:
         label: First page header left
         caption: This text will appear on the first page at the left of the header.
       author:
-        label: Author
+        label: Szerző
         caption: The author of the minutes will be displayed in the subtitle.
       include_participants:
         label: Include list of participants
@@ -305,7 +305,7 @@ hu:
       footer_text:
         label: Footer text
         caption: This text will appear on every page at the center of the footer.
-      submit_button: Download
+      submit_button: Letöltés
     notifications:
       sidepanel:
         title: "Email calendar updates"
@@ -470,14 +470,14 @@ hu:
   label_meeting_index_later: "Next week and later"
   label_agenda_items: "Napirendi pontok"
   label_agenda_items_reordered: "Átrakva"
-  label_agenda_item_add: "Add agenda item"
-  label_agenda_item_remove_from_agenda: "Remove from agenda"
+  label_agenda_item_add: "Napirendi pont hozzáadása"
+  label_agenda_item_remove_from_agenda: "Levétel a napirendről"
   label_agenda_item_remove_from_backlog: "Remove from backlog"
   label_agenda_item_undisclosed_wp: "Munkacsomag #%{id} nem látható"
   label_agenda_item_deleted_wp: "Törölt munkacsomag-hivatkozás"
   label_agenda_item_actions: "A napirendi pontok intézkedései"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Mozgatás"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

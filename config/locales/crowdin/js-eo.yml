@@ -1241,7 +1241,7 @@ eo:
       show_changes_since: "Show changes since"
       help_description: "Reference time zone for the baseline."
       time_description: "In your local time: %{datetime}"
-      time: "Time"
+      time: "Tempo"
       from: "De"
       to: "Al"
       drop_down:

@@ -324,7 +324,7 @@ ca:
     label_added_time_by: 'Afegit per <a href=%{authorLink}>%{author}</a> el %{age}'
     label_ago: "dies abans"
     label_all: "tot"
-    label_all_projects: "All projects"
+    label_all_projects: "Tots els projectes"
     label_all_uppercase: "Totes"
     label_all_work_packages: "tots els paquets de treball"
     label_and: "i"
@@ -782,7 +782,7 @@ ca:
     autocompleter:
       placeholder: "Escriviu per cercar"
       notFoundText: "Elements no trobats"
-      search: "Search"
+      search: "Cercar"
       project:
         placeholder: "Select project"
     repositories:

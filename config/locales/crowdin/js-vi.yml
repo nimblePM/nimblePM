@@ -324,7 +324,7 @@ vi:
     label_added_time_by: 'Được thêm bởi <a href="%{authorLink}">%{author}</a> lúc %{age}'
     label_ago: "ngày trước"
     label_all: "tất cả"
-    label_all_projects: "All projects"
+    label_all_projects: "Tất cả dự án"
     label_all_uppercase: "Tất cả"
     label_all_work_packages: "tất cả các gói công việc"
     label_and: "và"
@@ -781,7 +781,7 @@ vi:
     autocompleter:
       placeholder: "Gõ để tìm kiếm"
       notFoundText: "Không tìm thấy mục nào"
-      search: "Search"
+      search: "Tìm kiếm"
       project:
         placeholder: "Chọn dự án"
     repositories:
