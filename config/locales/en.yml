@@ -1127,6 +1127,7 @@ en:
         active_value:
           true: "unarchived"
           false: "archived"
+        attribute_groups: "Attribute Groups"
         description: "Description"
         enabled_modules: "Enabled modules"
         identifier: "Identifier"
