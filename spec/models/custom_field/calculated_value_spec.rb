@@ -623,7 +623,7 @@ RSpec.describe CustomField::CalculatedValue, with_flag: { calculated_value_proje
 
       current_user { user }
 
-      it_behaves_like "invalid formula", "contains custom fields that are not allowed: int, float."
+      it_behaves_like "invalid formula", /contains custom fields that are not allowed: (int, float|float, int)./
     end
   end
 end
