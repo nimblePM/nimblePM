@@ -1,0 +1,12 @@
+# OpenProject Enterprise Dockerfile
+FROM openproject/openproject:16-slim
+
+# Copy the enterprise token patch
+COPY enterprise_token_patch.rb /app/app/models/enterprise_token.rb
+
+# Set proper permissions
+RUN chown openproject:openproject /app/app/models/enterprise_token.rb
+
+# Use the standard OpenProject entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["./docker/web"]
