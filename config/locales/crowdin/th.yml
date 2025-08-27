@@ -145,7 +145,7 @@ th:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "ผู้ใช้"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -928,7 +928,7 @@ th:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "ส่วนที่อ้างอิง"
   activerecord:
     attributes:
       announcements:
@@ -1060,8 +1060,8 @@ th:
       project/phase:
         date_range: "ช่วงวันที่"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "ระยะเวลา"
+        start_date: "วันเริ่มต้น"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -2718,7 +2718,7 @@ th:
   label_dashboard: "Dashboard"
   label_database_version: "PostgreSQL version"
   label_date: "วันที่"
-  label_dates: "Dates"
+  label_dates: "วันที่"
   label_date_and_time: "Date and time"
   label_date_format: "รูปแบบวันที่"
   label_date_from: "จาก"
@@ -2987,7 +2987,7 @@ th:
   label_password_rule_special: "อักขระพิเศษ"
   label_password_rule_uppercase: "ตัวพิมพ์ใหญ่"
   label_path_encoding: "การเข้ารหัสเส้นทาง"
-  label_per_page: "Per page:"
+  label_per_page: "ต่อหน้า"
   label_people: "People"
   label_permissions: "สิทธิ์"
   label_permissions_report: "รายงานสิทธิ์"

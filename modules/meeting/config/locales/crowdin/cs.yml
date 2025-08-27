@@ -47,7 +47,7 @@ cs:
       meeting_agenda_item:
         title: "Název"
         author: "Autor"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Doba trvání"
         description: "Poznámky"
         presenter: "Přednášející"
       meeting_section:
@@ -266,7 +266,7 @@ cs:
         label: Include agenda outcomes
         caption: If your agenda outcomes contain confidential information, you can choose to not include them in the export.
       footer_text:
-        label: Footer text
+        label: Text záhlaví
         caption: This text will appear on every page at the center of the footer.
       submit_button: Stáhnout
     notifications:
@@ -438,14 +438,14 @@ cs:
   label_meeting_index_later: "Příští týden a později"
   label_agenda_items: "Bod programu"
   label_agenda_items_reordered: "přeřazeno"
-  label_agenda_item_add: "Add agenda item"
-  label_agenda_item_remove_from_agenda: "Remove from agenda"
+  label_agenda_item_add: "Přidat položku programu"
+  label_agenda_item_remove_from_agenda: "Odebrat z programu"
   label_agenda_item_remove_from_backlog: "Remove from backlog"
   label_agenda_item_undisclosed_wp: "Pracovní balíček #%{id} není viditelný"
   label_agenda_item_deleted_wp: "Odstraněna reference pracovního balíčku"
   label_agenda_item_actions: "volby pro body schůzky"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Přesunout"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

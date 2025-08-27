@@ -44,7 +44,7 @@ vi:
       meeting_agenda_item:
         title: "Tiêu đề"
         author: "Tác giả"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Thời gian"
         description: "Ghi chú"
         presenter: "Người trình bày"
       meeting_section:
@@ -180,7 +180,7 @@ vi:
       agenda_items: "Chép mục chương trình nghị sự"
       agenda_text: "Sao chép chương trình nghị sự của cuộc họp cũ"
       participants: "Chép danh sách người tham gia"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "Sao chép vào bảng tạm"
     email:
       send_emails: "Gửi email cho người tham gia"
       send_invitation_emails: >
@@ -256,7 +256,7 @@ vi:
       footer_text:
         label: Footer text
         caption: This text will appear on every page at the center of the footer.
-      submit_button: Download
+      submit_button: Tải
     notifications:
       sidepanel:
         title: "Email calendar updates"
@@ -420,14 +420,14 @@ vi:
   label_meeting_index_later: "Next week and later"
   label_agenda_items: "Các mục chương trình nghị sự"
   label_agenda_items_reordered: "đã sắp xếp lại"
-  label_agenda_item_add: "Add agenda item"
-  label_agenda_item_remove_from_agenda: "Remove from agenda"
+  label_agenda_item_add: "Thêm mục chương trình nghị sự"
+  label_agenda_item_remove_from_agenda: "Gỡ bỏ khỏi chương trình nghị sự"
   label_agenda_item_remove_from_backlog: "Remove from backlog"
   label_agenda_item_undisclosed_wp: "Gói công việc #%{id} không hiển thị"
   label_agenda_item_deleted_wp: "Tham chiếu gói công việc đã bị xóa"
   label_agenda_item_actions: "Các hành động mục chương trình nghị sự"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Di chuyển"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

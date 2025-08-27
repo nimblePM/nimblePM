@@ -24,7 +24,7 @@ hu:
       storages/share_point_storage:
         host: Sharepoint Site URL
         library: Library ID
-        name: Name
+        name: Név
         site: Site ID
       storages/storage:
         authentication_method: Authentication Method

@@ -45,7 +45,7 @@ fi:
       meeting_agenda_item:
         title: "Otsikko"
         author: "Tekijä"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Kesto"
         description: "Kommentit"
         presenter: "Presenter"
       meeting_section:
@@ -184,7 +184,7 @@ fi:
       agenda_items: "Copy agenda items"
       agenda_text: "Copy the agenda of the old meeting"
       participants: "Copy list of participants"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "Kopioi leikepöydälle"
     email:
       send_emails: "Email participants"
       send_invitation_emails: >
@@ -260,7 +260,7 @@ fi:
       footer_text:
         label: Footer text
         caption: This text will appear on every page at the center of the footer.
-      submit_button: Download
+      submit_button: Lataa
     notifications:
       sidepanel:
         title: "Email calendar updates"
@@ -433,7 +433,7 @@ fi:
   label_agenda_item_deleted_wp: "Deleted work package reference"
   label_agenda_item_actions: "Agenda items actions"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Siirrä"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

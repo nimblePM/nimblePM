@@ -1289,7 +1289,7 @@ fr:
         odd: "doit être impair."
         regex_match_failed: "ne correspond pas à l'expression régulière %{expression}."
         regex_invalid: "n’a pas pu être validé avec l’expression régulière associée."
-        hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
+        hexcode_invalid: "n'est pas un code couleur hexadécimal valide à 6 chiffres."
         smaller_than_or_equal_to_max_length: "doit être inférieur ou égal à la longueur maximale."
         taken: "a déjà été pris."
         too_long: "est trop long (le maximum est de %{count} caractères)."

@@ -137,15 +137,15 @@ tr:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "İptal et"
         title: "Revoke static token"
-        heading: "Are you sure you want to revoke this token?"
+        heading: "Bu belirteci iptal etmek istediğinizden emin misiniz?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
       table_component:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Kullanıcılar"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -350,7 +350,7 @@ tr:
           not_descendant: "must be a descendant of the hierarchy root."
     rules:
       copy_workflow_from: "Type for workflow copy"
-      enabled: "Enabled"
+      enabled: "Etkin"
       depth: "Derinlik"
       item: "Öğe"
       label: "Etiket"
@@ -383,7 +383,7 @@ tr:
       no_results_title_text: Şu anda bu grubun bir parçası olan, bir proje bulunmamakta.
     synchronized_groups:
       blankslate:
-        action: Authentication settings
+        action: Kimlik doğrulama ayarları
         description: When this group is automatically synced with groups in external identity providers like OpenID, they will appear here. You can set this up in your Authentication settings.
         title: No synchronized groups yet
   incoming_mails:
@@ -639,8 +639,8 @@ tr:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Bu önceliğin rengini atamak veya değiştirmek için tıklayın.
+        Tablodaki iş paketlerini vurgulamak için kullanılabilir.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -935,7 +935,7 @@ tr:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Bağımlılıklar"
   activerecord:
     attributes:
       announcements:
@@ -997,12 +997,12 @@ tr:
       enterprise_token:
         starts_at: "Beri geçerli"
         subscriber: "Abone"
-        subscription: "Subscription"
+        subscription: "Abonelik"
         plan: "Plan"
         encoded_token: "Kurumsal Destek anahtarı"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Şirket"
       grids/grid:
         page: "Sayfa"
         row_count: "Satır sayısı"
@@ -1138,7 +1138,7 @@ tr:
         ongoing: "Devam eden"
       type:
         description: "Açıklama için varsayılan metin"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Formu yapılandırma"
         is_in_roadmap: "Yol haritasında varsayılan olarak gösterilsin"
         is_default: "Yeni projelerde varsayılan olarak aktif"
         is_milestone: "Kilometre taşı"
@@ -1165,7 +1165,7 @@ tr:
         password_confirmation: "Onay"
         consented_at: "Rızanın alınması"
       group:
-        identity_url: "Identity URL"
+        identity_url: "Kimlik URL'si"
       user_preference:
         header_look_and_feel: "Görünüm ve his"
         header_alerts: "Uyarılar"
@@ -1251,7 +1251,7 @@ tr:
         error_unauthorized: "erişilemez."
         error_readonly: "yazılmaya çalışıldı fakat yazılabilir değil."
         error_conflict: "Bu arada, bilgi en az bir başka kullanıcı tarafından güncellendi."
-        error_not_found: "not found."
+        error_not_found: "bulunamadı."
         email: "Geçerli bir e-posta adresi değil.\n"
         empty: "boş olamaz."
         enterprise_plan_required: "requires at least the %{plan_name}."
@@ -1750,7 +1750,7 @@ tr:
     derived_start_date: "Türetilmiş başlangıç tarihi"
     direction: "Direction"
     display_sums: "Toplamları görüntüle"
-    domain: "Domain"
+    domain: "Alan adı"
     due_date: "Bitiş tarihi"
     estimated_hours: "Çalışma"
     estimated_time: "Çalışma"
@@ -1805,7 +1805,7 @@ tr:
     title: "Başlık"
     type: "Tür"
     typeahead: "Otomatik tamamla"
-    uid: "Unique identifier"
+    uid: "Benzersiz tanımlayıcı"
     updated_at: "Güncelleme tarihi"
     updated_on: "Güncelleme tarihi"
     uploader: "Yükleyici"
@@ -1919,7 +1919,7 @@ tr:
   button_unwatch: "Takip etme"
   button_update: "Güncelle"
   button_upgrade: "Yükselt"
-  button_buy_now: "Buy now"
+  button_buy_now: "Şimdi satın al"
   button_upload: "Yükle"
   button_view: "Göster"
   button_watch: "Takip et"
@@ -1968,7 +1968,7 @@ tr:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Şablon kullan"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2087,7 +2087,7 @@ tr:
         other: "%{count} s"
     units:
       minute_abbreviated:
-        one: "min"
+        one: "dakika"
         other: "mins"
       hour:
         one: "saat"
@@ -2153,13 +2153,13 @@ tr:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: İş Paketi Konu Üretimi
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Şimdi satın al"
       plans_title: "Enterprise plans"
       title: "Kurumsal eklenti"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "%{plan_name} ile başlayarak kullanılabilir."
-      unlimited: "Unlimited"
+      unlimited: "Sınırsız"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2169,15 +2169,15 @@ tr:
       baseline_comparison:
         description: Geçmişte herhangi bir noktadan bu yana bu listede yapılan değişiklikleri vurgulayın.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
+        description: "Enterprise şirket içi sürümünün avantajları nelerdir?"
+        high_security: "Güvenlik özellikleri"
+        high_security_text: "Çoklu oturum açma (SAML, OpenID Connect, CAS), LDAP grupları."
         installation: "Kurulum desteği"
         installation_text: "Deneyimli yazılım mühendisleri, kendi altyapınızdaki eksiksiz kurulum ve yapılandırma sürecinde size rehberlik eder."
-        premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        premium_features: "Enterprise eklentiler"
+        premium_features_text: "Çevik tahtalar, özel tema ve logo, grafikler, özel eylemlerle akıllı iş akışları, iş paketi ekleri için tam metin araması ve çoklu seçim özel alanları."
+        professional_support: "Profesyonel destek"
+        professional_support_text: "İş açısından kritik ortamlarda OpenProject çalıştırma konusunda uzman bilgiye sahip kıdemli destek mühendislerinden güvenilir, yüksek dokunuşlu destek alın."
       work_package_subject_generation:
         description: "Referens öznitelikleri ve metni kullanarak otomatik konular oluşturun."
       customize_life_cycle:
@@ -2242,7 +2242,7 @@ tr:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "OpenProject Kurumsal sürümü ile proje yönetimi ve ekip işbirliğine hızlı bir genel bakış elde edin."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2761,7 +2761,7 @@ tr:
   label_dashboard: "Gösterge paneli"
   label_database_version: "PostgreSQL sürümü"
   label_date: "Tarih"
-  label_dates: "Dates"
+  label_dates: "Tarih"
   label_date_and_time: "Tarih ve zaman"
   label_date_format: "Tarih formatı"
   label_date_from: "Başlangıç"
@@ -2997,7 +2997,7 @@ tr:
   label_no_due_date: "bitiş tarihi yok"
   label_no_start_date: "başlangıç tarihi yok"
   label_no_parent_page: "Üst sayfa yok"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Bildirimler"
   label_nothing_display: "Görüntülenecek bir şey yok"
   label_nobody: "hiçkimse"
   label_not_configured: "Yapılandırılmamış"

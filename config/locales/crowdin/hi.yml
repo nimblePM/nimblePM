@@ -639,8 +639,7 @@ hi:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        इस प्राथमिकता का रंग असाइन करने या बदलने के लिए क्लिक करें । यह तालिका में कार्य पैकेज हाइलाइटिंग के लिए उपयोग किया जा सकता है ।
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -1068,9 +1067,9 @@ hi:
         date_range: "Date range"
         definition: "Definition"
         duration: "Duration"
-        start_date: "Start date"
+        start_date: "प्रारंभ दिनांक"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "समाप्ति दिनांक"
       project/phase_definition:
         name: "नाम"
         color: "रंग"
@@ -3030,7 +3029,7 @@ hi:
   label_password_rule_special: "विशेष अक्षर"
   label_password_rule_uppercase: "अपरकेस"
   label_path_encoding: "पथ एंकोडिंग"
-  label_per_page: "Per page:"
+  label_per_page: "प्रति पृष्ठ"
   label_people: "People"
   label_permissions: "अनुमतियाँ"
   label_permissions_report: "अनुमतियाँ रिपोर्ट"

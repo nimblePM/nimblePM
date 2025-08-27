@@ -45,7 +45,7 @@ eu:
       meeting_agenda_item:
         title: "Title"
         author: "Author"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Iraupena"
         description: "Notes"
         presenter: "Presenter"
       meeting_section:

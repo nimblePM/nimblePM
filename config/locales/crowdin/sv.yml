@@ -137,7 +137,7 @@ sv:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Återkalla"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ sv:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Användare"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -639,8 +639,8 @@ sv:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Klicka för att tilldela eller ändra färgen för denna prioritet.
+        Den kan användas för att markera arbetspaket i tabellen.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -936,7 +936,7 @@ sv:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Beroenden"
   activerecord:
     attributes:
       announcements:
@@ -998,7 +998,7 @@ sv:
       enterprise_token:
         starts_at: "Giltig sedan"
         subscriber: "Prenumerant"
-        subscription: "Subscription"
+        subscription: "Prenumeration"
         plan: "Plan"
         encoded_token: "Enterprise support-nyckel"
         active_user_count_restriction: "Active users"
@@ -1068,10 +1068,10 @@ sv:
       project/phase:
         date_range: "Datumintervall"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Varaktighet"
+        start_date: "Startdatum"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Slutdatum"
       project/phase_definition:
         name: "Namn"
         color: "Färg"
@@ -1139,7 +1139,7 @@ sv:
         ongoing: "Ongoing"
       type:
         description: "Standardtext för beskrivning"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Ställ in formulär"
         is_in_roadmap: "Visas som standard i roadmap"
         is_default: "Aktiverad som standard för nya projekt"
         is_milestone: "Är milstolpe"
@@ -2177,7 +2177,7 @@ sv:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "Professionell hjälp"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -2762,7 +2762,7 @@ sv:
   label_dashboard: "Översikt"
   label_database_version: "PostgreSQL version"
   label_date: "Datum"
-  label_dates: "Dates"
+  label_dates: "Datum"
   label_date_and_time: "Datum och tid"
   label_date_format: "Datumformat"
   label_date_from: "Från"
@@ -3031,7 +3031,7 @@ sv:
   label_password_rule_special: "Specialtecken"
   label_password_rule_uppercase: "Versaler"
   label_path_encoding: "Sökvägskodning"
-  label_per_page: "Per page:"
+  label_per_page: "Per sida:"
   label_people: "Personer"
   label_permissions: "Behörigheter"
   label_permissions_report: "Rapport över behörigheter"
@@ -3549,7 +3549,7 @@ sv:
   #Default format for numbers
   number:
     format:
-      delimiter: ","
+      delimiter: ";"
       precision: 3
       separator: ","
     human:

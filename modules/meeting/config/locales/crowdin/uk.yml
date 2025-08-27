@@ -445,7 +445,7 @@ uk:
   label_agenda_item_deleted_wp: "Посилання на видалений пакет робіт"
   label_agenda_item_actions: "Дії з пунктами порядку денного"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Перемістити"
   label_agenda_item_move_to_next: "Перейти до наступної наради"
   label_agenda_item_move_to_backlog: "Перемістити в чергу завдань"
   label_agenda_item_move_to_current_meeting: "Перемістити в поточну нараду"

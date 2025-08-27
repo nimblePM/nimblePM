@@ -1068,8 +1068,8 @@ eu:
       project/phase:
         date_range: "Date range"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Iraupena"
+        start_date: "Hasiera data"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:

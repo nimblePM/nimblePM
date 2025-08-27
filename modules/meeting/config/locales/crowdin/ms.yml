@@ -44,7 +44,7 @@ ms:
       meeting_agenda_item:
         title: "Tajuk"
         author: "Pengarang"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Tempoh"
         description: "Nota-nota"
         presenter: "Penyampai"
       meeting_section:
@@ -180,7 +180,7 @@ ms:
       agenda_items: "Salin item agenda"
       agenda_text: "Salin agenda mesyuarat lama"
       participants: "Salin senarai peserta"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "Salin ke papan klip"
     email:
       send_emails: "E-mel peserta"
       send_invitation_emails: >
@@ -256,7 +256,7 @@ ms:
       footer_text:
         label: Footer text
         caption: This text will appear on every page at the center of the footer.
-      submit_button: Download
+      submit_button: Muat turun
     notifications:
       sidepanel:
         title: "Email calendar updates"
@@ -420,14 +420,14 @@ ms:
   label_meeting_index_later: "Next week and later"
   label_agenda_items: "Item-item agenda"
   label_agenda_items_reordered: "disusun semula"
-  label_agenda_item_add: "Add agenda item"
-  label_agenda_item_remove_from_agenda: "Remove from agenda"
+  label_agenda_item_add: "Tambah item agenda"
+  label_agenda_item_remove_from_agenda: "Keluarkan daripada agenda"
   label_agenda_item_remove_from_backlog: "Remove from backlog"
   label_agenda_item_undisclosed_wp: "Pakej kerja #%{id} tidak kelihatan"
   label_agenda_item_deleted_wp: " Rujukan pakej kerja yang dipadam"
   label_agenda_item_actions: "Tindakan item agenda"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Alih"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

@@ -137,7 +137,7 @@ et:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Võta tagasi"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ et:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Kasutajad"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -350,7 +350,7 @@ et:
           not_descendant: "must be a descendant of the hierarchy root."
     rules:
       copy_workflow_from: "Type for workflow copy"
-      enabled: "Enabled"
+      enabled: "Sees"
       depth: "Depth"
       item: "Item"
       label: "Silt"
@@ -936,7 +936,7 @@ et:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Sõltuvused"
   activerecord:
     attributes:
       announcements:
@@ -1068,10 +1068,10 @@ et:
       project/phase:
         date_range: "Kuupäevavahemik"
         definition: "Definitsioon"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "kestus"
+        start_date: "Alguskuupäev"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Lõpetamise kuupäev"
       project/phase_definition:
         name: "Nimi"
         color: "Värv"
@@ -1139,7 +1139,7 @@ et:
         ongoing: "Ongoing"
       type:
         description: "Default text for description"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Vormi seadistamine"
         is_in_roadmap: "Displayed in roadmap by default"
         is_default: "Activated for new projects by default"
         is_milestone: "on verstapost"
@@ -1252,7 +1252,7 @@ et:
         error_unauthorized: "may not be accessed."
         error_readonly: "was attempted to be written but is not writable."
         error_conflict: "Teine kasutaja uuendas vahepeal neid andmeid."
-        error_not_found: "not found."
+        error_not_found: "ei leitud."
         email: "is not a valid email address."
         empty: "ei tohi olla tühi."
         enterprise_plan_required: "requires at least the %{plan_name}."
@@ -2177,7 +2177,7 @@ et:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "Professionaalne kasutajatugi"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -2762,7 +2762,7 @@ et:
   label_dashboard: "Töölaud"
   label_database_version: "PostgreSQL version"
   label_date: "Kuupäev"
-  label_dates: "Dates"
+  label_dates: "Kuupäevad"
   label_date_and_time: "Kuupäev ja kellaaeg"
   label_date_format: "Kuupäevaformaat"
   label_date_from: "Algus"
@@ -2886,7 +2886,7 @@ et:
   label_information_plural: "Teave"
   label_installation_guides: "Installation guides"
   label_integer: "Täisarv"
-  label_interface: "Interface"
+  label_interface: "Kasutajaliides"
   label_internal: "Sisemine"
   label_introduction_video: "Introduction video"
   label_invite_user: "Invite user"
@@ -3031,7 +3031,7 @@ et:
   label_password_rule_special: "Erimärgid"
   label_password_rule_uppercase: "Suurtäheline"
   label_path_encoding: "Teeraja kodeering"
-  label_per_page: "Per page:"
+  label_per_page: "Lehekülje kohta:"
   label_people: "Inimesed"
   label_permissions: "Õigused"
   label_permissions_report: "Õiguste aruanne"

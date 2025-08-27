@@ -324,7 +324,7 @@ ms:
     label_added_time_by: 'Ditambah oleh <a href="%{authorLink}">%{author} pada %{age}'
     label_ago: "hari yang lalu"
     label_all: "semua"
-    label_all_projects: "All projects"
+    label_all_projects: "Semua projek"
     label_all_uppercase: "Semua"
     label_all_work_packages: "semua pakej kerja"
     label_and: "dan"
@@ -781,7 +781,7 @@ ms:
     autocompleter:
       placeholder: "Taip untuk cari"
       notFoundText: "Tiada item ditemui"
-      search: "Search"
+      search: "Cari"
       project:
         placeholder: "Pilih projek"
     repositories:

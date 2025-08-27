@@ -45,7 +45,7 @@ nl:
       meeting_agenda_item:
         title: "Titel"
         author: "Auteur"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Duur"
         description: "Notities"
         presenter: "Presentator"
       meeting_section:
@@ -184,7 +184,7 @@ nl:
       agenda_items: "Agendapunten kopiëren"
       agenda_text: "Kopieer de agenda van de oude vergadering"
       participants: "Kopieer lijst van deelnemers"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "Kopiëren naar het klembord"
     email:
       send_emails: "Email participants"
       send_invitation_emails: >
@@ -260,7 +260,7 @@ nl:
       footer_text:
         label: Footer text
         caption: This text will appear on every page at the center of the footer.
-      submit_button: Download
+      submit_button: Downloaden
     notifications:
       sidepanel:
         title: "Email calendar updates"
@@ -426,14 +426,14 @@ nl:
   label_meeting_index_later: "Next week and later"
   label_agenda_items: "Agendapunten"
   label_agenda_items_reordered: "herschikken"
-  label_agenda_item_add: "Add agenda item"
-  label_agenda_item_remove_from_agenda: "Remove from agenda"
+  label_agenda_item_add: "Agendapunt toevoegen"
+  label_agenda_item_remove_from_agenda: "Van de agenda schrappen"
   label_agenda_item_remove_from_backlog: "Remove from backlog"
   label_agenda_item_undisclosed_wp: "Werkpakket #%{id} niet zichtbaar"
   label_agenda_item_deleted_wp: "Verwijderde verwijzing naar het werkpakket"
   label_agenda_item_actions: "Agenda items acties"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Verplaatsen"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

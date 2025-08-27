@@ -137,15 +137,15 @@ lt:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Atšaukti"
         title: "Revoke static token"
-        heading: "Are you sure you want to revoke this token?"
+        heading: "Ar tikrai norite atšaukti šį raktą?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
       table_component:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Naudotojai"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -347,7 +347,7 @@ lt:
           not_descendant: "must be a descendant of the hierarchy root."
     rules:
       copy_workflow_from: "Type for workflow copy"
-      enabled: "Enabled"
+      enabled: "Įjungtas"
       depth: "Depth"
       item: "Item"
       label: "Label"
@@ -648,8 +648,8 @@ lt:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Spauskite, kad priskirtumėte arba pakeistumėte šio prioriteto spalvą.
+        Ji gali būti naudojama paryškinti darbo paketus lentelėje.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -949,7 +949,7 @@ lt:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Priklausomybės"
   activerecord:
     attributes:
       announcements:
@@ -1011,12 +1011,12 @@ lt:
       enterprise_token:
         starts_at: "Galioja nuo"
         subscriber: "Prenumeruotojas"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "Prenumerata"
+        plan: "Planas"
         encoded_token: "„Enterprise“ paramos raktas"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Kompanija"
       grids/grid:
         page: "Puslapis"
         row_count: "Eilučių skaičius"
@@ -1081,10 +1081,10 @@ lt:
       project/phase:
         date_range: "Laikotarpis"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Trukmė"
+        start_date: "Pradžios data"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Pabaigos data"
       project/phase_definition:
         name: "Vardas"
         color: "Spalva"
@@ -1152,7 +1152,7 @@ lt:
         ongoing: "Vykstantys"
       type:
         description: "Numatytasis aprašymo tekstas"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Formos konfigūracija"
         is_in_roadmap: "Rodoma plane pagal nutylėjimą"
         is_default: "Pagal nutylėjimą įjungta naujiems projektams"
         is_milestone: "Yra svarbus etapas"
@@ -1179,7 +1179,7 @@ lt:
         password_confirmation: "Patvirtinimas"
         consented_at: "Sutikimo laikas"
       group:
-        identity_url: "Identity URL"
+        identity_url: "Identiteto URL"
       user_preference:
         header_look_and_feel: "Look and feel"
         header_alerts: "Alerts"
@@ -1794,7 +1794,7 @@ lt:
     derived_start_date: "Išvestinė pradžios data"
     direction: "Direction"
     display_sums: "Rodyti suvestines"
-    domain: "Domain"
+    domain: "Domenas"
     due_date: "Pabaigos data"
     estimated_hours: "Darbas"
     estimated_time: "Darbas"
@@ -1963,7 +1963,7 @@ lt:
   button_unwatch: "Nestebėti"
   button_update: "Atnaujinti"
   button_upgrade: "Atnaujinti"
-  button_buy_now: "Buy now"
+  button_buy_now: "Pirkti dabar"
   button_upload: "Įkelti"
   button_view: "Peržiūrėti"
   button_watch: "Stebėti"
@@ -2012,7 +2012,7 @@ lt:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Naudoti šabloną"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2237,13 +2237,13 @@ lt:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Pirkti dabar"
       plans_title: "Enterprise plans"
       title: "Enterprise priedas"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Neribota"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2253,15 +2253,15 @@ lt:
       baseline_comparison:
         description: Paryškinti pakeitimus, padarytus šiame sąraše, nuo bet kokio laiko momento praeityje.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        description: "Kokie yra Enterprise vietinės versijos privalumai?"
+        high_security: "Saugumo funkcijos"
+        high_security_text: "Vienas prisijungimas (SAML, OpenID Connect, CAS), LDAP grupės."
+        installation: "Diegimo pagalba"
+        installation_text: "Patyręs programų inžinierius ves jus per visą diegimo ir nustatymo procesą naudojant jūsų pačių infrastruktūrą."
+        premium_features: "Enterprise priedai"
+        premium_features_text: "Agile lentos, savo tema ir logotipas, grafai, protingi darbo scenarijai su apibrėžtais veiksmais, pilna teksto paieška darbo paketų prieduose ir galimybė pasirinkti daugiau nei vieną reikšmę pritaikytuose laukuose."
+        professional_support: "Profesionali pagalba"
+        professional_support_text: "Gaukite patikimą, artimą pagalbą iš patyrusių pagalbos inžinierių su ekspertinėmis žiniomis apie OpenProject naudojimą verslui kritinėse aplinkose."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2328,7 +2328,7 @@ lt:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "Gaukite greitą apžvalgą apie projektų valdymą ir komandos bendradarbiavimą naudojant OpenProject Enterprise versiją."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2670,7 +2670,7 @@ lt:
         static_token_name: "RSS žetonas"
         disabled_text: "Administratorius neįjungė RSS žetonų. Prašome susisiekti su administratoriumi, kad galėtumėte naudoti šią savybę."
       storages:
-        title: "File storages"
+        title: "Failų saugyklos"
         text_hint: "Failų saugyklų žetonai jungia šį OpenProject egzempliorių su išorine failų saugykla."
         empty_text_hint: "Su jūsų paskyra nėra susietos saugyklos prieigos."
         revoke_token: "Ar tikrai norite išimti šį žetoną? Jums vėl reikės prisijungti prie %{storage}"
@@ -2847,7 +2847,7 @@ lt:
   label_dashboard: "Skydelis"
   label_database_version: "PostgreSQL versija"
   label_date: "Data"
-  label_dates: "Dates"
+  label_dates: "Datos"
   label_date_and_time: "Data ir laikas"
   label_date_format: "Datos formatas"
   label_date_from: "Nuo"
@@ -3083,7 +3083,7 @@ lt:
   label_no_due_date: "be pabaigos datos"
   label_no_start_date: "nėra pradžios datos"
   label_no_parent_page: "Nėra tėvinio puslapio"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Pranešimai"
   label_nothing_display: "Nėra ką rodyti"
   label_nobody: "niekas"
   label_not_configured: "Not configured"
@@ -3116,7 +3116,7 @@ lt:
   label_password_rule_special: "Specialūs simboliai"
   label_password_rule_uppercase: "Didžiosios raidės"
   label_path_encoding: "Kelio koduotė"
-  label_per_page: "Per page:"
+  label_per_page: "Puslapyje:"
   label_people: "Žmonės"
   label_permissions: "Leidimai"
   label_permissions_report: "Leidimų ataskaita"
@@ -3159,7 +3159,7 @@ lt:
   label_project_custom_field_plural: "Projekto atributai"
   label_project_settings: "Projekto nustatymai"
   label_project_attributes_settings: "Projekto atributų nustatymai"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Failų saugyklos"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projektai, naudojantys %{used_disk_space} disko vietos"
   label_project_view_all: "Peržiūrėti visus projektus"

@@ -145,7 +145,7 @@ he:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "משתמשים"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -1084,8 +1084,8 @@ he:
       project/phase:
         date_range: "טווח תאריכים"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "משך זמן"
+        start_date: "תאריך התחלה"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -2850,7 +2850,7 @@ he:
   label_dashboard: "דאשבורד"
   label_database_version: "PostgreSQL version"
   label_date: "תאריך"
-  label_dates: "Dates"
+  label_dates: "תאריכים"
   label_date_and_time: "Date and time"
   label_date_format: "Date format"
   label_date_from: "מ"
@@ -3119,7 +3119,7 @@ he:
   label_password_rule_special: "Special Characters"
   label_password_rule_uppercase: "Uppercase"
   label_path_encoding: "Path encoding"
-  label_per_page: "Per page:"
+  label_per_page: "לכל עמוד:"
   label_people: "אנשים"
   label_permissions: "Permissions"
   label_permissions_report: "Permissions report"

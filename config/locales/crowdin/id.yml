@@ -137,7 +137,7 @@ id:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Menarik kembali"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ id:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "User"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -629,8 +629,8 @@ id:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Klik untuk menetapkan atau merubah warna dari prioritas ini
+        Ini dapat digunakan untuk menyorot paket pekerjaan dalam tabel
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -924,7 +924,7 @@ id:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Dependensi"
   activerecord:
     attributes:
       announcements:
@@ -1056,10 +1056,10 @@ id:
       project/phase:
         date_range: "Kisaran tanggal"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Durasi"
+        start_date: "Tanggal start"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Tanggal selesai"
       project/phase_definition:
         name: "Nama"
         color: "Warna"
@@ -1942,7 +1942,7 @@ id:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Gunakan templat"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2388,10 +2388,10 @@ id:
         label: "Templat"
         none_enabled: "No template has been enabled for this work package type"
       footer_center:
-        label: Footer text
+        label: Teks footer
         caption: This text will appear on every page at the center of the footer.
       footer_right:
-        label: Footer text
+        label: Teks footer
         caption: This text will appear on every page at the right of the footer.
       hyphenation:
         label: Hyphenation
@@ -2537,7 +2537,7 @@ id:
         static_token_name: "RSS token"
         disabled_text: "RSS tokens are not enabled by the administrator. Please contact your administrator to use this feature."
       storages:
-        title: "File storages"
+        title: "Penyimpanan berkas"
         text_hint: "File Storage tokens connect this OpenProject instance with an external File Storage."
         empty_text_hint: "There is no storage access linked to your account."
         revoke_token: "Do you really want to remove this token? You will need to login again on %{storage}"
@@ -2714,7 +2714,7 @@ id:
   label_dashboard: "Dasbor"
   label_database_version: "Versi PostgreSQL"
   label_date: "Tanggal"
-  label_dates: "Dates"
+  label_dates: "Tanggal"
   label_date_and_time: "Tanggal dan waktu"
   label_date_format: "Format tanggal"
   label_date_from: "Dari"
@@ -2983,7 +2983,7 @@ id:
   label_password_rule_special: "Karakter spesial"
   label_password_rule_uppercase: "Huruf besar"
   label_path_encoding: "Path encoding"
-  label_per_page: "Per page:"
+  label_per_page: "Per halaman:"
   label_people: "Orang"
   label_permissions: "Hak akses"
   label_permissions_report: "Laporan"
@@ -3026,7 +3026,7 @@ id:
   label_project_custom_field_plural: "Atribut proyek"
   label_project_settings: "Projek setting"
   label_project_attributes_settings: "Project attributes settings"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Penyimpanan berkas"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projects using %{used_disk_space} disk space"
   label_project_view_all: "Lihat semua Project"

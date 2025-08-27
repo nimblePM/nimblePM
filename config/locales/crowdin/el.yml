@@ -137,7 +137,7 @@ el:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Ανάκληση"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ el:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Χρήστες"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -635,8 +635,8 @@ el:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Κάντε κλικ για να αντιστοιχίσετε ή να αλλάξετε το χρώμα αυτής της προτεραιότητας.
+        Μπορεί να χρησιμοποιηθεί για την επισήμανση πακέτων εργασίας στον πίνακα.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -932,7 +932,7 @@ el:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Εξαρτήσεις"
   activerecord:
     attributes:
       announcements:
@@ -994,12 +994,12 @@ el:
       enterprise_token:
         starts_at: "Ισχύει από"
         subscriber: "Συνδρομητής"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "Συνδρομή"
+        plan: "Πλάνο"
         encoded_token: "Token υποστήριξης Έκδοσης για Επιχειρήσεις"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Εταιρεία"
       grids/grid:
         page: "Σελίδα"
         row_count: "Πλήθος γραμμών"
@@ -1064,10 +1064,10 @@ el:
       project/phase:
         date_range: "Εύρος ημερομηνίας"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Διάρκεια"
+        start_date: "Ημερομηνία έναρξης"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Ημερομηνία λήξης"
       project/phase_definition:
         name: "Όνομα"
         color: "Χρώμα"
@@ -1135,7 +1135,7 @@ el:
         ongoing: "Ongoing"
       type:
         description: "Προεπιλεγμένο κείμενο για την περιγραφή"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Διαμόρφωση φόρμας"
         is_in_roadmap: "Εμφάνιση στο χάρτη πορείας από προεπιλογή"
         is_default: "Ενεργοποιημένα για καινούργια έργα από προεπιλογή"
         is_milestone: "Είναι ορόσημο"
@@ -1747,7 +1747,7 @@ el:
     derived_start_date: "Derived start date"
     direction: "Direction"
     display_sums: "Εμφάνιση Αθροισμάτων"
-    domain: "Domain"
+    domain: "Τομέας"
     due_date: "Ημερομηνία λήξης"
     estimated_hours: "Work"
     estimated_time: "Work"
@@ -1916,7 +1916,7 @@ el:
   button_unwatch: "Αναίρεση παρακολούθησης"
   button_update: "Ενημέρωση"
   button_upgrade: "Αναβάθμιση"
-  button_buy_now: "Buy now"
+  button_buy_now: "Αγοράστε τώρα"
   button_upload: "Μεταφόρτωση"
   button_view: "Προβολή"
   button_watch: "Παρακολουθήστε"
@@ -1965,7 +1965,7 @@ el:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Χρήση προτύπου"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2150,13 +2150,13 @@ el:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Αγοράστε τώρα"
       plans_title: "Enterprise plans"
       title: "Enterprise add-on"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Απεριόριστα"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2167,14 +2167,14 @@ el:
         description: Highlight changes made to this list since any point in the past.
       benefits:
         description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
+        high_security: "Χαρακτηριστικά ασφαλείας"
         high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
+        installation: "Υποστήριξη εγκατάστασης"
+        installation_text: "Οι έμπειροι μηχανικοί λογισμικού σας καθοδηγούν στην πλήρη διαδικασία εγκατάστασης και εγκατάστασης στη δική σας υποδομή."
         premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        premium_features_text: "Agile πίνακες, προσαρμοσμένα θέματα και λογότυπα, γραφήματα, έξυπνες ροές εργασίας με προσαρμοσμένες ενέργειες, αναζήτηση κειμένου για συνημμένα πακέτων εργασίας και πολλαπλή επιλογή προσαρμοσμένων πεδίων."
+        professional_support: "Επαγγελματική υποστήριξη"
+        professional_support_text: "Αποκτήστε αξιόπιστη, high-touch υποστήριξη από ανώτερους μηχανικούς υποστήριξης με εξειδικευμένες γνώσεις σχετικά με τη λειτουργία του OpenProject σε κρίσιμα επιχειρηματικά περιβάλλοντα."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2758,7 +2758,7 @@ el:
   label_dashboard: "Πίνακας Ελέγχου"
   label_database_version: "Έκδοση PostgreSQL"
   label_date: "Ημερομηνία"
-  label_dates: "Dates"
+  label_dates: "Ημερομηνίες"
   label_date_and_time: "Ημερομηνία και ώρα"
   label_date_format: "Μορφηποίηση ημερομηνίας"
   label_date_from: "Από"
@@ -3027,7 +3027,7 @@ el:
   label_password_rule_special: "Ειδικοί Χαρακτήρες"
   label_password_rule_uppercase: "Κεφαλαία"
   label_path_encoding: "Κωδικοποίηση μονοπατιού"
-  label_per_page: "Per page:"
+  label_per_page: "Ανά σελίδα:"
   label_people: "Άτομα"
   label_permissions: "Δικαιώματα"
   label_permissions_report: "Αναφορά δικαιωμάτων"

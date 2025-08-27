@@ -137,7 +137,7 @@ sk:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Odvolať"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ sk:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Užívatelia"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -651,8 +651,8 @@ sk:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Kliknite na položku priradiť alebo zmeniť farbu tejto priority.
+        Je možné použiť na zvýraznenie pracovných balíčkov v tabuľke.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -952,7 +952,7 @@ sk:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Závislosti"
   activerecord:
     attributes:
       announcements:
@@ -1084,10 +1084,10 @@ sk:
       project/phase:
         date_range: "Časové obdobie"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Trvanie"
+        start_date: "Dátum začiatku"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Dátum dokončenia"
       project/phase_definition:
         name: "Názov"
         color: "Farba"
@@ -1155,7 +1155,7 @@ sk:
         ongoing: "Ongoing"
       type:
         description: "Default text for description"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Konfigurácia formulára"
         is_in_roadmap: "Zobraziť v Roadmap štandardne"
         is_default: "Aktivované pre nové projekty štandardne"
         is_milestone: "Je medzník"
@@ -1236,8 +1236,8 @@ sk:
         priority: "Priorita"
         progress: "% Complete"
         readonly: "Read only"
-        remaining_hours: "Remaining work"
-        remaining_time: "Remaining work"
+        remaining_hours: "Zostávajúca práca"
+        remaining_time: "Zostávajúca práca"
         shared_with_users: "Shared with"
         schedule_manually: "Manuálne plánovanie"
         spent_hours: "Strávený čas"
@@ -2015,7 +2015,7 @@ sk:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Použiť šablónu"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2263,7 +2263,7 @@ sk:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "Profesionálna podpora"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -2850,7 +2850,7 @@ sk:
   label_dashboard: "Dashboard"
   label_database_version: "PostgreSQL version"
   label_date: "Dátum"
-  label_dates: "Dates"
+  label_dates: "Dátumy"
   label_date_and_time: "Dátum a čas"
   label_date_format: "Formát dátumu"
   label_date_from: "Od"
@@ -3119,7 +3119,7 @@ sk:
   label_password_rule_special: "Špeciálne znaky"
   label_password_rule_uppercase: "Veľké písmená"
   label_path_encoding: "Kódovanie cesty"
-  label_per_page: "Per page:"
+  label_per_page: "Na stranu:"
   label_people: "Ľudia"
   label_permissions: "Oprávnenia"
   label_permissions_report: "Výkaz oprávnení"
@@ -3185,7 +3185,7 @@ sk:
   label_relation_edit: "Edit relation"
   label_relation_new: "Nový vzťah"
   label_release_notes: "Zoznam zmien"
-  label_remaining_work: "Remaining work"
+  label_remaining_work: "Zostávajúca práca"
   label_remove_column: "Odstrániť stĺpec"
   label_remove_columns: "Odstrániť vybraté stĺpce"
   label_renamed: "premenované"

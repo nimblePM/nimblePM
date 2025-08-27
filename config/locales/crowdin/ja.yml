@@ -1781,7 +1781,7 @@ ja:
     title: "タイトル"
     type: "タイプ"
     typeahead: "オートコンプリート"
-    uid: "Unique identifier"
+    uid: "一意な識別子"
     updated_at: "更新日時"
     updated_on: "更新日時"
     uploader: "アップロード"
@@ -1944,7 +1944,7 @@ ja:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "テンプレートを使用"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2046,7 +2046,7 @@ ja:
         other: "%{count} s"
     units:
       minute_abbreviated:
-        other: "mins"
+        other: "分"
       hour:
         other: "時"
       day:
@@ -2109,7 +2109,7 @@ ja:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "今すぐ購入"
       plans_title: "Enterprise plans"
       title: "Enterprise add-on"
       plan_title: "Enterprise %{plan} add-on"
@@ -2166,7 +2166,7 @@ ja:
         title: "カスタムアクション"
         description: "カスタムアクションは、ステータスに基づいて特定のワークパッケージで利用できる、事前に定義されたアクションです。"
       nextcloud_sso:
-        title: "Single Sign-On for Nextcloud Storage"
+        title: "Nextcloudストレージのシングルサインオン。"
         description: "シングルサインオンでNextcloudストレージのシームレスかつセキュアな認証を可能にします。アクセス管理を簡素化し、ユーザーの利便性を向上させます。"
       scim_api:
         title: "SCIMクライアント"

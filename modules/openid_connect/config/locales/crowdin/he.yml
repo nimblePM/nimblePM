@@ -29,7 +29,7 @@ he:
         issuer: Issuer
         tenant: Tenant
         metadata_url: Metadata URL
-        icon: Custom icon
+        icon: סמל מותאם אישית
         claims: Claims
         acr_values: ACR values
         redirect_url: Redirect URL

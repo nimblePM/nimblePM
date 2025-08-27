@@ -427,7 +427,7 @@ ko:
   label_agenda_item_deleted_wp: "삭제된 작업 패키지 참조"
   label_agenda_item_actions: "의제 항목 작업"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "이동"
   label_agenda_item_move_to_next: "다음 미팅으로 이동"
   label_agenda_item_move_to_backlog: "백로그로 이동"
   label_agenda_item_move_to_current_meeting: "현재 미팅으로 이동"

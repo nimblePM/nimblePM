@@ -137,7 +137,7 @@ ca:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Revoca"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ ca:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Usuaris"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -636,8 +636,8 @@ ca:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Cliqueu per assignar o canviar el color d'aquesta prioritat.
+        Pot fer-se servir per a destacar paquets de treball en la taula.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -933,7 +933,7 @@ ca:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Dependències"
   activerecord:
     attributes:
       announcements:
@@ -995,12 +995,12 @@ ca:
       enterprise_token:
         starts_at: "Vàlid des de"
         subscriber: "Subscriptor"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "Subscripció"
+        plan: "Pla"
         encoded_token: "Token de suport Enterprise"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Empresa"
       grids/grid:
         page: "Pàgina"
         row_count: "Nombre de files"
@@ -1065,10 +1065,10 @@ ca:
       project/phase:
         date_range: "Interval de dates"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Durada"
+        start_date: "Data d'inici"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Data final"
       project/phase_definition:
         name: "Nom"
         color: "Color"
@@ -1136,7 +1136,7 @@ ca:
         ongoing: "En curs"
       type:
         description: "Text per defecte per la descripció"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Configuració del formulari"
         is_in_roadmap: "Es mostra al full de ruta per defecte "
         is_default: "Actiu per defecte als nous projectes "
         is_milestone: "És una fita"
@@ -1163,7 +1163,7 @@ ca:
         password_confirmation: "Confirmació"
         consented_at: "Consentit a"
       group:
-        identity_url: "Identity URL"
+        identity_url: "URL d'identitat"
       user_preference:
         header_look_and_feel: "Look and feel"
         header_alerts: "Alerts"
@@ -1748,7 +1748,7 @@ ca:
     derived_start_date: "Data d'inici derivada"
     direction: "Direction"
     display_sums: "Mostra les sumes"
-    domain: "Domain"
+    domain: "Domini"
     due_date: "Data final"
     estimated_hours: "Treball"
     estimated_time: "Treball"
@@ -1917,7 +1917,7 @@ ca:
   button_unwatch: "Deixa de Seguir"
   button_update: "Actualitza"
   button_upgrade: "Actualitza"
-  button_buy_now: "Buy now"
+  button_buy_now: "Compra ara"
   button_upload: "Carrega"
   button_view: "Mostra"
   button_watch: "Observa"
@@ -1966,7 +1966,7 @@ ca:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Utilitzar plantilla"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2151,13 +2151,13 @@ ca:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Compra ara"
       plans_title: "Enterprise plans"
       title: "Enterprise add-on"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Il·limitat"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2167,15 +2167,15 @@ ca:
       baseline_comparison:
         description: Destaca canvis efectuats en aquesta llista des de qualsevol punt del passat.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        description: "Quins són els beneficis de l'edició Enterprise on-premises?"
+        high_security: "Funcions de seguretat"
+        high_security_text: "Inici de sessió únic (SAML, OpenID Conenct, CAS), grups LDAP."
+        installation: "Suport d'instal·lació"
+        installation_text: "Enginyers de programari amb experiència et guien durant tot el procés d'instal·lació i configuració de la teva pròpia estructura."
+        premium_features: "Extensions Enterprise"
+        premium_features_text: "Taulells \"agile\", tema personalitzat i logotip, gràfiques, fluxos de treball amb accions personalitzades, cerca de text completa per a fitxers adjunt en paquets de treball i la selecció múltiple de camps personalitzats."
+        professional_support: "Suport professional"
+        professional_support_text: "Obté un suport de confiança i d'alt nivell dels nostres enginyers de suport sèniors amb experiència en manegar OpenProject en ambients empresarials crítics."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2240,7 +2240,7 @@ ca:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "Obté una visió general ràpida de la gestió de projectes i col·laboració d'equips amb l'edició Enterprise d'OpenProject."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2582,7 +2582,7 @@ ca:
         static_token_name: "RSS token"
         disabled_text: "RSS tokens are not enabled by the administrator. Please contact your administrator to use this feature."
       storages:
-        title: "File storages"
+        title: "Emmagatzematges de fitxers"
         text_hint: "File Storage tokens connect this OpenProject instance with an external File Storage."
         empty_text_hint: "There is no storage access linked to your account."
         revoke_token: "Do you really want to remove this token? You will need to login again on %{storage}"
@@ -2995,7 +2995,7 @@ ca:
   label_no_due_date: "sense data de final"
   label_no_start_date: "no hi ha data d'inici"
   label_no_parent_page: "Sense pàgina pare"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Notificacions"
   label_nothing_display: "Res a mostrar"
   label_nobody: "ningú"
   label_not_configured: "Not configured"
@@ -3028,7 +3028,7 @@ ca:
   label_password_rule_special: "Caràcters especials"
   label_password_rule_uppercase: "Majúscules"
   label_path_encoding: "Codificació de les rutes"
-  label_per_page: "Per page:"
+  label_per_page: "Per pàgina:"
   label_people: "Persones"
   label_permissions: "Permisos"
   label_permissions_report: "Informe de permisos"
@@ -3071,7 +3071,7 @@ ca:
   label_project_custom_field_plural: "Atributs de projecte"
   label_project_settings: "Configuració del projecte"
   label_project_attributes_settings: "Project attributes settings"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Emmagatzematges de fitxers"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projects using %{used_disk_space} disk space"
   label_project_view_all: "Veure tots els projectes"

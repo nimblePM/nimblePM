@@ -122,17 +122,17 @@ ru:
       delete_scim_client_dialog_component:
         title: "Удалить клиента SCIM"
         heading: "Вы уверены, что хотите удалить этого клиента SCIM?"
-        description: "Users managed by this SCIM client can no longer be updated by it."
+        description: "Пользователи, управляемые этим SCIM клиентом, больше не могут быть обновлены им."
       edit:
         label_delete_scim_client: "Удалить клиента SCIM"
       form:
         auth_provider_description: "Это служба, которую пользователи, добавленные провайдером SCIM, будут использовать для аутентификации в OpenProject."
-        authentication_method_description_html: "This is how the SCIM client authenticates at OpenProject. Please ensure that OAuth tokens include the <code>scim_v2</code> scope."
+        authentication_method_description_html: "Вот как клиент SCIM аутентифицируется в OpenProject. Пожалуйста, убедитесь, что токены OAuth включают область <code>scim_v2</code>."
         description: "Please refer to our [documentation on configuring SCIM clients](docs_url) for more information on these configuration options."
         jwt_sub_description: "For example, for Keycloak, this is the UUID of the service account  associated with the SCIM client. Consult [our documentation](docs_url) to learn how to find  the subject claim for your use case."
         name_description: "Выберите имя, которое поможет другим администраторам лучше понять, зачем был настроен этот клиент."
       index:
-        description: "SCIM clients configured here are able to interact with OpenProject SCIM server API to provision, update, and deprovision user accounts and groups."
+        description: "Клиенты SCIM, настроенные здесь, могут взаимодействовать с API сервера SCIM для предоставления, обновления и удаления учетных записей и групп пользователей."
         label_create_button: "Добавить клиента SCIM"
       new:
         title: "Новый клиент SCIM"
@@ -140,14 +140,14 @@ ru:
         confirm_button: "Отменить"
         title: "Отменить статический токен"
         heading: "Вы уверены, что хотите отменить этот токен?"
-        description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
+        description: "Клиент SCIM, использующий этот токен, больше не сможет получить доступ к API сервера SCIM."
       table_component:
         blank_slate:
           title: "Клиенты SCIM еще не настроены"
           description: "Добавьте клиентов, чтобы увидеть их здесь"
         user_count: "Пользователи"
       token_list_component:
-        description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
+        description: "Токены, которые Вы генерируете здесь, могут быть переданы SCIM-клиенту для доступа к API серверу SCIM."
         heading: "Токены"
         label_add_token: "Токен"
         label_aria_add_token: "Добавить токен"

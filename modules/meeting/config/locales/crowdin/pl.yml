@@ -445,7 +445,7 @@ pl:
   label_agenda_item_deleted_wp: "Usunięte odniesienie do pakietu roboczego"
   label_agenda_item_actions: "Działania punktów planu spotkania"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Przenieś"
   label_agenda_item_move_to_next: "Przenieś na następne spotkanie"
   label_agenda_item_move_to_backlog: "Przenieś do backlogu"
   label_agenda_item_move_to_current_meeting: "Przenieś do bieżącego spotkania"

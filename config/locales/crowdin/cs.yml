@@ -139,7 +139,7 @@ cs:
       revoke_static_token_dialog_component:
         confirm_button: "Odvolat"
         title: "Odvolat statický token"
-        heading: "Are you sure you want to revoke this token?"
+        heading: "Opravdu chcete zrušit tento token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
       table_component:
         blank_slate:
@@ -383,7 +383,7 @@ cs:
       no_results_title_text: V současné době nejsou žádné projekty součástí této skupiny.
     synchronized_groups:
       blankslate:
-        action: Authentication settings
+        action: Nastavení ověření
         description: When this group is automatically synced with groups in external identity providers like OpenID, they will appear here. You can set this up in your Authentication settings.
         title: No synchronized groups yet
   incoming_mails:
@@ -651,8 +651,8 @@ cs:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Klikněte na přiřadit nebo změnit barvu této priority.
+        lze použít ke zvýraznění pracovních balíčků v tabulce.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -1155,7 +1155,7 @@ cs:
         ongoing: "Probíhající"
       type:
         description: "Výchozí text pro popis"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Konfigurace formuláře"
         is_in_roadmap: "Ve výchozím nastavení zobrazeno v plánu"
         is_default: "Aktivováno pro nové projekty ve výchozím nastavení"
         is_milestone: "Je milník"
@@ -1182,7 +1182,7 @@ cs:
         password_confirmation: "Potvrzení"
         consented_at: "Souhlas udělen"
       group:
-        identity_url: "Identity URL"
+        identity_url: "Adresa URL identity"
       user_preference:
         header_look_and_feel: "Vzhled a chování"
         header_alerts: "Alerts"
@@ -1268,7 +1268,7 @@ cs:
         error_unauthorized: "není přístupný."
         error_readonly: "se pokusil být napsán, ale není zapisovatelný."
         error_conflict: "Informace mezitím aktualizoval alespoň jeden další uživatel."
-        error_not_found: "not found."
+        error_not_found: "nenalezeno"
         email: "není platná e-mailová adresa"
         empty: "nemůže být prázdné."
         enterprise_plan_required: "requires at least the %{plan_name}."
@@ -1797,7 +1797,7 @@ cs:
     derived_start_date: "Derivované Datum zahájení "
     direction: "Směr"
     display_sums: "Zobrazit součty"
-    domain: "Domain"
+    domain: "Doména"
     due_date: "Datum dokončení"
     estimated_hours: "Práce"
     estimated_time: "Práce"
@@ -1852,7 +1852,7 @@ cs:
     title: "Název"
     type: "Typ"
     typeahead: "Autocomplete"
-    uid: "Unique identifier"
+    uid: "Jedinečný identifikátor"
     updated_at: "Aktualizováno"
     updated_on: "Aktualizováno"
     uploader: "Uploader"
@@ -2015,7 +2015,7 @@ cs:
     copy_options:
       dependencies_label: 'Kopírovat z projektu'
   create_project:
-    template_label: "Use template"
+    template_label: "Použít šablonu"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2246,7 +2246,7 @@ cs:
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Bez omezení"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2256,15 +2256,15 @@ cs:
       baseline_comparison:
         description: Zvýraznit změny provedené v tomto seznamu od té doby v minulosti.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        description: "Jaké jsou výhody  Enterprise on-premises Edice?"
+        high_security: "Bezpečnostní prvky"
+        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP skupiny."
+        installation: "Instalační podpora"
+        installation_text: "Zkušení softwaroví inženýři vás povedou kompletní instalací a instalací ve vaší vlastní infrastruktuře."
+        premium_features: "Doplňky Enterprise Edice"
+        premium_features_text: "Agile desky, vlastní téma a logo, grafy, inteligentní pracovní postupy s vlastními akcemi, fulltextové vyhledávání příloh pracovního balíčku a vícenásobný výběr vlastních polí."
+        professional_support: "Profesionální podpora"
+        professional_support_text: "Získejte spolehlivou, vysoce profesionální podporu od seniorních podpůrných inženýrů s odbornými znalostmi o používání OpenProject."
       work_package_subject_generation:
         description: "Vytváření automaticky generovaných předmětů pomocí odkazovaných atributů a textu."
       customize_life_cycle:
@@ -2331,7 +2331,7 @@ cs:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "Získejte rychlý přehled o řízení projektu a týmové spolupráci s OpenProject Enterprise edion."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2673,7 +2673,7 @@ cs:
         static_token_name: "RSS token"
         disabled_text: "API tokeny nejsou administrátorem povoleny. Pro použití této funkce kontaktujte svého správce."
       storages:
-        title: "File storages"
+        title: "Úložiště souborů"
         text_hint: "Tokeny úložiště souborů připojují tuto OpenProject instanci s externím úložištěm souborů."
         empty_text_hint: "K vašemu účtu není připojen žádný přístup k úložišti."
         revoke_token: "Opravdu chcete odstranit tento token? Budete se muset znovu přihlásit na %{storage}"
@@ -2936,7 +2936,7 @@ cs:
   label_follows: "sleduje"
   label_force_user_language_to_default: "Nastavte jazyk uživatelů, kteří nemají povolený jazyk na výchozí"
   label_form_configuration: "Konfigurace formuláře"
-  label_formula: "Formula"
+  label_formula: "Vzorec"
   label_gantt_chart: "Ganttův diagram"
   label_gantt_chart_plural: "Gantt diagramy"
   label_general: "Obecné"
@@ -2974,7 +2974,7 @@ cs:
   label_information_plural: "Informace"
   label_installation_guides: "Instalační příručky"
   label_integer: "Celé číslo"
-  label_interface: "Interface"
+  label_interface: "Rozhraní"
   label_internal: "Interní"
   label_introduction_video: "Seznamovací video"
   label_invite_user: "Pozvat uživatele"
@@ -3086,7 +3086,7 @@ cs:
   label_no_due_date: "žádné datum dokončení"
   label_no_start_date: "žádné datum začátku"
   label_no_parent_page: "Žádná nadřazená stránka"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Notifikace"
   label_nothing_display: "Nic k zobrazení"
   label_nobody: "nikdo"
   label_not_configured: "Není konfigurováno"
@@ -3095,7 +3095,7 @@ cs:
   label_none_parentheses: "(žádný)"
   label_not_contains: "neobsahuje"
   label_not_equals: "není"
-  label_life_cycle_step_plural: "Project life cycle"
+  label_life_cycle_step_plural: "Životní cyklus projektu"
   label_on: "zapnuto"
   label_operator_all: "není prázdný"
   label_operator_none: "je prázdný"
@@ -3119,7 +3119,7 @@ cs:
   label_password_rule_special: "Speciální znaky"
   label_password_rule_uppercase: "Velká písmena"
   label_path_encoding: "Kódování trasy"
-  label_per_page: "Per page:"
+  label_per_page: "Na stránku:"
   label_people: "Lidé"
   label_permissions: "Práva"
   label_permissions_report: "Přehled oprávnění"
@@ -3157,12 +3157,12 @@ cs:
   label_project_new: "Nový projekt"
   label_project_plural: "Projekty"
   label_project_list_plural: "Seznamy projektů"
-  label_project_life_cycle: "Project life cycle"
+  label_project_life_cycle: "Životní cyklus projektu"
   label_project_attributes_plural: "Atributy projektu"
   label_project_custom_field_plural: "Atributy projektu"
   label_project_settings: "Nastavení projektu"
   label_project_attributes_settings: ""
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Úložiště souborů"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projekty využívající diskový prostor %{used_disk_space}"
   label_project_view_all: "Zobrazit všechny projekty - seznam"
@@ -4192,13 +4192,13 @@ cs:
         heading: "Nový atribut"
         description: "Changes to this project attribute will be reflected in all projects where it is enabled. Required attributes cannot be disabled on a per-project basis."
     project_phase_definitions:
-      heading: "Project life cycle"
+      heading: "Životní cyklus projektu"
       heading_description: "Project life cycle define the project phases that can be used for your project planning and will appear in the overview page of each project. These attributes can be enabled or disabled but not re-ordered at a project level."
       label_add: "Přidat"
       label_add_description: "Add project phase definition"
       filter:
-        label: "Search project phase"
-      section_header: "Phases"
+        label: "Hledat fázi projektu"
+      section_header: "Fáze"
       non_defined: "No phases are currently defined."
       phase_gates: "Phase gates"
       new:

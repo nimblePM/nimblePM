@@ -324,7 +324,7 @@ id:
     label_added_time_by: 'Added by <a href="%{authorLink}">%{author}</a> at %{age}'
     label_ago: "hari yang lalu"
     label_all: "semua"
-    label_all_projects: "All projects"
+    label_all_projects: "Semua proyek"
     label_all_uppercase: "Semua"
     label_all_work_packages: "Semua paket kerja"
     label_and: "dan"
@@ -781,7 +781,7 @@ id:
     autocompleter:
       placeholder: "Type to search"
       notFoundText: "No items found"
-      search: "Search"
+      search: "Cari"
       project:
         placeholder: "Select project"
     repositories:

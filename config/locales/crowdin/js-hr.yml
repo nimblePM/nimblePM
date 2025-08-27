@@ -783,7 +783,7 @@ hr:
     autocompleter:
       placeholder: "Type to search"
       notFoundText: "No items found"
-      search: "Search"
+      search: "Pretraživanje"
       project:
         placeholder: "Select project"
     repositories:

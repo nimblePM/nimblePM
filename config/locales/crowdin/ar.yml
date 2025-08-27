@@ -145,7 +145,7 @@ ar:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "المستخدمين"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -968,7 +968,7 @@ ar:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "الاعتماديات"
   activerecord:
     attributes:
       announcements:
@@ -1100,8 +1100,8 @@ ar:
       project/phase:
         date_range: "النطاق الزمني"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "المدّة"
+        start_date: "تاريخ البدء"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -1171,7 +1171,7 @@ ar:
         ongoing: "Ongoing"
       type:
         description: "Default text for description"
-        attribute_groups: "Form configuration"
+        attribute_groups: "تشكيل النموذج"
         is_in_roadmap: "Displayed in roadmap by default"
         is_default: "Activated for new projects by default"
         is_milestone: "هو مشروع رئيسي"
@@ -2349,7 +2349,7 @@ ar:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "الدعم الفني"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -2938,7 +2938,7 @@ ar:
   label_dashboard: " لوحة القيادة"
   label_database_version: "PostgreSQL version"
   label_date: "التاريخ"
-  label_dates: "Dates"
+  label_dates: "التواريخ"
   label_date_and_time: "Date and time"
   label_date_format: "صيغة التاريخ"
   label_date_from: "من"
@@ -3207,7 +3207,7 @@ ar:
   label_password_rule_special: "أحرف خاصة"
   label_password_rule_uppercase: "أحرف كبيرة"
   label_path_encoding: "ترميز المسار"
-  label_per_page: "Per page:"
+  label_per_page: "لكل صفحة:"
   label_people: "الناس"
   label_permissions: "السماحيات"
   label_permissions_report: "تقرير السماحيات"
@@ -4311,7 +4311,7 @@ ar:
       display_format: "Display format"
       deletion: "Deletion"
     working_days:
-      section_work_week: "Work week"
+      section_work_week: "أسبوع العمل"
       section_holidays_and_closures: "Holidays and closures"
     work_packages:
       not_allowed_text: "You do not have the necessary permissions to view this page."

@@ -145,7 +145,7 @@ da:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Brugere"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -934,7 +934,7 @@ da:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Aflæggere"
   activerecord:
     attributes:
       announcements:
@@ -1001,7 +1001,7 @@ da:
         encoded_token: "Enterprise support token"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Virksomhed"
       grids/grid:
         page: "Page"
         row_count: "Number of rows"
@@ -1066,8 +1066,8 @@ da:
       project/phase:
         date_range: "Datointerval"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Varighed"
+        start_date: "Start dato"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -1749,7 +1749,7 @@ da:
     derived_start_date: "Derived start date"
     direction: "Direction"
     display_sums: "Vis totaler"
-    domain: "Domain"
+    domain: "Domæne"
     due_date: "Finish date"
     estimated_hours: "Work"
     estimated_time: "Work"
@@ -2158,7 +2158,7 @@ da:
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Ubegrænset"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2169,14 +2169,14 @@ da:
         description: Highlight changes made to this list since any point in the past.
       benefits:
         description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
+        high_security: "Sikkerheds funktioner"
         high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
+        installation: "Installations support"
+        installation_text: "Erfarne software ingeniører guide dig gennem den komplette installation og setup proces i din egen infrastruktur."
         premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        premium_features_text: "Agile tavler, brugerdefineret tema og logo, grafer, intelligente arbejdsgange med brugerdefinerede handlinger, fuld tekst søgning efter vedhæftede filer arbejde og multi-valgs brugerdefinerede felter."
+        professional_support: "Professionel support"
+        professional_support_text: "Få pålidelig, høj-touch support fra senior support ingeniører med ekspert viden om at køre OpenProject i forretningskritiske miljøer."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2760,7 +2760,7 @@ da:
   label_dashboard: "Dashboard"
   label_database_version: "PostgreSQL version"
   label_date: "Dato"
-  label_dates: "Dates"
+  label_dates: "Datoer"
   label_date_and_time: "Date and time"
   label_date_format: "Datoformat"
   label_date_from: "Fra"
@@ -3029,7 +3029,7 @@ da:
   label_password_rule_special: "Specialtegn"
   label_password_rule_uppercase: "Store bogstaver"
   label_path_encoding: "Indkod sti for arkivering"
-  label_per_page: "Per page:"
+  label_per_page: "Per side:"
   label_people: "Personer"
   label_permissions: "Tilladelser"
   label_permissions_report: "Oversigt over tilladelser"

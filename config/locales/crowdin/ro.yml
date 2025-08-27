@@ -137,7 +137,7 @@ ro:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Revocă"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -383,7 +383,7 @@ ro:
       no_results_title_text: În acest moment nu există proiecte care să facă parte din acest grup.
     synchronized_groups:
       blankslate:
-        action: Authentication settings
+        action: Setări autentificare
         description: When this group is automatically synced with groups in external identity providers like OpenID, they will appear here. You can set this up in your Authentication settings.
         title: No synchronized groups yet
   incoming_mails:
@@ -766,7 +766,7 @@ ro:
           manual_mobile: "Manually scheduled."
           manually_scheduled: "Manually scheduled. Dates not affected by relations."
       blankslate:
-        title: "No predecessors"
+        title: "Fără predecesori"
         description: "To enable automatic scheduling, this work package needs to have at least one predecessor. It will then automatically be scheduled to start after the closest predecessor."
       ignore_non_working_days:
         title: "Numai în zilele lucrătoare"
@@ -944,7 +944,7 @@ ro:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Dependenţe"
   activerecord:
     attributes:
       announcements:
@@ -1088,7 +1088,7 @@ ro:
         finish_gate: "Final poartă fază"
         finish_gate_name: "Nume final poartă fază"
       query:
-        sums: "Sums"
+        sums: "Sume"
         columns: "Coloane"
         column_names: "Coloane"
         relations_to_type_column: "Relații cu %{type}"
@@ -1105,7 +1105,7 @@ ro:
         highlighted_attributes: "Atribute evidențiate"
         highlighting_mode: "Mod evidențiere"
         display_representation: "Mod afişare"
-        show_hierarchies: "Display mode"
+        show_hierarchies: "Mod afişare"
         starred: "Favorit"
         hidden: "Hidden"
         manual_sorting: "Manual sort order"
@@ -1147,7 +1147,7 @@ ro:
         ongoing: "Ongoing"
       type:
         description: "Text implicit pentru descriere"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Configurare formular"
         is_in_roadmap: "Afișat în mod implicit în foaia de parcurs"
         is_default: "Activat în mod implicit pentru proiectele noi"
         is_milestone: "Este reper de etapă"
@@ -1260,7 +1260,7 @@ ro:
         error_unauthorized: "nu pot fi accesate."
         error_readonly: "a fost încercat să fie scris, dar nu este inscriptibil."
         error_conflict: "Informaţia a fost actualizată de cel puţin un alt utilizator între timp."
-        error_not_found: "not found."
+        error_not_found: "nu a fost găsit."
         email: "nu este o adresă de e-mail validă."
         empty: "nu poate fi gol."
         enterprise_plan_required: "requires at least the %{plan_name}."
@@ -1286,7 +1286,7 @@ ro:
         not_available: "nu este disponibil din cauza unei configurații a sistemului."
         not_deletable: "%s nu poate fi șters."
         not_current_user: "nu este utilizatorul curent."
-        not_found: "not found."
+        not_found: "nu a fost găsit."
         not_a_date: "Acest câmp trebuie să conțină o dată validă."
         not_a_datetime: "nu este o dată-ora validă."
         not_a_number: "nu este un număr."
@@ -1664,7 +1664,7 @@ ro:
         few: "Listă proiecte"
         other: "Listă de proiecte"
       query: "Interogare personalizată"
-      reminder: "Reminder"
+      reminder: "Memento"
       role:
         one: "Rol"
         few: "Roluri"
@@ -1722,8 +1722,8 @@ ro:
           one: "<i>%{count} hour</i>"
           few: "<i>%{count} hours</i>"
           other: "<i>%{count} hours</i>"
-        updated: "changed from %{old_value} to %{value}"
-        logged_for: "Logged for"
+        updated: "schimbat de la %{old_value} la %{value}"
+        logged_for: "Logat pentru"
     filter:
       changeset: "Seturi de modificări"
       message: "Forumuri"
@@ -1774,7 +1774,7 @@ ro:
     derived_start_date: "Dată început derivată"
     direction: "Direction"
     display_sums: "Afişare totaluri"
-    domain: "Domain"
+    domain: "Domeniu"
     due_date: "Dată finalizare"
     estimated_hours: "Muncă"
     estimated_time: "Muncă"
@@ -1943,7 +1943,7 @@ ro:
   button_unwatch: "Nu mai urmări"
   button_update: "Actualizare"
   button_upgrade: "Actualizare"
-  button_buy_now: "Buy now"
+  button_buy_now: "Cumpără acum"
   button_upload: "Încarcă"
   button_view: "Vizualizare"
   button_watch: "Monitorizare"
@@ -1992,7 +1992,7 @@ ro:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Utilizează șablon"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2197,13 +2197,13 @@ ro:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Cumpără acum"
       plans_title: "Enterprise plans"
       title: "Enterprise add-on"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Nelimitat"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2213,15 +2213,15 @@ ro:
       baseline_comparison:
         description: Evidențiază modificările făcute la această listă de la orice punct din trecut.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
+        description: "Care sunt avantajele ediției Enterprise on-premise?"
+        high_security: "Caracteristici de securitate"
+        high_security_text: "Autentificare unică (SAML, OpenID Connect, CAS), grupuri LDAP."
         installation: "Suport instalare"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        installation_text: "Inginerii de software experimentați te ghidează prin procesul complet de instalare și configurare în propria infrastructură."
+        premium_features: "Enterprise add-on-uri"
+        premium_features_text: "Tablouri agile, temă și logo personalizate, grafice, fluxuri de lucru inteligente cu acțiuni personalizate, căutare în text complet pentru atașamentele pachetelor de lucru și câmpuri personalizate cu selectare multiplă."
+        professional_support: "Suport profesional"
+        professional_support_text: "Beneficiați de asistență fiabilă, de înaltă calitate, din partea unor ingineri de asistență seniori cu cunoștințe de specialitate în ceea ce privește utilizarea OpenProject în medii critice pentru afaceri."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2287,7 +2287,7 @@ ro:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "Obțineți o imagine de ansamblu rapidă a gestionării proiectelor și a colaborării în echipă cu OpenProject Enterprise edition."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2480,10 +2480,10 @@ ro:
         label: "Șablon"
         none_enabled: "No template has been enabled for this work package type"
       footer_center:
-        label: Footer text
-        caption: This text will appear on every page at the center of the footer.
+        label: Text subsol
+        caption: Acest text va apărea pe fiecare pagină în centrul subsolului.
       footer_right:
-        label: Footer text
+        label: Text subsol
         caption: This text will appear on every page at the right of the footer.
       hyphenation:
         label: Hyphenation
@@ -2629,7 +2629,7 @@ ro:
         static_token_name: "RSS token"
         disabled_text: "RSS tokens are not enabled by the administrator. Please contact your administrator to use this feature."
       storages:
-        title: "File storages"
+        title: "Stocuri de fișiere"
         text_hint: "File Storage tokens connect this OpenProject instance with an external File Storage."
         empty_text_hint: "There is no storage access linked to your account."
         revoke_token: "Do you really want to remove this token? You will need to login again on %{storage}"
@@ -2806,7 +2806,7 @@ ro:
   label_dashboard: "Panou de control"
   label_database_version: "Versiunea PostgreSQL"
   label_date: "Data"
-  label_dates: "Dates"
+  label_dates: "Date"
   label_date_and_time: "Data"
   label_date_format: "Format dată"
   label_date_from: "Din"
@@ -2934,14 +2934,14 @@ ro:
   label_internal: "Intern"
   label_introduction_video: "Video de introducere"
   label_invite_user: "Invită utilizator"
-  label_item: "Item"
+  label_item: "Element"
   label_item_plural: "Items"
   label_share: "Distribuie"
   label_share_project_list: "Distribuie lista de proiecte"
   label_share_work_package: "Share work package"
   label_show_all_registered_users: "Afișați toți utilizatorii înregistrați"
   label_show_less: "Arată mai puţin"
-  label_show_more: "Show more"
+  label_show_more: "Arată mai multe"
   label_journal: "Jurnal"
   label_journal_diff: "Comparare descriere"
   label_language: "Limbă"
@@ -3118,7 +3118,7 @@ ro:
   label_project_custom_field_plural: "Atribute proiect"
   label_project_settings: "Setările proiectului"
   label_project_attributes_settings: "Project attributes settings"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Stocuri de fișiere"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} proiecte care utilizează %{used_disk_space} spațiu pe disc"
   label_project_view_all: "Vizualizează toate proiectele"
@@ -3398,7 +3398,7 @@ ro:
         prefix: "Primită din cauza setării de notificare: %{reason}"
         date_alert_start_date: "Alertă dată"
         date_alert_due_date: "Alertă de dată"
-        reminder: "Reminder"
+        reminder: "Memento"
       see_all: "Vezi tot"
       updated_at: "Actualizat în %{timestamp} de %{user}"
     reminder_notifications:

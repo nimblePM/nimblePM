@@ -137,15 +137,15 @@ vi:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Thu hồi"
         title: "Revoke static token"
-        heading: "Are you sure you want to revoke this token?"
+        heading: "Bạn có chắc chắn muốn thu hồi mã truy cập này không?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
       table_component:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Người dùng"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -350,7 +350,7 @@ vi:
           not_descendant: "must be a descendant of the hierarchy root."
     rules:
       copy_workflow_from: "Type for workflow copy"
-      enabled: "Enabled"
+      enabled: "Đã kích hoạt"
       depth: "Depth"
       item: "Item"
       label: "Label"
@@ -383,7 +383,7 @@ vi:
       no_results_title_text: Hiện có không có dự án thuộc nhóm này.
     synchronized_groups:
       blankslate:
-        action: Authentication settings
+        action: Cài đặt xác thực
         description: When this group is automatically synced with groups in external identity providers like OpenID, they will appear here. You can set this up in your Authentication settings.
         title: No synchronized groups yet
   incoming_mails:
@@ -633,8 +633,8 @@ vi:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Nhấp để chỉ định hoặc thay đổi màu của mức ưu tiên này.
+        Có thể sử dụng để làm nổi bật các gói công việc trong bảng.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -928,7 +928,7 @@ vi:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Phụ thuộc"
   activerecord:
     attributes:
       announcements:
@@ -990,12 +990,12 @@ vi:
       enterprise_token:
         starts_at: "Có hiệu lực kể từ"
         subscriber: "Người đăng ký"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "Đăng ký"
+        plan: "Gói dịch vụ"
         encoded_token: "Mã thông báo hỗ trợ doanh nghiệp"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Công ty"
       grids/grid:
         page: "Trang"
         row_count: "Số dòng"
@@ -1060,10 +1060,10 @@ vi:
       project/phase:
         date_range: "Khoảng thời gian"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Thời gian"
+        start_date: "Ngày bắt đầu"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Ngày kết thúc"
       project/phase_definition:
         name: "Tên"
         color: "Màu sắc"
@@ -1131,7 +1131,7 @@ vi:
         ongoing: "Đang diễn ra"
       type:
         description: "Văn bản mặc định cho mô tả"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Mẫu cấu hình"
         is_in_roadmap: "Hiển thị trong lộ trình mặc định"
         is_default: "Kích hoạt cho các dự án mới theo mặc định"
         is_milestone: "Là cột mốc"
@@ -1158,7 +1158,7 @@ vi:
         password_confirmation: "Xác nhận lại mật khẩu"
         consented_at: "Đồng ý tại"
       group:
-        identity_url: "Identity URL"
+        identity_url: "URL danh tính"
       user_preference:
         header_look_and_feel: "Look and feel"
         header_alerts: "Alerts"
@@ -1728,7 +1728,7 @@ vi:
     derived_start_date: "Ngày bắt đầu suy ra"
     direction: "Direction"
     display_sums: "Hiển thị tổng"
-    domain: "Domain"
+    domain: "Miền"
     due_date: "Ngày kết thúc"
     estimated_hours: "Công việc"
     estimated_time: "Công việc"
@@ -1897,7 +1897,7 @@ vi:
   button_unwatch: "Ngừng theo dõi"
   button_update: "Cập Nhật"
   button_upgrade: "Nâng cấp"
-  button_buy_now: "Buy now"
+  button_buy_now: "Mua ngay"
   button_upload: "Tải lên"
   button_view: "Khung nhìn"
   button_watch: "Theo dõi"
@@ -1946,7 +1946,7 @@ vi:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Sử dụng mẫu"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2111,13 +2111,13 @@ vi:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Mua ngay"
       plans_title: "Enterprise plans"
       title: "Tiện ích mở rộng doanh nghiệp"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Không giới hạn"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2127,15 +2127,15 @@ vi:
       baseline_comparison:
         description: Nổi bật các thay đổi đã thực hiện đối với danh sách này kể từ bất kỳ thời điểm nào trong quá khứ.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        description: "Những lợi ích của phiên bản Enterprise tại chỗ là gì?"
+        high_security: "Tính năng bảo mật"
+        high_security_text: "Đăng nhập một lần (SAML, OpenID Connect, CAS), nhóm LDAP."
+        installation: "Hỗ trợ cài đặt"
+        installation_text: "Các kỹ sư phần mềm có kinh nghiệm sẽ hướng dẫn bạn qua toàn bộ quá trình cài đặt và cấu hình trong hạ tầng của bạn."
+        premium_features: "Phần mở rộng Enterprise"
+        premium_features_text: "Bảng Agile, chủ đề và logo tùy chỉnh, đồ thị, quy trình làm việc thông minh với các hành động tùy chỉnh, tìm kiếm toàn văn cho các tệp đính kèm công việc và trường tùy chỉnh nhiều chọn."
+        professional_support: "Hỗ trợ chuyên nghiệp"
+        professional_support_text: "Nhận hỗ trợ tin cậy, tận tâm từ các kỹ sư hỗ trợ cấp cao với kiến thức chuyên môn về việc chạy OpenProject trong môi trường kinh doanh quan trọng."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2199,7 +2199,7 @@ vi:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "Nhận cái nhìn nhanh về quản lý dự án và hợp tác nhóm với phiên bản Enterprise của OpenProject."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2954,7 +2954,7 @@ vi:
   label_no_due_date: "không có ngày kết thúc"
   label_no_start_date: "không có ngày bắt đầu"
   label_no_parent_page: "Không có trang quan hệ"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Thông báo"
   label_nothing_display: "Không có gì để hiển thị"
   label_nobody: "không ai"
   label_not_configured: "Not configured"
@@ -2987,7 +2987,7 @@ vi:
   label_password_rule_special: "Ký tự đặc biệt"
   label_password_rule_uppercase: "Chữ hoa"
   label_path_encoding: "Mã hóa đường dẫn"
-  label_per_page: "Per page:"
+  label_per_page: "Mỗi trang:"
   label_people: "Người dùng"
   label_permissions: "Phân Quyền"
   label_permissions_report: "Báo cáo phân quyền"

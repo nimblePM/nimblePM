@@ -782,7 +782,7 @@ si:
     autocompleter:
       placeholder: "සෙවීමට ටයිප් කරන්න"
       notFoundText: "No items found"
-      search: "Search"
+      search: "සොයන්න"
       project:
         placeholder: "Select project"
     repositories:

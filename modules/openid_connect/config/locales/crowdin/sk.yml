@@ -15,11 +15,11 @@ sk:
         client_id: ID klienta
         client_secret: Klient neverejné
         groups_claim: Groups claim
-        secret: Secret
-        scope: Scope
+        secret: Tajné
+        scope: Rozsah
         sync_groups: Synchronize groups
         grant_types_supported: Supported grant types
-        limit_self_registration: Limit self registration
+        limit_self_registration: Obmedzenie vlastnej registrácie
         authorization_endpoint: Authorization endpoint
         userinfo_endpoint: User information endpoint
         token_endpoint: Token endpoint

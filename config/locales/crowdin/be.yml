@@ -2256,12 +2256,12 @@ be:
       baseline_comparison:
         description: Highlight changes made to this list since any point in the past.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
+        description: "Якія перавагі ў Enterprise edition з лакальным разгортваннем?"
         high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
+        high_security_text: "Адзіны ўваход праз (SAML, OpenID Connect, CAS), LDAP групы."
         installation: "Installation support"
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
+        premium_features: "Карпаратыўныя дадаткі."
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
         professional_support: "Professional support"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
@@ -2331,7 +2331,7 @@ be:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "Атрымаць хуткі агляд кіравання праектамі і каманднага ўзаемадзеяння з OpenProject Enterprise edition."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2673,7 +2673,7 @@ be:
         static_token_name: "RSS token"
         disabled_text: "RSS tokens are not enabled by the administrator. Please contact your administrator to use this feature."
       storages:
-        title: "File storages"
+        title: "Файлавыя сховішча"
         text_hint: "File Storage tokens connect this OpenProject instance with an external File Storage."
         empty_text_hint: "There is no storage access linked to your account."
         revoke_token: "Do you really want to remove this token? You will need to login again on %{storage}"
@@ -3162,7 +3162,7 @@ be:
   label_project_custom_field_plural: "Project attributes"
   label_project_settings: "Project settings"
   label_project_attributes_settings: "Project attributes settings"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Файлавыя сховішча"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projects using %{used_disk_space} disk space"
   label_project_view_all: "View all projects"

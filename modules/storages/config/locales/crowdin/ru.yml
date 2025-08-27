@@ -198,7 +198,7 @@ ru:
         share_point: Allow OpenProject to access SharePoint data using OAuth.
       redirect_uri_incomplete:
         one_drive: Завершите установку с правильным перенаправлением URI.
-        share_point: Complete the setup with the correct URI redirection.
+        share_point: Завершите установку с правильным перенаправлением URI.
     confirm_replace_oauth_application: Это действие приведет к сбросу текущих учетных данных OAuth. После подтверждения вам придется повторно ввести учетные данные у поставщика хранилища, и всем удаленным пользователям придется снова авторизоваться в OpenProject. Вы уверены, что хотите продолжить?
     confirm_replace_oauth_client: Это действие приведет к сбросу текущих учетных данных OAuth. После подтверждения вам нужно будет ввести новые учетные данные от поставщика хранилища, и всем пользователям придется снова авторизоваться в %{provider_type}. Вы уверены, что хотите продолжить?
     delete_warning:
@@ -395,7 +395,7 @@ ru:
       share_point:
         application_link_text: SharePoint site
         integration: SharePoint Administration / OpenProject
-        oauth_configuration: Copy these values from the desired application in the %{application_link_text}.
+        oauth_configuration: Скопируйте эти значения из желаемого приложения в %{application_link_text}.
         provider_configuration: Please make sure you have administration privileges in your SharePoint instance and the OpenProject integration app is installed before doing the setup.
       type: 'Перед установкой убедитесь, что у вас есть права администрирования в вашем экземпляре Nextcloud и что перед установкой установлено следующее приложение:'
       type_link_text: "«Интеграционный OpenProject»"

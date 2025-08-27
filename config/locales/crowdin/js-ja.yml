@@ -572,7 +572,7 @@ ja:
       center:
         label_actor_and: "及び"
         and_more_users:
-          other: "and %{count} others"
+          other: "と %{count} その他"
         no_results:
           at_all: "あなたに関係する活動があると、新しい通知がここに表示されます。"
           with_current_filter: "現在、このビューには通知はありません"
@@ -781,7 +781,7 @@ ja:
       parent_placeholder: "新しい親を選択するか、ESCを押してキャンセルしてください。"
     autocompleter:
       placeholder: "検索キーワードを入力"
-      notFoundText: "No items found"
+      notFoundText: "見つかりませんでした"
       search: "検索"
       project:
         placeholder: "プロジェクトを選択"

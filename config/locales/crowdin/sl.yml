@@ -137,7 +137,7 @@ sl:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Prekliči"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ sl:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Uporabniki"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -650,8 +650,8 @@ sl:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Kliknite, če želite dodeliti ali spremeniti barvo te prioritete.
+        Lahko se uporablja za označevanje delovnih paketov v tabeli.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -951,7 +951,7 @@ sl:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Odvisnosti"
   activerecord:
     attributes:
       announcements:
@@ -1018,7 +1018,7 @@ sl:
         encoded_token: "Token podpore za podjetja"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Podjetje"
       grids/grid:
         page: "Stran"
         row_count: "Število vrstic"
@@ -1083,10 +1083,10 @@ sl:
       project/phase:
         date_range: "Datumski obseg"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Trajanje"
+        start_date: "Datum začetka"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Končni datum"
       project/phase_definition:
         name: "Ime"
         color: "Barva"
@@ -1154,7 +1154,7 @@ sl:
         ongoing: "Ongoing"
       type:
         description: "Privzeto besedilo za opis"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Konfiguracija obrazca"
         is_in_roadmap: "Prikazano v časovnem načrtu je privzeto"
         is_default: "Aktivirano za nov projekt po privzetem"
         is_milestone: "Mejnik"
@@ -1796,7 +1796,7 @@ sl:
     derived_start_date: "Izpeljan začetni datum"
     direction: "Direction"
     display_sums: "Prikaži vsote"
-    domain: "Domain"
+    domain: "Domena"
     due_date: "Končni datum"
     estimated_hours: "Work"
     estimated_time: "Work"
@@ -2014,7 +2014,7 @@ sl:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Uporabi predlogo"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2245,7 +2245,7 @@ sl:
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Neomejeno"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2256,14 +2256,14 @@ sl:
         description: Highlight changes made to this list since any point in the past.
       benefits:
         description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
+        high_security: "Varnostne funkcije"
         high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
+        installation: "Namestitvena podpora"
+        installation_text: "Izkušeni programski inženirji vas vodijo skozi celoten postopek namestitve in nastavitve v lastni infrastrukturi."
         premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        premium_features_text: "Kanban table, teme in logotip po meri, grafikoni, inteligentni delovni tokovi z dejanji po meri, iskanje po celotnem besedilu prilog v delovnem paketu in izbira polj po meri."
+        professional_support: "Strokovna podpora"
+        professional_support_text: "Pridobite zanesljivo in visoko dotično podporo starejših podpornih inženirjev s strokovnim znanjem o izvajanju OpenProject-a v poslovnih kritičnih okoljih."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2849,7 +2849,7 @@ sl:
   label_dashboard: "Nadzorna plošča"
   label_database_version: "PostgreSQL verzija"
   label_date: "Datum"
-  label_dates: "Dates"
+  label_dates: "Datumi"
   label_date_and_time: "Datum in ura"
   label_date_format: "Format datuma"
   label_date_from: "Od"
@@ -3118,7 +3118,7 @@ sl:
   label_password_rule_special: "Posebni znaki"
   label_password_rule_uppercase: "Velika črka"
   label_path_encoding: "Kodiranje poti"
-  label_per_page: "Per page:"
+  label_per_page: "Na stran:"
   label_people: "Ljudje"
   label_permissions: "Dovoljenja"
   label_permissions_report: "Poročilo o dovoljenjih"

@@ -44,7 +44,7 @@ id:
       meeting_agenda_item:
         title: "Judul"
         author: "Penulis"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Durasi"
         description: "Note"
         presenter: "Pembawa acara"
       meeting_section:
@@ -427,7 +427,7 @@ id:
   label_agenda_item_deleted_wp: "Deleted work package reference"
   label_agenda_item_actions: "Agenda items actions"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Pindahkan"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

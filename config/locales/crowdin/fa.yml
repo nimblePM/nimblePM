@@ -1069,7 +1069,7 @@ fa:
         date_range: "Date range"
         definition: "Definition"
         duration: "Duration"
-        start_date: "Start date"
+        start_date: "تاریخ شروع"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -1795,7 +1795,7 @@ fa:
     role: "Role"
     roles: "نقش‌ها"
     search: "Search"
-    start_date: "Start date"
+    start_date: "تاریخ شروع"
     status: "وضعیت"
     state: "State"
     subject: "موضوع"
@@ -2170,12 +2170,12 @@ fa:
       baseline_comparison:
         description: Highlight changes made to this list since any point in the past.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
+        description: "مزایای OpenProject اینترپرایز حرفه ای در نسخه قابل نصب بر روی سرور مجازی یا اختصاصی خودتان چیست؟"
         high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
+        high_security_text: "ورود یکباره (Single Sign-On) (SAML، OpenID Connect، CAS)، گروه‌های LDAP"
         installation: "Installation support"
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
+        premium_features: "افزونه‌های نسخه حرفه ای"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
         professional_support: "Professional support"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
@@ -2243,7 +2243,7 @@ fa:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "یک مرور سریع از مدیریت پروژه و همکاری تیمی با نسخه انترپرایز OpenProject را دریافت کنید."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -3031,7 +3031,7 @@ fa:
   label_password_rule_special: "Special Characters"
   label_password_rule_uppercase: "Uppercase"
   label_path_encoding: "Path encoding"
-  label_per_page: "Per page:"
+  label_per_page: "در هر صفحه:"
   label_people: "افراد"
   label_permissions: "Permissions"
   label_permissions_report: "Permissions report"

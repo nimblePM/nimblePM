@@ -452,7 +452,7 @@ ar:
     label_total_sum: "Total sum"
     label_subject: "الموضوع"
     label_this_week: "هذا الأسبوع"
-    label_today: "Today"
+    label_today: "اليوم"
     label_time_entry_plural: "الوقت المستهلك"
     label_up: "الأعلى"
     label_user_plural: "المستخدمين"
@@ -786,7 +786,7 @@ ar:
     autocompleter:
       placeholder: "Type to search"
       notFoundText: "No items found"
-      search: "Search"
+      search: "البحث"
       project:
         placeholder: "Select project"
     repositories:

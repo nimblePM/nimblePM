@@ -427,7 +427,7 @@ zh-CN:
   label_agenda_item_deleted_wp: "已删除工作包引用"
   label_agenda_item_actions: "议程项目行动"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "移动"
   label_agenda_item_move_to_next: "移动到下次会议"
   label_agenda_item_move_to_backlog: "移动到待办事项"
   label_agenda_item_move_to_current_meeting: "移动到当前会议"

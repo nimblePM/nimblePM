@@ -46,7 +46,7 @@ lv:
       meeting_agenda_item:
         title: "Virsraksts"
         author: "Autors"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Ilgums"
         description: "Piezīmes"
         presenter: "Presenter"
       meeting_section:
@@ -188,7 +188,7 @@ lv:
       agenda_items: "Copy agenda items"
       agenda_text: "Copy the agenda of the old meeting"
       participants: "Copy list of participants"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "Kopēt uz starpliktuvi"
     email:
       send_emails: "Email participants"
       send_invitation_emails: >

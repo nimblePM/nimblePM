@@ -970,7 +970,7 @@ zh-CN:
       custom_value:
         value: "值"
       design_color:
-        variable: "Variable"
+        variable: "变量"
       doorkeeper/application:
         uid: "客户端 ID"
         secret: "客户端密钥"
@@ -1279,7 +1279,7 @@ zh-CN:
         odd: "必须是奇数。"
         regex_match_failed: "与正则表达式 %{expression}不匹配。"
         regex_invalid: "无法与关联的正则表达式进行验证。"
-        hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
+        hexcode_invalid: "不是有效的 6 位十六进制颜色代码。"
         smaller_than_or_equal_to_max_length: "必须小于或等于最大长度。"
         taken: "已经采取。"
         too_long: "太长 (最多 %{count} 个字符)。"

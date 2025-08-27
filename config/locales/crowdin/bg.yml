@@ -137,15 +137,15 @@ bg:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Отмени"
         title: "Revoke static token"
-        heading: "Are you sure you want to revoke this token?"
+        heading: "Наистина ли искате да анулирате този токен?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
       table_component:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Потребители"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -639,8 +639,8 @@ bg:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Щракнете, за да зададете или промените цвета на този приоритет.
+        Той може да се използва за подчертаване на работните пакети в таблицата.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -936,7 +936,7 @@ bg:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Зависимости"
   activerecord:
     attributes:
       announcements:
@@ -1068,10 +1068,10 @@ bg:
       project/phase:
         date_range: "Период"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Продължителност"
+        start_date: "Начална дата"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Крайна дата"
       project/phase_definition:
         name: "Име"
         color: "Цвят"
@@ -1139,7 +1139,7 @@ bg:
         ongoing: "Ongoing"
       type:
         description: "Default text for description"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Конфигурация на формата"
         is_in_roadmap: "Показване в пътната карта по подразбиране"
         is_default: "Активирано за нови проекти по подразбиране"
         is_milestone: "Е крайъгълен камък"
@@ -1166,7 +1166,7 @@ bg:
         password_confirmation: "Потвърждение"
         consented_at: "Съгласие в"
       group:
-        identity_url: "Identity URL"
+        identity_url: "URL адрес на идентичност"
       user_preference:
         header_look_and_feel: "Look and feel"
         header_alerts: "Alerts"
@@ -1969,7 +1969,7 @@ bg:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Използвайте шаблон"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2088,7 +2088,7 @@ bg:
         other: "%{count} секунди"
     units:
       minute_abbreviated:
-        one: "min"
+        one: "мин"
         other: "mins"
       hour:
         one: "час"
@@ -2177,7 +2177,7 @@ bg:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "Професионална поддръжка"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -2762,7 +2762,7 @@ bg:
   label_dashboard: "Табло"
   label_database_version: "Версия на PostgreSQL"
   label_date: "Дата"
-  label_dates: "Dates"
+  label_dates: "Дати"
   label_date_and_time: "Дата и час"
   label_date_format: "Формат на датата"
   label_date_from: "От"
@@ -3031,7 +3031,7 @@ bg:
   label_password_rule_special: "Special Characters"
   label_password_rule_uppercase: "Uppercase"
   label_path_encoding: "Path encoding"
-  label_per_page: "Per page:"
+  label_per_page: "За страница:"
   label_people: "Участници"
   label_permissions: "Права"
   label_permissions_report: "Доклади за права"

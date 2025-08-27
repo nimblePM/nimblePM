@@ -137,7 +137,7 @@ si:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "අවලංගු"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ si:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "පරිශීලකයන්"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -639,8 +639,8 @@ si:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        මෙම ප්රමුඛතාවයේ වර්ණය පැවරීම හෝ වෙනස් කිරීම සඳහා ක්ලික් කරන්න.
+        වගුවේ වැඩ පැකේජ අවධාරණය කිරීම සඳහා එය භාවිතා කළ හැකිය.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -936,7 +936,7 @@ si:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "පරායත්තතා"
   activerecord:
     attributes:
       announcements:
@@ -1068,10 +1068,10 @@ si:
       project/phase:
         date_range: "දිනය පරාසයක"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "කාල සීමාව"
+        start_date: "ආරම්භක දිනය"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "අවසන් දිනය"
       project/phase_definition:
         name: "නම"
         color: "වර්ණ"
@@ -1139,7 +1139,7 @@ si:
         ongoing: "Ongoing"
       type:
         description: "විස්තරය සඳහා පෙරනිමි පෙළ"
-        attribute_groups: "Form configuration"
+        attribute_groups: "ආකෘති වින්යාසය"
         is_in_roadmap: "පෙරනිමියෙන් මාර්ග සිතියමෙහි දර්ශනය වේ"
         is_default: "පෙරනිමියෙන් නව ව්යාපෘති සඳහා සක්රිය"
         is_milestone: "සන්ධිස්ථානයක්"
@@ -2177,7 +2177,7 @@ si:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "වෘත්තීය සහාය"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -2762,7 +2762,7 @@ si:
   label_dashboard: "Dashboard"
   label_database_version: "PostgreSQL version"
   label_date: "දිනය"
-  label_dates: "Dates"
+  label_dates: "දිනයන්"
   label_date_and_time: "දිනය සහ වේලාව"
   label_date_format: "දිනය ආකෘතිය"
   label_date_from: "සිට"
@@ -3031,7 +3031,7 @@ si:
   label_password_rule_special: "විශේෂ චරිත"
   label_password_rule_uppercase: "මහකුරු"
   label_path_encoding: "මාර්ගය කේතන"
-  label_per_page: "Per page:"
+  label_per_page: "එක් පිටුවකට:"
   label_people: "ජනතාව"
   label_permissions: "අවසර"
   label_permissions_report: "අවසර වාර්තාව"

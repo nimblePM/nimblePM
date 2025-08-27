@@ -145,7 +145,7 @@ hr:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Korisnici"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -944,7 +944,7 @@ hr:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Ovisnosti"
   activerecord:
     attributes:
       announcements:
@@ -1076,8 +1076,8 @@ hr:
       project/phase:
         date_range: "Raspon datuma"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Trajanje"
+        start_date: "Datum Početka"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -2220,7 +2220,7 @@ hr:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "Profesionalna Podrška"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -2806,7 +2806,7 @@ hr:
   label_dashboard: "Dashboard"
   label_database_version: "PostgreSQL version"
   label_date: "Datum"
-  label_dates: "Dates"
+  label_dates: "Datumi"
   label_date_and_time: "Datum i vrijeme"
   label_date_format: "Format datuma"
   label_date_from: "Od"
@@ -3075,7 +3075,7 @@ hr:
   label_password_rule_special: "Posebni znakovi"
   label_password_rule_uppercase: "Velika slova"
   label_path_encoding: "Staza kodiranja"
-  label_per_page: "Per page:"
+  label_per_page: "Po stranici:"
   label_people: "Osobe"
   label_permissions: "Dozvole"
   label_permissions_report: "Dozvole izvješća"

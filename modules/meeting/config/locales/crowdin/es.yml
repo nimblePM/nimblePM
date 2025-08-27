@@ -433,7 +433,7 @@ es:
   label_agenda_item_deleted_wp: "Referencia de paquete de trabajo eliminada"
   label_agenda_item_actions: "Acciones de elementos de la agenda"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Mover"
   label_agenda_item_move_to_next: "Mover a la próxima reunión"
   label_agenda_item_move_to_backlog: "Mover al backlog"
   label_agenda_item_move_to_current_meeting: "Mover a la reunión actual"

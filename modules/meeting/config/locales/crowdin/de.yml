@@ -504,7 +504,7 @@ de:
   text_add_work_package_to_meeting_description: "Ein Arbeitspaket kann zu mehreren Besprechungen hinzugefügt werden."
   text_agenda_item_no_notes: "Keine Notizen angegeben."
   text_agenda_item_not_editable_anymore: "Dieser Tagesordnungspunkt kann nicht mehr bearbeitet werden."
-  text_agenda_item_move_next_meeting: "This item will be moved to the next meeting on %{date} at %{time}."
+  text_agenda_item_move_next_meeting: "Dieser Punkt wird auf die nächste Sitzung am %{date} auf %{time} verschoben."
   text_agenda_item_moved_to_next_meeting: "Tagesordnungspunkt zur nächsten Besprechung am %{date} verschoben"
   text_work_package_has_no_upcoming_meeting_agenda_items: "Dieses Arbeitspaket ist bisher in keiner anstehenden Besprechung enthalten."
   text_agenda_item_move_next_meeting_cancelled: "Der Tagesordnungspunkt konnte nicht in die nächste Besprechung verschoben werden da diese abgesagt wurde."

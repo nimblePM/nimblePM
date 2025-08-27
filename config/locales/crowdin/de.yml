@@ -2206,7 +2206,7 @@ de:
         title: "Single Sign-On für Nextcloud-Speicher"
         description: "Aktivieren Sie nahtlose und sichere Authentifizierung für Ihren Nextcloud-Speicher mit Single Sign-On. Vereinfachen Sie das Zugriffsmanagement und erhöhen Sie den Benutzerkomfort."
       scim_api:
-        title: "SCIM clients"
+        title: "SCIM-Clients"
         description: "Automatisieren Sie die Benutzerverwaltung in OpenProject durch nahtlose Integration externer Identitätsdienste wie Microsoft Entra oder Keycloak über unsere SCIM Server API. Verfügbar ab dem Enterprise Corporate Plan."
       virus_scanning:
         description: "Stellen Sie sicher, dass hochgeladene Dateien in OpenProject auf Viren gescannt werden, bevor sie für andere Benutzer zugänglich sind."

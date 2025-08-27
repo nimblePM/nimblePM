@@ -137,7 +137,7 @@ eo:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Eksvalidigi"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ eo:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Uzantoj"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -350,7 +350,7 @@ eo:
           not_descendant: "must be a descendant of the hierarchy root."
     rules:
       copy_workflow_from: "Type for workflow copy"
-      enabled: "Enabled"
+      enabled: "Ŝaltita"
       depth: "Depth"
       item: "Item"
       label: "Label"
@@ -1069,9 +1069,9 @@ eo:
         date_range: "Data intervalo"
         definition: "Definition"
         duration: "Duration"
-        start_date: "Start date"
+        start_date: "Komencdato"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Findato"
       project/phase_definition:
         name: "Nomo"
         color: "Koloro"
@@ -1139,7 +1139,7 @@ eo:
         ongoing: "Ongoing"
       type:
         description: "Defaŭlta teksto por priskribo"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Formulara agordo"
         is_in_roadmap: "Displayed in roadmap by default"
         is_default: "Activated for new projects by default"
         is_milestone: "Ĝi estas mejloŝtono"
@@ -2177,7 +2177,7 @@ eo:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "Profesia subteno"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -3173,7 +3173,7 @@ eo:
   label_this_month: "tiu ĉi monato"
   label_this_week: "tiu ĉi semajno"
   label_this_year: "tiu ĉi jaro"
-  label_time: "Time"
+  label_time: "Tempo"
   label_time_entry_plural: "Uzata tempo"
   label_time_entry_activity_plural: "Spent time activities"
   label_title: "Titolo"
@@ -4010,7 +4010,7 @@ eo:
   setting_start_of_week: "Week starts on"
   setting_sys_api_enabled: "Enable repository management web service"
   setting_sys_api_description: "The repository management web service provides integration and user authorization for accessing repositories."
-  setting_time_format: "Time"
+  setting_time_format: "Tempo"
   setting_total_percent_complete_mode: "Calculation of % Complete hierarchy totals"
   setting_total_percent_complete_mode_work_weighted_average: "Weighted by work"
   setting_total_percent_complete_mode_work_weighted_average_caption_html: >-

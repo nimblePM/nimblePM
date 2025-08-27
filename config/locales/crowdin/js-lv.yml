@@ -783,7 +783,7 @@ lv:
     autocompleter:
       placeholder: "Type to search"
       notFoundText: "No items found"
-      search: "Search"
+      search: "Meklēšana"
       project:
         placeholder: "Select project"
     repositories:

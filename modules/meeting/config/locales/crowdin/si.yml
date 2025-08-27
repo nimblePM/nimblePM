@@ -45,7 +45,7 @@ si:
       meeting_agenda_item:
         title: "මාතෘකාව"
         author: "කර්තෘ"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "කාල සීමාව"
         description: "සටහන්"
         presenter: "Presenter"
       meeting_section:
@@ -184,7 +184,7 @@ si:
       agenda_items: "Copy agenda items"
       agenda_text: "Copy the agenda of the old meeting"
       participants: "Copy list of participants"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "පසුරු පුවරුවට පිටපත් කරන්න"
     email:
       send_emails: "Email participants"
       send_invitation_emails: >
@@ -260,7 +260,7 @@ si:
       footer_text:
         label: Footer text
         caption: This text will appear on every page at the center of the footer.
-      submit_button: Download
+      submit_button: බාගත කරන්න
     notifications:
       sidepanel:
         title: "Email calendar updates"
@@ -433,7 +433,7 @@ si:
   label_agenda_item_deleted_wp: "Deleted work package reference"
   label_agenda_item_actions: "Agenda items actions"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "ගෙනයන්න"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"

@@ -145,7 +145,7 @@ lv:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Lietotāji"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -944,7 +944,7 @@ lv:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Saistītie projekti"
   activerecord:
     attributes:
       announcements:
@@ -1076,8 +1076,8 @@ lv:
       project/phase:
         date_range: "Date range"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Ilgums"
+        start_date: "Sākuma datums"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -2220,7 +2220,7 @@ lv:
         installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
         premium_features: "Enterprise add-ons"
         premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
+        professional_support: "Profesionāls atbalsts"
         professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
@@ -3075,7 +3075,7 @@ lv:
   label_password_rule_special: "Special Characters"
   label_password_rule_uppercase: "Uppercase"
   label_path_encoding: "Path encoding"
-  label_per_page: "Per page:"
+  label_per_page: "Katrā lappusē:"
   label_people: "Iesaistītie"
   label_permissions: "Permissions"
   label_permissions_report: "Permissions report"

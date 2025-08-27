@@ -137,15 +137,15 @@ nl:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Intrekken"
         title: "Revoke static token"
-        heading: "Are you sure you want to revoke this token?"
+        heading: "Weet u zeker dat u deze token wilt intrekken?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
       table_component:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Gebruikers"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -347,7 +347,7 @@ nl:
           not_descendant: "moet een afstammeling zijn van de root van de hiërarchie."
     rules:
       copy_workflow_from: "Type for workflow copy"
-      enabled: "Enabled"
+      enabled: "Ingeschakeld"
       depth: "Diepte"
       item: "Item"
       label: "Label"
@@ -636,8 +636,8 @@ nl:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Klik op toewijzen of wijzigen van de kleur van deze prioriteit.
+        het kan worden gebruikt voor het benadrukken van de werkpakketten in de tabel.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -932,7 +932,7 @@ nl:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Afhankelijkheden"
   activerecord:
     attributes:
       announcements:
@@ -994,12 +994,12 @@ nl:
       enterprise_token:
         starts_at: "Geldig sinds"
         subscriber: "Abonnee"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "Abonnement"
+        plan: "Pakket"
         encoded_token: "Enterprise ondersteuningstoken"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Bedrijfsnaam"
       grids/grid:
         page: "Pagina"
         row_count: "Aantal rijen"
@@ -1064,10 +1064,10 @@ nl:
       project/phase:
         date_range: "Datumbereik"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Duur"
+        start_date: "Startdatum"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Einddatum"
       project/phase_definition:
         name: "Naam"
         color: "Kleur"
@@ -1135,7 +1135,7 @@ nl:
         ongoing: "Lopend"
       type:
         description: "Standaard tekst voor beschrijving"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Formulierconfiguratie"
         is_in_roadmap: "Standaard weergegeven in roadmap"
         is_default: "Standaart ingesteld voor nieuwe projecten"
         is_milestone: "Is mijlpaal"
@@ -1162,7 +1162,7 @@ nl:
         password_confirmation: "Bevestiging"
         consented_at: "Ingestemd op"
       group:
-        identity_url: "Identity URL"
+        identity_url: "Identiteit URL"
       user_preference:
         header_look_and_feel: "Look and feel"
         header_alerts: "Alerts"
@@ -1248,7 +1248,7 @@ nl:
         error_unauthorized: "geen toegang."
         error_readonly: "werd geprobeerd te schrijven maar is niet schrijfbaar."
         error_conflict: "Informatie is in de tussentijd door ten minste één andere gebruiker bijgewerkt."
-        error_not_found: "not found."
+        error_not_found: "niet gevonden."
         email: "is geen geldig e-mailadres."
         empty: "mag niet leeg zijn."
         enterprise_plan_required: "requires at least the %{plan_name}."
@@ -1747,7 +1747,7 @@ nl:
     derived_start_date: "Afgeleide startdatum"
     direction: "Direction"
     display_sums: "Bedragen weergeven"
-    domain: "Domain"
+    domain: "Domein"
     due_date: "Einddatum"
     estimated_hours: "Werk"
     estimated_time: "Werk"
@@ -1916,7 +1916,7 @@ nl:
   button_unwatch: "Niet meer volgen"
   button_update: "Bijwerken"
   button_upgrade: "Upgrade"
-  button_buy_now: "Buy now"
+  button_buy_now: "Koop nu"
   button_upload: "Upload"
   button_view: "Toon"
   button_watch: "Volgen"
@@ -1965,7 +1965,7 @@ nl:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Sjabloon gebruiken"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2150,13 +2150,13 @@ nl:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Koop nu"
       plans_title: "Enterprise plans"
       title: "Enterprise add-on"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Onbeperkt"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2167,14 +2167,14 @@ nl:
         description: Markeer wijzigingen die sindsdien in deze lijst zijn aangebracht.
       benefits:
         description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
+        high_security: "Beveiliging functies"
         high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
+        installation: "Installatie ondersteuning"
+        installation_text: "Ervaren softwareingenieurs begeleiden u door het volledige installatieproces in uw eigen infrastructuur."
         premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        premium_features_text: "Agile borden, aangepast thema en logo, grafieken, intelligente workflows met aangepaste acties, volledige tekst zoeken voor werkpakket bijlagen en meervoudige aangepaste velden."
+        professional_support: "Professionele ondersteuning"
+        professional_support_text: "Krijg betrouwbare, krachtige ondersteuning van ervaren ondersteunende ingenieurs met deskundige kennis over het functioneren van OpenProject in zakelijke kritieke omgevingen."
       work_package_subject_generation:
         description: "Maak automatisch gegenereerde onderwerpen met behulp van kenmerken en tekst waarnaar verwezen wordt."
       customize_life_cycle:
@@ -2581,7 +2581,7 @@ nl:
         static_token_name: "RSS token"
         disabled_text: "RSS tokens are not enabled by the administrator. Please contact your administrator to use this feature."
       storages:
-        title: "File storages"
+        title: "Bestandsopslag"
         text_hint: "File Storage tokens connect this OpenProject instance with an external File Storage."
         empty_text_hint: "Er is geen opslagtoegang gekoppeld aan uw account."
         revoke_token: "Do you really want to remove this token? You will need to login again on %{storage}"
@@ -2758,7 +2758,7 @@ nl:
   label_dashboard: "Dashboard"
   label_database_version: "PostgreSQL versie"
   label_date: "Datum"
-  label_dates: "Dates"
+  label_dates: "Datums"
   label_date_and_time: "Datum en tijd"
   label_date_format: "Datumnotatie"
   label_date_from: "Van"
@@ -2994,7 +2994,7 @@ nl:
   label_no_due_date: "geen einddatum"
   label_no_start_date: "geen startdatum"
   label_no_parent_page: "Geen bovenliggende pagina"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Meldingen"
   label_nothing_display: "Niets om weer te geven"
   label_nobody: "niemand"
   label_not_configured: "Not configured"
@@ -3027,7 +3027,7 @@ nl:
   label_password_rule_special: "Speciale tekens"
   label_password_rule_uppercase: "Hoofdletters"
   label_path_encoding: "Pad codering"
-  label_per_page: "Per page:"
+  label_per_page: "Per pagina:"
   label_people: "Mensen"
   label_permissions: "Machtigingen"
   label_permissions_report: "Machtigingen verslag"
@@ -3070,7 +3070,7 @@ nl:
   label_project_custom_field_plural: "Projectkenmerken"
   label_project_settings: "Project Instellingen"
   label_project_attributes_settings: "Project kenmerken instellingen"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Bestandsopslag"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projecten die %{used_disk_space} schijfruimte gebruiken"
   label_project_view_all: "Bekijk alle projecten"

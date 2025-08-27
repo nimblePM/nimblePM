@@ -137,7 +137,7 @@ ka:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "გაუქმება"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ ka:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "მომხმარებლები"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -998,12 +998,12 @@ ka:
       enterprise_token:
         starts_at: "მოქმედების დაწყების დრო"
         subscriber: "გამომწერი"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "გამოწერა"
+        plan: "გეგმა"
         encoded_token: "Enterprise support token"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "კომპანია"
       grids/grid:
         page: "გვერდი"
         row_count: "მწკრივების რაოდენობა"
@@ -1068,10 +1068,10 @@ ka:
       project/phase:
         date_range: "Date range"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "ხანგრძლივობა"
+        start_date: "დაწყების თარიღი"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "დასრულების თარიღი"
       project/phase_definition:
         name: "სახელი"
         color: "ფერი"
@@ -1166,7 +1166,7 @@ ka:
         password_confirmation: "დასტური"
         consented_at: "ეთანხმება"
       group:
-        identity_url: "Identity URL"
+        identity_url: "იდენტიფიკაციის URL"
       user_preference:
         header_look_and_feel: "Look and feel"
         header_alerts: "Alerts"
@@ -1751,7 +1751,7 @@ ka:
     derived_start_date: "Derived start date"
     direction: "Direction"
     display_sums: "ჯამების ჩვენება"
-    domain: "Domain"
+    domain: "დომენი"
     due_date: "დასრულების თარიღი"
     estimated_hours: "სამუშაო"
     estimated_time: "სამუშაო"
@@ -1920,7 +1920,7 @@ ka:
   button_unwatch: "მეთვალყურეობის გაუქმება"
   button_update: "განახლება"
   button_upgrade: "განახლება"
-  button_buy_now: "Buy now"
+  button_buy_now: "შეიძინეთ ახლავე"
   button_upload: "ატვირთვა"
   button_view: "ხედი"
   button_watch: "თვალის დევნება"
@@ -1969,7 +1969,7 @@ ka:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "შაბლონის გამოყენება"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2154,13 +2154,13 @@ ka:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "შეიძინეთ ახლავე"
       plans_title: "Enterprise plans"
       title: "Enterprise add-on"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "შეუზღუდავი"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2585,7 +2585,7 @@ ka:
         static_token_name: "RSS კოდი"
         disabled_text: "RSS tokens are not enabled by the administrator. Please contact your administrator to use this feature."
       storages:
-        title: "File storages"
+        title: "ფაილების საცავი"
         text_hint: "File Storage tokens connect this OpenProject instance with an external File Storage."
         empty_text_hint: "There is no storage access linked to your account."
         revoke_token: "Do you really want to remove this token? You will need to login again on %{storage}"
@@ -2998,7 +2998,7 @@ ka:
   label_no_due_date: "დასრულების თარიღის გარეშე"
   label_no_start_date: "დაწყების თარიღის გარეშე"
   label_no_parent_page: "მშობელი გვერდის გარეშე"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "შეტყობინებები"
   label_nothing_display: "Nothing to display"
   label_nobody: "არავინ"
   label_not_configured: "Not configured"
@@ -3031,7 +3031,7 @@ ka:
   label_password_rule_special: "Special Characters"
   label_password_rule_uppercase: "მაღალი რეგისტრი"
   label_path_encoding: "ბილიკის კოდირება"
-  label_per_page: "Per page:"
+  label_per_page: "თითოეულ გვერდზე:"
   label_people: "ხალხი"
   label_permissions: "წვდომები"
   label_permissions_report: "Permissions report"
@@ -3074,7 +3074,7 @@ ka:
   label_project_custom_field_plural: "Project attributes"
   label_project_settings: "Project settings"
   label_project_attributes_settings: "Project attributes settings"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "ფაილების საცავი"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projects using %{used_disk_space} disk space"
   label_project_view_all: "View all projects"

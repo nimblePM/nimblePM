@@ -137,7 +137,7 @@ hu:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Visszavonás"
         title: "Revoke static token"
         heading: "Are you sure you want to revoke this token?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
@@ -145,7 +145,7 @@ hu:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Felhasználók"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -638,8 +638,8 @@ hu:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Ide kattintva rendelhet vagy változtathatja meg a színét az állapotnak.
+        Az állapot gomb látható és kiemelhető a feladatcsoport táblázatban.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -935,7 +935,7 @@ hu:
   activemodel:
     attributes:
       projects/copy_options:
-        dependencies: "Dependencies"
+        dependencies: "Szükséges összetevők"
   activerecord:
     attributes:
       announcements:
@@ -997,12 +997,12 @@ hu:
       enterprise_token:
         starts_at: "Érvényes"
         subscriber: "Előfizető"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "Előfizetés"
+        plan: "Díjcsomag"
         encoded_token: "Vállalati támogatás kulcs"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Cég"
       grids/grid:
         page: "Oldal"
         row_count: "Sorok száma"
@@ -1067,10 +1067,10 @@ hu:
       project/phase:
         date_range: "Dátum intervallum"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Időtartam"
+        start_date: "Indulási dátum"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Befejezési dátum"
       project/phase_definition:
         name: "Név"
         color: "Szín"
@@ -1138,7 +1138,7 @@ hu:
         ongoing: "Ongoing"
       type:
         description: "Alapértelmezett szöveg a leíráshoz"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Űrlap konfiguráció"
         is_in_roadmap: "Alapértelmezés szerint az ütemterv jelenik meg"
         is_default: "Alapértelmezetten aktiválva az új projekteknél"
         is_milestone: "Mérföldkő"
@@ -1968,7 +1968,7 @@ hu:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Sablon használata"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2087,7 +2087,7 @@ hu:
         other: "%{count} mp"
     units:
       minute_abbreviated:
-        one: "min"
+        one: "Perc"
         other: "mins"
       hour:
         one: "óra"
@@ -2159,7 +2159,7 @@ hu:
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Korlátlan"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2170,14 +2170,14 @@ hu:
         description: Highlight changes made to this list since any point in the past.
       benefits:
         description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
+        high_security: "Biztonsági szolgáltatások"
         high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
+        installation: "Telepítési támogatás"
+        installation_text: "Tapasztalt szoftvermérnökök végigvezetik Önt a teljes telepítési és beállítási folyamaton saját infrastruktúrájában.\n"
         premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        premium_features_text: "Agilis táblák, egyedi téma és embléma, grafikonok, intelligens munkafolyamatok egyéni műveletekkel, teljes szövegű keresés a munkacsomag mellékletekhez és több kiválasztott egyéni mező."
+        professional_support: "Szakmai támogatás"
+        professional_support_text: "Megbízható támogatást kaphat a vezető támogató mérnököktől, akik szakértő ismeretekkel rendelkeznek az OpenProject futtatásáról üzleti szempontból kritikus környezetben."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2584,7 +2584,7 @@ hu:
         static_token_name: "RSS token"
         disabled_text: "RSS tokens are not enabled by the administrator. Please contact your administrator to use this feature."
       storages:
-        title: "File storages"
+        title: "Tárterületek"
         text_hint: "File Storage tokens connect this OpenProject instance with an external File Storage."
         empty_text_hint: "There is no storage access linked to your account."
         revoke_token: "Do you really want to remove this token? You will need to login again on %{storage}"
@@ -2761,7 +2761,7 @@ hu:
   label_dashboard: "Vezérlőpult"
   label_database_version: "PostgreSQL verzió"
   label_date: "dátum"
-  label_dates: "Dates"
+  label_dates: "Dátumok"
   label_date_and_time: "Dátum és idő"
   label_date_format: "Dátum formátum"
   label_date_from: "tól"
@@ -2853,7 +2853,7 @@ hu:
   label_general: "Általános"
   label_generate_key: "Létrehoz egy kulcsot"
   label_global_modules: "Global modules"
-  label_global_roles: "Global roles"
+  label_global_roles: "Globális szerepek"
   label_git_path: ".Git könyvtár elérési útja"
   label_greater_or_equal: ">="
   label_group_by: "Csoportosítás"
@@ -2997,7 +2997,7 @@ hu:
   label_no_due_date: "nincs befejezési dátum"
   label_no_start_date: "nincs kezdő dátuma"
   label_no_parent_page: "Nincs szülő oldal"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Értesítések"
   label_nothing_display: "Nincs megjeleníthető"
   label_nobody: "senki sem"
   label_not_configured: "Not configured"
@@ -3030,7 +3030,7 @@ hu:
   label_password_rule_special: "Különleges karakterek"
   label_password_rule_uppercase: "Nagybetű"
   label_path_encoding: "Elérési út kódolás"
-  label_per_page: "Per page:"
+  label_per_page: "Oldalanként:"
   label_people: "Személyek"
   label_permissions: "Jogosultságok"
   label_permissions_report: "Jogosultságok riportálása"
@@ -3067,13 +3067,13 @@ hu:
   label_project_mappings: "Projektek"
   label_project_new: "Új projekt"
   label_project_plural: "Projektek"
-  label_project_list_plural: "Project lists"
+  label_project_list_plural: "Projekt listák"
   label_project_life_cycle: "Project life cycle"
   label_project_attributes_plural: "Projekt attribútumok"
   label_project_custom_field_plural: "Projekt attribútumok"
   label_project_settings: "Projekt beállítások"
   label_project_attributes_settings: "Project attributes settings"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Tárterületek"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projects using %{used_disk_space} disk space"
   label_project_view_all: "Minden projekt megtekintése"

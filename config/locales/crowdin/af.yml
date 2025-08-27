@@ -1069,7 +1069,7 @@ af:
         date_range: "Datum reeks"
         definition: "Definition"
         duration: "Duration"
-        start_date: "Start date"
+        start_date: "Begindatum"
         start_date_caption: "Follows the previous phase."
         finish_date: "Finish date"
       project/phase_definition:
@@ -1139,7 +1139,7 @@ af:
         ongoing: "Ongoing"
       type:
         description: "Default text for description"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Vorm konfigurasie"
         is_in_roadmap: "Displayed in roadmap by default"
         is_default: "Activated for new projects by default"
         is_milestone: "Is milestone"

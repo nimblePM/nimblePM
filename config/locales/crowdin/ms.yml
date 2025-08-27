@@ -137,15 +137,15 @@ ms:
       new:
         title: "New SCIM client"
       revoke_static_token_dialog_component:
-        confirm_button: "Revoke"
+        confirm_button: "Tarik balik"
         title: "Revoke static token"
-        heading: "Are you sure you want to revoke this token?"
+        heading: "Adakah anda pasti anda mahu membatalkan token ini?"
         description: "The SCIM client that uses this token will no longer be able to access OpenProject's SCIM server API."
       table_component:
         blank_slate:
           title: "No SCIM clients configured yet"
           description: "Add clients to see them here"
-        user_count: "Users"
+        user_count: "Pengguna-pengguna"
       token_list_component:
         description: "The tokens you generate here can be passed by a SCIM client to access the OpenProject SCIM API."
         heading: "Tokens"
@@ -349,7 +349,7 @@ ms:
           not_descendant: "mestilah keturunan akar hierarki."
     rules:
       copy_workflow_from: "Type for workflow copy"
-      enabled: "Enabled"
+      enabled: "Didayakan"
       depth: "Kedalaman"
       item: "Item"
       label: "Label"
@@ -382,7 +382,7 @@ ms:
       no_results_title_text: Saat ini tiada projek yang menjadi sebahagian daripada kumpulan ini.
     synchronized_groups:
       blankslate:
-        action: Authentication settings
+        action: Tetapan pengesahan
         description: When this group is automatically synced with groups in external identity providers like OpenID, they will appear here. You can set this up in your Authentication settings.
         title: No synchronized groups yet
   incoming_mails:
@@ -632,8 +632,8 @@ ms:
   priorities:
     edit:
       priority_color_text: |
-        Click to assign or change the color of this priority.
-        It can be used for highlighting work packages in the table.
+        Klik untuk menugaskan atau menukar warna untuk keutamaan ini.
+        Ia boleh digunakan untuk menyoroti pakej kerja dalam jadual ini.
     admin:
       default:
         caption: Making this priority default will override the previous default priority.
@@ -988,12 +988,12 @@ ms:
       enterprise_token:
         starts_at: "Sah sehingga"
         subscriber: "Pelanggan"
-        subscription: "Subscription"
-        plan: "Plan"
+        subscription: "Langganan"
+        plan: "Pelan"
         encoded_token: "Token sokongan Enterprise"
         active_user_count_restriction: "Active users"
       enterprise_trial:
-        company: "Company"
+        company: "Syarikat"
       grids/grid:
         page: "Halaman"
         row_count: "Bilangan baris"
@@ -1058,10 +1058,10 @@ ms:
       project/phase:
         date_range: "Date range"
         definition: "Definition"
-        duration: "Duration"
-        start_date: "Start date"
+        duration: "Tempoh"
+        start_date: "Tarikh mula"
         start_date_caption: "Follows the previous phase."
-        finish_date: "Finish date"
+        finish_date: "Tarikh tamat"
       project/phase_definition:
         name: "Nama"
         color: "Warna"
@@ -1129,7 +1129,7 @@ ms:
         ongoing: "Sedang berlangsung"
       type:
         description: "Teks default untuk deskripsi"
-        attribute_groups: "Form configuration"
+        attribute_groups: "Konfigurasi borang"
         is_in_roadmap: "Dipaparkan dalam roadmap secara default"
         is_default: "Diaktifkan untuk projek baharu secara default"
         is_milestone: "Adalah pencapaian"
@@ -1156,7 +1156,7 @@ ms:
         password_confirmation: "Pengesahan"
         consented_at: "Dipersetujui di"
       group:
-        identity_url: "Identity URL"
+        identity_url: "Identiti URL"
       user_preference:
         header_look_and_feel: "Look and feel"
         header_alerts: "Alerts"
@@ -1242,7 +1242,7 @@ ms:
         error_unauthorized: "tidak boleh diakses."
         error_readonly: "telah cuba untuk menulis tetapi tidak dapat ditulis."
         error_conflict: "Sementara itu, maklumat telah dikemas kini oleh sekurang-kurangnya salah satu pengguna lain."
-        error_not_found: "not found."
+        error_not_found: "tidak dijumpai."
         email: "adalah bukan alamat e-mel yang sah."
         empty: "tidak boleh kosong."
         enterprise_plan_required: "requires at least the %{plan_name}."
@@ -1781,7 +1781,7 @@ ms:
     title: "Tajuk"
     type: "Jenis"
     typeahead: "Autocomplete"
-    uid: "Unique identifier"
+    uid: "Pengecam unik"
     updated_at: "Dikemas kini pada"
     updated_on: "Dikemas kini pada"
     uploader: "Pemuat naik\n"
@@ -1895,7 +1895,7 @@ ms:
   button_unwatch: "Berhenti memerhatikan"
   button_update: "Kemas kini"
   button_upgrade: "Naik taraf"
-  button_buy_now: "Buy now"
+  button_buy_now: "Beli sekarang"
   button_upload: "Muat naik"
   button_view: "Lihat"
   button_watch: "Perhati"
@@ -1944,7 +1944,7 @@ ms:
     copy_options:
       dependencies_label: 'Copy from project'
   create_project:
-    template_label: "Use template"
+    template_label: "Guna templat"
     copy_options:
       dependencies_label: 'Copy from template'
   create_wiki_page: "Create new wiki page"
@@ -2109,13 +2109,13 @@ ms:
       work_package_sharing: Share work packages with external users
       work_package_subject_generation: Work Package Subject Generation
     upsell:
-      buy_now_button: "Buy now"
+      buy_now_button: "Beli sekarang"
       plans_title: "Enterprise plans"
       title: "Alat tambah perusahaan"
       plan_title: "Enterprise %{plan} add-on"
       plan_name: "%{plan} enterprise plan"
       plan_text_html: "Available starting with the %{plan_name}."
-      unlimited: "Unlimited"
+      unlimited: "Tiada had"
       already_have_token: >
         Already have a token? Add it using the button below to upgrade to the booked Enterprise plan.
       hide_banner: "Hide this banner"
@@ -2125,15 +2125,15 @@ ms:
       baseline_comparison:
         description: Sorotkan perubahan yang dibuat ke senarai ini pada bila-bila masa lalu.
       benefits:
-        description: "What are the benefits of the Enterprise on-premises edition?"
-        high_security: "Security features"
-        high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
-        installation: "Installation support"
-        installation_text: "Experienced software engineers guide you through the complete installation and setup process in your own infrastructure."
-        premium_features: "Enterprise add-ons"
-        premium_features_text: "Agile boards, custom theme and logo, graphs, intelligent workflows with custom actions, full text search for work package attachments and multi-select custom fields."
-        professional_support: "Professional support"
-        professional_support_text: "Get reliable, high-touch support from senior support engineers with expert knowledge about running OpenProject in business-critical environments."
+        description: "Apakah manfaat edisi Enterprise di premis?"
+        high_security: "Fitur keselamatan"
+        high_security_text: "Log masuk tunggal (SAML, OpenID Connect, CAS), kumpulan LDAP."
+        installation: "Sokongan pemasangan"
+        installation_text: "Jurutera perisian berpengalaman membimbing anda melalui pemasangan lengkap dan proses persediaan dalam infrastruktur anda sendiri."
+        premium_features: "Tambahan Enterprise"
+        premium_features_text: "Board Agile, tema tersuai dan logo, graf, aliran kerja yang cerdas dengan tindakan tersuai, carian teks penuh untuk lampiran pakej kerja dan pelbagai pilihan ruang tersuai."
+        professional_support: "Sokongan profesional"
+        professional_support_text: "Dapatkan sokongan yang boleh dipercayai, sokongan peribadi yang berkualiti tinggi daripada jurutera sokongan berpengalaman dengan pengetahuan pakar tentang menjalankan OpenProject dalam persekitaran perniagaan yang kritikal."
       work_package_subject_generation:
         description: "Create automatically generated subjects using referenced attributes and text."
       customize_life_cycle:
@@ -2197,7 +2197,7 @@ ms:
       request_again: "Request again"
       resend_action: "Resend confirmation email"
       welcome_title: "Quick feature overview"
-      welcome_description: "Get a quick overview of project management and team collaboration with OpenProject Enterprise edition."
+      welcome_description: "Dapatkan gambaran keseluruhan ringkas pengurusan projek dan kolaborasi kumpulan dengan OpenProject edisi Enterprise."
       confirmation_info: >
         We sent you an email on %{date} to %{email} with all the information to start the free trial of OpenProject Enterprise. Please check your inbox and click the confirmation link provided to start your 14-day free trial.
       confirmation_subline: >
@@ -2539,7 +2539,7 @@ ms:
         static_token_name: "Token RSS"
         disabled_text: "Token RSS tidak diaktifkan oleh pentadbir. Sila hubungi pentadbir anda untuk menggunakan fitur ini."
       storages:
-        title: "File storages"
+        title: "Simpanan fail"
         text_hint: "Token Storan Fail menyambungkan contoh OpenProject dengan Storan Fail luaran."
         empty_text_hint: "Tiada akses storan terpaut pada akaun anda."
         revoke_token: "Adakah anda ingin membuang token ini? Anda perlu log masuk semula di %{storage}"
@@ -2840,7 +2840,7 @@ ms:
   label_information_plural: "Maklumat"
   label_installation_guides: "Panduan pemasangan"
   label_integer: "Integer"
-  label_interface: "Interface"
+  label_interface: "Antara muka"
   label_internal: "Dalaman"
   label_introduction_video: "Video pengenalan"
   label_invite_user: "Jemput pengguna"
@@ -2952,7 +2952,7 @@ ms:
   label_no_due_date: "tiada tarikh tamat"
   label_no_start_date: "tiada tarikh mula"
   label_no_parent_page: "Tiada halaman induk"
-  label_notification_center_plural: "Notifications"
+  label_notification_center_plural: "Pemberitahuan"
   label_nothing_display: "Tiada apa untuk dipaparkan"
   label_nobody: "tiada siapa"
   label_not_configured: "Tidak dikonfigurasikan"
@@ -2985,7 +2985,7 @@ ms:
   label_password_rule_special: "Aksara Khas"
   label_password_rule_uppercase: "Huruf Besar"
   label_path_encoding: "Laluan pengekodan"
-  label_per_page: "Per page:"
+  label_per_page: "Setiap halaman:"
   label_people: "Orang"
   label_permissions: "Kebenaran"
   label_permissions_report: "Laporan kebenaran"
@@ -3028,7 +3028,7 @@ ms:
   label_project_custom_field_plural: "Atribut projek"
   label_project_settings: "Tetapan projek"
   label_project_attributes_settings: "Tetapan atribut projek"
-  label_project_storage_plural: "File storages"
+  label_project_storage_plural: "Simpanan fail"
   label_project_storage_project_folder: "File storages: Project folders"
   label_projects_disk_usage_information: "%{count} projek menggunakan %{used_disk_space} ruang cakera"
   label_project_view_all: "Lihat semua projek"

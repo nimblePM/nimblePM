@@ -45,7 +45,7 @@
       meeting_agenda_item:
         title: "Tittel"
         author: "Forfatter"
-        duration_in_minutes: "Duration"
+        duration_in_minutes: "Varighet"
         description: "Notater"
         presenter: "Foredragsholder"
       meeting_section:
@@ -184,7 +184,7 @@
       agenda_items: "Copy agenda items"
       agenda_text: "Kopier sakslisten fra det forrige møtet"
       participants: "Copy list of participants"
-      to_clipboard: "Copy to clipboard"
+      to_clipboard: "Kopier til utklippstavlen"
     email:
       send_emails: "Send e-post til deltakere"
       send_invitation_emails: >
@@ -260,7 +260,7 @@
       footer_text:
         label: Footer text
         caption: This text will appear on every page at the center of the footer.
-      submit_button: Download
+      submit_button: Last ned
     notifications:
       sidepanel:
         title: "Email calendar updates"
@@ -426,14 +426,14 @@
   label_meeting_index_later: "Next week and later"
   label_agenda_items: "Dagsordenens poster"
   label_agenda_items_reordered: "omsortert"
-  label_agenda_item_add: "Add agenda item"
-  label_agenda_item_remove_from_agenda: "Remove from agenda"
+  label_agenda_item_add: "Legg til punkt på dagsorden"
+  label_agenda_item_remove_from_agenda: "Fjern fra dagsorden"
   label_agenda_item_remove_from_backlog: "Remove from backlog"
   label_agenda_item_undisclosed_wp: "Arbeidspakke #%{id} er ikke synlig"
   label_agenda_item_deleted_wp: "Slettet arbeidspakkereferanse"
   label_agenda_item_actions: "Tiltak på punkter i dagsorden"
   label_agenda_item_move_to_next_title: "Move to next meeting?"
-  label_agenda_item_move: "Move"
+  label_agenda_item_move: "Flytt"
   label_agenda_item_move_to_next: "Move to next meeting"
   label_agenda_item_move_to_backlog: "Move to backlog"
   label_agenda_item_move_to_current_meeting: "Move to current meeting"
