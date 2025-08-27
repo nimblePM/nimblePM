@@ -32,7 +32,7 @@ services:
     networks:
       - network
     ports:
-      - "${PORT:-3000}:80"
+      - "${PORT:-8080}:8080"
     depends_on:
       - cache
 
