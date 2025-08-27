@@ -16,6 +16,7 @@ try 'bundle exec rake db:migrate'
 
 echo "Removing public assets"
 try 'rm -rf public/assets >> log/setup_dev.log'
+try 'echo "{}" > config/frontend_assets.manifest.json'
 
 echo "Installing node_modules ... "
 try '(cd frontend && npm ci) >> log/setup_dev.log'
