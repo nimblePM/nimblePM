@@ -44,8 +44,6 @@ Rails.application.routes.draw do
         put :update_title
         get :details_dialog
         put :update_details
-        get :participants_dialog
-        put :update_participants
         put :change_state
         post :notify
         get :history
@@ -99,6 +97,8 @@ Rails.application.routes.draw do
       get :new_dialog
       get "menu" => "meetings/menus#show"
       get :fetch_timezone
+
+      get "ical/:token", controller: "meetings/ical", action: :index, as: "ical_feed"
     end
 
     resources :agenda_items, controller: "meeting_agenda_items" do
@@ -134,6 +134,15 @@ Rails.application.routes.draw do
         get :cancel_edit
       end
     end
+    resources :participants, controller: "meeting_participants" do
+      collection do
+        get :manage_participants_dialog
+        post :mark_all_attended
+      end
+      member do
+        post :toggle_attendance
+      end
+    end
 
     resource :agenda, controller: "meeting_agendas", only: [:update] do
       member do
@@ -167,9 +176,7 @@ Rails.application.routes.draw do
     end
 
     member do
-      match "/:tab" => "meetings#show", :constraints => { tab: /(agenda|minutes)/ },
-            :via => :get,
-            :as => "tab"
+      get "/:tab" => "meetings#show", :constraints => { tab: /(agenda|minutes)/ }, :as => "tab"
     end
   end
 end

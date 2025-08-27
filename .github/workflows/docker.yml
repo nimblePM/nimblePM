@@ -57,7 +57,7 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "checkout_ref=$CHECKOUT_REF" >> "$GITHUB_OUTPUT"
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ steps.extract_version.outputs.checkout_ref }}
       - name: Cache NPM
@@ -135,14 +135,14 @@ jobs:
             runner: runner=4cpu-linux-arm64
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.setup.outputs.checkout_ref }}
       - name: Prepare docker files
         run: |
           cp ./docker/prod/Dockerfile ./Dockerfile
       - name: Download precompiled public assets
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: public-assets-${{ github.sha }}
           path: public/
@@ -291,7 +291,7 @@ jobs:
           overwrite: true
           name: "merged-digests-${{ matrix.target }}-${{ github.run_number }}-${{ github.run_attempt }}"
       - name: Download digests
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: "merged-digests-${{ matrix.target }}-${{ github.run_number }}-${{ github.run_attempt }}"
           path: /tmp/digests

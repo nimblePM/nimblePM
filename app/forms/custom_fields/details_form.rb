@@ -48,11 +48,13 @@ module CustomFields
         required: true
       )
 
-      details_form.check_box(
-        name: :multi_value,
-        label: I18n.t("activerecord.attributes.custom_field.multi_value"),
-        caption: I18n.t("custom_fields.instructions.multi_select")
-      )
+      if model.multi_value_possible?
+        details_form.check_box(
+          name: :multi_value,
+          label: I18n.t("activerecord.attributes.custom_field.multi_value"),
+          caption: I18n.t("custom_fields.instructions.multi_select")
+        )
+      end
 
       details_form.check_box(
         name: :is_required,

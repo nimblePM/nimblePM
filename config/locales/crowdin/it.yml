@@ -59,6 +59,10 @@ it:
       tab_interface: "Interfaccia"
       tab_branding: "Branding"
       tab_pdf_export_styles: "Stili di esportazione PDF"
+      tab_pdf_export_font: "PDF export font"
+      fonts:
+        file_too_large: "is too large (maximum size is %{count} MB)."
+        file_is_invalid: "is not a valid TTF font file."
       colors:
         primary-button-color: "Pulsante principale"
         accent-color: "Accento"
@@ -295,6 +299,7 @@ it:
         placeholder:
           label: "Etichetta elemento"
           short: "Abbreviazione"
+          score: "Score"
       notice:
         remember_items_and_projects: "Ricorda di impostare elementi e progetti nelle rispettive schede per questo campo personalizzato."
       hierarchy:
@@ -330,13 +335,18 @@ it:
     single: "oppure"
   dry_validation:
     errors:
+      defined: "must not be defined."
       int?: "deve essere un intero."
+      decimal?: "must be a decimal."
       filled?: "deve essere compilato."
+      key?: "is missing."
       greater_or_equal_zero: "deve essere maggiore o uguale a 0."
       not_found: "non trovato."
       rules:
         copy_workflow_from:
           workflow_missing: "non ha un proprio flusso di lavoro."
+        custom_field:
+          format_not_supported: "format '%{field_format}' is unsupported."
         item:
           root_item: "non può essere un elemento radice."
           not_persisted: "deve essere un elemento già esistente."
@@ -352,6 +362,7 @@ it:
       depth: "Profondità"
       item: "Elemento"
       label: "Etichetta"
+      score: "Score"
       short: "Abbreviazione"
       parent: "Genitore"
       blueprint: "Schema del modello"
@@ -372,7 +383,7 @@ it:
       description: Raggruppando gli utenti, puoi aggiungerli come membri agli stessi progetti o assegnare loro gli stessi ruoli globali.
     table_component:
       blank_slate:
-        description: È possibile definire gruppi di utenti con nomi specifici
+        description: You can define named groups of users with specific permissions.
         title: Non sono ancora stati creati gruppi
       user_count: Numero di utenti
     users:
@@ -462,7 +473,7 @@ it:
       life_cycle:
         header:
           title: "Ciclo di vita del progetto"
-          description_html: "Le fasi attive del progetto definiscono il ciclo di vita di questo progetto e sono definite nelle <a href=%{admin_settings_url} target=\"_blank\">impostazioni di amministrazione</a>. Le fasi abilitate saranno visualizzate nella <a href=%{overview_url} target=\"_blank\">panoramica del progetto</a>."
+          description_html: 'Le fasi attive del progetto definiscono il ciclo di vita di questo progetto e sono definite nelle <a href=%{admin_settings_url} target="_blank">impostazioni di amministrazione</a>. Le fasi abilitate saranno visualizzate nella <a href=%{overview_url} target="_blank">panoramica del progetto</a>.'
         non_defined: "Nessuna fase è attualmente definita."
         section_header: "Fasi"
         step:
@@ -571,26 +582,26 @@ it:
       will_revoke_access_to_all: "Quest'azione revocherà l'accesso a tutti loro."
   my:
     access_token:
-      create_dialog:
-        title: Token generato
-        header: Il token %{type} è stato generato
-        warning: 'Nota: Questa è l''unica volta in cui vedrai questo token, assicurati di copiarlo subito.'
+      dialog:
+        token/api:
+          dialog_title: "Crea nuovo token API"
+          attention_text: "Treat API tokens like passwords. Anyone with this token will have access to information from this instance, share it only with trusted users."
+          dialog_body: "Questo token consentirà alle applicazioni di terzi di comunicare con la tua istanza. Per distinguere il nuovo token API, assegnagli un nome."
+          create_button: "Crea"
+          name_label: "Nome del token"
+      created_dialog:
+        token/api:
+          title: "The API token has been generated"
+          warning: "Questa è l'unica volta in cui vedrai questo token. Assicurati di copiarlo adesso."
       errors:
         token_name_blank: "Indica un nome per il token API"
         token_name_in_use: "Questo nome di token API è già utilizzato, scegline uno differente"
-      new_access_token_dialog_title: "Crea nuovo token API"
-      new_access_token_dialog_show_button_text: "Token API"
-      new_access_token_dialog_text_field_placeholder_text: "Il mio token API"
-      new_access_token_dialog_text_field_label: "Nome"
-      new_access_token_dialog_submit_button_text: "Crea"
-      new_access_token_dialog_text: "Questo token consentirà alle applicazioni di terzi di comunicare con la tua istanza. Per distinguere il nuovo token API, assegnagli un nome."
-      new_access_token_dialog_attention_text: "Tratta i token API come password. Chiunque sia in possesso di questo link potrà accedere alle informazioni di questa istanza. Condividilo solo con utenti fidati."
       failed_to_reset_token: "Impossibile reimpostare il token di accesso: %{error}"
       failed_to_create_token: "Creazione del token di accesso non riuscita: %{error}"
       failed_to_revoke_token: "Revoca del token di accesso non riuscita: %{error}"
       notice_reset_token: "È stato generato un nuovo token %{type}. Il tuo token di accesso è:"
       token_value_warning: "Nota: Questa è l'unica volta in cui vedrai questo token, assicurati di copiarlo subito."
-      no_results_title_text: Al momento non sono disponibili token di accesso.
+      no_results_title_text: "Al momento non sono disponibili token di accesso."
       notice_api_token_revoked: "Il token API è stato eliminato. Per creare un nuovo token utilizza il pulsante nella sezione API."
       notice_rss_token_revoked: "Il token RSS è stato eliminato. Per creare un nuovo token utilizza il link nella sezione RSS."
       notice_ical_token_revoked: 'Il token di iCalendar "%{token_name}" per il calendario "%{calendar_name}" del progetto "%{project_name}" è stato revocato. L''URL di iCalendar con questo token non è ora valido.'
@@ -683,8 +694,10 @@ it:
         excluded_from_totals: "Escluso dai totali"
   themes:
     dark: "Scuro"
+    dark_high_contrast: "Scuro ad alto contrasto"
     light: "Chiaro"
     light_high_contrast: "Chiaro ad alto contrasto"
+    sync_with_os: "Automatico (abbina modalità colore del sistema operativo)"
   types:
     index:
       no_results_title_text: Al momento non esistono tipi.
@@ -717,7 +730,7 @@ it:
         pattern:
           label: "Schema dell'oggetto"
           caption: Crea modelli aggiungendo testo oppure digita "/" per cercare [attributi supportati](attributes_url).
-          insert_as_text: "Nessun attributo trovato. Aggiungi come testo: \"%{word}\""
+          insert_as_text: 'Nessun attributo trovato. Aggiungi come testo: "%{word}"'
       export_configuration:
         tab: "Genera PDF"
         intro: "Seleziona quali modelli tra quelli disponibili desideri abilitare per questo tipo. Il modello determina il design e gli attributi visibili nel PDF esportato di una macro-attività che utilizza questo tipo. Il primo modello nell'elenco è selezionato per impostazione predefinita."
@@ -1059,6 +1072,7 @@ it:
         types: "Tipi"
         versions: "Versioni"
         work_packages: "Macro-attività"
+        workspace_type: "Workspace type"
       project_custom_field:
         is_required: "Richiesto per tutti i progetti"
         custom_field_section: Sezione
@@ -1288,6 +1302,7 @@ it:
         odd: "deve essere dispari."
         regex_match_failed: "non corrisponde all'espressione regolare %{expression}."
         regex_invalid: "non può essere convalidato con l'espressione regolare associata."
+        regex_list_invalid: "Lines %{invalid_lines} could not be parsed as regular expression."
         hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
         smaller_than_or_equal_to_max_length: "deve essere minore o uguale alla lunghezza massima."
         taken: "è già stato usato."
@@ -1554,8 +1569,7 @@ it:
               cant_exceed_work: "non può essere superiore a Lavoro."
               must_be_set_when_work_is_set: "obbligatorio quando è impostato Lavoro."
               must_be_set_when_work_and_percent_complete_are_set: "obbligatorio quando sono impostate le opzioni Lavoro e % completamento."
-              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: >-
-                deve essere 0h quando è impostato il Lavoro e la % completamento è 100%.
+              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: '>- must be 0h when Work is set and % Complete is 100%.'
               must_be_empty_when_work_is_empty_and_percent_complete_is_100p: >-
                 deve essere vuoto quando il Lavoro è vuoto e la % completamento è 100%.
           readonly_status: "La macro-attività è in uno stato di sola lettura perciò i suoi attributi non possono essere modificati."
@@ -1619,6 +1633,7 @@ it:
         one: "Servizio di autenticazione"
         other: "Servizi di autenticazione"
       category: "Categoria"
+      color: "Colore"
       comment: "Commento"
       custom_action: "Azione personalizzata"
       custom_field: "Campo personalizzato"
@@ -1964,11 +1979,11 @@ it:
       succeeded: 'Progetto "%{source_project_name}" copiato in "%{target_project_name}".'
     source_project_label: "Progetto copiato"
     copy_options:
-      dependencies_label: 'Copia dal progetto'
+      dependencies_label: "Copia dal progetto"
   create_project:
     template_label: "Usa modello"
     copy_options:
-      dependencies_label: 'Copia da modello'
+      dependencies_label: "Copia da modello"
   create_wiki_page: "Crea nuova pagina della wiki"
   create_wiki_page_button: "Pagina wiki"
   date:
@@ -2144,7 +2159,7 @@ it:
       project_list_sharing: Condivisione elenco progetti
       readonly_work_packages: Macro-attività di sola lettura
       scim_api: API server SCIM
-      sso_auth_providers: Single sign-on
+      sso_auth_providers: Single Sign-On
       team_planner_view: Vista del Pianificatore di team
       virus_scanning: Scansione antivirus
       work_package_query_relation_columns: Colonne di relazione delle query della macro-attività
@@ -2213,6 +2228,9 @@ it:
       scim_api:
         title: "Client SCIM"
         description: "Automatizza la gestione degli utenti in OpenProject integrando perfettamente servizi di identità esterni come Microsoft Entra o Keycloak attraverso la nostra API Server SCIM. Disponibile a partire dal piano aziendale Enterprise."
+      sso_auth_providers:
+        title: "Single Sign-On (SSO)"
+        description: "Enable users to log in via external SSO providers using SAML or OpenID Connect for seamless access and integration with existing identity systems."
       virus_scanning:
         description: "Assicurati che i file caricati in OpenProject vengano scansionati alla ricerca di virus prima di renderli accessibili ad altri utenti."
       placeholder_users:
@@ -2250,6 +2268,13 @@ it:
         Voglio ricevere la newsletter di <a target="_blank" href="https://www.openproject.org/newsletter/">OpenProject</a>.
       consent_html: >
         Accetto i <a target="_blank" href="https://www.openproject.org/terms-of-service/">termini di servizio</a> e l'<a target="_blank" href="https://www.openproject.org/data-privacy-and-security/">informativa sulla privacy</a>.
+  email_calendar_updates:
+    state:
+      disabled: "Disabilitati."
+      enabled: "Abilitati."
+    button:
+      disabled: "Abilita"
+      enabled: "Disabilita"
   enumeration_activities: "Attività di monitoraggio dei tempi"
   enumeration_work_package_priorities: "Priorità della macro-attività"
   enumeration_reported_project_statuses: "Stato di progetto segnalato"
@@ -2395,8 +2420,13 @@ it:
           label: "Includi descrizioni"
           caption: "Questa opzione aggiungerà una colonna descrizione in formato grezzo."
     your_work_packages_export: "Le macro-attività sono in fase di esportazione"
+    your_projects_export: "Projects are being exported"
     succeeded: "Esportazione completata"
     failed: "Si è verificato un errore durante il tentativo di esportare le macro-attività: %{message}"
+    demo:
+      heading: "Demo PDF"
+      footer: "Generated by OpenProject"
+      button_text: Generate Demo PDF
     errors:
       embedded_table_with_too_many_columns: "Questa tabella di macro-attività incorporata non può essere inserita nella pagina. Riduci il numero di colonne."
     format:
@@ -2457,6 +2487,13 @@ it:
       xls2csv: "Xls2csv disponibile (opzionale)"
       catppt: "Catppt disponibile (opzionale)"
       tesseract: "Tesseract disponibile (opzionale)"
+  filterable_tree_view:
+    filter_mode:
+      all: "Tutti"
+      label: "Filter mode"
+      selected: "Selected"
+    include_sub_items: "Include sub-items"
+    no_results_text: "No results"
   general_csv_decimal_separator: "."
   general_csv_encoding: "UTF-8"
   general_csv_separator: ","
@@ -2562,11 +2599,13 @@ it:
         expiration: "Scade"
       indefinite_expiration: "Mai"
       simple_revoke_confirmation: "Revocare il token?"
-      api:
+      token/api:
         title: "API"
         text_hint: "I token API consentono alle applicazioni di terze parti di comunicare con questa istanza OpenProject tramite le API REST."
-        static_token_name: "Token API"
         disabled_text: "I token API non sono abilitati dall'amministratore. Contatta il tuo amministratore per utilizzare questa funzione."
+        add_button: "API Token"
+      api:
+        static_token_name: "Token API"
       ical:
         title: "iCalendar"
         text_hint: 'I token iCalendar consentono agli utenti di <a href="%{path}" target="_blank">iscriversi ai calendari di OpenProject</a> e visualizzare informazioni aggiornate sulle macro-attività da client esterni.'
@@ -2889,6 +2928,7 @@ it:
   label_invite_user: "Invita utente"
   label_item: "Elemento"
   label_item_plural: "Elementi"
+  label_scored_list: "Scored list"
   label_share: "Condividi"
   label_share_project_list: "Condividi elenco progetti"
   label_share_work_package: "Condividi macro-attività"
@@ -2918,12 +2958,18 @@ it:
   label_link_url: "Link (URL)"
   label_list: "Elenca"
   label_loading: "Caricamento..."
+  label_locked: "locked"
   label_lock_user: "Blocca utente"
   label_logged_as: "Accesso eseguito come"
   label_login: "Accedi"
   label_custom_logo: "Logo personalizzato"
   label_custom_export_logo: "Esportazione personalizzata logo"
   label_custom_export_cover: "Sfondo della copertina di esportazione personalizzata"
+  label_custom_export_footer: "Custom export footer image"
+  label_custom_export_font_regular: "Regular"
+  label_custom_export_font_bold: "Bold"
+  label_custom_export_font_italic: "Italic"
+  label_custom_export_font_bold_italic: "Bold Italic"
   label_custom_export_cover_overlay: "Sovrimpressione dello sfondo della copertina di esportazione personalizzata"
   label_custom_export_cover_text_color: "Colore del testo"
   label_custom_pdf_export_settings: "Impostazioni di esportazione PDF personalizzate"
@@ -3011,6 +3057,8 @@ it:
   label_operator_equals_or: "è (OR)"
   label_operator_equals_all: "è (AND)"
   label_operator_shared_with_user_any: "qualsiasi"
+  label_open: "apri"
+  label_closed: "chiuso"
   label_open_menu: "Apri menu"
   label_open_work_packages: "aperte"
   label_open_work_packages_plural: "aperte"
@@ -3077,6 +3125,10 @@ it:
   label_project_view_all: "Vedi tutti i progetti"
   label_project_show_details: "Mostra dettagli progetto"
   label_project_hide_details: "Nascondi dettagli progetto"
+  label_portfolio: "Portfolio"
+  label_portfolio_new: "New portfolio"
+  label_program: "Program"
+  label_program_new: "New program"
   label_public_projects: "Progetti pubblici"
   label_query_new: "Nuova query"
   label_query_plural: "Query personalizzate"
@@ -3225,6 +3277,8 @@ it:
   label_watched_work_packages: "Macro-attività osservate"
   label_what_is_this: "Cos'è questo?"
   label_week: "Settimana"
+  label_widget: "Widget"
+  label_widget_new: "New widget"
   label_wiki_content_added: "Pagina wiki aggiunta"
   label_wiki_content_updated: "Pagina wiki aggiornata"
   label_wiki_toc: "Sommario"
@@ -3572,6 +3626,8 @@ it:
   permission_add_work_packages: "Aggiungere macro-attività (work package)"
   permission_add_messages: "Postare messaggi"
   permission_add_project: "Crea progetti"
+  permission_add_portfolios: "Create portfolios"
+  permission_add_programs: "Create programs"
   permission_add_work_package_attachments: "Aggiungi allegati"
   permission_add_work_package_attachments_explanation: "Consente di aggiungere allegati senza l'autorizzazione Modifica macro-attività"
   permission_add_internal_comments: "Scrivere commenti interni"
@@ -3868,6 +3924,7 @@ it:
   setting_attachment_whitelist: "Whitelist di caricamento di allegati"
   setting_email_delivery_method: "Metodo di invio e-mail"
   setting_emails_salutation: "Rivolgiti all'utente nelle e-mail con"
+  setting_oauth_allow_remapping_of_existing_users: "Allow remapping of existing users"
   setting_sendmail_location: "Percorso dell'eseguibile del programma di invio della posta"
   setting_smtp_enable_starttls_auto: "Usa automaticamente, se disponibile, STARTTLS"
   setting_smtp_ssl: "Usa connessione SSL"
@@ -4028,11 +4085,13 @@ it:
   setting_working_days: "Giorni lavorativi"
   settings:
     authentication:
-      login_and_sso: "Accesso e SSO"
+      login: "Nome Utente"
       registration: "Registrazione"
-      single_sign_on: "Single Sign-On"
+      sso: "Single Sign-On (SSO)"
       omniauth_direct_login_hint_html: >
         Se questa opzione è attiva, le richieste di accesso saranno reindirizzate al fornitore omniauth configurato. Il menu a tendina di accesso e la pagina di accesso saranno disabilitate. <br/> <strong>Nota:</strong> a meno che non si disabiliti anche l'accesso con password, con questa opzione abilitata, gli utenti possono ancora accedere internamente visitando la pagina di accesso <code>%{internal_path}</code>.
+      remapping_existing_users_hint: >
+        If enabled, allows any configured identity provider to login existing users based on their email address, even if the user never signed in through that provider before. This can be useful when migrating the OpenProject instance to a new SSO provider, but is not recommended when using a provider that is not trusted by all users of your instance.
     attachments:
       whitelist_text_html: >
         Definisci un elenco di estensioni di file valide e/o tipi MIME per i file caricati. <br/> Inserisci le estensioni dei file (ad es. <code>%{ext_example}</code>) o i tipi MIME (ad es. <code>%{mime_example}</code>). <br/> Lascia vuoto per consentire il caricamento di qualsiasi tipo di file. Sono consentiti più valori (una riga per ogni valore).
@@ -4176,6 +4235,20 @@ it:
     Questo è il logo che appare nelle tue esportazioni PDF. Deve essere un file immagine PNG o JPEG. Si consiglia un logo nero o colorato su sfondo trasparente o bianco.
   text_custom_export_cover_instructions: >
     Questa è l'immagine che appare sullo sfondo di una copertina nelle tue esportazioni PDF. Deve essere un file immagine PNG o JPEG di circa 800 px di larghezza per 500 px di altezza.
+  text_custom_export_footer_instructions: >
+    PDF exports will include a graphical element positioned to the left of the footer. This image must be a PNG or JPEG file with approximately 200 pixels in width.
+  label_custom_export_font_instructions: >
+    Upload and manage custom TrueType (.ttf) fonts used in your PDF exports. For best results, use matching files from the same font family. If no font is provided, the default NotoSans font will be used.
+  label_custom_export_images_instructions: >
+    Upload and manage custom image files used in your PDF exports.
+  text_custom_export_font_regular_instructions: >
+    This is the font file for regular text. It needs to be in TTF format and is required.
+  text_custom_export_font_bold_instructions: >
+    This is the font file for bold text. It needs to be in TTF format.
+  text_custom_export_font_italic_instructions: >
+    This is the font file for italic text. It needs to be in TTF format.
+  text_custom_export_font_bold_italic_instructions: >
+    This is the font file for bold and italic text. It needs to be in TTF format.
   text_custom_favicon_instructions: >
     Questa è l'icona che appare nella scheda del tuo browser vicino al titolo della pagina. È necessario che questa sia un'immagine quadrata di dimensioni 32x32, in formato PNG e con sfondo trasparente.
   text_custom_touch_icon_instructions: >
@@ -4516,6 +4589,8 @@ it:
       code_500_missing_enterprise_token: "La richiesta non può essere gestita a causa di un token Enterprise non valido o mancante."
       bad_request:
         emoji_reactions_activity_type_not_supported: "Questo tipo di attività non supporta le reazioni emoji."
+        invalid_link: "The link under key '%{key}' is not valid."
+        links_not_an_object: "_links must be a JSON object."
       conflict:
         multiple_reminders_not_allowed: |-
           È possibile impostare un solo promemoria alla volta per ogni macro-attività. Elimina o aggiorna il promemoria esistente.
@@ -4718,3 +4793,6 @@ it:
     description: "Aggiunge il provider OmniAuth SAML a OpenProject"
   enterprise_plans:
     legacy_enterprise: "Programma aziendale"
+  token:
+    hashed_token:
+      display_value_placeholder: "***"

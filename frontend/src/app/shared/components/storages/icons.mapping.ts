@@ -29,7 +29,7 @@
 import { nextcloud } from 'core-app/shared/components/storages/storages-constants.const';
 
 export interface IFileIcon {
-  icon:'image1'|'movie'|'file-text'|'export-pdf-descr'|'file-doc'|'file-sheet'|'file-presentation'|'folder'|'ticket'
+  icon:'image1'|'movie'|'file-text'|'export-pdf-descr'|'file-doc'|'file-sheet'|'file-presentation'|'folder'|'ticket'|'inbox'
   clazz:'pdf'|'img'|'txt'|'doc'|'sheet'|'presentation'|'form'|'primary'|'mov'|'default'
 }
 
@@ -100,6 +100,7 @@ export const fileIconMappings:Record<string, IFileIcon> = {
   'video/3gpp-2': { icon: 'movie', clazz: 'mov' },
 
   'application/x-op-directory': { icon: 'folder', clazz: 'primary' },
+  'application/x-op-drive': { icon: 'inbox', clazz: 'primary' },
 
   default: { icon: 'ticket', clazz: 'default' },
 };

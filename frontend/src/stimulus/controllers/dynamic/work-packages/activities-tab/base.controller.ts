@@ -31,7 +31,7 @@
 import { Controller } from '@hotwired/stimulus';
 import { useMeta } from 'stimulus-use';
 import { ViewPortServiceInterface } from './services/view-port-service';
-import IndexController from './index.controller';
+import type IndexController from './index.controller';
 
 export default class BaseController extends Controller implements ViewPortServiceInterface {
   static metaNames = ['csrf-token'];

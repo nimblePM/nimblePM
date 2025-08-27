@@ -102,7 +102,7 @@ ro:
     button_save: "Salvează"
     button_settings: "Setări"
     button_uncheck_all: "Deselectează tot"
-    button_update: "Actualizează"
+    button_update: "Actualizare"
     button_export-atom: "Descarcă Atom"
     button_generate_pdf: "Generează PDF"
     button_create: "Creează"
@@ -1080,6 +1080,8 @@ ro:
     notice_successful_delete: "Ştergere reuşită."
     notice_successful_update: "Actualizare reușită."
     notice_job_started: "munca începută."
+    no_job_id: "No job ID returned from server."
+    invalid_job_response: "Invalid response from server."
     notice_bad_request: "Cerere invalidă."
     relations:
       empty: Nu există relații
@@ -1226,12 +1228,14 @@ ro:
         all: "Toate Proiectele"
         selected: "Numai selecția"
       search_placeholder: "Caută proiect..."
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "Include toate subproiectele"
       tooltip:
         include_all_selected: "Proiectul este deja inclus, din moment ce opțiunea Include toate subproiectele este activată."
         current_project: "Acesta este proiectul curent în care vă aflați."
         does_not_match_search: "Proiectul nu corespunde criteriilor de căutare."
       no_results: "Niciun proiect nu corespunde criteriilor de căutare."
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "Referință"
       clear: "Șterge"

@@ -549,7 +549,7 @@ class WorkPackage < ApplicationRecord
   private_class_method :available_custom_fields_from_db
 
   def self.available_custom_field_key(work_package)
-    :"#work_package_custom_fields_#{work_package.project_id}_#{work_package.type_id}"
+    :"work_package_custom_fields_#{work_package.project_id}_#{work_package.type_id}"
   end
 
   private_class_method :available_custom_field_key

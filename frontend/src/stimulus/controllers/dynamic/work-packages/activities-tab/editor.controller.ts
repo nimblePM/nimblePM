@@ -32,20 +32,30 @@ import {
   ICKEditorInstance,
 } from 'core-app/shared/components/editor/components/ckeditor/ckeditor.types';
 import { retrieveCkEditorInstance } from 'core-app/shared/helpers/ckeditor-helpers';
-import AutoScrollingController from './auto-scrolling.controller';
-import StemsController from './stems.controller';
+import type AutoScrollingController from './auto-scrolling.controller';
 import BaseController from './base.controller';
+import type PollingController from './polling.controller';
+import type StemsController from './stems.controller';
 
 export default class EditorController extends BaseController {
   static outlets = [
     'work-packages--activities-tab--auto-scrolling',
+    'work-packages--activities-tab--polling',
     'work-packages--activities-tab--stems',
   ];
 
   declare readonly workPackagesActivitiesTabAutoScrollingOutlet:AutoScrollingController;
+  declare readonly workPackagesActivitiesTabPollingOutlet:PollingController;
   declare readonly workPackagesActivitiesTabStemsOutlet:StemsController;
   private get autoScrollingOutlet() { return this.workPackagesActivitiesTabAutoScrollingOutlet; }
+  private get pollingOutlet() { return this.workPackagesActivitiesTabPollingOutlet; }
   private get stemsOutlet() { return this.workPackagesActivitiesTabStemsOutlet; }
+
+  static values = {
+    unsavedChangesConfirmationMessage: String,
+  };
+
+  declare unsavedChangesConfirmationMessageValue:string;
 
   static targets = ['buttonRow', 'formRow', 'form'];
   declare readonly buttonRowTarget:HTMLInputElement;
@@ -81,7 +91,7 @@ export default class EditorController extends BaseController {
 
     if (this.isMobile()) {
       this.focusEditor(0);
-    } else if (this.indexOutlet.sortingValue === 'asc' && journalsContainerAtBottom) {
+    } else if (this.indexOutlet.sortingAscending && journalsContainerAtBottom) {
       // scroll to (new) bottom if sorting is ascending and journals container was already at bottom before showing the form
       this.autoScrollingOutlet.scrollJournalContainer(true);
       this.focusEditor();
@@ -127,7 +137,7 @@ export default class EditorController extends BaseController {
       this.closeForm();
     } else {
       // eslint-disable-next-line no-alert
-      const shouldClose = window.confirm(this.indexOutlet.unsavedChangesConfirmationMessageValue);
+      const shouldClose = window.confirm(this.unsavedChangesConfirmationMessageValue);
       if (shouldClose) { this.closeForm(); }
     }
   }
@@ -219,7 +229,7 @@ export default class EditorController extends BaseController {
 
     if (formSubmitResponse.succeeded) {
       // extract server timestamp from response headers in order to be in sync with the server
-      this.indexOutlet.setLastServerTimestampViaHeaders(formSubmitResponse.response.headers);
+      this.pollingOutlet.setLastServerTimestampViaHeaders(formSubmitResponse.response.headers);
 
       if (!this.indexOutlet.hasJournalsContainerTarget) return;
 

@@ -506,3 +506,13 @@ Here are some pointers to related documentation that you will need to get starte
 
 - [Set up outgoing email notifications (SMTP, sendmail)](../../configuration/outbound-emails/)
 - [Integrate an external authentication provider (LDAP/AD, SAML, OpenID)](../../../system-admin-guide/authentication/)
+
+## Installation on Windows via WSL
+
+OpenProject can be installed on Windows using the Windows Subsystem for Linux (WSL) with a supported Linux distribution such as Ubuntu 22.04. Please note:
+
+- You should install WSL 2 for best performance and compatibility.
+- Follow the standard installation instructions as you would on Ubuntu.
+- Some features, such as email notifications or service auto-start, may require additional setup or elevated privileges.
+
+For more details, see [Microsoft's guide to WSL](https://learn.microsoft.com/en-us/windows/wsl/).

@@ -59,6 +59,10 @@ pl:
       tab_interface: "Interfejs"
       tab_branding: "Branding"
       tab_pdf_export_styles: "Style eksportu PDF"
+      tab_pdf_export_font: "PDF export font"
+      fonts:
+        file_too_large: "is too large (maximum size is %{count} MB)."
+        file_is_invalid: "is not a valid TTF font file."
       colors:
         primary-button-color: "Przycisk główny"
         accent-color: "Akcent"
@@ -294,6 +298,7 @@ pl:
         placeholder:
           label: "Etykieta elementu"
           short: "Nazwa skrócona"
+          score: "Score"
       notice:
         remember_items_and_projects: "Pamiętaj, aby ustawić elementy i projekty w odpowiednich zakładkach dla tego pola niestandardowego."
       hierarchy:
@@ -329,13 +334,18 @@ pl:
     single: "lub"
   dry_validation:
     errors:
+      defined: "must not be defined."
       int?: "musi być liczbą całkowitą."
+      decimal?: "must be a decimal."
       filled?: "musi być wypełnione."
+      key?: "is missing."
       greater_or_equal_zero: "musi mieć wartość większą lub równą 0."
       not_found: "nie znaleziono."
       rules:
         copy_workflow_from:
           workflow_missing: "nie ma własnego przepływu pracy."
+        custom_field:
+          format_not_supported: "format '%{field_format}' is unsupported."
         item:
           root_item: "nie może być elementem głównym."
           not_persisted: "musi być już istniejącym elementem."
@@ -351,6 +361,7 @@ pl:
       depth: "Głębokość"
       item: "Element"
       label: "Etykieta"
+      score: "Score"
       short: "Nazwa skrócona"
       parent: "Element nadrzędny"
       blueprint: "Plan wzorca"
@@ -371,7 +382,7 @@ pl:
       description: Grupując użytkowników, można dodawać ich jako członków do tych samych projektów lub przypisywać im te same role globalne.
     table_component:
       blank_slate:
-        description: Można zdefiniować grupy użytkowników o określonych nazwach
+        description: You can define named groups of users with specific permissions.
         title: Nie skonfigurowano jeszcze żadnych grup
       user_count: Liczba użytkowników
     users:
@@ -461,7 +472,7 @@ pl:
       life_cycle:
         header:
           title: "Cykl życia projektu"
-          description_html: "Aktywne fazy projektu określają cykl życia tego projektu i są zdefiniowane w <a href=%{admin_settings_url} target=\"_blank\">ustawieniach administracyjnych</a>. Włączone fazy będą wyświetlane w Twoim <a href=%{overview_url} target=\"_blank\">przeglądzie projektu </a>."
+          description_html: 'Aktywne fazy projektu określają cykl życia tego projektu i są zdefiniowane w <a href=%{admin_settings_url} target="_blank">ustawieniach administracyjnych</a>. Włączone fazy będą wyświetlane w Twoim <a href=%{overview_url} target="_blank">przeglądzie projektu </a>.'
         non_defined: "Obecnie nie są zdefiniowane żadne fazy."
         section_header: "Fazy"
         step:
@@ -582,26 +593,26 @@ pl:
       will_revoke_access_to_all: "To działanie unieważni jego dostęp do nich wszystkich."
   my:
     access_token:
-      create_dialog:
-        title: Wygenerowano token
-        header: Token %{type} został wygenerowany
-        warning: 'Uwaga: jest to jedyny raz, gdy zobaczysz ten token, koniecznie skopiuj go teraz.'
+      dialog:
+        token/api:
+          dialog_title: "Utwórz nowy token API"
+          attention_text: "Treat API tokens like passwords. Anyone with this token will have access to information from this instance, share it only with trusted users."
+          dialog_body: "Ten token umożliwi aplikacjom innych firm komunikację z Twoim wystąpieniem. Aby odróżnić nowy token API, nadaj mu nazwę."
+          create_button: "Utwórz"
+          name_label: "Token name"
+      created_dialog:
+        token/api:
+          title: "The API token has been generated"
+          warning: "Jest to jedyny raz, gdy zobaczysz ten token. Koniecznie skopiuj go teraz."
       errors:
         token_name_blank: "Podaj nazwę tokena API"
         token_name_in_use: "Ta nazwa tokena API jest już używana, wybierz inną"
-      new_access_token_dialog_title: "Utwórz nowy token API"
-      new_access_token_dialog_show_button_text: "Token API"
-      new_access_token_dialog_text_field_placeholder_text: "Mój token API"
-      new_access_token_dialog_text_field_label: "Nazwa"
-      new_access_token_dialog_submit_button_text: "Utwórz"
-      new_access_token_dialog_text: "Ten token umożliwi aplikacjom innych firm komunikację z Twoim wystąpieniem. Aby odróżnić nowy token API, nadaj mu nazwę."
-      new_access_token_dialog_attention_text: "Traktuj tokeny API jak hasła. Każdy z tym linkiem będzie miał dostęp do informacji z tego wystąpienia, udostępniaj je więc tylko zaufanym użytkownikom."
       failed_to_reset_token: "Nie można zresetować tokena dostępu: %{error}"
       failed_to_create_token: "Nie można utworzyć tokena dostępu: %{error}"
       failed_to_revoke_token: "Nie można unieważnić tokena dostępu: %{error}"
       notice_reset_token: "Nowy token typu %{type} został wygenerowany. Twój token dostępu to:"
       token_value_warning: "Uwaga: jest to jedyny raz, gdy zobaczysz ten token, koniecznie skopiuj go teraz."
-      no_results_title_text: Aktualnie nie ma dostępnych tokenów.
+      no_results_title_text: "Aktualnie nie ma dostępnych tokenów."
       notice_api_token_revoked: "Token API został usunięty. Aby utworzyć nowy token, użyj przycisku w sekcji API."
       notice_rss_token_revoked: "Token RSS został usunięty. Aby utworzyć nowy token użyj linku w sekcji RSS."
       notice_ical_token_revoked: 'Token iCalendar „%{token_name}” kalendarza „%{calendar_name}” projektu „%{project_name}” został unieważniony. Adres URL iCalendar z tym tokenem jest teraz nieprawidłowy.'
@@ -697,8 +708,10 @@ pl:
         excluded_from_totals: "Wyłączono z sum"
   themes:
     dark: "Ciemny"
+    dark_high_contrast: "Ciemny, wysoki kontrast"
     light: "Jasny"
     light_high_contrast: "Jasny, wysoki kontrast"
+    sync_with_os: "Automatycznie (dopasuj do trybu koloru systemu)"
   types:
     index:
       no_results_title_text: Nie ma jeszcze żadnych typów.
@@ -731,7 +744,7 @@ pl:
         pattern:
           label: "Wzorzec tematu"
           caption: Utwórz wzorce, dodając tekst lub wpisz znak „/”, aby wyszukać [obsługiwane atrybuty](attributes_url).
-          insert_as_text: "Nie znaleziono atrybutów. Dodaj jako tekst: „%{word}”"
+          insert_as_text: 'Nie znaleziono atrybutów. Dodaj jako tekst: „%{word}”'
       export_configuration:
         tab: "Wygeneruj PDF"
         intro: "Wybierz spośród dostępnych szablony, które chcesz włączyć dla tego typu. Szablon określa wygląd i atrybuty widoczne w wyeksportowanym pliku PDF pakietu roboczego używającego tego typu. Domyślnie wybrany jest pierwszy szablon z listy."
@@ -1074,6 +1087,7 @@ pl:
         types: "Typy"
         versions: "Wersje"
         work_packages: "Zadania"
+        workspace_type: "Workspace type"
       project_custom_field:
         is_required: "Wymagane dla wszystkich projektów"
         custom_field_section: Sekcja
@@ -1303,6 +1317,7 @@ pl:
         odd: "musi być nieparzyste."
         regex_match_failed: "nie pasuje do wyrażenia regularnego %{expression}."
         regex_invalid: "nie może być zastosowany z zastosowanym wyrażeniem regularnym."
+        regex_list_invalid: "Lines %{invalid_lines} could not be parsed as regular expression."
         hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
         smaller_than_or_equal_to_max_length: "musi być mniejsze niż lub równe z maksymalnej długości."
         taken: "zostały już podjęte."
@@ -1569,8 +1584,7 @@ pl:
               cant_exceed_work: "nie może być wyższa niż Praca."
               must_be_set_when_work_is_set: "wymagane, gdy ustawiona jest opcja Praca."
               must_be_set_when_work_and_percent_complete_are_set: "wymagane, gdy ustawione są opcje Praca i % ukończenia."
-              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: >-
-                musi wynosić 0 h, gdy ustawiona jest opcja Praca, a % ukończenia wynosi 100%.
+              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: '>- must be 0h when Work is set and % Complete is 100%.'
               must_be_empty_when_work_is_empty_and_percent_complete_is_100p: >-
                 musi być puste, gdy Praca jest pusta, a % ukończenia wynosi 100%.
           readonly_status: "Pakiet roboczy ma status tylko do odczytu, więc jego atrybutów nie można zmienić."
@@ -1640,6 +1654,7 @@ pl:
         many: "Dostawcy uwierzytelniania"
         other: "Dostawcy uwierzytelniania"
       category: "Kategoria"
+      color: "Kolor"
       comment: "Komentarz"
       custom_action: "Działanie niestandardowe"
       custom_field: "Pola niestandardowe"
@@ -2009,11 +2024,11 @@ pl:
       succeeded: 'Skopiowano projekt "%{source_project_name}" do "%{target_project_name}".'
     source_project_label: "Skopiowano projekt"
     copy_options:
-      dependencies_label: 'Skopiuj z projektu'
+      dependencies_label: "Skopiuj z projektu"
   create_project:
     template_label: "Użyj szablonu"
     copy_options:
-      dependencies_label: 'Skopiuj z szablonu'
+      dependencies_label: "Skopiuj z szablonu"
   create_wiki_page: "Utwórz nową stronę wiki"
   create_wiki_page_button: "Strona wiki"
   date:
@@ -2298,6 +2313,9 @@ pl:
       scim_api:
         title: "Klienci SCIM"
         description: "Zautomatyzuj zarządzanie użytkownikami w OpenProject, płynnie integrując zewnętrzne usługi tożsamości, takie jak Microsoft Entra lub Keycloak, za pomocą naszego interfejsu API serwera SCIM. Jest dostępny od planu korporacyjnego Enterprise."
+      sso_auth_providers:
+        title: "Single Sign-On (SSO)"
+        description: "Enable users to log in via external SSO providers using SAML or OpenID Connect for seamless access and integration with existing identity systems."
       virus_scanning:
         description: "Upewnij się, że przesłane do OpenProject pliki  są przeskanowane pod kątem wirusów, zanim będą dostępne dla innych użytkowników."
       placeholder_users:
@@ -2337,6 +2355,13 @@ pl:
         Chcę otrzymywać <a target="_blank" href="https://www.openproject.org/newsletter/">newsletter</a> OpenProject.
       consent_html: >
         Akceptuję <a target="_blank" href="https://www.openproject.org/terms-of-service/">warunki umowy</a> i <a target="_blank" href="https://www.openproject.org/data-privacy-and-security/">politykę prywatności</a>.
+  email_calendar_updates:
+    state:
+      disabled: "Wyłączono."
+      enabled: "Włączono."
+    button:
+      disabled: "Włącz"
+      enabled: "Wyłącz"
   enumeration_activities: "Działania śledzenia czasu"
   enumeration_work_package_priorities: "Priorytety pakietów roboczych"
   enumeration_reported_project_statuses: "Status zgłoszonego projektu"
@@ -2482,8 +2507,13 @@ pl:
           label: "Uwzględnij opisy"
           caption: "Ta opcja doda kolumnę opisu w formacie nieprzetworzonym."
     your_work_packages_export: "Pakiety robocze są eksportowane"
+    your_projects_export: "Projects are being exported"
     succeeded: "Eksport ukończony"
     failed: "Podczas próby wyeksportowania pakietów roboczych wystąpił błąd: %{message}"
+    demo:
+      heading: "Demo PDF"
+      footer: "Generated by OpenProject"
+      button_text: Generate Demo PDF
     errors:
       embedded_table_with_too_many_columns: "Ta osadzona tabela pakietów roboczych nie mieści się na stronie, zmniejsz liczbę kolumn."
     format:
@@ -2544,6 +2574,13 @@ pl:
       xls2csv: "Dostępny konwerter Xls2csv (opcjonalny)"
       catppt: "Dostępny konwerter Catppt (opcjonalny)"
       tesseract: "Dostępne narzędzie Tesseract (opcjonalne)"
+  filterable_tree_view:
+    filter_mode:
+      all: "Wszystkie"
+      label: "Filter mode"
+      selected: "Selected"
+    include_sub_items: "Include sub-items"
+    no_results_text: "No results"
   general_csv_decimal_separator: ","
   general_csv_encoding: "UTF-8"
   general_csv_separator: "."
@@ -2649,11 +2686,13 @@ pl:
         expiration: "Wygasa"
       indefinite_expiration: "Nigdy"
       simple_revoke_confirmation: "Czy na pewno chcesz unieważnić ten token?"
-      api:
+      token/api:
         title: "API"
         text_hint: "Tokeny API pozwalają aplikacjom innych firm na komunikowanie się z tym wystąpieniem OpenProject za pośrednictwem interfejsu API REST."
-        static_token_name: "Token API"
         disabled_text: "Tokeny API nie zostały włączone przez administratora. Aby użyć tej funkcji, skontaktuj się z administratorem."
+        add_button: "API Token"
+      api:
+        static_token_name: "Token API"
       ical:
         title: "iCalendar"
         text_hint: 'Tokeny iCalendar pozwalają użytkownikom <a href="%{path}" target="_blank">subskrybować kalendarze OpenProject</a> i przeglądać aktualne informacje o pakietach roboczych z klientów zewnętrznych.'
@@ -2976,6 +3015,7 @@ pl:
   label_invite_user: "Zaproś użytkownika"
   label_item: "Element"
   label_item_plural: "Elementy"
+  label_scored_list: "Scored list"
   label_share: "Udostępnij"
   label_share_project_list: "Udostępnij listę projektów"
   label_share_work_package: "Udostępnij pakiet roboczy"
@@ -3005,12 +3045,18 @@ pl:
   label_link_url: "Link (adres URL)"
   label_list: "Lista"
   label_loading: "Ładowanie..."
+  label_locked: "locked"
   label_lock_user: "Zablokuj użytkownika"
   label_logged_as: "Zalogowany jako"
   label_login: "Logowanie"
   label_custom_logo: "Własne logo"
   label_custom_export_logo: "Logotyp eksportu niestandardowego"
   label_custom_export_cover: "Niestandardowe tło okładki eksportu"
+  label_custom_export_footer: "Custom export footer image"
+  label_custom_export_font_regular: "Regular"
+  label_custom_export_font_bold: "Bold"
+  label_custom_export_font_italic: "Italic"
+  label_custom_export_font_bold_italic: "Bold Italic"
   label_custom_export_cover_overlay: "Nakładka niestandardowego tła okładki eksportu"
   label_custom_export_cover_text_color: "Kolor tekstu"
   label_custom_pdf_export_settings: "Niestandardowe ustawienia eksportu w formacie PDF"
@@ -3098,6 +3144,8 @@ pl:
   label_operator_equals_or: "jest (OR)"
   label_operator_equals_all: "jest (AND)"
   label_operator_shared_with_user_any: "którekolwiek"
+  label_open: "Otwarte"
+  label_closed: "Zamknięte"
   label_open_menu: "Otwórz menu"
   label_open_work_packages: "Otwarte"
   label_open_work_packages_plural: "Otwarte"
@@ -3164,6 +3212,10 @@ pl:
   label_project_view_all: "Zobacz wszystkie projekty"
   label_project_show_details: "Pokaż szczegóły projektu"
   label_project_hide_details: "Ukryj szczegóły projektu"
+  label_portfolio: "Portfolio"
+  label_portfolio_new: "New portfolio"
+  label_program: "Program"
+  label_program_new: "New program"
   label_public_projects: "Projekty publiczne"
   label_query_new: "Nowe zapytanie"
   label_query_plural: "Zapytania niestandardowe"
@@ -3312,6 +3364,8 @@ pl:
   label_watched_work_packages: "Obserwowane pakiety robocze"
   label_what_is_this: "Co to jest?"
   label_week: "Tydzień"
+  label_widget: "Widget"
+  label_widget_new: "New widget"
   label_wiki_content_added: "Dodano stronę wiki"
   label_wiki_content_updated: "Zaktualizowano stronę wiki"
   label_wiki_toc: "Spis treści"
@@ -3662,6 +3716,8 @@ pl:
   permission_add_work_packages: "Dodawanie pakietów roboczych"
   permission_add_messages: "Wysyłanie wiadomości"
   permission_add_project: "Utwórz projekty"
+  permission_add_portfolios: "Create portfolios"
+  permission_add_programs: "Create programs"
   permission_add_work_package_attachments: "Dodaj Załączniki"
   permission_add_work_package_attachments_explanation: "Umożliwia dodawanie załączników bez uprawnienia Edycja pakietów roboczych."
   permission_add_internal_comments: "Pisanie komentarzy wewnętrznych"
@@ -3956,6 +4012,7 @@ pl:
   setting_attachment_whitelist: "Biała lista załączników do przesyłania"
   setting_email_delivery_method: "Metoda dostarczenia maila"
   setting_emails_salutation: "Zwracaj się do użytkownika w wiadomościach e-mail za pomocą"
+  setting_oauth_allow_remapping_of_existing_users: "Allow remapping of existing users"
   setting_sendmail_location: "Lokalizacja pliku wykonywalnego sendmail"
   setting_smtp_enable_starttls_auto: "Automatycznie użyj STARTTLS, jeśli jest dostępny"
   setting_smtp_ssl: "Użyj połączenia SSL"
@@ -4116,11 +4173,13 @@ pl:
   setting_working_days: "Dni robocze"
   settings:
     authentication:
-      login_and_sso: "Logowanie i logowanie jednokrotne"
+      login: "Nazwa użytkownika"
       registration: "Rejestracja"
-      single_sign_on: "Logowanie jednokrotne"
+      sso: "Single Sign-On (SSO)"
       omniauth_direct_login_hint_html: >
         Jeśli ta opcja jest aktywna, żądania logowania będą przekierowywane do skonfigurowanego dostawcy omniauth. Lista rozwijana logowania i strona logowania zostaną wyłączone. <br/> <strong>Uwaga:</strong> o ile nie wyłączono również logowania hasłem, przy włączonej tej opcji użytkownicy mogą nadal logować się wewnętrznie, odwiedzając stronę logowania <code>%{internal_path}</code>.
+      remapping_existing_users_hint: >
+        If enabled, allows any configured identity provider to login existing users based on their email address, even if the user never signed in through that provider before. This can be useful when migrating the OpenProject instance to a new SSO provider, but is not recommended when using a provider that is not trusted by all users of your instance.
     attachments:
       whitelist_text_html: >
         Zdefiniuj listę poprawnych rozszerzeń plików i/lub typów mime dla przesłanych plików. <br/> Wprowadź rozszerzenia plików (np. <code>%{ext_example}</code>) lub typy mime (np. <code>%{mime_example}</code>). <br/> Pozostaw puste, aby umożliwić przesłanie dowolnego typu pliku. Dozwolone wielokrotne wartości (jeden wiersz dla każdej wartości).
@@ -4264,6 +4323,20 @@ pl:
     To jest logotyp widniejący w eksportach plików PDF. Musi to być plik PNG lub JPEG. Zalecane jest stosowanie czarnego lub kolorowego logotypu na przezroczystym lub białym tle.
   text_custom_export_cover_instructions: >
     Jest to obraz wyświetlany w tle strony tytułowej w wyeksportowanych przez Ciebie plikach PDF. Musi to być plik obrazu w formacie PNG lub JPEG o wymiarach około 800 px szerokości na 500 px wysokości.
+  text_custom_export_footer_instructions: >
+    PDF exports will include a graphical element positioned to the left of the footer. This image must be a PNG or JPEG file with approximately 200 pixels in width.
+  label_custom_export_font_instructions: >
+    Upload and manage custom TrueType (.ttf) fonts used in your PDF exports. For best results, use matching files from the same font family. If no font is provided, the default NotoSans font will be used.
+  label_custom_export_images_instructions: >
+    Upload and manage custom image files used in your PDF exports.
+  text_custom_export_font_regular_instructions: >
+    This is the font file for regular text. It needs to be in TTF format and is required.
+  text_custom_export_font_bold_instructions: >
+    This is the font file for bold text. It needs to be in TTF format.
+  text_custom_export_font_italic_instructions: >
+    This is the font file for italic text. It needs to be in TTF format.
+  text_custom_export_font_bold_italic_instructions: >
+    This is the font file for bold and italic text. It needs to be in TTF format.
   text_custom_favicon_instructions: >
     Jest to mała ikona, która pojawia się w oknie/karcie przeglądarki obok tytułu strony. Musi to być plik kwadratowego obrazu PNG o rozmiarze 32 na 32 piksele z przezroczystym tłem.
   text_custom_touch_icon_instructions: >
@@ -4606,6 +4679,8 @@ pl:
       code_500_missing_enterprise_token: "Żądania nie można obsłużyć z powodu nieprawidłowego lub brakującego tokena wersji Enterprise."
       bad_request:
         emoji_reactions_activity_type_not_supported: "Ten typ działań nie obsługuje reakcji emoji."
+        invalid_link: "The link under key '%{key}' is not valid."
+        links_not_an_object: "_links must be a JSON object."
       conflict:
         multiple_reminders_not_allowed: |-
           Dla jednego pakietu roboczego można ustawić tylko jedno przypomnienie. Usuń lub zaktualizuj istniejące przypomnienie.
@@ -4810,3 +4885,6 @@ pl:
     description: "Dodaje dostawcę SAML OmniAuth do OpenProject"
   enterprise_plans:
     legacy_enterprise: "Plan Enterprise"
+  token:
+    hashed_token:
+      display_value_placeholder: "***"

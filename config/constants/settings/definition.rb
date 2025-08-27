@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -28,7 +30,7 @@
 
 module Settings
   class Definition
-    ENV_PREFIX = "OPENPROJECT_".freeze
+    ENV_PREFIX = "OPENPROJECT_"
     AR_BOOLEAN_TYPE = ActiveRecord::Type::Boolean.new
     DEFINITIONS = {
       activity_days_default: {
@@ -725,6 +727,7 @@ module Settings
       oauth_allow_remapping_of_existing_users: {
         description: "When set to false, prevent users from other identity providers to take over accounts " \
                      "that exist in OpenProject.",
+        format: :boolean,
         default: true
       },
       omniauth_direct_login_provider: {

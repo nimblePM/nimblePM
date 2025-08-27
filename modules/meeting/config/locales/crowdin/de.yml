@@ -59,8 +59,13 @@ de:
         end_after: "Ende der Terminserie"
         end_date: "Enddatum"
         iterations: "Ereignisse"
+      meeting_participant:
+        invited: "Eingeladen"
+        attended: "Teilgenommen"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} ist kein gültiger Teilnehmer."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "Es gibt eine offene Besprechung in der Terminserie, die nicht durch den neuen Zeitplan abgedeckt ist. Passen Sie den Zeitplan an, um alle bestehenden Meetings einzuschließen."
@@ -74,6 +79,9 @@ de:
       meeting_agenda_item: "Tagesordnungspunkt"
       meeting_agenda: "Agenda"
       meeting_section: "Abschnitt"
+      token/ical_meeting:
+        one: "iCal Meeting Abonnement"
+        other: "iCal Meeting Abonnements"
   activity:
     filter:
       meeting: "Besprechungen"
@@ -91,7 +99,6 @@ de:
           updated: "von %{old_value} zu %{value} geändert"
           updated_html: "von <i>%{old_value}</i> zu <i>%{value}</i> geändert"
   description_attended: "teilgenommen"
-  description_invite: "eingeladen"
   events:
     meeting: Besprechung bearbeitet
     meeting_agenda: Agenda bearbeitet
@@ -170,9 +177,25 @@ de:
   label_version: "Version"
   label_time_zone: "Zeitzone"
   label_start_date: "Beginn"
+  label_subscribe_icalendar: "Im Kalender abonnieren"
   meeting:
     participants:
-      template: "Diese Teilnehmer werden automatisch zu allen zukünftigen Besprechungen eingeladen, sobald diese erstellt werden."
+      label:
+        participants: "Teilnehmer"
+        attended: "Teilgenommen"
+        mark_as_attended: "Als teilgenommen markieren"
+        mark_all_as_attended: "Alle als teilgenommen markieren"
+        remove_participant: "Teilnehmer entfernen"
+        manage_participants: "Teilnehmer verwalten"
+        no_participants: "Keine Teilnehmer"
+        show_all: "Alle anzeigen"
+      text:
+        template: "Diese Teilnehmer werden automatisch zu allen zukünftigen Besprechungen eingeladen, sobald sie erstellt werden."
+        manage_participants: "Suchen Sie nach Projektmitgliedern, um sie als Teilnehmer zu dieser Besprechung hinzuzufügen."
+        search_for_members: "Suche nach Projektmitgliedern"
+      blankslate:
+        heading: "Keine Teilnehmer"
+        description: "Es gibt noch keine Teilnehmer."
     attachments:
       template: "Die angehängten Dateien werden in alle künftigen Besprechungen dieser Terminserie einbezogen."
       text: "Angehängte Dateien sind für alle Teilnehmer der Besprechung verfügbar. Sie können diese auch per Drag-and-drop in die Notizen der Tagesordnungspunkte ziehen."
@@ -195,9 +218,9 @@ de:
       series:
         title: "[%{project_name}] Terminserie '%{title}'"
         summary: "%{actor} hat eine neue Terminserie '%{title}' eingerichtet"
-      series_rescheduled:
-        title: "[%{project_name}] Terminserie ''%{title}' verschoben"
-        summary: "%{actor} hat den Zeitplan für die Terminserie '%{title}' geändert"
+      series_updated:
+        title: "[%{project_name}] Terminserie '%{title}' wurde aktualisiert"
+        summary: "Die Terminserie '%{title}' wurde von %{actor} aktualisiert"
         old_schedule: "Alter Zeitplan"
         new_schedule: "Neuer Zeitplan"
       invited:
@@ -210,13 +233,15 @@ de:
         summary_series: "Die Terminserie '%{title}' wurde von %{actor} abgesagt."
         summary: "Besprechung '%{title}' wurde von %{actor} abgesagt."
         date_time: "Geplanter Zeitpunkt"
-      rescheduled:
-        header: "Besprechung '%{title}' wurde verschoben"
-        summary: "Die Besprechung '%{title}' wurde durch %{actor} verschoben"
-        body: "Die Besprechung '%{title}' wurde durch %{actor} verschoben."
+      updated:
+        header: "Besprechung '%{title}' wurde aktualisiert"
+        summary: "Die Besprechung '%{title}' wurde durch %{actor} aktualisiert"
+        body: "Die Besprechung '%{title}' wurde durch %{actor} aktualisiert."
         old_date_time: "Alte(s) Datum/Zeit"
         new_date_time: "Neue(s) Datum/Zeit"
-    label_mail_all_participants: "E-Mail-Kalendereinladung an alle Teilnehmer"
+        old_location: "Alter Ort"
+        new_location: "Neuer Ort"
+    label_mail_all_participants: "E-Mail an alle Teilnehmer senden"
     types:
       one_time: "Einmalig"
       recurring: "Terminserie"
@@ -242,9 +267,29 @@ de:
     label_export_pdf: "PDF exportieren"
     export:
       your_meeting_export: "Besprechung wird exportiert"
+      minutes:
+        footer_page_numbers: "S. %{current_page} von %{total_pages}"
+        author: "Verfasser:in"
+        date: "Datum"
+        time: "Zeit"
+        location: "Ort"
+        title: "Protokoll"
     export_pdf_dialog:
       title: PDF exportieren
       description: Erstellen Sie eine druckbare PDF-Datei dieser Besprechung im aktuellen Zustand.
+      templates:
+        default:
+          label: Standard
+          caption: Die Standardvorlage ist für die meisten Besprechungen geeignet und repräsentiert den aktuellen Zustand.
+        minutes:
+          label: Protokoll
+          caption: Die Protokollvorlage eignet sich für geschlossene und archivierte Besprechungen.
+      first_page_header_left:
+        label: Erste Kopfzeile links
+        caption: Dieser Text erscheint auf der ersten Seite links im Seitenkopf.
+      author:
+        label: Verfasser:in
+        caption: Der/die Verfasser:in des Protokolls wird im Untertitel angezeigt.
       include_participants:
         label: Liste der Teilnehmer einfügen
         caption: Eine Liste der Teilnehmer wird oberhalb der Agenda ausgegeben.
@@ -264,16 +309,10 @@ de:
     notifications:
       sidepanel:
         title: "E-Mail-Kalender-Aktualisierungen"
-        state:
-          disabled: "Deaktiviert."
-          enabled: "Aktiviert."
         description:
           disabled: "Die Teilnehmer erhalten keine E-Mail bei Änderungen an der Besprechung."
           enabled: "Alle Teilnehmenden erhalten aktualisierte Kalendereinladungen per E-Mail bei wesentlichen Änderungen der Besprechung."
           change_via_template: "Bearbeiten Sie die Vorlage der Terminserie, um diese Einstellung zu ändern."
-        button:
-          disable: "Deaktivieren"
-          enable: "Aktivieren"
       dialog:
         title:
           enable: "E-Mail-Kalender-Aktualisierungen aktivieren?"
@@ -287,6 +326,11 @@ de:
           enable: "E-Mail-Aktualisierungen aktivieren"
           disable: "E-Mail-Aktualisierungen deaktivieren"
       banner:
+        participants:
+          enabled: >
+            Alle Teilnehmer erhalten aktualisierte Kalendereinladungen per E-Mail, wenn Sie Teilnehmer hinzufügen oder entfernen.
+          disabled: >
+            E-Mail-Kalenderaktualisierungen sind deaktiviert. Die Teilnehmer erhalten keine E-Mails bei Änderungen an der Teilnehmerliste.
         onetime:
           enabled: >
             Alle Teilnehmenden erhalten aktualisierte Kalendereinladungen per E-Mail durch Ihre Änderungen an der Besprechung.
@@ -468,8 +512,8 @@ de:
   text_series_backlog_clear_description: >
     Dadurch werden alle Elemente des Backlogs entfernt, die mit allen Besprechungen in der Terminserie geteilt werden. Sind Sie sicher, dass Sie fortfahren möchten? Diese Aktion kann nicht rückgängig gemacht werden.
   text_agenda_item_title: 'Tagesordnungspunkt „%{title}“'
-  text_agenda_work_package_deleted: 'Tagesordnungspunkt für gelöschtes Arbeitspaket'
-  text_deleted_agenda_item: 'Gelöschter Tagesordnungspunkt'
+  text_agenda_work_package_deleted: "Tagesordnungspunkt für gelöschtes Arbeitspaket"
+  text_deleted_agenda_item: "Gelöschter Tagesordnungspunkt"
   label_initial_meeting_details: "Besprechung"
   label_meeting_details: "Besprechungsdetails"
   label_meeting_series_details: "Details der Terminserie"
@@ -485,17 +529,12 @@ de:
   label_meeting_reopen_action: "Besprechung wiedereröffnen"
   label_meeting_close_action: "Besprechung schließen"
   label_meeting_in_progress_action: "Besprechung starten"
-  text_meeting_open_description: "Diese Besprechung ist offen. Sie können Tagesordnungspunkte hinzufügen oder entfernen und bearbeiten. Sobald die Tagesordnung fertig ist, wechseln Sie auf In Durchführung, um Ergebnisse zu dokumentieren."
+  text_meeting_open_description: "Sie können Tagesordnungspunkte hinzufügen oder entfernen und bearbeiten. Sobald die Tagesordnung fertig ist, wechseln Sie auf In Durchführung, um Ergebnisse zu dokumentieren."
   text_meeting_closed_description: "Diese Besprechung ist abgeschlossen. Sie können keine Tagesordnungspunkte mehr hinzufügen/entfernen."
-  text_meeting_in_progress_description: "Diese Besprechung befindet sich in Durchführung. Sie können die Ergebnisse für jeden Tagesordnungspunkt dokumentieren, neu anordnen und neue Punkte hinzufügen. Sobald die Besprechung abgeschlossen ist, können Sie es als geschlossen markieren, um es zu sperren."
+  text_meeting_in_progress_description: "Sie können die Tagesordnung ändern, die Ergebnisse für jeden Agendapunkt dokumentieren und die Anwesenheit der Teilnehmer verfolgen. Sobald die Besprechung abgeschlossen ist, können Sie sie als geschlossen markieren, um sie zu sperren."
   text_meeting_open_dropdown_description: "Alle bestehenden Ergebnisse bleiben bestehen, aber die Benutzer werden nicht in der Lage sein, neue Ergebnisse hinzuzufügen."
   text_meeting_in_progress_dropdown_description: "Ergebnisse der Besprechung festhalten, wie z. B. Informationsbedarf oder Entscheidungen, die während der Besprechung getroffen werden."
   text_meeting_closed_dropdown_description: "Diese Besprechung ist geschlossen. Sie können keine Tagesordnungspunkte mehr hinzufügen/entfernen."
-  label_meeting_manage_participants: "Teilnehmer verwalten"
-  label_meeting_no_participants: "Keine Teilnehmer"
-  label_meeting_show_hide_participants: "%{count} weitere anzeigen/ausblenden"
-  label_meeting_show_all_participants: "Alle anzeigen"
-  label_meeting_add_participants: "Teilnehmer hinzufügen"
   text_meeting_not_editable_anymore: "Diese Besprechung ist nicht mehr bearbeitbar."
   text_meeting_not_present_anymore: "Dieses Meeting wurde gelöscht. Bitte wählen Sie eine andere Besprechung."
   label_add_work_package_to_meeting_dialog_title: "Arbeitspaket zur Besprechung hinzufügen"
@@ -512,4 +551,29 @@ de:
   text_work_package_has_no_past_meeting_agenda_items: "Dieses Arbeitspaket wurde in keinen früheren Besprechungen erwähnt."
   text_email_updates_muted: "E-Mail-Kalenderaktualisierungen sind deaktiviert. Die Teilnehmer erhalten keine aktualisierten Einladungen per E-Mail, wenn Sie Änderungen vornehmen."
   text_email_updates_enabled: "E-Mail-Kalenderaktualisierungen sind aktiviert. Alle Teilnehmenden erhalten aktualisierte Einladungen per E-Mail, wenn Sie Änderungen vornehmen."
-
+  my_account:
+    access_tokens:
+      token/ical_meeting:
+        title: "iCalendar für Besprechungen"
+        text_hint: "iCalendar Besprechungs-Token ermöglichen es Benutzern, ihre Besprechungen zu abonnieren und aktuelle Informationen in externen Kalendern anzuzeigen."
+        disabled_text: "iCalendar Besprechungs-Abonnements wurden nicht vom Administrator aktiviert. Bitte wenden Sie sich an Ihren Administrator, um diese Funktion zu nutzen."
+        empty_text_hint: 'Um ein iCalendar Besprechungs-Token hinzuzufügen, gehen Sie zum <a href="%{path}">Abschnitt zu Besprechungen</a> und erzeugen Sie dort einen Token.'
+        add_button: "Im Kalender abonnieren"
+  my:
+    access_token:
+      dialog:
+        token/ical_meeting:
+          dialog_title: "Neues iCal-Abonnement-Token für Besprechungen"
+          dialog_body: "Dieses Token generiert eine iCal-URL, mit der Sie alle Ihre Termine in einer externen Kalenderanwendung anzeigen können."
+          create_button: "Abonnement erstellen"
+          name_label: "Tokenname"
+          name_caption: 'You can name it after where you will use it, such as"My phone" or "Work computer.'
+      created_dialog:
+        token/ical_meeting:
+          title: "An iCal meeting subscription token has been generated"
+          body: "Treat the following URL as you would a password. Anyone who has access to it can view all your meetings."
+          warning: "Dies ist das einzige Mal, dass dieses Token angezeigt wird. Stellen Sie sicher, dass Sie es jetzt kopieren."
+      revocation:
+        token/ical_meeting:
+          notice_success: "The iCalendar meeting subscription has been revoked successfully."
+          notice_failure: "Failed to revoke iCalendar meeting subscription: %{error}"

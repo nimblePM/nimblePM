@@ -40,7 +40,11 @@ module API
                                                                        })
                                                                   .mount
 
-          post &::API::V3::Utilities::Endpoints::Create.new(model: Project)
+          post &::API::V3::Utilities::Endpoints::Create.new(model: Project,
+                                                            params_modifier: ->(attributes) {
+                                                              attributes[:workspace_type] = Project.workspace_types[:project]
+                                                              attributes
+                                                            })
                                                        .mount
 
           mount ::API::V3::Projects::Schemas::ProjectSchemaAPI

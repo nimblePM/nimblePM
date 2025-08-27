@@ -220,6 +220,44 @@ RSpec.describe "Edit project custom fields on project overview page", :js do
 
         it_behaves_like "a rich text custom field input"
       end
+
+      describe "with calculated value CFs" do
+        shared_examples "a calculated value custom field input" do
+          it "shows the correct value if given" do
+            overview_page.open_edit_dialog_for_section(section)
+
+            dialog.within_async_content(close_after_yield: true) do
+              expect(page).to have_field(custom_field.name, disabled: true, with: expected_initial_value)
+            end
+          end
+
+          it "shows a blank input if no value is given" do
+            custom_field.custom_values.destroy_all
+
+            overview_page.open_edit_dialog_for_section(section)
+
+            dialog.within_async_content(close_after_yield: true) do
+              expect(page).to have_field(custom_field.name, disabled: true, with: expected_blank_value)
+            end
+          end
+        end
+
+        describe "using int" do
+          let(:custom_field) { calculated_from_int_project_custom_field }
+          let(:expected_blank_value) { "" }
+          let(:expected_initial_value) { 234 }
+
+          it_behaves_like "a calculated value custom field input"
+        end
+
+        describe "using int and float" do
+          let(:custom_field) { calculated_from_int_and_float_project_custom_field }
+          let(:expected_blank_value) { "" }
+          let(:expected_initial_value) { 15185.088 }
+
+          it_behaves_like "a calculated value custom field input"
+        end
+      end
     end
 
     describe "with single select fields" do

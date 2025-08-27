@@ -85,6 +85,10 @@ class Meeting < ApplicationRecord
       .merge(Project.allowed_to(args.first || User.current, :view_meetings))
   }
 
+  scope :participated_by, ->(user) {
+    joins(:participants).where(meeting_participants: { user_id: user.id })
+  }
+
   acts_as_attachable(
     after_remove: :attachments_changed,
     order: "#{Attachment.table_name}.file",
@@ -111,13 +115,13 @@ class Meeting < ApplicationRecord
 
   accepts_nested_attributes_for :participants, allow_destroy: true
 
-  validates_presence_of :title, :project_id
+  validates :title, :project_id, presence: true
 
-  validates_numericality_of :duration, greater_than: 0
+  validates :duration, numericality: { greater_than: 0 }
 
   before_save :add_new_participants_as_watcher
 
-  after_update :send_rescheduling_mail, if: -> { saved_change_to_start_time? || saved_change_to_duration? }
+  after_update :send_updated_mail, if: -> { saved_change_to_start_time? || saved_change_to_duration? || saved_change_to_location? }
 
   enum :state, {
     open: 0, # 0 -> default, leave values for future states between open and closed
@@ -193,21 +197,6 @@ class Meeting < ApplicationRecord
     end
   end
 
-  def invited_or_attended_participants
-    participants.where(invited: true).or(participants.where(attended: true))
-  end
-
-  def all_changeable_participants
-    changeable_participants = participants.select(&:invited).collect(&:user)
-    changeable_participants = changeable_participants + participants.select(&:attended).collect(&:user)
-    changeable_participants = changeable_participants +
-      User.allowed_members(:view_meetings, project)
-
-    changeable_participants
-      .compact
-      .uniq(&:id)
-  end
-
   def self.group_by_time(meetings)
     by_start_year_month_date = ActiveSupport::OrderedHash.new do |hy, year|
       hy[year] = ActiveSupport::OrderedHash.new do |hm, month|
@@ -246,25 +235,6 @@ class Meeting < ApplicationRecord
       .where(user_id: available_members)
   end
 
-  # triggered by MeetingAgendaItem#after_create/after_destroy/after_save
-  def calculate_agenda_item_time_slots
-    current_time = start_time
-    MeetingAgendaItem.transaction do
-      changed_items = agenda_items.includes(:meeting_section).order("meeting_sections.position", :position).map do |top|
-        start_time = current_time
-        current_time += top.duration_in_minutes&.minutes || 0.minutes
-        end_time = current_time
-        top.assign_attributes(start_time:, end_time:)
-        top
-      end
-
-      MeetingAgendaItem.upsert_all(
-        changed_items.map(&:attributes),
-        unique_by: :id
-      )
-    end
-  end
-
   def agenda_items_sum_duration_in_minutes
     agenda_items.sum(:duration_in_minutes)
   end
@@ -301,17 +271,23 @@ class Meeting < ApplicationRecord
     end
   end
 
-  def send_rescheduling_mail
+  def send_updated_mail
     return if templated? || new_record? || !notify?
 
     MeetingNotificationService
       .new(self)
-      .call :rescheduled,
-            changes: {
-              old_start: saved_change_to_start_time? ? saved_change_to_start_time.first : start_time,
-              new_start: start_time,
-              old_duration: saved_change_to_duration? ? saved_change_to_duration.first : duration,
-              new_duration: duration
-            }
+      .call :updated,
+            changes: updated_mail_changes
+  end
+
+  def updated_mail_changes
+    {
+      old_start: saved_change_to_start_time? ? saved_change_to_start_time.first : start_time,
+      new_start: start_time,
+      old_duration: saved_change_to_duration? ? saved_change_to_duration.first : duration,
+      new_duration: duration,
+      old_location: saved_change_to_location? ? saved_change_to_location.first : location,
+      new_location: location
+    }
   end
 end

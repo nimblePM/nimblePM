@@ -59,6 +59,10 @@ de:
       tab_interface: "Benutzeroberfläche"
       tab_branding: "Branding"
       tab_pdf_export_styles: "PDF-Exportstile"
+      tab_pdf_export_font: "PDF export font"
+      fonts:
+        file_too_large: "is too large (maximum size is %{count} MB)."
+        file_is_invalid: "is not a valid TTF font file."
       colors:
         primary-button-color: "Primäre Schaltfläche"
         accent-color: "Akzent"
@@ -81,11 +85,11 @@ de:
         title: "Enterprise-Token hinzufügen"
         type_token_text: "Enterprise-Token Text"
         token_placeholder: "Enterprise-Token Text hier einfügen"
-      add_token: "Enterprise-Edition Support Token hochladen"
+      add_token: "Enterprise edition Support Token hochladen"
       replace_token: "Aktuellen Enterprise edition Support Token ersetzen"
       order: "Enterprise on-premises bestellen"
-      paste: "Enterprise-Edition Support Token hier einfügen"
-      required_for_feature: "Dieses Add-on ist nur mit einem aktiven Enterprise-Edition Support-Token verfügbar."
+      paste: "Enterprise edition Support Token hier einfügen"
+      required_for_feature: "Dieses Add-on ist nur mit einem aktiven Enterprise edition Support-Token verfügbar."
       enterprise_link: "Klicken Sie hier für weitere Informationen."
       start_trial: "Kostenlose Testversion starten"
       book_now: "Jetzt buchen"
@@ -294,6 +298,7 @@ de:
         placeholder:
           label: "Elementbezeichnung"
           short: "Kurzname"
+          score: "Score"
       notice:
         remember_items_and_projects: "Denken Sie daran, Einträge und Projekte in den jeweiligen Registerkarten für dieses benutzerdefinierte Feld festzulegen."
       hierarchy:
@@ -329,13 +334,18 @@ de:
     single: "oder"
   dry_validation:
     errors:
+      defined: "must not be defined."
       int?: "muss eine ganze Zahl sein."
+      decimal?: "must be a decimal."
       filled?: "muss ausgefüllt werden."
+      key?: "is missing."
       greater_or_equal_zero: "muss größer oder gleich 0 sein."
       not_found: "nicht gefunden."
       rules:
         copy_workflow_from:
           workflow_missing: "hat keinen eigenen Workflow."
+        custom_field:
+          format_not_supported: "format '%{field_format}' is unsupported."
         item:
           root_item: "kann keine Hierarchiewurzel sein."
           not_persisted: "muss ein bereits vorhandenes Element sein."
@@ -351,6 +361,7 @@ de:
       depth: "Tiefe"
       item: "Element"
       label: "Bezeichnung"
+      score: "Score"
       short: "Kurzname"
       parent: "Übergeordnetes Arbeitspaket"
       blueprint: "Blaupause für Muster"
@@ -371,7 +382,7 @@ de:
       description: Durch die Gruppierung von Benutzern können Sie diese den gleichen globalen Rollen oder den gleichen Projekten als Mitglieder zuweisen.
     table_component:
       blank_slate:
-        description: Sie können Gruppen von Benutzern mit eigenen Namen erstellen
+        description: You can define named groups of users with specific permissions.
         title: Noch keine Gruppen eingerichtet
       user_count: Benutzeranzahl
     users:
@@ -461,7 +472,7 @@ de:
       life_cycle:
         header:
           title: "Projekt-Lebenszyklus"
-          description_html: "Die aktiven Projektphasen definieren den Lebenszyklus dieses Projekts und sind in den <a href=%{admin_settings_url} target=\"_blank\">Administrationseinstellungen</a>definiert. Aktivierte Phasen werden in Ihrer <a href=%{overview_url} target=\"_blank\">Projektübersicht</a> angezeigt."
+          description_html: 'Die aktiven Projektphasen definieren den Lebenszyklus dieses Projekts und sind in den <a href=%{admin_settings_url} target="_blank">Administrationseinstellungen</a>definiert. Aktivierte Phasen werden in Ihrer <a href=%{overview_url} target="_blank">Projektübersicht</a> angezeigt.'
         non_defined: "Derzeit sind keine Phasen definiert."
         section_header: "Phasen"
         step:
@@ -570,26 +581,26 @@ de:
       will_revoke_access_to_all: "Mit dieser Aktion wird der Zugriff auf alle diese Arbeitspakete entfernt."
   my:
     access_token:
-      create_dialog:
-        title: Token generiert
-        header: Das %{type}-Token wurde generiert
-        warning: 'Hinweis: Dieser Token ist nur einmal sichtbar, der Token kann jetzt kopiert werden.'
+      dialog:
+        token/api:
+          dialog_title: "Einen API-Token erstellen"
+          attention_text: "Treat API tokens like passwords. Anyone with this token will have access to information from this instance, share it only with trusted users."
+          dialog_body: "Dieses Token ermöglicht es Anwendungen von Drittanbietern, mit Ihrer Instanz zu kommunizieren. Um das neue API-Token zu unterscheiden, geben Sie ihm bitte einen Namen."
+          create_button: "Anlegen"
+          name_label: "Tokenname"
+      created_dialog:
+        token/api:
+          title: "The API token has been generated"
+          warning: "Dies ist das einzige Mal, dass dieses Token angezeigt wird. Stellen Sie sicher, dass Sie es jetzt kopieren."
       errors:
         token_name_blank: "Bitte geben Sie einen Namen für den API-Token an"
         token_name_in_use: "Dieser API-Token-Name ist bereits in Verwendung, bitte wählen Sie einen anderen"
-      new_access_token_dialog_title: "Einen API-Token erstellen"
-      new_access_token_dialog_show_button_text: "API-Token"
-      new_access_token_dialog_text_field_placeholder_text: "Meine API-Token"
-      new_access_token_dialog_text_field_label: "Name"
-      new_access_token_dialog_submit_button_text: "Erstellen"
-      new_access_token_dialog_text: "Dieses Token ermöglicht es Anwendungen von Drittanbietern, mit Ihrer Instanz zu kommunizieren. Um das neue API-Token zu unterscheiden, geben Sie ihm bitte einen Namen."
-      new_access_token_dialog_attention_text: "API-Token wie Passwörter behandeln. Jeder, der über diesen Link verfügt, hat Zugang zu den Informationen dieser Instanz, teilen Sie sie nur mit vertrauenswürdigen Benutzern."
       failed_to_reset_token: "Zusatztoken konnte nicht zurückgesetzt werden: %{error}"
       failed_to_create_token: "Zugriffstoken konnte nicht erstellt werden: %{error}"
       failed_to_revoke_token: "Zugriffstoken kann nicht widerrufen werden: %{error}"
       notice_reset_token: "Ein neuer %{type} Token wurde generiert. Der Zutrittstoken lautet:"
       token_value_warning: "Hinweis: Dieser Token ist nur einmal sichtbar, der Token kann jetzt kopiert werden."
-      no_results_title_text: Zur Zeit stehen keine Zugangs-Tokens zur Verfügung.
+      no_results_title_text: "Zur Zeit stehen keine Zugangs-Tokens zur Verfügung."
       notice_api_token_revoked: "Das API-Token wurde gelöscht. Nutzen Sie bitte den Knopf in der API-Sektion für die Erstellung eines neues Token. "
       notice_rss_token_revoked: "Der RSS-Token wurde gelöscht. Um ein neues Token zu erstellen, benutzen Sie bitte den Link im RSS-Bereich."
       notice_ical_token_revoked: 'iCalendar-Token „%{token_name}“ für Kalender „%{calendar_name}“ des Projekts „%{project_name}“ wurde widerrufen. Die iCal-URL mit diesem Token ist jetzt ungültig.'
@@ -679,8 +690,10 @@ de:
         excluded_from_totals: "Von Gesamtsumme auschließen"
   themes:
     dark: "Dunkel"
+    dark_high_contrast: "Dunkel (hoher Kontrast)"
     light: "Hell"
     light_high_contrast: "Hell (hoher Kontrast)"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Derzeit gibt es keine Typen.
@@ -713,7 +726,7 @@ de:
         pattern:
           label: "Titel-Schema"
           caption: Das Schema kann durch Hinzufügen von Text erzeugt werden. Geben Sie "/" ein, um nach [unterstützten Attributen](attributes_url) zu suchen.
-          insert_as_text: "Keine Attribute gefunden. Als Text hinzufügen: \"%{word}\""
+          insert_as_text: 'Keine Attribute gefunden. Als Text hinzufügen: "%{word}"'
       export_configuration:
         tab: "PDF generieren"
         intro: "Wählen Sie aus den verfügbaren Vorlagen diejenige aus, die Sie für diesen Typ aktivieren möchten. Die Vorlage bestimmt das Design und die Attribute, die in der exportierten PDF-Datei eines Arbeitspakets mit diesem Typ sichtbar sind. Die erste Vorlage in der Liste ist standardmäßig ausgewählt."
@@ -849,7 +862,7 @@ de:
       label_child_singular: "Unteraufgabe"
       label_child_plural: "Unteraufgaben"
       new_child: "Neue Unteraufgabe"
-      new_child_description: "Erstellt ein zugehöriges Arbeitspaket als Unteraufgabe des aktuellen (übergeordneten) Arbeitspakets"
+      new_child_description: "Erstellt ein zugehöriges Arbeitspaket als Unterelement des aktuellen (übergeordneten) Arbeitspakets"
       child: "Unteraufgabe"
       child_description: "Macht das zugehörige Arbeitspaket zu einer Unteraufgabe des aktuellen (übergeordneten) Arbeitspakets"
       parent: "Übergeordnetes Arbeitspaket"
@@ -1054,6 +1067,7 @@ de:
         types: "Typen"
         versions: "Versionen"
         work_packages: "Arbeitspakete"
+        workspace_type: "Workspace type"
       project_custom_field:
         is_required: "In allen Projekten erforderlich"
         custom_field_section: Abschnitt
@@ -1283,6 +1297,7 @@ de:
         odd: "muss ungerade sein."
         regex_match_failed: "stimmt nicht mit dem regulären Ausdruck %{expression} überein."
         regex_invalid: "konnte nicht mit dem zugehörigen regulären Ausdruck überprüft werden."
+        regex_list_invalid: "Lines %{invalid_lines} could not be parsed as regular expression."
         hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
         smaller_than_or_equal_to_max_length: "muss kleiner als oder gleich der maximalen Länge sein."
         taken: "ist bereits vergeben."
@@ -1534,7 +1549,7 @@ de:
               status_transition_invalid: "ist ungültig, da kein valider Übergang vom alten zum neuen Status für die aktuelle Rolle des Nutzers existiert."
               status_invalid_in_type: "ist ungültig, da der aktuelle Status nicht in diesem Typ vorhanden ist."
             type:
-              cannot_be_milestone_due_to_children: "kann kein Meilenstein werden, da dieses Arbeitspaket Unteraufgaben besitzt."
+              cannot_be_milestone_due_to_children: "kann kein Meilenstein werden, da dieses Arbeitspaket Unterelemente besitzt."
             priority_id:
               only_active_priorities_allowed: "muss aktiv sein."
             category:
@@ -1549,8 +1564,7 @@ de:
               cant_exceed_work: "Kann nicht größer als der Aufwand sein."
               must_be_set_when_work_is_set: "Ist erforderlich, wenn Aufwand gesetzt ist."
               must_be_set_when_work_and_percent_complete_are_set: "ist erforderlich, wenn Aufwand und % abgeschlossen eingestellt sind."
-              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: >-
-                muss 0h sein, wenn Aufwand gesetzt und % abgeschlossen 100% ist.
+              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: '>- must be 0h when Work is set and % Complete is 100%.'
               must_be_empty_when_work_is_empty_and_percent_complete_is_100p: >-
                 muss leer bleiben, wenn Aufwand gesetzt und % abgeschlossen 100% ist.
           readonly_status: "Das Arbeitspaket befindet sich in einem schreibgeschützten Status, so dass seine Attribute nicht geändert werden können."
@@ -1614,6 +1628,7 @@ de:
         one: "Authentifizierungsanbieter"
         other: "Authentifizierungsanbieter"
       category: "Kategorie"
+      color: "Farbe"
       comment: "Kommentar"
       custom_action: "Benutzerdefinierte Aktion"
       custom_field: "Benutzerdefiniertes Feld"
@@ -1959,11 +1974,11 @@ de:
       succeeded: 'Das Projekt "%{source_project_name}" wurde nach "%{target_project_name}" kopiert.'
     source_project_label: "Projekt kopiert"
     copy_options:
-      dependencies_label: 'Projekt kopieren'
+      dependencies_label: "Projekt kopieren"
   create_project:
     template_label: "Vorlage verwenden"
     copy_options:
-      dependencies_label: 'Aus Vorlage erstellen'
+      dependencies_label: "Aus Vorlage erstellen"
   create_wiki_page: "Neue Wikiseite anlegen"
   create_wiki_page_button: "Wiki-Seite"
   date:
@@ -2139,7 +2154,7 @@ de:
       project_list_sharing: Projektlistenfreigabe
       readonly_work_packages: Schreibgeschützte Arbeitspakete
       scim_api: SCIM-Server-API
-      sso_auth_providers: Single Sign-on
+      sso_auth_providers: Single-Sign-On
       team_planner_view: Teamplaner
       virus_scanning: Antivirus-Überprüfung
       work_package_query_relation_columns: Arbeitspaket-Relationsspalten
@@ -2208,6 +2223,9 @@ de:
       scim_api:
         title: "SCIM-Clients"
         description: "Automatisieren Sie die Benutzerverwaltung in OpenProject durch nahtlose Integration externer Identitätsdienste wie Microsoft Entra oder Keycloak über unsere SCIM Server API. Verfügbar ab dem Enterprise Corporate Plan."
+      sso_auth_providers:
+        title: "Single Sign-On (SSO)"
+        description: "Enable users to log in via external SSO providers using SAML or OpenID Connect for seamless access and integration with existing identity systems."
       virus_scanning:
         description: "Stellen Sie sicher, dass hochgeladene Dateien in OpenProject auf Viren gescannt werden, bevor sie für andere Benutzer zugänglich sind."
       placeholder_users:
@@ -2245,6 +2263,13 @@ de:
         Ich möchte den OpenProject <a target="_blank" href="https://www.openproject.org/newsletter/">Newsletter</a> erhalten.
       consent_html: >
         Ich stimme den <a target="_blank" href="https://www.openproject.org/de/rechtliches/nutzungsbedingungen"></a> und den <a target="_blank" href="https://www.openproject.org/de/rechtliches/datenschutz/">Datenschutzrichtlinien</a> zu.
+  email_calendar_updates:
+    state:
+      disabled: "Deaktiviert."
+      enabled: "Aktiviert."
+    button:
+      disabled: "Aktivieren"
+      enabled: "Deaktivieren"
   enumeration_activities: "Aktivitäten für Zeiterfassung"
   enumeration_work_package_priorities: "Arbeitspaket-Prioritäten"
   enumeration_reported_project_statuses: "Gemeldeter Projektstatus"
@@ -2271,7 +2296,7 @@ de:
   error_custom_option_not_found: "Option ist nicht vorhanden."
   error_enterprise_plan_needed: "Sie benötigen den Enterprise-Plan %{plan}, um diese Aktion durchzuführen."
   error_enterprise_activation_user_limit: "Ihr Konto konnte nicht aktiviert werden (Nutzerlimit erreicht). Bitte kontaktieren Sie Ihren Administrator um Zugriff zu erhalten."
-  error_enterprise_token_invalid_domain: "Die Enterprise-Edition ist nicht aktiv. Die aktuelle Domain (%{actual}) entspricht nicht dem erwarteten Hostnamen (%{expected})."
+  error_enterprise_token_invalid_domain: "Die Enterprise edition ist nicht aktiv. Die aktuelle Domain (%{actual}) entspricht nicht dem erwarteten Hostnamen (%{expected})."
   error_failed_to_delete_entry: "Fehler beim Löschen dieses Eintrags."
   error_in_dependent: "Fehler beim Versuch, abhängiges Objekt zu ändern: %{dependent_class} #%{related_id} - %{related_subject}: %{error}"
   error_in_new_dependent: "Fehler beim Versuch, abhängiges Objekt zu erstellen: %{dependent_class} - %{related_subject}: %{error}"
@@ -2390,8 +2415,13 @@ de:
           label: "Beschreibungen inkludieren"
           caption: "Mit dieser Option wird die Beschreibungs-Spalte im Rohformat hinzugefügt."
     your_work_packages_export: "Arbeitspakete werden exportiert"
+    your_projects_export: "Projekte werden exportiert"
     succeeded: "Export abgeschlossen"
     failed: "Beim Versuch, die Arbeitspakete zu exportieren, ist ein Fehler aufgetreten: %{message}"
+    demo:
+      heading: "Demo PDF"
+      footer: "Generated by OpenProject"
+      button_text: Generate Demo PDF
     errors:
       embedded_table_with_too_many_columns: "Diese eingebettete Arbeitspakettabelle passte nicht auf die Seite. Bitte reduzieren Sie die Anzahl der Spalten."
     format:
@@ -2452,6 +2482,13 @@ de:
       xls2csv: "Xls2csv verfügbar (optional)"
       catppt: "Catppt verfügbar (optional)"
       tesseract: "Tesseract verfügbar (optional)"
+  filterable_tree_view:
+    filter_mode:
+      all: "Alle"
+      label: "Filter mode"
+      selected: "Selected"
+    include_sub_items: "Include sub-items"
+    no_results_text: "No results"
   general_csv_decimal_separator: ","
   general_csv_encoding: "UTF-8"
   general_csv_separator: ","
@@ -2475,7 +2512,7 @@ de:
       upsell:
         title: "Auf Enterprise edition upgraden"
     links:
-      upgrade_enterprise_edition: "Auf Enterprise-Edition upgraden"
+      upgrade_enterprise_edition: "Auf Enterprise edition upgraden"
       postgres_migration: "Migration Ihrer Installation zu PostgreSQL"
       user_guides: "Benutzerhandbuch"
       faq: "Häufig gestellte Fragen"
@@ -2513,7 +2550,7 @@ de:
         dates:
           working: "%{date} ist jetzt ein Arbeitstag"
           non_working: "%{date} ist jetzt ein arbeitsfreier Tag"
-      progress_mode_changed_to_status_based: Fortschrittberechnung wurde auf Status-bezogen gesetzt
+      progress_mode_changed_to_status_based: Fortschrittberechnung wurde auf Status-basiert gesetzt
       status_excluded_from_totals_set_to_false_message: jetzt in den Gesamtwerten der Hierarchie enthalten
       status_excluded_from_totals_set_to_true_message: jetzt von den Hierarchie-Gesamtwerten ausgeschlossen
       status_percent_complete_changed: "% abgeschlossen von %{old_value}% auf %{new_value} % geändert"
@@ -2557,11 +2594,13 @@ de:
         expiration: "Läuft aus"
       indefinite_expiration: "Nie"
       simple_revoke_confirmation: "Sind Sie sicher, dass Sie dieses Token widerrufen möchten?"
-      api:
+      token/api:
         title: "Schnittstelle (API)"
         text_hint: "API-Token erlauben es Drittanbieter-Anwendungen, mit dieser OpenProject-Instanz über REST-APIs zu kommunizieren."
-        static_token_name: "API-Token"
         disabled_text: "API-Token sind vom Administrator nicht aktiviert. Bitte kontaktieren Sie Ihren Administrator, um diese Funktion zu nutzen."
+        add_button: "API Token"
+      api:
+        static_token_name: "API-Token"
       ical:
         title: "iCalendar"
         text_hint: 'iCalendar Token erlauben es Benutzern <a href="%{path}" target="_blank">OpenProject Kalender</a> zu abonnieren und aktuelle Arbeitspaket-Informationen auf externen Clients anzuzeigen.'
@@ -2805,7 +2844,7 @@ de:
   label_enumerations: "Aufzählungen"
   label_enterprise: "Enterprise"
   label_enterprise_active_users: "%{current}/%{limit} gebuchte aktive Nutzer"
-  label_enterprise_edition: "Enterprise Edition"
+  label_enterprise_edition: "Enterprise edition"
   label_enterprise_support: "Enterprise Support"
   label_environment: "Umgebung"
   label_estimates_and_progress: "Schätzungen und Fortschritt"
@@ -2884,6 +2923,7 @@ de:
   label_invite_user: "Nutzer einladen"
   label_item: "Element"
   label_item_plural: "Elemente"
+  label_scored_list: "Scored list"
   label_share: "Teilen"
   label_share_project_list: "Projektliste teilen"
   label_share_work_package: "Arbeitspaket teilen"
@@ -2913,12 +2953,18 @@ de:
   label_link_url: "Link (URL)"
   label_list: "Liste"
   label_loading: "Lade..."
+  label_locked: "locked"
   label_lock_user: "Benutzer sperren"
   label_logged_as: "Angemeldet als"
   label_login: "Anmelden"
   label_custom_logo: "Benutzerdefiniertes Logo"
   label_custom_export_logo: "Selbstdefiniertes Logo für PDF-Export"
   label_custom_export_cover: "Hintergrund für Export Cover"
+  label_custom_export_footer: "Selbstdefiniertes Fußzeilen-Bild für PDF-Export"
+  label_custom_export_font_regular: "Regular"
+  label_custom_export_font_bold: "Bold"
+  label_custom_export_font_italic: "Italic"
+  label_custom_export_font_bold_italic: "Bold Italic"
   label_custom_export_cover_overlay: "Eigenes Deckblatt für Export"
   label_custom_export_cover_text_color: "Textfarbe"
   label_custom_pdf_export_settings: "Benutzerdefinierte PDF-Export-Einstellungen"
@@ -3006,6 +3052,8 @@ de:
   label_operator_equals_or: "ist (ODER)"
   label_operator_equals_all: "ist (UND)"
   label_operator_shared_with_user_any: "beliebig"
+  label_open: "Offen"
+  label_closed: "Geschlossen"
   label_open_menu: "Menü öffnen"
   label_open_work_packages: "Offen"
   label_open_work_packages_plural: "offen"
@@ -3072,6 +3120,10 @@ de:
   label_project_view_all: "Alle Projekte anzeigen"
   label_project_show_details: "Projektdetails anzeigen"
   label_project_hide_details: "Projektdetails verstecken"
+  label_portfolio: "Portfolio"
+  label_portfolio_new: "New portfolio"
+  label_program: "Program"
+  label_program_new: "New program"
   label_public_projects: "Öffentliche Projekte"
   label_query_new: "Neuer Bericht"
   label_query_plural: "Benutzerdefinierte Berichte"
@@ -3220,6 +3272,8 @@ de:
   label_watched_work_packages: "Beobachtete Arbeitspakete"
   label_what_is_this: "Was ist das?"
   label_week: "Woche"
+  label_widget: "Widget"
+  label_widget_new: "Neues Widget"
   label_wiki_content_added: "Die Wiki-Seite wurde erfolgreich hinzugefügt."
   label_wiki_content_updated: "Die Wiki-Seite wurde erfolgreich aktualisiert."
   label_wiki_toc: "Inhaltsverzeichnis"
@@ -3567,6 +3621,8 @@ de:
   permission_add_work_packages: "Arbeitspakete hinzufügen"
   permission_add_messages: "Forenbeiträge hinzufügen"
   permission_add_project: "Projekte erstellen"
+  permission_add_portfolios: "Portfolios erstellen"
+  permission_add_programs: "Programme erstellen"
   permission_add_work_package_attachments: "Anhänge hinzufügen"
   permission_add_work_package_attachments_explanation: "Erlaubt das Hinzufügen von Anhängen ohne die Berechtigung, das Arbeitspaket selbst zu bearbeiten"
   permission_add_internal_comments: "Interne Kommentare schreiben"
@@ -3811,7 +3867,7 @@ de:
       update_timeout: "Speichere die Informationen bzgl. des genutzten Festplattenspeichers eines Projektarchivs für N Minuten.\nErhöhen Sie diesen Wert zur Verbesserung der Performance, da die Erfassung des genutzten Festplattenspeichers Ressourcen-intensiv ist."
       oauth_application_details: "Der Client Geheimcode wird nach dem Schließen dieses Fensters nicht mehr zugänglich sein. Bitte kopieren Sie diese Werte in die Nextcloud OpenProject Integrationseinstellungen:"
       oauth_application_details_link_text: "Zu den Einstellungen gehen"
-      setup_documentation_details: "Wenn Sie Hilfe bei der Konfiguration eines neuen Dateispeichers benötigen, konsultieren Sie bitte die Dokumentation: "
+      setup_documentation_details: "Wenn Sie Hilfe bei der Konfiguration eines neuen Datei-Speichers benötigen, konsultieren Sie bitte die Dokumentation: "
       setup_documentation_details_link_text: "Dateispeicher einrichten"
       show_warning_details: "Um diesen Dateispeicher nutzen zu können, müssen Sie das Modul und den spezifischen Speicher in den Projekteinstellungen jedes gewünschten Projekts aktivieren."
     subversion:
@@ -3863,6 +3919,7 @@ de:
   setting_attachment_whitelist: "Positivliste für Dateiuploads"
   setting_email_delivery_method: "E-Mail Zustellungsoption"
   setting_emails_salutation: "Anrede der Benutzer in E-Mails"
+  setting_oauth_allow_remapping_of_existing_users: "Neuzuordnung von Authentifizierungsprovidern der Benutzer erlauben"
   setting_sendmail_location: "Systempfad zu sendmail"
   setting_smtp_enable_starttls_auto: "Automatisch STARTTLS verwenden, falls vorhanden"
   setting_smtp_ssl: "Benutzen Sie eine SSL-Verbindung"
@@ -4023,11 +4080,13 @@ de:
   setting_working_days: "Arbeitstage"
   settings:
     authentication:
-      login_and_sso: "Login und SSO"
+      login: "Anmelden"
       registration: "Registrierung"
-      single_sign_on: "Single-Sign-On"
+      sso: "Single Sign-On (SSO)"
       omniauth_direct_login_hint_html: >
         Wenn diese Option aktiviert ist, werden die Anmeldeanfragen an den konfigurierten SSO-Anbieter weitergeleitet. Das Login-Dropdown und die Anmeldeseite sind dann deaktiviert. <br/> <strong>Hinweis:</strong> Sofern Sie nicht auch die Passwortanmeldung deaktivieren, können sich Benutzer bei aktivierter Option immer noch intern anmelden, indem sie die interne Anmeldeseite <code>%{internal_path}</code> verwenden.
+      remapping_existing_users_hint: >
+        Wenn diese Option aktiviert ist, kann jeder konfigurierte Identitätsanbieter bestehende Benutzer anhand ihrer E-Mail-Adresse oder Login erzeugen, auch wenn sich der Benutzer noch nie über diesen Anbieter angemeldet hat. Dies kann bei der Migration der OpenProject-Instanz zu einem neuen SSO-Anbieter nützlich sein, wird aber nicht empfohlen, wenn Sie einen Anbieter verwenden, dem nicht alle Benutzer Ihrer Instanz vertrauen.
     attachments:
       whitelist_text_html: >
         Legen Sie eine Liste gültiger Dateierweiterungen und/oder Mime-Typen für hochgeladene Dateien fest. <br/> Dateierweiterungen (z. B. <code>%{ext_example}</code>) oder Mime-Typen (z. ., <code>%{mime_example}</code>). <br/> Lassen Sie diese Liste leer, um das Hochladen beliebiger Dateitypen zu erlauben. Mehrere Werte erlaubt (eine Zeile pro Wert).
@@ -4171,6 +4230,20 @@ de:
     Dies ist das Logo, das in Ihren PDF-Exporten erscheint. Es muss eine PNG- oder JPEG-Bilddatei sein. Ein schwarzes oder farbiges Logo auf transparentem oder weißem Hintergrund wird empfohlen.
   text_custom_export_cover_instructions: >
     Dies ist das Bild, das im Hintergrund einer Cover-Seite in Ihren PDF-Exporten erscheint. Es muss eine etwa 800px breite und 500px hohe PNG- oder JPEG-Bilddatei sein.
+  text_custom_export_footer_instructions: >
+    Ein grafisches Element für PDF-Exporte, das links neben der Fußzeile positioniert wird. Dieses Bild muss eine PNG- oder JPEG-Datei mit etwa 200 Pixeln Breite sein.
+  label_custom_export_font_instructions: >
+    Upload and manage custom TrueType (.ttf) fonts used in your PDF exports. For best results, use matching files from the same font family. If no font is provided, the default NotoSans font will be used.
+  label_custom_export_images_instructions: >
+    Upload and manage custom image files used in your PDF exports.
+  text_custom_export_font_regular_instructions: >
+    This is the font file for regular text. It needs to be in TTF format and is required.
+  text_custom_export_font_bold_instructions: >
+    This is the font file for bold text. It needs to be in TTF format.
+  text_custom_export_font_italic_instructions: >
+    This is the font file for italic text. It needs to be in TTF format.
+  text_custom_export_font_bold_italic_instructions: >
+    This is the font file for bold and italic text. It needs to be in TTF format.
   text_custom_favicon_instructions: >
     Dies ist das kleine Symbol, das in Ihrem Browser-Fenster/Tab neben dem Seitentitel angezeigt wird. Es muss ein quadratisches 32 x 32 Pixel großes PNG mit transparentem Hintergrund sein.
   text_custom_touch_icon_instructions: >
@@ -4349,7 +4422,7 @@ de:
   warning_user_limit_reached_admin: >
     Das Hinzufügen zusätzlicher Benutzer überschreitet das aktuelle Benutzerlimit. Bitte <a href="%{upgrade_url}">aktualisieren Sie Ihr Abonnement</a> um sicherzustellen, dass externe Benutzer auf diese Instanz zugreifen können.
   warning_user_limit_reached_instructions: >
-    Du hast dein Nutzerlimit erreicht (%{current}/%{max} active users). Bitte kontaktiere sales@openproject.com um deinen Enterprise Edition Plan upzugraden und weitere Nutzer hinzuzufügen.
+    Du hast dein Nutzerlimit erreicht (%{current}/%{max} active users). Bitte kontaktiere sales@openproject.com um deinen Enterprise edition Plan upzugraden und weitere Nutzer hinzuzufügen.
   warning_protocol_mismatch_html: >
 
   warning_bar:
@@ -4510,6 +4583,8 @@ de:
       code_500_missing_enterprise_token: "Die Anfrage kann wegen ungültigem oder fehlenden Enterprise Token nicht bearbeitet werden."
       bad_request:
         emoji_reactions_activity_type_not_supported: "Dieser Aktivitätstyp unterstützt keine Emoji-Reaktionen."
+        invalid_link: "Der Link unter dem Schlüssel '%{key}' ist nicht gültig."
+        links_not_an_object: "_links muss ein JSON-Objekt sein."
       conflict:
         multiple_reminders_not_allowed: |-
           Sie können nur eine Erinnerung gleichzeitig für ein Arbeitspaket festlegen. Bitte löschen oder aktualisieren Sie die bestehende Erinnerung.
@@ -4712,3 +4787,6 @@ de:
     description: "Fügt den OmniAuth SAML-Anbieter zu OpenProject hinzu"
   enterprise_plans:
     legacy_enterprise: "Enterprise Plan"
+  token:
+    hashed_token:
+      display_value_placeholder: "***"

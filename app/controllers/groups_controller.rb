@@ -95,7 +95,7 @@ class GroupsController < ApplicationController
   def add_users
     service_call = Groups::UpdateService
                    .new(user: current_user, model: @group)
-                   .call(user_ids: @group.user_ids + Array(params[:user_ids]).map(&:to_i))
+                   .call(add_user_ids: Array(params[:user_ids]))
 
     respond_users_altered(service_call)
   end
@@ -105,7 +105,7 @@ class GroupsController < ApplicationController
 
     service_call = Groups::UpdateService
                    .new(user: current_user, model: @group)
-                   .call(user_ids: @group.user_ids - Array(params[:user_id]).map(&:to_i))
+                   .call(remove_user_ids: Array(params[:user_id]))
 
     respond_users_altered(service_call)
   end

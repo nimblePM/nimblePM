@@ -4,7 +4,7 @@
       panel.with_section(Meetings::SidePanel::DetailsComponent.new(meeting: @meeting))
 
       if @meeting.editable?
-        panel.with_section(Meetings::SidePanel::NotificationsButtonComponent.new(meeting: @meeting))
+        panel.with_section(email_updates_mode_selector)
       end
 
       unless @meeting.template?

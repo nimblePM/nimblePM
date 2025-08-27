@@ -1080,6 +1080,8 @@ tr:
     notice_successful_delete: "Silme başarılı."
     notice_successful_update: "Güncelleme başarılı."
     notice_job_started: "görev başlatıldı."
+    no_job_id: "No job ID returned from server."
+    invalid_job_response: "Invalid response from server."
     notice_bad_request: "Hatalı istek."
     relations:
       empty: İlişki bulunmuyor
@@ -1223,12 +1225,14 @@ tr:
         all: "Tüm projeler"
         selected: "Sadece seçilen"
       search_placeholder: "Proje ara..."
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "Tüm alt projeleri dahil et"
       tooltip:
         include_all_selected: "Tüm alt projeleri dahil et etkinleştirildiğinden, proje zaten dahil edilmiştir."
         current_project: "Bu, içinde bulunduğunuz mevcut projedir."
         does_not_match_search: "Proje arama kriterleriyle eşleşmiyor."
       no_results: "Arama kriterleriniz ile eşleşen proje yok"
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "Referens Zamanı"
       clear: "Temizle"

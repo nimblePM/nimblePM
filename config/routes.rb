@@ -180,6 +180,10 @@ Rails.application.routes.draw do
       as: "custom_style_export_cover",
       constraints: { filename: /[^\/]*/ }
 
+  get "custom_style/:digest/export_footer/:filename" => "custom_styles#export_footer_download",
+      as: "custom_style_export_footer",
+      constraints: { filename: /[^\/]*/ }
+
   get "custom_style/:digest/favicon/:filename" => "custom_styles#favicon_download",
       as: "custom_style_favicon",
       constraints: { filename: /[^\/]*/ }
@@ -257,7 +261,13 @@ Rails.application.routes.draw do
     resource :menu, only: %i[show]
   end
 
-  resources :projects, except: %i[show edit update] do
+  # Extracted from the resources definition right below so that the
+  # default parameters can be defined.
+  resources :projects,
+            only: %i[new],
+            defaults: { workspace_type: "project" }
+
+  resources :projects, except: %i[new show edit update] do
     scope module: "projects" do
       namespace "settings" do
         resource :general, only: %i[show update], controller: "general" do
@@ -463,6 +473,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :portfolios,
+            only: %i[new],
+            defaults: { workspace_type: "portfolio" },
+            controller: "projects"
+
+  resources :programs,
+            only: %i[new],
+            defaults: { workspace_type: "program" },
+            controller: "projects"
+
   resources :project_phases, only: [] do
     member do
       get "/hover_card" => "project_phases/hover_card#show", as: "hover_card"
@@ -503,6 +523,13 @@ Rails.application.routes.draw do
     delete "design/logo" => "custom_styles#logo_delete", as: "custom_style_logo_delete"
     delete "design/export_logo" => "custom_styles#export_logo_delete", as: "custom_style_export_logo_delete"
     delete "design/export_cover" => "custom_styles#export_cover_delete", as: "custom_style_export_cover_delete"
+    delete "design/export_footer" => "custom_styles#export_footer_delete", as: "custom_style_export_footer_delete"
+    delete "design/export_font_regular" => "custom_styles#export_font_regular_delete",
+           as: "custom_style_export_font_regular_delete"
+    delete "design/export_font_bold" => "custom_styles#export_font_bold_delete", as: "custom_style_export_font_bold_delete"
+    delete "design/export_font_italic" => "custom_styles#export_font_italic_delete", as: "custom_style_export_font_italic_delete"
+    delete "design/export_font_bold_italic" => "custom_styles#export_font_bold_italic_delete",
+           as: "custom_style_export_font_bold_italic_delete"
     delete "design/favicon" => "custom_styles#favicon_delete", as: "custom_style_favicon_delete"
     delete "design/touch_icon" => "custom_styles#touch_icon_delete", as: "custom_style_touch_icon_delete"
     post "design/colors" => "custom_styles#update_colors", as: "update_design_colors"
@@ -510,7 +537,9 @@ Rails.application.routes.draw do
     post "design/export_cover_text_color" => "custom_styles#update_export_cover_text_color",
          as: "update_custom_style_export_cover_text_color"
 
-    resource :custom_style, only: %i[update show create], path: "design"
+    resource :custom_style, only: %i[update show create], path: "design" do
+      get :export_demo_pdf_download
+    end
 
     resources :attribute_help_texts, only: %i(index new create edit update destroy)
 
@@ -846,13 +875,29 @@ Rails.application.routes.draw do
   scope "my" do
     get "/deletion_info" => "users#deletion_info", as: "delete_my_account_info"
     post "/oauth/revoke_application/:application_id" => "oauth/grants#revoke_application", as: "revoke_my_oauth_application"
-    delete "/storage_token/:id" => "my#delete_storage_token", as: "storage_token_delete"
 
     resources :sessions, controller: "my/sessions", as: "my_sessions", only: %i[index show destroy]
     resources :auto_login_tokens, controller: "my/auto_login_tokens", as: "my_auto_login_tokens", only: %i[destroy]
 
     get "/banner" => "my/enterprise_banners#show", as: "show_enterprise_banner"
     post "/dismiss_banner" => "my/enterprise_banners#dismiss", as: "dismiss_enterprise_banner"
+  end
+
+  namespace :my do
+    resources :access_tokens, only: %i[index] do
+      collection do
+        get :dialog
+        post :generate_rss_key
+        delete :revoke_rss_key
+
+        post :generate_api_key
+      end
+
+      delete :revoke_api_key
+      delete :revoke_ical_token
+      delete :revoke_storage_token
+      delete :revoke_ical_meeting_token
+    end
   end
 
   scope controller: "my" do
@@ -867,13 +912,6 @@ Rails.application.routes.draw do
 
     patch "/my/account", action: "update_account"
     patch "/my/settings", action: "update_settings"
-
-    post "/my/generate_rss_key", action: "generate_rss_key"
-    delete "/my/revoke_rss_key", action: "revoke_rss_key"
-    post "/my/generate_api_key", action: "generate_api_key"
-    delete "/my/revoke_api_key", action: "revoke_api_key"
-    delete "/my/revoke_ical_token", action: "revoke_ical_token"
-    get "/my/access_token", action: "access_token"
   end
 
   scope controller: "onboarding" do

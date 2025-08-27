@@ -59,6 +59,10 @@ vi:
       tab_interface: "Interface"
       tab_branding: "Branding"
       tab_pdf_export_styles: "PDF export styles"
+      tab_pdf_export_font: "PDF export font"
+      fonts:
+        file_too_large: "is too large (maximum size is %{count} MB)."
+        file_is_invalid: "is not a valid TTF font file."
       colors:
         primary-button-color: "Nút chính"
         accent-color: "Nhấn mạnh"
@@ -297,6 +301,7 @@ vi:
         placeholder:
           label: "Item label"
           short: "Short name"
+          score: "Score"
       notice:
         remember_items_and_projects: "Remember to set items and projects in the respective tabs for this custom field."
       hierarchy:
@@ -332,13 +337,18 @@ vi:
     single: "hoặc"
   dry_validation:
     errors:
+      defined: "must not be defined."
       int?: "must be an integer."
+      decimal?: "must be a decimal."
       filled?: "must be filled."
+      key?: "is missing."
       greater_or_equal_zero: "must be greater or equal to 0."
       not_found: "not found."
       rules:
         copy_workflow_from:
           workflow_missing: "has no own workflow."
+        custom_field:
+          format_not_supported: "format '%{field_format}' is unsupported."
         item:
           root_item: "cannot be a root item."
           not_persisted: "must be an already existing item."
@@ -354,6 +364,7 @@ vi:
       depth: "Depth"
       item: "Item"
       label: "Label"
+      score: "Score"
       short: "Short name"
       parent: "Cha"
       blueprint: "Pattern blueprint"
@@ -374,7 +385,7 @@ vi:
       description: By grouping users together, you can add them as members to the same projects or assign the same global roles to them.
     table_component:
       blank_slate:
-        description: You can define groups of users with specific names
+        description: You can define named groups of users with specific permissions.
         title: No groups set up yet
       user_count: User count
     users:
@@ -464,7 +475,7 @@ vi:
       life_cycle:
         header:
           title: "Project life cycle"
-          description_html: "The active project phases define this project's life cycle and are defined in the <a href=%{admin_settings_url} target=\"_blank\">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target=\"_blank\">project overview</a>."
+          description_html: 'The active project phases define this project''s life cycle and are defined in the <a href=%{admin_settings_url} target="_blank">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target="_blank">project overview</a>.'
         non_defined: "No phases are currently defined."
         section_header: "Phases"
         step:
@@ -567,26 +578,26 @@ vi:
       will_revoke_access_to_all: "Hành động này sẽ thu hồi quyền truy cập của họ vào tất cả các gói công việc."
   my:
     access_token:
-      create_dialog:
-        title: Token generated
-        header: Token %{type} đã được tạo
-        warning: Lưu ý rằng đây là lần duy nhất bạn thấy được token này, chắc chắn phải sao chép nó ngay.
+      dialog:
+        token/api:
+          dialog_title: "Tạo token API mới"
+          attention_text: "Treat API tokens like passwords. Anyone with this token will have access to information from this instance, share it only with trusted users."
+          dialog_body: "Token này sẽ cho phép các ứng dụng bên thứ ba giao tiếp với hệ thống của bạn. Để phân biệt token API mới, vui lòng đặt tên cho nó."
+          create_button: "Tạo mới"
+          name_label: "Token name"
+      created_dialog:
+        token/api:
+          title: "The API token has been generated"
+          warning: "This is the only time you will see this token. Make sure to copy it now."
       errors:
         token_name_blank: "Vui lòng cung cấp tên API token"
         token_name_in_use: "Tên API token này đã được sử dụng, vui lòng chọn tên khác"
-      new_access_token_dialog_title: "Tạo token API mới"
-      new_access_token_dialog_show_button_text: "Mã API"
-      new_access_token_dialog_text_field_placeholder_text: "Token API của tôi"
-      new_access_token_dialog_text_field_label: "Tên"
-      new_access_token_dialog_submit_button_text: "Tạo mới"
-      new_access_token_dialog_text: "Token này sẽ cho phép các ứng dụng bên thứ ba giao tiếp với hệ thống của bạn. Để phân biệt token API mới, vui lòng đặt tên cho nó."
-      new_access_token_dialog_attention_text: "Xem token API như mật khẩu. Bất kỳ ai có liên kết này sẽ có quyền truy cập thông tin từ hệ thống của bạn, chỉ chia sẻ nó với người dùng đáng tin cậy."
       failed_to_reset_token: "Lỗi cập nhật mã truy cập: %{error}"
       failed_to_create_token: "Không thể tạo token truy cập: %{error}"
       failed_to_revoke_token: "Không thể thu hồi token truy cập: %{error}"
       notice_reset_token: "Một mã %{type} truy cập mới vừa được tạo. Mã truy cập của bạn là:"
       token_value_warning: "Chú ý: Mã này chỉ hiện duy nhất một lần, bạn nên sao chép lại để lưu trữ."
-      no_results_title_text: Không có thẻ truy cập hiện hữu.
+      no_results_title_text: "Không có thẻ truy cập hiện hữu."
       notice_api_token_revoked: "Token API đã bị xóa. Để tạo token mới, vui lòng sử dụng nút trong phần API."
       notice_rss_token_revoked: "Token RSS đã bị xóa. Để tạo token mới, vui lòng sử dụng liên kết trong phần RSS."
       notice_ical_token_revoked: 'Token iCalendar "%{token_name}" cho lịch "%{calendar_name}" của dự án "%{project_name}" đã bị thu hồi. URL iCalendar với token này hiện không hợp lệ.'
@@ -679,8 +690,10 @@ vi:
         excluded_from_totals: "Loại trừ khỏi tổng số"
   themes:
     dark: "Dark"
+    dark_high_contrast: "Dark high contrast"
     light: "Sáng"
     light_high_contrast: "Sáng, độ tương phản cao"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Hiện tại không có loại nào.
@@ -713,7 +726,7 @@ vi:
         pattern:
           label: "Subject pattern"
           caption: Create patterns by adding text, or type "/" to search for [supported attributes](attributes_url).
-          insert_as_text: "No attributes found. Add as text: \"%{word}\""
+          insert_as_text: 'No attributes found. Add as text: "%{word}"'
       export_configuration:
         tab: "Generate PDF"
         intro: "Select which templates from those that are available you would like to enable for this type. The template determines the design and attributes visible in the exported PDF of a work package using this type. The first template on the list is selected by default."
@@ -1054,6 +1067,7 @@ vi:
         types: "Các loại"
         versions: "Các phiên bản"
         work_packages: "Work Packages"
+        workspace_type: "Workspace type"
       project_custom_field:
         is_required: "Yêu cầu cho tất cả các dự án"
         custom_field_section: Phần
@@ -1283,6 +1297,7 @@ vi:
         odd: "phải là số lẻ"
         regex_match_failed: "không khớp với biểu thức chính quy %{expression}."
         regex_invalid: "có thể không được xác nhận với các biểu hiện thường xuyên liên kết."
+        regex_list_invalid: "Lines %{invalid_lines} could not be parsed as regular expression."
         hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
         smaller_than_or_equal_to_max_length: "phải nhỏ hơn hoặc bằng với chiều dài tối đa"
         taken: "đã bị dùng rồi."
@@ -1549,8 +1564,7 @@ vi:
               cant_exceed_work: "không thể cao hơn Công việc."
               must_be_set_when_work_is_set: "cần thiết khi Công việc được thiết lập."
               must_be_set_when_work_and_percent_complete_are_set: "bắt buộc khi Công việc và % Hoàn thành được thiết lập."
-              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: >-
-                phải là 0h khi Công việc được thiết lập và % Hoàn thành là 100%.
+              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: '>- must be 0h when Work is set and % Complete is 100%.'
               must_be_empty_when_work_is_empty_and_percent_complete_is_100p: >-
                 phải trống khi Công việc trống và % Hoàn thành là 100%.
           readonly_status: "Gói công việc đang ở trạng thái chỉ đọc nên các thuộc tính của nó không thể bị thay đổi."
@@ -1611,6 +1625,7 @@ vi:
       auth_provider:
         other: "Authentication providers"
       category: "Thể loại"
+      color: "Màu sắc"
       comment: "Nhận xét"
       custom_action: "Tác vụ tùy chỉnh"
       custom_field: "Tùy chỉnh mục"
@@ -1944,11 +1959,11 @@ vi:
       succeeded: 'Đã sao chép dự án "%{source_project_name}" sang "%{target_project_name}".'
     source_project_label: "Project copied"
     copy_options:
-      dependencies_label: 'Copy from project'
+      dependencies_label: "Copy from project"
   create_project:
     template_label: "Sử dụng mẫu"
     copy_options:
-      dependencies_label: 'Copy from template'
+      dependencies_label: "Copy from template"
   create_wiki_page: "Create new wiki page"
   create_wiki_page_button: "Trang wiki"
   date:
@@ -2104,7 +2119,7 @@ vi:
       project_list_sharing: Project List Sharing
       readonly_work_packages: Readonly Work Packages
       scim_api: SCIM server API
-      sso_auth_providers: Single sign-on
+      sso_auth_providers: Single Sign-On
       team_planner_view: Team Planner View
       virus_scanning: Antivirus Scanning
       work_package_query_relation_columns: Work Package Query Relation Columns
@@ -2173,6 +2188,9 @@ vi:
       scim_api:
         title: "SCIM clients"
         description: "Automate user management in OpenProject by seamlessly integrating external identity services like Microsoft Entra or Keycloak through our SCIM Server API. Available starting with the Enterprise corporate plan."
+      sso_auth_providers:
+        title: "Single Sign-On (SSO)"
+        description: "Enable users to log in via external SSO providers using SAML or OpenID Connect for seamless access and integration with existing identity systems."
       virus_scanning:
         description: "Đảm bảo các tệp tải lên trong OpenProject được quét virus trước khi được người dùng khác truy cập."
       placeholder_users:
@@ -2209,6 +2227,13 @@ vi:
         I want to receive the OpenProject <a target="_blank" href="https://www.openproject.org/newsletter/">newsletter</a>.
       consent_html: >
         I agree with the <a target="_blank" href="https://www.openproject.org/terms-of-service/">terms of service</a> and the <a target="_blank" href="https://www.openproject.org/data-privacy-and-security/">privacy policy</a>.
+  email_calendar_updates:
+    state:
+      disabled: "Disabled."
+      enabled: "Enabled."
+    button:
+      disabled: "Enable"
+      enabled: "Disable"
   enumeration_activities: "Theo dõi hoạt động"
   enumeration_work_package_priorities: "Độ ưu tiên của work package"
   enumeration_reported_project_statuses: "Tình trạng dự án đã báo cáo"
@@ -2354,8 +2379,13 @@ vi:
           label: "Bao gồm mô tả"
           caption: "Tùy chọn này sẽ thêm cột mô tả ở định dạng thô."
     your_work_packages_export: "Các gói công việc đang được xuất khẩu"
+    your_projects_export: "Projects are being exported"
     succeeded: "Xuất hoàn tất"
     failed: "Đã xảy ra lỗi khi cố gắng xuất các gói công việc: %{message}"
+    demo:
+      heading: "Demo PDF"
+      footer: "Generated by OpenProject"
+      button_text: Generate Demo PDF
     errors:
       embedded_table_with_too_many_columns: "This embedded work package table could not fit on the page, please reduce the number of columns."
     format:
@@ -2416,6 +2446,13 @@ vi:
       xls2csv: "Xls2csv có sẵn (không bắt buộc)"
       catppt: "Catppt có sẵn (không bắt buộc)"
       tesseract: "Tesseract có (không bắt buộc)"
+  filterable_tree_view:
+    filter_mode:
+      all: "Tất cả"
+      label: "Filter mode"
+      selected: "Selected"
+    include_sub_items: "Include sub-items"
+    no_results_text: "No results"
   general_csv_decimal_separator: "."
   general_csv_encoding: "UTF-8"
   general_csv_separator: ","
@@ -2521,11 +2558,13 @@ vi:
         expiration: "Hết hạn"
       indefinite_expiration: "Không bao giờ"
       simple_revoke_confirmation: "Bạn có chắc chắn muốn thu hồi mã truy cập này không?"
-      api:
+      token/api:
         title: "API"
         text_hint: "Mã API cho phép các ứng dụng của bên thứ ba giao tiếp với phiên bản OpenProject này qua REST APIs."
-        static_token_name: "Mã thông báo API"
         disabled_text: "Mã API không được kích hoạt bởi quản trị viên. Vui lòng liên hệ với quản trị viên của bạn để sử dụng tính năng này."
+        add_button: "API Token"
+      api:
+        static_token_name: "Mã thông báo API"
       ical:
         title: "iCalendar"
         text_hint: 'Mã iCalendar cho phép người dùng <a href="%{path}" target="_blank">đăng ký các lịch OpenProject</a> và xem thông tin gói công việc cập nhật từ các khách hàng bên ngoài.'
@@ -2797,7 +2836,7 @@ vi:
   label_filter_add: "Thêm bộ lọc"
   label_filter_by: "Filter by"
   label_filter_any_name_attribute: "Name attributes"
-  label_filter_plural: "Các bộ lọc"
+  label_filter_plural: "Bộ lọc"
   label_filters_toggle: "Hiển thị/ẩn bộ lọc"
   label_float: "Số thực"
   label_folder: "Thư mục"
@@ -2848,6 +2887,7 @@ vi:
   label_invite_user: "Mời người dùng"
   label_item: "Item"
   label_item_plural: "Items"
+  label_scored_list: "Scored list"
   label_share: "Chia sẻ"
   label_share_project_list: "Chia sẻ danh sách dự án"
   label_share_work_package: "Chia sẻ gói công việc"
@@ -2877,12 +2917,18 @@ vi:
   label_link_url: "Liên kết (URL)"
   label_list: "Danh sách"
   label_loading: "Đang tải..."
+  label_locked: "locked"
   label_lock_user: "Khóa người dùng"
   label_logged_as: "Đăng nhập với tư cách"
   label_login: "Đăng nhập"
   label_custom_logo: "Logo tùy chỉnh"
   label_custom_export_logo: "Logo xuất khẩu tùy chỉnh"
   label_custom_export_cover: "Nền bìa xuất khẩu tùy chỉnh"
+  label_custom_export_footer: "Custom export footer image"
+  label_custom_export_font_regular: "Regular"
+  label_custom_export_font_bold: "Bold"
+  label_custom_export_font_italic: "Italic"
+  label_custom_export_font_bold_italic: "Bold Italic"
   label_custom_export_cover_overlay: "Lớp phủ nền bìa xuất khẩu tùy chỉnh"
   label_custom_export_cover_text_color: "Màu chữ"
   label_custom_pdf_export_settings: "Cài đặt xuất khẩu PDF tùy chỉnh"
@@ -2970,6 +3016,8 @@ vi:
   label_operator_equals_or: "là (HOẶC)"
   label_operator_equals_all: "là (VÀ)"
   label_operator_shared_with_user_any: "bất kỳ"
+  label_open: "mở"
+  label_closed: "đã đóng"
   label_open_menu: "Mở trình đơn"
   label_open_work_packages: "mở"
   label_open_work_packages_plural: "mở"
@@ -3036,6 +3084,10 @@ vi:
   label_project_view_all: "Xem tất cả các dự án"
   label_project_show_details: "Hiển thị chi tiết dự án"
   label_project_hide_details: "Ẩn chi tiết Dự án"
+  label_portfolio: "Portfolio"
+  label_portfolio_new: "New portfolio"
+  label_program: "Program"
+  label_program_new: "New program"
   label_public_projects: "Các dự án công khai"
   label_query_new: "Truy vấn mới"
   label_query_plural: "Truy vấn tùy chỉnh"
@@ -3184,6 +3236,8 @@ vi:
   label_watched_work_packages: "Các công việc đã xem"
   label_what_is_this: "Đây là gì?"
   label_week: "Tuần"
+  label_widget: "Widget"
+  label_widget_new: "New widget"
   label_wiki_content_added: "Đã thêm trang Wiki"
   label_wiki_content_updated: "Trang Wiki đã được cập nhật"
   label_wiki_toc: "Mục lục"
@@ -3529,6 +3583,8 @@ vi:
   permission_add_work_packages: "Thêm mới Gói công việc"
   permission_add_messages: "Đăng tin nhắn"
   permission_add_project: "Tạo dự án"
+  permission_add_portfolios: "Create portfolios"
+  permission_add_programs: "Create programs"
   permission_add_work_package_attachments: "Thêm tệp đính kèm"
   permission_add_work_package_attachments_explanation: "Cho phép thêm tệp đính kèm mà không cần quyền chỉnh sửa gói công việc"
   permission_add_internal_comments: "Write internal comments"
@@ -3825,6 +3881,7 @@ vi:
   setting_attachment_whitelist: "Danh sách trắng tải lên tệp đính kèm"
   setting_email_delivery_method: "Cách gửi email"
   setting_emails_salutation: "Chào người dùng trong email với"
+  setting_oauth_allow_remapping_of_existing_users: "Allow remapping of existing users"
   setting_sendmail_location: "Vị trí của tệp thực thi sendmail (đường dẫn)"
   setting_smtp_enable_starttls_auto: "Tự động sử dụng STARTTLS nếu hiện hữu"
   setting_smtp_ssl: "Sử dụng kết nối SSL"
@@ -3985,11 +4042,13 @@ vi:
   setting_working_days: "Ngày làm việc"
   settings:
     authentication:
-      login_and_sso: "Login and SSO"
+      login: "Đăng nhập"
       registration: "Registration"
-      single_sign_on: "Single Sign-On"
+      sso: "Single Sign-On (SSO)"
       omniauth_direct_login_hint_html: >
         If this option is active, login requests will redirect to the configured omniauth provider. The login dropdown and sign-in page will be disabled. <br/> <strong>Note:</strong> Unless you also disable password logins, with this option enabled, users can still log in internally by visiting the <code>%{internal_path}</code> login page.
+      remapping_existing_users_hint: >
+        If enabled, allows any configured identity provider to login existing users based on their email address, even if the user never signed in through that provider before. This can be useful when migrating the OpenProject instance to a new SSO provider, but is not recommended when using a provider that is not trusted by all users of your instance.
     attachments:
       whitelist_text_html: >
         Xác định danh sách các phần mở rộng tệp hợp lệ và/hoặc loại mime cho các tệp tải lên. <br/> Nhập các phần mở rộng tệp (ví dụ: <code>%{ext_example}</code>) hoặc loại mime (ví dụ: <code>%{mime_example}</code>). <br/> Để trống để cho phép tải lên bất kỳ loại tệp nào. Nhiều giá trị được phép (mỗi giá trị trên một dòng).
@@ -4133,6 +4192,20 @@ vi:
     Đây là logo xuất hiện trong các bản xuất PDF của bạn. Nó cần phải là tệp hình ảnh PNG hoặc JPEG. Logo màu đen hoặc có màu trên nền trong suốt hoặc trắng được khuyến nghị.
   text_custom_export_cover_instructions: >
     Đây là hình ảnh xuất hiện trên nền của trang bìa trong các bản xuất PDF của bạn. Nó cần phải là tệp hình ảnh PNG hoặc JPEG có kích thước khoảng 800px chiều rộng x 500px chiều cao.
+  text_custom_export_footer_instructions: >
+    PDF exports will include a graphical element positioned to the left of the footer. This image must be a PNG or JPEG file with approximately 200 pixels in width.
+  label_custom_export_font_instructions: >
+    Upload and manage custom TrueType (.ttf) fonts used in your PDF exports. For best results, use matching files from the same font family. If no font is provided, the default NotoSans font will be used.
+  label_custom_export_images_instructions: >
+    Upload and manage custom image files used in your PDF exports.
+  text_custom_export_font_regular_instructions: >
+    This is the font file for regular text. It needs to be in TTF format and is required.
+  text_custom_export_font_bold_instructions: >
+    This is the font file for bold text. It needs to be in TTF format.
+  text_custom_export_font_italic_instructions: >
+    This is the font file for italic text. It needs to be in TTF format.
+  text_custom_export_font_bold_italic_instructions: >
+    This is the font file for bold and italic text. It needs to be in TTF format.
   text_custom_favicon_instructions: >
     Đây là biểu tượng nhỏ xuất hiện trên cửa sổ/tab trình duyệt của bạn bên cạnh tiêu đề trang. Nó cần phải là tệp hình ảnh PNG có kích thước vuông 32 x 32 pixels với nền trong suốt.
   text_custom_touch_icon_instructions: >
@@ -4471,6 +4544,8 @@ vi:
       code_500_missing_enterprise_token: "Yêu cầu không thể được xử lý do token Doanh nghiệp không hợp lệ hoặc bị thiếu."
       bad_request:
         emoji_reactions_activity_type_not_supported: "This activity type does not support emoji reactions."
+        invalid_link: "The link under key '%{key}' is not valid."
+        links_not_an_object: "_links must be a JSON object."
       conflict:
         multiple_reminders_not_allowed: |-
           You can only set one reminder at a time for a work package. Please delete or update the existing reminder.
@@ -4672,3 +4747,6 @@ vi:
     description: "Thêm nhà cung cấp OmniAuth SAML vào OpenProject"
   enterprise_plans:
     legacy_enterprise: "Enterprise Plan"
+  token:
+    hashed_token:
+      display_value_placeholder: "***"

@@ -41,9 +41,11 @@ RSpec.describe Projects::CreateContract do
                   public: project_public,
                   parent: project_parent,
                   status_code: project_status_code,
-                  status_explanation: project_status_explanation)
+                  status_explanation: project_status_explanation,
+                  templated: project_templated,
+                  workspace_type: project_workspace_type)
     end
-    let(:global_permissions) { [:add_project] }
+    let(:global_permissions) { %i[add_project add_portfolios add_programs] }
     let(:validated_contract) do
       contract.tap(&:validate)
     end
@@ -53,9 +55,71 @@ RSpec.describe Projects::CreateContract do
     context "if the identifier is nil" do
       let(:project_identifier) { nil }
 
-      it "is replaced for new project" do
-        expect_valid(true)
-      end
+      it_behaves_like "contract is valid"
+    end
+
+    context "when having the 'project' workspace_type and lacking the add_project permission" do
+      let(:global_permissions) { [] }
+
+      it_behaves_like "contract is invalid", base: %i(error_unauthorized)
+    end
+
+    context "when having the 'portfolio' workspace_type and having the add_portfolios permission" do
+      let(:project_workspace_type) { "portfolio" }
+      let(:global_permissions) { [:add_portfolios] }
+
+      it_behaves_like "contract is valid"
+    end
+
+    context "when having the 'portfolio' workspace_type and lacking the add_portfolios permission" do
+      let(:project_workspace_type) { "portfolio" }
+      let(:global_permissions) { [] }
+
+      it_behaves_like "contract is invalid", base: %i(error_unauthorized)
+    end
+
+    context "when having the 'program' workspace_type and having the add_programs permission" do
+      let(:project_workspace_type) { "program" }
+      let(:global_permissions) { [:add_programs] }
+
+      it_behaves_like "contract is valid"
+    end
+
+    context "when having the 'program' workspace_type and lacking the add_programs permission" do
+      let(:project_workspace_type) { "program" }
+      let(:global_permissions) { [:add_portfolios] }
+
+      it_behaves_like "contract is invalid", base: %i(error_unauthorized)
+    end
+
+    context "if workspace_type is nil" do
+      let(:project_workspace_type) { nil }
+
+      it_behaves_like "contract is invalid", workspace_type: %i[inclusion]
+    end
+
+    context "if workspace type is 'project'" do
+      let(:project_workspace_type) { "project" }
+
+      it_behaves_like "contract is valid"
+    end
+
+    context "if workspace type is 'program'" do
+      let(:project_workspace_type) { "program" }
+
+      it_behaves_like "contract is valid"
+    end
+
+    context "if workspace type is 'portfolio'" do
+      let(:project_workspace_type) { "portfolio" }
+
+      it_behaves_like "contract is valid"
+    end
+
+    context "if workspace type is 'invalid type'" do
+      let(:project_workspace_type) { "invalid type" }
+
+      it_behaves_like "contract is invalid", workspace_type: %i[inclusion]
     end
 
     describe "permissions" do

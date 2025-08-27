@@ -1018,7 +1018,10 @@ RSpec.describe API::V3::WorkPackages::WorkPackageRepresenter do
             let(:link) { "timeEntries" }
             let(:href) do
               api_v3_paths.path_for(:time_entries,
-                                    filters: [{ work_package_id: { operator: "=", values: [work_package.id.to_s] } }])
+                                    filters: [
+                                      { entity_type: { operator: "=", values: ["WorkPackage"] } },
+                                      { entity_id: { operator: "=", values: [work_package.id.to_s] } }
+                                    ])
             end
             let(:title) { "Time entries" }
           end

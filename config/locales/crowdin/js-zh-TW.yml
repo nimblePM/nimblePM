@@ -1078,6 +1078,8 @@ zh-TW:
     notice_successful_delete: "刪除成功"
     notice_successful_update: "更新成功"
     notice_job_started: "工作已開始"
+    no_job_id: "伺服器未回傳工作 ID。"
+    invalid_job_response: "伺服器回應無效。"
     notice_bad_request: "錯誤的請求"
     relations:
       empty: 無關聯存在
@@ -1218,12 +1220,14 @@ zh-TW:
         all: "所有專案"
         selected: "僅所選專案"
       search_placeholder: "搜尋專案 ..."
+      search_placeholder_favorites: "搜尋我的收藏..."
       include_subprojects: "包含子專案"
       tooltip:
         include_all_selected: "自啓用“包含所有子項目”後已包含的項目。"
         current_project: "這是您當前所在的專案。"
         does_not_match_search: "沒有符合搜尋條件"
       no_results: "沒有符合搜尋條件"
+      no_favorite_results: "沒有符合您搜尋條件的收藏專案。"
     baseline:
       toggle_title: "差異線"
       clear: "清除"

@@ -59,7 +59,7 @@ gem "will_paginate", "~> 4.0.0"
 
 gem "friendly_id", "~> 5.5.0"
 
-gem "scimitar", "~> 2.11"
+gem "scimitar", "~> 2.12"
 
 gem "acts_as_list", "~> 1.2.0"
 gem "acts_as_tree", "~> 2.9.0"
@@ -227,7 +227,7 @@ gem "yabeda-rails"
 
 gem "view_component"
 # Lookbook
-gem "lookbook", "~> 2.3.11"
+gem "lookbook", "2.3.13"
 
 # Require factory_bot for usage with openproject plugins testing
 gem "factory_bot", "~> 6.5.0", require: false
@@ -387,7 +387,9 @@ gem "googleauth", require: false
 gem "disposable", "~> 0.6.2"
 
 # Used for formula evaluation of calculated values
-gem "dentaku", "~> 3.5"
+# Dentaku 3.5.4 and earlier contains a division by zero error when performing modulo operations.
+# Reference commit that fixes this until a new version of dentaku is released:
+gem "dentaku", "~> 3.5", git: "https://github.com/rubysolo/dentaku", ref: "f17d427b63ef7e9ed8f914b5cb1d0645a37f9ebb"
 
 group :postgres do
   gem "pg", "~> 1.5.0"
@@ -412,6 +414,6 @@ gemfiles.each do |file|
   send(:eval_gemfile, file) if File.readable?(file)
 end
 
-gem "openproject-octicons", "~>19.26.2"
-gem "openproject-octicons_helper", "~>19.26.2"
-gem "openproject-primer_view_components", "~>0.70.5"
+gem "openproject-octicons", "~>19.27.0"
+gem "openproject-octicons_helper", "~>19.27.0"
+gem "openproject-primer_view_components", "~>0.71.0"

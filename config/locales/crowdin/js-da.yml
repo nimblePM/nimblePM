@@ -102,7 +102,7 @@ da:
     button_save: "Gem"
     button_settings: "Indstillinger"
     button_uncheck_all: "Fjern alle markeringer"
-    button_update: "Opdatér"
+    button_update: "Opdater"
     button_export-atom: "Download Atom"
     button_generate_pdf: "Generate PDF"
     button_create: "Opret"
@@ -1079,6 +1079,8 @@ da:
     notice_successful_delete: "Sletning gennemført."
     notice_successful_update: "Opdatering gennemført."
     notice_job_started: "job started."
+    no_job_id: "No job ID returned from server."
+    invalid_job_response: "Invalid response from server."
     notice_bad_request: "Uanvendelig anmodning."
     relations:
       empty: Ingen relationer findes
@@ -1222,12 +1224,14 @@ da:
         all: "All projects"
         selected: "Only selected"
       search_placeholder: "Search project..."
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "Include all sub-projects"
       tooltip:
         include_all_selected: "Project already included since Include all sub-projects is enabled."
         current_project: "This is the current project you are in."
         does_not_match_search: "Project does not match the search criteria."
       no_results: "No project matches your search criteria."
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "Baseline"
       clear: "Ryd"

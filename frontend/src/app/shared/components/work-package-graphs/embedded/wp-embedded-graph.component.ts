@@ -64,18 +64,7 @@ export class WorkPackageEmbeddedGraphComponent {
     }
   }
 
-  private getHexColor(index:number):string {
-    const tealColor= getComputedStyle(document.body).getPropertyValue('--data-teal-color-emphasis');
-    const orangeFont1Color= getComputedStyle(document.body).getPropertyValue('--data-orange-color-emphasis');
-    const hexColors = [
-      tealColor,
-      orangeFont1Color,
-    ];
-    return hexColors[index % hexColors.length];
-  }
-
   private updateChartData() {
-    const borderColor= getComputedStyle(document.body).getPropertyValue('--borderColor-muted');
     let uniqLabels = _.uniq(this.datasets.reduce((array, dataset) => {
       const groups = (dataset.groups || []).map((group) => group.value) as any;
       return array.concat(groups);
@@ -90,10 +79,6 @@ export class WorkPackageEmbeddedGraphComponent {
       return {
         label: dataset.label,
         data: uniqLabels.map((label) => countMap[label] || 0),
-        borderColor,
-        backgroundColor: this.chartType === 'bar' || this.chartType === 'horizontalBar'
-          ? uniqLabels.map((_, i) => this.getHexColor(i))
-          : undefined,
       };
     });
 
@@ -139,7 +124,7 @@ export class WorkPackageEmbeddedGraphComponent {
             backdropColor: this.isRadarChart() ? backdropColor : 'transparent',
             font: {
               weight: 'bold',
-              size: 16,
+              size: 14,
             },
           },
         },
@@ -177,7 +162,7 @@ export class WorkPackageEmbeddedGraphComponent {
           color: bodyFontColor,
           font: {
             weight: 'bold',
-            size: 16,
+            size: 14,
           },
         },
       },

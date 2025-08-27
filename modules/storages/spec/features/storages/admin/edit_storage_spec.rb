@@ -229,15 +229,15 @@ RSpec.describe "Admin Edit File storage",
 
       aggregate_failures "Health notifications" do
         expect(page).to have_test_selector("storage-health-status", text: "Pending")
-        expect(page).to have_test_selector("storage-health-notifications-button", text: "Unsubscribe")
-        expect(page).to have_test_selector("storage-health-notifications-description",
-                                           text: "All administrators receive health status email notifications for this storage.")
+        expect(page).to have_test_selector("email-updates-mode-selector-button", text: "Disable")
+        expect(page).to have_test_selector("email-updates-mode-selector",
+                                           text: "Admins will receive updates by email when there are important updates.")
 
-        click_on "Unsubscribe"
+        click_on "Disable"
 
-        expect(page).to have_test_selector("storage-health-notifications-button", text: "Subscribe")
-        expect(page).to have_test_selector("storage-health-notifications-description",
-                                           text: "Health status email notifications for this storage have been turned off for all administrators.")
+        expect(page).to have_test_selector("email-updates-mode-selector-button", text: "Enable")
+        expect(page).to have_test_selector("email-updates-mode-selector",
+                                           text: "Admins will not receive updates by email when there are important updates.")
       end
     end
   end
@@ -357,17 +357,16 @@ RSpec.describe "Admin Edit File storage",
 
       aggregate_failures "Health notifications" do
         expect(page).to have_test_selector("storage-health-status", text: "Pending")
-        expect(page).to have_test_selector("storage-health-notifications-button", text: "Unsubscribe")
-        expect(page).to have_test_selector("storage-health-notifications-description",
-                                           text: "All administrators receive health status email notifications for this storage.")
 
-        click_on "Unsubscribe"
+        expect(page).to have_test_selector("email-updates-mode-selector-button", text: "Disable")
+        expect(page).to have_test_selector("email-updates-mode-selector",
+                                           text: "Admins will receive updates by email when there are important updates.")
 
-        expect(page).to have_test_selector("storage-health-notifications-button", text: "Subscribe")
-        expect(page).to have_test_selector(
-          "storage-health-notifications-description",
-          text: "Health status email notifications for this storage have been turned off for all administrators."
-        )
+        click_on "Disable"
+
+        expect(page).to have_test_selector("email-updates-mode-selector-button", text: "Enable")
+        expect(page).to have_test_selector("email-updates-mode-selector",
+                                           text: "Admins will not receive updates by email when there are important updates.")
       end
     end
 
@@ -492,15 +491,16 @@ RSpec.describe "Admin Edit File storage",
 
       aggregate_failures "Health notifications" do
         expect(page).to have_test_selector("storage-health-status", text: "Pending")
-        expect(page).to have_test_selector("storage-health-notifications-button", text: "Unsubscribe")
-        expect(page).to have_test_selector("storage-health-notifications-description",
-                                           text: "All administrators receive health status email notifications for this storage.")
 
-        click_on "Unsubscribe"
+        expect(page).to have_test_selector("email-updates-mode-selector-button", text: "Disable")
+        expect(page).to have_test_selector("email-updates-mode-selector",
+                                           text: "Admins will receive updates by email when there are important updates.")
 
-        expect(page).to have_test_selector("storage-health-notifications-button", text: "Subscribe")
-        expect(page).to have_test_selector("storage-health-notifications-description",
-                                           text: "Health status email notifications for this storage have been turned off for all administrators.")
+        click_on "Disable"
+
+        expect(page).to have_test_selector("email-updates-mode-selector-button", text: "Enable")
+        expect(page).to have_test_selector("email-updates-mode-selector",
+                                           text: "Admins will not receive updates by email when there are important updates.")
       end
     end
   end

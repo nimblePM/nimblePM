@@ -118,11 +118,7 @@ module My
     end
 
     def current_date
-      case mode
-      when :day then Time.zone.today
-      when :week, :workweek then Time.zone.today.beginning_of_week(week_start_day)
-      when :month then Time.zone.today.beginning_of_month
-      end
+      Time.zone.today
     end
 
     def load_time_entries(time_scope)

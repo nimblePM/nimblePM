@@ -254,11 +254,26 @@ to the ID with which they are referenced in OpenID Connect claims and recognized
 
 For advanced use cases, it's possible to filter which groups will be imported into OpenProject and which part of the group name will be considered.
 
-The input under "Pattern (regular expression)" expects a list of regular expressions that will be used to match against the name of a group. If
-the group name matches one of the regular expressions, it will be synchronized. If it matches none of the expressions, it will not be synchronized.
+The input under "Patterns (regular expressions)" expects a list of regular expressions that will be used to match against the name of a group. If
+the group name matches at least one of the regular expressions, it will be synchronized. If it matches none of the expressions, it will not be synchronized. The captured groups inside the first matching regular expression are used to extract the name of the imported group. If the regular expression does not contain any captured groups, the full group name is used.
 
-The match groups inside the first matching regular expression are used to extract the name of the imported group. For example if groups in your identity
-provider are called `gA`, `gB` and `gC`, and you only want to extract the group names "A", "B" and "C", you could use a regular expression of `^g([A-Z])$`. The `^` and `$` ensure that only full group names are matched, otherwise it would also be possible to match on parts of the group name.
+As an example, consider your OpenID Connect provider defines the following groups:
+
+* `/your-company/department-accounting`
+* `/your-company/department-sales`
+* `/your-company/administrators`
+* `/your-company/external-contractors`
+
+Assuming you only want to import groups for the different departments, but not for other groups that may exist, you could specify
+the following regular expression:
+
+```
+^/your-company/(department-[\w]+)$
+```
+
+This would reject the `/your-company/administrators` and `/your-company/external-contractors` groups, because they do not match the expression.
+The other two groups would be considered to be named `department-accounting` and `department-sales`, during synchronization, because the captured
+group (i.e. the parenthesis) only covers that part of the match.
 
 OpenProject parses regular expressions using syntax accepted by the Ruby programming language. One good online resource to understand
 Ruby regular expressions is [Rubular](https://rubular.com/).

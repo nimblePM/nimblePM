@@ -21,7 +21,7 @@ fr:
         project_folder_mode: Mode de dossier de projet
         storage: Stockage
         storage_url: URL de stockage
-      storages/share_point_storage:
+      storages/sharepoint_storage:
         host: URL du site SharePoint
         library: ID de la bibliothèque
         name: Nom
@@ -195,10 +195,10 @@ fr:
       oauth_client_incomplete:
         nextcloud: Autoriser OpenProject à accéder aux données Nextcloud en utilisant OAuth.
         one_drive: Autoriser OpenProject à accéder aux données Azure en utilisant OAuth pour connecter OneDrive/Sharepoint.
-        share_point: Autoriser OpenProject à accéder aux données SharePoint en utilisant OAuth.
+        sharepoint: Autoriser OpenProject à accéder aux données SharePoint en utilisant OAuth.
       redirect_uri_incomplete:
         one_drive: Complétez la configuration avec la redirection de l'URI correcte.
-        share_point: Complétez la configuration avec la redirection de l'URI correcte.
+        sharepoint: Complétez la configuration avec la redirection de l'URI correcte.
     confirm_replace_oauth_application: Cette action réinitialisera les informations d'identification OAuth actuelles. Après confirmation, vous devrez saisir de nouvelles informations d'identification auprès du fournisseur de stockage et tous les utilisateurs devront à nouveau s'authentifier sur OpenProject. Êtes-vous sûr de vouloir continuer ?
     confirm_replace_oauth_client: Cette action réinitialisera les informations d'identification OAuth actuelles. Après confirmation, vous devrez saisir de nouvelles informations d'identification auprès du fournisseur de stockage et tous les utilisateurs devront à nouveau s'authentifier auprès de %{provider_type} . Êtes-vous sûr de vouloir continuer ?
     delete_warning:
@@ -319,6 +319,15 @@ fr:
         oidc_token_acquisition_failed: Votre configuration OpenID Connect ne fournit pas l'audience nécessaire, ni les capacités d'échange de jetons. Veuillez consulter notre documentation pour obtenir plus d'informations.
         oidc_token_exchange_failed: Il semble y avoir un problème avec la configuration de l'échange de jetons sur votre fournisseur OpenID Connect. Veuillez vérifier sa configuration et réessayer.
         oidc_token_refresh_failed: Une erreur s'est produite lors de la vérification de votre accès à l'espace de stockage. Veuillez consulter les journaux du serveur pour obtenir plus d'informations.
+        sp_client_cant_delete_folder: Le client rencontre des difficultés pour supprimer des dossiers. Veuillez consulter la documentation d'installation de votre espace de stockage.
+        sp_client_id_missing: L'identifiant du client OAuth 2 configuré n'est pas valide. Veuillez vérifier la configuration.
+        sp_client_secret_missing: L'identifiant du client OAuth 2 configuré n'est pas valide. Veuillez vérifier la configuration.
+        sp_client_write_permission_missing: Le client semble ne pas avoir les autorisations d'écriture. Veuillez vérifier la documentation d'installation de votre espace de stockage.
+        sp_existing_test_folder: Le dossier %{folder_name} requis pour le test existe déjà. Veuillez le supprimer et réessayer.
+        sp_oauth_request_error: La requête liée à l'utilisateur vers SharePoint a échoué. Veuillez consulter les journaux du serveur pour plus d'informations.
+        sp_oauth_token_missing: OpenProject ne peut pas tester la communication au niveau utilisateur avec OneDrive/SharePoint, car l'utilisateur n'a pas encore lié son compte Microsoft.
+        sp_tenant_id_missing: L'identifiant de répertoire (locataire) configuré est manquant pour SharePoint. Veuillez vérifier la configuration.
+        sp_unexpected_content: Contenu inattendu trouvé dans le lecteur SharePoint.
         unknown_error: La connexion n'a pas pu être validée. Une erreur inconnue s'est produite. Veuillez consulter les journaux du serveur pour en savoir plus.
       label_error: Erreur
       label_failed: Échec
@@ -339,12 +348,10 @@ fr:
         warning: Certaines vérifications ont renvoyé un avertissement. Cela peut entraîner un comportement inattendu.
       title: Rapport sur l'état de santé
     health_email_notifications:
-      description_subscribed: Tous les administrateurs reçoivent des notifications par e-mail concernant le statut de cet espace de stockage.
-      description_unsubscribed: Les notifications par e-mail du statut de santé de cet espace de stockage ont été désactivées pour tous les administrateurs.
+      description_disabled: Les administrateurs ne recevront pas de mises à jour par e-mail lors des mises à jour importantes.
+      description_enabled: Les administrateurs recevront des mises à jour par e-mail lors des mises à jour importantes.
       error_could_not_be_saved: Les paramètres de notification par e-mail n'ont pas pu être enregistrés. Veuillez réessayer.
-      subscribe: S'abonner
-      title: Notifications par email
-      unsubscribe: Se désabonner
+      title: Envoi de mises à jour par e-mail aux administrateurs
     help_texts:
       project_folder: Le dossier de projet est le dossier par défaut pour les téléversements de fichiers pour ce projet. Les utilisateurs peuvent néanmoins encore téléverser des fichiers vers d'autres emplacements.
       project_folder_bulk: Le dossier du projet est le dossier par défaut pour les téléchargements de fichiers pour tous les projets sélectionnés. Vous pouvez le modifier individuellement dans les paramètres de chaque projet. Les utilisateurs peuvent néanmoins télécharger des fichiers vers d'autres emplacements.
@@ -388,11 +395,11 @@ fr:
       setting_up_additional_storages_non_admin: Les administrateurs peuvent configurer des espaces de stockage de fichiers supplémentaires dans Administration - Espaces de stockage de fichiers.
       setting_up_storages: Pour configurer des espaces de stockage de fichiers, veuillez visiter
       setting_up_storages_non_admin: Les administrateurs peuvent configurer des espaces de stockage de fichiers dans Administration - Espaces de stockage de fichiers.
-      share_point:
+      sharepoint:
         application_link_text: Site SharePoint
-        integration: Administration SharePoint/OpenProject
+        integration: Administration SharePoint / OpenProject
         oauth_configuration: Copiez ces valeurs de l'application souhaitée dans %{application_link_text}.
-        provider_configuration: Veuillez vous assurer que vous disposez des droits d'administration dans votre instance SharePoint et que l'application d'intégration OpenProject est installée avant de procéder à l'installation.
+        provider_configuration: Veuillez vous assurer que vous disposez des privilèges d'administration dans le %{application_link_text} ou contactez votre administrateur Microsoft avant de procéder à l'installation. Dans le portail, vous devez également enregistrer une application Azure ou utiliser une application existante pour l'authentification.
       type: 'Veuillez vous assurer que vous avez les privilèges d''administration dans votre instance Nextcloud et que l''application suivante est installée avant de procéder à l''installation :'
       type_link_text: "« Intégration OpenProject »"
     label_active: Actif
@@ -493,10 +500,10 @@ fr:
         label_oauth_client_secret: Clé secrète du client OAuth Azure
         name: OneDrive
         name_placeholder: par exemple OneDrive
-      share_point:
+      sharepoint:
         label_oauth_client_id: ID de l'application Azure OAuth (client)
         label_oauth_client_secret: Clé secrète du client OAuth Azure
-        name: Microsoft Office SharePoint Online
+        name: SharePoint
         name_placeholder: par exemple SharePoint
     show_attachments_toggle:
       description: Si vous désactivez cette option, la liste des pièces jointes dans l'onglet des fichiers des lots de travaux sera masquée. Les fichiers joints dans la description d'un lot de travaux seront toujours téléversés dans l'espace de stockage interne des pièces jointes.

@@ -59,8 +59,13 @@ pt-BR:
         end_after: "Série de reuniões termina"
         end_date: "Data de término"
         iterations: "Ocorrências"
+      meeting_participant:
+        invited: "Convidado"
+        attended: "Participou"
     errors:
       models:
+        meeting_participant:
+          invalid_user: "%{name} is not a valid participant."
         recurring_meeting:
           must_cover_existing_meetings:
             one: "Há uma reunião aberta na série que não está contemplada na nova programação. Ajuste a programação para incluir todas as reuniões existentes."
@@ -74,6 +79,9 @@ pt-BR:
       meeting_agenda_item: "Item da agenda"
       meeting_agenda: "Agenda"
       meeting_section: "Seção"
+      token/ical_meeting:
+        one: "iCal Meeting subscription"
+        other: "iCal Meeting subscription"
   activity:
     filter:
       meeting: "Reuniões"
@@ -91,7 +99,6 @@ pt-BR:
           updated: "alterado de %{old_value} para %{value}"
           updated_html: "alterado de <i>%{old_value}</i> para <i>%{value}</i>"
   description_attended: "compareceu"
-  description_invite: "convidado"
   events:
     meeting: Reunião editada
     meeting_agenda: Agenda da reunião editada
@@ -170,9 +177,25 @@ pt-BR:
   label_version: "Versão"
   label_time_zone: "Fuso horário"
   label_start_date: "Data de início"
+  label_subscribe_icalendar: "Assinar calendário"
   meeting:
     participants:
-      template: "Esses participantes serão adicionados automaticamente a todas as reuniões futuras à medida que forem agendadas."
+      label:
+        participants: "Participantes"
+        attended: "Participou"
+        mark_as_attended: "Mark as attended"
+        mark_all_as_attended: "Mark all as attended"
+        remove_participant: "Remove participant"
+        manage_participants: "Gerenciar participantes"
+        no_participants: "Sem participantes"
+        show_all: "Mostrar todos"
+      text:
+        template: "Esses participantes serão adicionados automaticamente a todas as reuniões futuras à medida que forem agendadas."
+        manage_participants: "Search for and add project members as participants to this meeting."
+        search_for_members: "Search for project members"
+      blankslate:
+        heading: "Sem participantes"
+        description: "There are no participants yet."
     attachments:
       template: "Esses arquivos anexados serão adicionados a todas as reuniões futuras da série."
       text: "Os arquivos anexados podem ser acessados por todos os participantes da reunião. Além disso, você pode simplesmente arrastá-los e soltá-los nas anotações do item da agenda."
@@ -195,9 +218,9 @@ pt-BR:
       series:
         title: "[%{project_name}] Série de reuniões \"%{title}\""
         summary: "%{actor} criou uma série de reuniões \"%{title}\""
-      series_rescheduled:
-        title: "[%{project_name}] Série de reuniões \"%{title}\" remarcada"
-        summary: "%{actor} alterou a programação para a série de reuniões\"%{title}\""
+      series_updated:
+        title: "[%{project_name}] Meeting series '%{title}' has been updated"
+        summary: "Meeting series '%{title}' has been updated by %{actor}"
         old_schedule: "Programação antiga"
         new_schedule: "Nova programação"
       invited:
@@ -210,13 +233,15 @@ pt-BR:
         summary_series: "A série de reuniões \"%{title}\" foi cancelada por %{actor}."
         summary: "\"%{title}\" foi cancelada por %{actor}."
         date_time: "Data/hora programada"
-      rescheduled:
-        header: "A reunião \"%{title}\" foi remarcada"
-        summary: "A reunião \"%{title}\" foi remarcada por %{actor}"
-        body: "A reunião \"%{title}\" foi remarcada por %{actor}."
+      updated:
+        header: "Meeting '%{title}' has been updated"
+        summary: "Meeting '%{title}' has been updated by %{actor}"
+        body: "The meeting '%{title}' has been updated by %{actor}."
         old_date_time: "Data/hora antiga"
         new_date_time: "Nova data/hora"
-    label_mail_all_participants: "Enviar convite de calendário por e-mail para todos os participantes"
+        old_location: "Old location"
+        new_location: "New location"
+    label_mail_all_participants: "Send email invite to participants"
     types:
       one_time: "Única"
       recurring: "Recorrente"
@@ -242,9 +267,29 @@ pt-BR:
     label_export_pdf: "Exportar PDF"
     export:
       your_meeting_export: "Reunião sendo exportada"
+      minutes:
+        footer_page_numbers: "P. %{current_page} of %{total_pages}"
+        author: "Autor"
+        date: "Data"
+        time: "Hora"
+        location: "Local"
+        title: "Atas"
     export_pdf_dialog:
       title: Exportar PDF
       description: Gerar um arquivo PDF imprimível desta reunião no estado atual.
+      templates:
+        default:
+          label: Padrão
+          caption: The default template is suitable for most meetings and represent the current state.
+        minutes:
+          label: Atas
+          caption: The minutes template is suitable for closed and archived meetings.
+      first_page_header_left:
+        label: First page header left
+        caption: This text will appear on the first page at the left of the header.
+      author:
+        label: Autor
+        caption: The author of the minutes will be displayed in the subtitle.
       include_participants:
         label: Incluir lista de participantes
         caption: Uma lista de participantes será exibida acima da agenda da reunião.
@@ -264,16 +309,10 @@ pt-BR:
     notifications:
       sidepanel:
         title: "Atualizações do calendário por e-mail"
-        state:
-          disabled: "Desabilitado."
-          enabled: "Habilitado."
         description:
           disabled: "Os participantes não receberão um e-mail informando sobre as alterações."
           enabled: "Todos os participantes receberão convites de calendário atualizados por e-mail, informando sobre as alterações."
           change_via_template: "Para alterar isso, edite o modelo da série."
-        button:
-          disable: "Desabilitar"
-          enable: "Habilitar"
       dialog:
         title:
           enable: "Habilitar atualizações de calendário por e-mail?"
@@ -287,6 +326,11 @@ pt-BR:
           enable: "Habilitar atualizações por e-mail"
           disable: "Desabilitar atualizações por e-mail"
       banner:
+        participants:
+          enabled: >
+            All participants will receive updated calendar invites via email when you add or remove participants.
+          disabled: >
+            Email calendar updates are disabled. Participants will not receive an email informing them when you add or remove participants.
         onetime:
           enabled: >
             Todos os participantes receberão convites de calendário atualizados por e-mail, informando sobre suas alterações.
@@ -468,8 +512,8 @@ pt-BR:
   text_series_backlog_clear_description: >
     Isso removerá todos os itens do backlog da série, que é compartilhado com todas as reuniões desta série. Tem certeza de que deseja continuar? Essa ação é irreversível.
   text_agenda_item_title: 'Item da agenda "%{title}"'
-  text_agenda_work_package_deleted: 'Item da agenda para o pacote de trabalho excluído'
-  text_deleted_agenda_item: 'Item da agenda excluído'
+  text_agenda_work_package_deleted: "Item da agenda para o pacote de trabalho excluído"
+  text_deleted_agenda_item: "Item da agenda excluído"
   label_initial_meeting_details: "Reunião"
   label_meeting_details: "Detalhes da reunião"
   label_meeting_series_details: "Detalhes da série de reuniões"
@@ -485,17 +529,12 @@ pt-BR:
   label_meeting_reopen_action: "Reabrir reunião"
   label_meeting_close_action: "Fechar reunião"
   label_meeting_in_progress_action: "Iniciar reunião"
-  text_meeting_open_description: "Esta reunião está aberta. Você pode adicionar, remover e editar itens da agenda como quiser. Assim que a agenda estiver pronta, marque-a como \"Em andamento\" para registrar os resultados."
+  text_meeting_open_description: "You can add/remove agenda items and participants. Once the agenda is ready, mark it as in progress to document outcomes."
   text_meeting_closed_description: "Esta reunião está fechada. Você não pode mais adicionar/remover itens da agenda."
-  text_meeting_in_progress_description: "A reunião está em andamento. Você pode registrar os resultados de cada item da agenda, reorganizá-los e adicionar novos. Quando a reunião for concluída, marque-a como encerrada para bloqueá-la."
+  text_meeting_in_progress_description: "You can modify the agenda, document outcomes for each item and track attendance for participants. Once the meeting is complete, you can mark it as closed to lock it."
   text_meeting_open_dropdown_description: "Os resultados existentes permanecerão, mas os usuários não poderão adicionar novos."
   text_meeting_in_progress_dropdown_description: "Registre os resultados como solicitações de informação ou decisões tomadas durante a reunião."
   text_meeting_closed_dropdown_description: "Esta reunião está encerrada. Já não é possível modificar os pontos da ordem de trabalhos ou os resultados."
-  label_meeting_manage_participants: "Gerenciar participantes"
-  label_meeting_no_participants: "Sem participantes"
-  label_meeting_show_hide_participants: "Exibir/ocultar %{count} a mais"
-  label_meeting_show_all_participants: "Exibir tudo"
-  label_meeting_add_participants: "Adicionar participantes"
   text_meeting_not_editable_anymore: "A reunião não pode mais ser editada."
   text_meeting_not_present_anymore: "Esta reunião foi excluída. Selecione outra reunião."
   label_add_work_package_to_meeting_dialog_title: "Adicione o pacote de trabalho à reunião"
@@ -512,4 +551,29 @@ pt-BR:
   text_work_package_has_no_past_meeting_agenda_items: "Este pacote de trabalho não foi mencionado em uma reunião anterior."
   text_email_updates_muted: "As atualizações de calendário por e-mail estão silenciadas. Os participantes não receberão convites atualizados por e-mail quando você fizer alterações."
   text_email_updates_enabled: "As atualizações de calendário por e-mail estão habilitados. Todos os participantes receberão convites atualizados por e-mail quando você fizer alterações."
-
+  my_account:
+    access_tokens:
+      token/ical_meeting:
+        title: "iCalendar for meetings"
+        text_hint: "iCalendar meeting tokens allow users to subscribe to all their meetings and view up-to-date meeting information in external clients."
+        disabled_text: "iCalendar meeting subscriptions are not enabled by the administrator. Please contact your administrator to use this feature."
+        empty_text_hint: 'To add an iCalendar meeting token, go to the <a href="%{path}">meetings section</a> and subscribe from there.'
+        add_button: "Assinar calendário"
+  my:
+    access_token:
+      dialog:
+        token/ical_meeting:
+          dialog_title: "New iCal subscription token for meetings"
+          dialog_body: "This token will generate an iCal subscription URL that lets you view all your meetings in an external calendar application."
+          create_button: "Create subscription"
+          name_label: "Token name"
+          name_caption: 'You can name it after where you will use it, such as"My phone" or "Work computer.'
+      created_dialog:
+        token/ical_meeting:
+          title: "An iCal meeting subscription token has been generated"
+          body: "Treat the following URL as you would a password. Anyone who has access to it can view all your meetings."
+          warning: "Esta é a única vez que você verá este token. Certifique-se de copiá-lo agora."
+      revocation:
+        token/ical_meeting:
+          notice_success: "The iCalendar meeting subscription has been revoked successfully."
+          notice_failure: "Failed to revoke iCalendar meeting subscription: %{error}"

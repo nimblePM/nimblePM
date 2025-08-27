@@ -60,9 +60,9 @@ services:
     networks:
       - external
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.openproject-assets.rule=Host(`openproject-assets.local`)"
-    - "traefik.http.routers.openproject-assets.entrypoints=websecure"
+      - "traefik.enable=true"
+      - "traefik.http.routers.openproject-assets.rule=Host(`openproject-assets.local`)"
+      - "traefik.http.routers.openproject-assets.entrypoints=websecure"
 
 # You need to define the same external network
 # that is defined in the TLS proxy compose file

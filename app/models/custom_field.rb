@@ -52,6 +52,8 @@ class CustomField < ApplicationRecord
   scope :hierarchy_root_and_children, -> { includes(hierarchy_root: { children: :children }) }
   scope :required, -> { where(is_required: true) }
 
+  scope :field_format_calculated_value, -> { where(field_format: "calculated_value") }
+
   acts_as_list scope: [:type]
 
   validates :field_format, presence: true
@@ -311,8 +313,16 @@ class CustomField < ApplicationRecord
     field_format == "hierarchy"
   end
 
+  def field_format_scored_list?
+    field_format == "scored_list"
+  end
+
   def field_format_calculated_value?
     field_format == "calculated_value"
+  end
+
+  def hierarchical_list?
+    field_format_hierarchy? || field_format_scored_list?
   end
 
   def multi_value_possible?

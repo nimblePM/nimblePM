@@ -1,5 +1,8 @@
 ---
 description: |-
+  The time entries endpoints return collections or single entities of type `TimeEntry`. The following tables list the different properties
+  of `TimeEntry` entities.
+
   ## Actions
 
   | Link                | Description                                                                | Condition                                                                                           |

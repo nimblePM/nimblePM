@@ -59,6 +59,10 @@
       tab_interface: "Grensesnitt"
       tab_branding: "Merkevarebygging"
       tab_pdf_export_styles: "PDF export styles"
+      tab_pdf_export_font: "PDF export font"
+      fonts:
+        file_too_large: "is too large (maximum size is %{count} MB)."
+        file_is_invalid: "is not a valid TTF font file."
       colors:
         primary-button-color: "Primærknapp"
         accent-color: "Uthevet"
@@ -297,6 +301,7 @@
         placeholder:
           label: "Item label"
           short: "Short name"
+          score: "Score"
       notice:
         remember_items_and_projects: "Husk å angi elementer og prosjekter i de respektive fanene for dette egendefinerte feltet."
       hierarchy:
@@ -332,13 +337,18 @@
     single: "eller"
   dry_validation:
     errors:
+      defined: "must not be defined."
       int?: "must be an integer."
+      decimal?: "must be a decimal."
       filled?: "must be filled."
+      key?: "is missing."
       greater_or_equal_zero: "must be greater or equal to 0."
       not_found: "not found."
       rules:
         copy_workflow_from:
           workflow_missing: "has no own workflow."
+        custom_field:
+          format_not_supported: "format '%{field_format}' is unsupported."
         item:
           root_item: "cannot be a root item."
           not_persisted: "must be an already existing item."
@@ -354,6 +364,7 @@
       depth: "Depth"
       item: "Element"
       label: "Label"
+      score: "Score"
       short: "Short name"
       parent: "Overordnet"
       blueprint: "Pattern blueprint"
@@ -374,7 +385,7 @@
       description: By grouping users together, you can add them as members to the same projects or assign the same global roles to them.
     table_component:
       blank_slate:
-        description: You can define groups of users with specific names
+        description: You can define named groups of users with specific permissions.
         title: No groups set up yet
       user_count: User count
     users:
@@ -464,7 +475,7 @@
       life_cycle:
         header:
           title: "Project life cycle"
-          description_html: "The active project phases define this project's life cycle and are defined in the <a href=%{admin_settings_url} target=\"_blank\">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target=\"_blank\">project overview</a>."
+          description_html: 'The active project phases define this project''s life cycle and are defined in the <a href=%{admin_settings_url} target="_blank">administration settings</a>. Enabled phases will be displayed in your <a href=%{overview_url} target="_blank">project overview</a>.'
         non_defined: "Ingen faser definert."
         section_header: "Faser"
         step:
@@ -573,26 +584,26 @@
       will_revoke_access_to_all: "Denne handlingen vil fjerne deres tilgang til alle."
   my:
     access_token:
-      create_dialog:
-        title: Token generated
-        header: The %{type} token has been generated
-        warning: Note that this is the only time you will see this token, make sure to copy it now.
+      dialog:
+        token/api:
+          dialog_title: "Opprett nytt API-token"
+          attention_text: "Treat API tokens like passwords. Anyone with this token will have access to information from this instance, share it only with trusted users."
+          dialog_body: "Dette tokenet tillater tredjepartsprogrammer å kommunisere med forekomsten. For å differensiere den nye API-token, vennligst gi den et navn."
+          create_button: "Opprett"
+          name_label: "Token name"
+      created_dialog:
+        token/api:
+          title: "The API token has been generated"
+          warning: "This is the only time you will see this token. Make sure to copy it now."
       errors:
         token_name_blank: "Vennligst oppgi navn på API-token"
         token_name_in_use: "Dette API-token-navnet er allerede i bruk, velg et annet"
-      new_access_token_dialog_title: "Opprett nytt API-token"
-      new_access_token_dialog_show_button_text: "API-nøkkel"
-      new_access_token_dialog_text_field_placeholder_text: "Mitt API-token"
-      new_access_token_dialog_text_field_label: "Navn"
-      new_access_token_dialog_submit_button_text: "Opprett"
-      new_access_token_dialog_text: "Dette tokenet tillater tredjepartsprogrammer å kommunisere med forekomsten. For å differensiere den nye API-token, vennligst gi den et navn."
-      new_access_token_dialog_attention_text: "Behandle API-token som passord. Alle med denne lenken vil ha tilgang til informasjon fra denne forekomsten, del den bare med pålitelige brukere."
       failed_to_reset_token: "Tilgangstoken kunne ikke tilbakestilles: %{error}"
       failed_to_create_token: "Tilgangsnøkkelen kunne ikke opprettes: %{error}"
       failed_to_revoke_token: "Kunne ikke oppheve tilgangstoken: %{error}"
       notice_reset_token: "En ny %{type} token har blitt generert. Din tilgangstoken er:"
       token_value_warning: "Merk: Du vil ikke kunne se denne token på nytt, sørg for å kopiere den nå."
-      no_results_title_text: Det er ingen tilgangsnøkler tilgjengelig.
+      no_results_title_text: "Det er ingen tilgangsnøkler tilgjengelig."
       notice_api_token_revoked: "The API token has been deleted. To create a new token please use the button in the API section."
       notice_rss_token_revoked: "RSS-koden er slettet. For å opprette et nytt token må du bruke linken i RSS-avsnittet."
       notice_ical_token_revoked: 'iCalendar token "%{token_name}" for kalender "%{calendar_name}" i prosjekt "%{project_name}" er trukket tilbake. iCalendar-URL''en med dette tokenet er nå ugyldig.'
@@ -685,8 +696,10 @@
         excluded_from_totals: "Unntatt fra totaler"
   themes:
     dark: "Mørk"
+    dark_high_contrast: "Dark high contrast"
     light: "Lyst"
     light_high_contrast: "Lys høy kontrast"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Det finnes for øyeblikket ingen typer.
@@ -719,7 +732,7 @@
         pattern:
           label: "Subject pattern"
           caption: Create patterns by adding text, or type "/" to search for [supported attributes](attributes_url).
-          insert_as_text: "No attributes found. Add as text: \"%{word}\""
+          insert_as_text: 'No attributes found. Add as text: "%{word}"'
       export_configuration:
         tab: "Generate PDF"
         intro: "Select which templates from those that are available you would like to enable for this type. The template determines the design and attributes visible in the exported PDF of a work package using this type. The first template on the list is selected by default."
@@ -1061,6 +1074,7 @@
         types: "Typer"
         versions: "Versjoner"
         work_packages: "Arbeidspakker"
+        workspace_type: "Workspace type"
       project_custom_field:
         is_required: "Påkrevd for alle prosjekter"
         custom_field_section: Seksjon
@@ -1290,6 +1304,7 @@
         odd: "må være oddetall."
         regex_match_failed: "samsvarer ikke med det regulære uttrykket %{expression}."
         regex_invalid: "kunne ikke valideres med det tilhørende regulære uttrykket."
+        regex_list_invalid: "Lines %{invalid_lines} could not be parsed as regular expression."
         hexcode_invalid: "is not a valid 6-digit hexadecimal color code."
         smaller_than_or_equal_to_max_length: "må være mindre enn eller lik maksimumslengden."
         taken: "er allerede tatt."
@@ -1556,8 +1571,7 @@
               cant_exceed_work: "kan ikke være høyere enn Arbeid."
               must_be_set_when_work_is_set: "kreves når Arbeid er satt."
               must_be_set_when_work_and_percent_complete_are_set: "påkrevd når gjenværende arbeid og % Fullført er satt."
-              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: >-
-                må være 0 timer når arbeidet er satt og % Komplett er 100%.
+              must_be_set_to_zero_hours_when_work_is_set_and_percent_complete_is_100p: '>- must be 0h when Work is set and % Complete is 100%.'
               must_be_empty_when_work_is_empty_and_percent_complete_is_100p: >-
                 må være tom når arbeidet er tomt og % Komplett er 100%.
           readonly_status: "Arbeidspakken er i skrivebeskyttet status slik at egenskapene ikke kan endres."
@@ -1621,6 +1635,7 @@
         one: "Authentication provider"
         other: "Authentication providers"
       category: "Kategori"
+      color: "Farge"
       comment: "Kommentar"
       custom_action: "Tilpasset handling"
       custom_field: "Egendefinert felt"
@@ -1966,11 +1981,11 @@
       succeeded: 'Prosjektet "%{source_project_name}" ble kopiert til "%{target_project_name}".'
     source_project_label: "Project copied"
     copy_options:
-      dependencies_label: 'Copy from project'
+      dependencies_label: "Copy from project"
   create_project:
     template_label: "Bruk mal"
     copy_options:
-      dependencies_label: 'Copy from template'
+      dependencies_label: "Copy from template"
   create_wiki_page: "Create new wiki page"
   create_wiki_page_button: "Wiki-side"
   date:
@@ -2146,7 +2161,7 @@
       project_list_sharing: Project List Sharing
       readonly_work_packages: Readonly Work Packages
       scim_api: SCIM server API
-      sso_auth_providers: Single sign-on
+      sso_auth_providers: Single Sign-On
       team_planner_view: Team Planner View
       virus_scanning: Antivirus Scanning
       work_package_query_relation_columns: Work Package Query Relation Columns
@@ -2215,6 +2230,9 @@
       scim_api:
         title: "SCIM clients"
         description: "Automate user management in OpenProject by seamlessly integrating external identity services like Microsoft Entra or Keycloak through our SCIM Server API. Available starting with the Enterprise corporate plan."
+      sso_auth_providers:
+        title: "Single Sign-On (SSO)"
+        description: "Enable users to log in via external SSO providers using SAML or OpenID Connect for seamless access and integration with existing identity systems."
       virus_scanning:
         description: "Sikre at opplastede filer i OpenProject blir skannet for virus før de er tilgjengelige for andre brukere."
       placeholder_users:
@@ -2252,6 +2270,13 @@
         I want to receive the OpenProject <a target="_blank" href="https://www.openproject.org/newsletter/">newsletter</a>.
       consent_html: >
         I agree with the <a target="_blank" href="https://www.openproject.org/terms-of-service/">terms of service</a> and the <a target="_blank" href="https://www.openproject.org/data-privacy-and-security/">privacy policy</a>.
+  email_calendar_updates:
+    state:
+      disabled: "Disabled."
+      enabled: "Enabled."
+    button:
+      disabled: "Enable"
+      enabled: "Disable"
   enumeration_activities: "Tidregistrering aktiviteter"
   enumeration_work_package_priorities: "Prioritering av arbeidspakker"
   enumeration_reported_project_statuses: "Rapportert prosjektstatus"
@@ -2397,8 +2422,13 @@
           label: "Inkluder beskrivelser"
           caption: "Dette alternativet legger til en beskrivelse kolonne i rå format."
     your_work_packages_export: "Arbeidspakker eksporteres"
+    your_projects_export: "Projects are being exported"
     succeeded: "Eksport fullført"
     failed: "Det oppstod en feil ved forsøk på å eksportere arbeidspakker: %{message}"
+    demo:
+      heading: "Demo PDF"
+      footer: "Generated by OpenProject"
+      button_text: Generate Demo PDF
     errors:
       embedded_table_with_too_many_columns: "This embedded work package table could not fit on the page, please reduce the number of columns."
     format:
@@ -2459,6 +2489,13 @@
       xls2csv: "Xls2csv tilgjengelig (valgfritt)"
       catppt: "Catppt tilgjengelig (valgfritt)"
       tesseract: "Tesseract tilgjengelig (valgfritt)"
+  filterable_tree_view:
+    filter_mode:
+      all: "Alle"
+      label: "Filter mode"
+      selected: "Selected"
+    include_sub_items: "Include sub-items"
+    no_results_text: "No results"
   general_csv_decimal_separator: ","
   general_csv_encoding: "UTF-8"
   general_csv_separator: ";"
@@ -2564,11 +2601,13 @@
         expiration: "Utløper"
       indefinite_expiration: "Aldri"
       simple_revoke_confirmation: "Er du sikker på at du vil oppheve denne nøkkelen?"
-      api:
+      token/api:
         title: "API"
         text_hint: "API-tokens tillater tredjepartsapplikasjoner å kommunisere med denne OpenProject instansen via REST APIs."
-        static_token_name: "API-token"
         disabled_text: "API-nøkler er ikke aktivert av administratoren. Kontakt systemansvarlig for å bruke denne funksjonen."
+        add_button: "API Token"
+      api:
+        static_token_name: "API-token"
       ical:
         title: "iCalendar"
         text_hint: 'iCalendar nøkler tillater brukere <a href="%{path}" target="_blank"> å abbonnere på OpneProject kalendere og se oppdatert informasjon om arbeidspakker fra eskterne klienter.'
@@ -2891,6 +2930,7 @@
   label_invite_user: "Inviter bruker"
   label_item: "Element"
   label_item_plural: "Elementer"
+  label_scored_list: "Scored list"
   label_share: "Del"
   label_share_project_list: "Del prosjektliste"
   label_share_work_package: "Del arbeidspakke"
@@ -2920,12 +2960,18 @@
   label_link_url: "Lenke (URL)"
   label_list: "Liste"
   label_loading: "Laster..."
+  label_locked: "locked"
   label_lock_user: "Lås bruker"
   label_logged_as: "Innlogget som"
   label_login: "Logg inn"
   label_custom_logo: "Tilpasset logo"
   label_custom_export_logo: "Tilpasset eksportlogo"
   label_custom_export_cover: "Egendefinert eksport forsidebakgrunn"
+  label_custom_export_footer: "Custom export footer image"
+  label_custom_export_font_regular: "Regular"
+  label_custom_export_font_bold: "Bold"
+  label_custom_export_font_italic: "Italic"
+  label_custom_export_font_bold_italic: "Bold Italic"
   label_custom_export_cover_overlay: "Egendefinert eksport fremside bakgrunnsoverlegg"
   label_custom_export_cover_text_color: "Tekstfarge"
   label_custom_pdf_export_settings: "Egendefinerte PDF eksportinnstillinger"
@@ -3013,6 +3059,8 @@
   label_operator_equals_or: "is (OR)"
   label_operator_equals_all: "is (AND)"
   label_operator_shared_with_user_any: "hvilken som helst"
+  label_open: "åpne"
+  label_closed: "lukket"
   label_open_menu: "Åpne meny"
   label_open_work_packages: "åpne"
   label_open_work_packages_plural: "åpne"
@@ -3079,6 +3127,10 @@
   label_project_view_all: "Vis alle prosjekter"
   label_project_show_details: "Vis prosjektdetaljer"
   label_project_hide_details: "Skjul prosjektdetaljer"
+  label_portfolio: "Portfolio"
+  label_portfolio_new: "New portfolio"
+  label_program: "Program"
+  label_program_new: "New program"
   label_public_projects: "Offentlige prosjekter"
   label_query_new: "Ny spørring"
   label_query_plural: "Egendefinerte spørringer"
@@ -3227,6 +3279,8 @@
   label_watched_work_packages: "Overvåkede arbeidspakker"
   label_what_is_this: "Hva er dette?"
   label_week: "Uke"
+  label_widget: "Widget"
+  label_widget_new: "New widget"
   label_wiki_content_added: "Wiki-side lagt til"
   label_wiki_content_updated: "Wiki-side oppdatert"
   label_wiki_toc: "Innholdsfortegnelse"
@@ -3574,6 +3628,8 @@
   permission_add_work_packages: "Legg til arbeidspakker"
   permission_add_messages: "Skriv meldinger"
   permission_add_project: "Opprett prosjekt"
+  permission_add_portfolios: "Create portfolios"
+  permission_add_programs: "Create programs"
   permission_add_work_package_attachments: "Legg til vedlegg"
   permission_add_work_package_attachments_explanation: "Tillater å legge til vedlegg uten å redigere arbeidspakke-tillatelse"
   permission_add_internal_comments: "Write internal comments"
@@ -3870,6 +3926,7 @@
   setting_attachment_whitelist: "Last opp hviteliste for vedlegg"
   setting_email_delivery_method: "Leveringsmetode for e-post"
   setting_emails_salutation: "Adresser bruker i e-post med"
+  setting_oauth_allow_remapping_of_existing_users: "Allow remapping of existing users"
   setting_sendmail_location: "Plasseringen av sendmail kjørbar"
   setting_smtp_enable_starttls_auto: "Bruk STARTTLS automatisk hvis tilgjengelig"
   setting_smtp_ssl: "Bruk SSL-tilkobling"
@@ -4030,11 +4087,13 @@
   setting_working_days: "Arbeidsdager"
   settings:
     authentication:
-      login_and_sso: "Login and SSO"
+      login: "Brukernavn"
       registration: "Registration"
-      single_sign_on: "Single Sign-On"
+      sso: "Single Sign-On (SSO)"
       omniauth_direct_login_hint_html: >
         If this option is active, login requests will redirect to the configured omniauth provider. The login dropdown and sign-in page will be disabled. <br/> <strong>Note:</strong> Unless you also disable password logins, with this option enabled, users can still log in internally by visiting the <code>%{internal_path}</code> login page.
+      remapping_existing_users_hint: >
+        If enabled, allows any configured identity provider to login existing users based on their email address, even if the user never signed in through that provider before. This can be useful when migrating the OpenProject instance to a new SSO provider, but is not recommended when using a provider that is not trusted by all users of your instance.
     attachments:
       whitelist_text_html: >
         Definer en liste over gydlige fil-typer og/eller mime typer for opplastingsfiler.<br/>Sett inn fil-typer (f.eks. <code>%{ext_example}</code>) eller mime typer (f.eks. <code>%{mime_example}</code>).<br/> La stå tom for å godta at alle filtyper kan lastes opp.  Flere verdier er tillatt (en linje for hver verdi).
@@ -4178,6 +4237,20 @@
     Dette er logoen som vises i din PDF-eksport. Det må være en PNG eller JPEG bildefil. En svart eller farget logo på gjennomsiktig eller hvit bakgrunn anbefales.
   text_custom_export_cover_instructions: >
     Dette er bildet som vises i bakgrunnen for en omslagsside i din PDF-eksport. Det må være en ca 800px bredde med 500px høydestørrelse PNG eller JPEG bildefil.
+  text_custom_export_footer_instructions: >
+    PDF exports will include a graphical element positioned to the left of the footer. This image must be a PNG or JPEG file with approximately 200 pixels in width.
+  label_custom_export_font_instructions: >
+    Upload and manage custom TrueType (.ttf) fonts used in your PDF exports. For best results, use matching files from the same font family. If no font is provided, the default NotoSans font will be used.
+  label_custom_export_images_instructions: >
+    Upload and manage custom image files used in your PDF exports.
+  text_custom_export_font_regular_instructions: >
+    This is the font file for regular text. It needs to be in TTF format and is required.
+  text_custom_export_font_bold_instructions: >
+    This is the font file for bold text. It needs to be in TTF format.
+  text_custom_export_font_italic_instructions: >
+    This is the font file for italic text. It needs to be in TTF format.
+  text_custom_export_font_bold_italic_instructions: >
+    This is the font file for bold and italic text. It needs to be in TTF format.
   text_custom_favicon_instructions: >
     Dette er det lille ikonet som vises i nettleservinduet/fanen ved siden av sidens tittel. Det må være et kvadrat 32 piksler stor PNG-bildefil med gjennomsiktig bakgrunn.
   text_custom_touch_icon_instructions: >
@@ -4518,6 +4591,8 @@
       code_500_missing_enterprise_token: "Forespørselen kan ikke håndteres på grunn av ugyldig eller manglende Enterprise nøkkel."
       bad_request:
         emoji_reactions_activity_type_not_supported: "This activity type does not support emoji reactions."
+        invalid_link: "The link under key '%{key}' is not valid."
+        links_not_an_object: "_links must be a JSON object."
       conflict:
         multiple_reminders_not_allowed: |-
           You can only set one reminder at a time for a work package. Please delete or update the existing reminder.
@@ -4720,3 +4795,6 @@
     description: "Legger til OmniAuth SAML leverandør til OpenProject"
   enterprise_plans:
     legacy_enterprise: "Enterprise Plan"
+  token:
+    hashed_token:
+      display_value_placeholder: "***"

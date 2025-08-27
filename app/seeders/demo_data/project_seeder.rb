@@ -154,8 +154,7 @@ module DemoData
       seed_data.lookup("types") || []
     end
 
-    def project_attributes
-      parent = Project.find_by(identifier: project_data.lookup("parent"))
+    def project_attributes # rubocop:disable Metrics/AbcSize
       {
         name: project_data.lookup("name"),
         identifier: project_data.lookup("identifier"),
@@ -164,7 +163,8 @@ module DemoData
         description: project_data.lookup("description"),
         enabled_module_names: project_data.lookup("modules"),
         types: Type.all,
-        parent:
+        parent: Project.find_by(identifier: project_data.lookup("parent")),
+        workspace_type: Project.workspace_types[:project]
       }
     end
   end

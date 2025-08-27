@@ -53,7 +53,7 @@ RSpec.describe "Projects lists columns", :js, with_settings: { login_required?: 
   include ProjectStatusHelper
 
   describe "column selection", with_settings: { enabled_projects_columns: %w[name created_at] } do
-    # Will still receive the :view_project permission
+    # Will still receive the `view_project` permission
     shared_let(:user) do
       create(:user, member_with_permissions: { project => %i(view_project_attributes),
                                                development_project => %i(view_project_attributes) })
@@ -397,6 +397,44 @@ RSpec.describe "Projects lists columns", :js, with_settings: { login_required?: 
             expect(page).to have_css(".project_phase_#{project_phase.definition_id}", text: "")
           end
         end
+      end
+    end
+  end
+
+  context "with calculated value columns", with_flag: { calculated_value_project_attribute: true } do
+    let!(:static_calculated_value) do
+      create(:calculated_value_project_custom_field,
+             name: "Calculated value field",
+             formula: "2.4 * 2",
+             projects: [project])
+    end
+
+    let!(:static_int_calculated_value) do
+      create(:calculated_value_project_custom_field,
+             name: "Calculated value int field",
+             formula: "6 / 3",
+             projects: [project])
+    end
+
+    before do
+      login_as(admin)
+
+      project.calculate_custom_fields([static_calculated_value, static_int_calculated_value])
+      project.save!
+
+      projects_page.visit!
+    end
+
+    it "displays calculated value columns" do
+      projects_page.set_columns("Name", static_calculated_value.name, static_int_calculated_value.name)
+
+      projects_page.within_row(project) do
+        expect(page)
+          .to have_css(".name", text: project.name)
+        expect(page)
+          .to have_css(".cf_#{static_calculated_value.id}", text: 4.8)
+        expect(page)
+          .to have_css(".cf_#{static_int_calculated_value.id}", text: 2)
       end
     end
   end

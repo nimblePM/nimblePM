@@ -448,17 +448,28 @@ module Pages::Meetings
 
     def open_participant_form
       page.find_test_selector("manage-participants-button").click
-      expect_modal("Participants")
+      expect_modal("Manage participants")
     end
 
     def in_participant_form(&)
-      page.within_modal("Participants", &)
+      page.within_modal("Manage participants", &)
     end
 
-    def expect_participant(participant, invited: false, attended: false, editable: true)
+    def expect_participant(participant, attended: false, editable: true)
       expect(page).to have_text(participant.name)
-      expect(page).to have_field(id: "checkbox_invited_#{participant.id}", checked: invited, disabled: !editable)
-      expect(page).to have_field(id: "checkbox_attended_#{participant.id}", checked: attended, disabled: !editable)
+
+      if !editable
+        expect(page).to have_no_selector("[data-test-selector='attendance_button_#{participant.id}']", text: "Attended")
+        expect(page).to have_no_selector("[data-test-selector='attendance_button_#{participant.id}']", text: "Mark as attended")
+
+        return
+      end
+
+      if attended
+        expect(page).to have_css("[data-test-selector='attendance_button_#{participant.id}']", text: "Attended")
+      else
+        expect(page).to have_css("[data-test-selector='attendance_button_#{participant.id}']", text: "Mark as attended")
+      end
     end
 
     def expect_participant_invited(participant, invited: true)
@@ -472,6 +483,25 @@ module Pages::Meetings
         check(id:)
         raise "Expected #{participant.id} to be invited now" unless page.has_checked_field?(id:)
       end
+    end
+
+    def toggle_attendance(participant)
+      expect(page).to have_text(participant.name)
+      click_link_or_button("attendance_button_#{participant.id}")
+    end
+
+    def select_participant(participant)
+      select_autocomplete page.find('[data-test-selector="participants-dialog-autocomplete"]'),
+                          query: participant.firstname,
+                          select_text: participant.name,
+                          results_selector: "body"
+
+      click_on "Add"
+    end
+
+    def remove_participant(participant)
+      expect(page).to have_text(participant.name)
+      click_link_or_button("remove_button_#{participant.id}")
     end
 
     def expect_available_participants(count:)

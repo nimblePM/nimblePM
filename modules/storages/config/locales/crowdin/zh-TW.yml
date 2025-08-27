@@ -21,11 +21,11 @@ zh-TW:
         project_folder_mode: 專案資料夾模式
         storage: 儲存空間
         storage_url: 儲存 URL
-      storages/share_point_storage:
+      storages/sharepoint_storage:
         host: Sharepoint 網站 URL
-        library: Library ID
+        library: 圖書館 ID
         name: 名稱
-        site: 站點 ID
+        site: 站台ID
       storages/storage:
         authentication_method: 驗證方式
         creator: 建立者
@@ -195,10 +195,10 @@ zh-TW:
       oauth_client_incomplete:
         nextcloud: 允許 OpenProject 使用 OAuth 存取 Nextcloud 資料。
         one_drive: 允許 OpenProject 使用 OAuth 連接 OneDrive/Sharepoint 存取 Azure 資料。
-        share_point: 允許 OpenProject 使用 OAuth 存取 SharePoint 資料。
+        sharepoint: 允許 OpenProject 使用 OAuth 存取 SharePoint 資料。
       redirect_uri_incomplete:
         one_drive: 使用正確的 URI 重定向完成設定。
-        share_point: '「請輸入正確的 URI 重導位置以完成設定。」'
+        sharepoint: '「請輸入正確的 URI 重導位置以完成設定。」'
     confirm_replace_oauth_application: 此操作將重設目前的 OAuth 憑證。 確認後，您必須在儲存空間提供商重新輸入憑證，並且所有遠端使用者都必須再次針對 OpenProject 進行授權。 您確定要繼續嗎？
     confirm_replace_oauth_client: 此操作將重設目前的 OAuth 憑證。 確認後，您必須輸入儲存提供者的新憑證，並且所有使用者都必須再次針對 %{provider_type} 進行授權。 您確定要繼續嗎？
     delete_warning:
@@ -317,6 +317,15 @@ zh-TW:
         oidc_token_acquisition_failed: OpenID Connect 配置中缺少所需的 audience 且不支援 Token Exchange，請查看官方文件了解更多。
         oidc_token_exchange_failed: 您的 OpenID Connect 提供者似乎存在令牌交換設定問題。請檢查其設定並重試。
         oidc_token_refresh_failed: 在檢查您存取儲存空間的權限時發生錯誤。請查看伺服器日誌以取得更多資訊。
+        sp_client_cant_delete_folder: 客戶在刪除 SharePoint 資料夾時遇到問題。請檢查您的儲存空間設定文件。
+        sp_client_id_missing: 已設定的 SharePoint OAuth 2 用戶端 ID 遺失。請檢查設定。
+        sp_client_secret_missing: 已設定的 SharePoint OAuth 2 用戶端密鑰遺失。請檢查設定。
+        sp_client_write_permission_missing: 客戶在 SharePoint 中似乎缺少寫入權限。請檢查您的儲存空間設定文件。
+        sp_existing_test_folder: 用於測試的資料夾 %{folder_name} 已存在於 SharePoint 中。請將其刪除後再試一次。
+        sp_oauth_request_error: 綁定至使用者的 SharePoint 請求失敗。請檢查伺服器日誌以取得更多資訊。
+        sp_oauth_token_missing: 由於使用者尚未連結其 SharePoint 帳號，OpenProject 無法測試使用者層級的與 SharePoint 之間的通訊。
+        sp_tenant_id_missing: 已設定的 SharePoint 目錄（租用戶）Id 遺失。請檢查設定。
+        sp_unexpected_content: 在 SharePoint 磁碟機中發現非預期的內容。
         unknown_error: 連線無法驗證。發生未知錯誤。請檢查伺服器日誌以瞭解進一步資訊。
       label_error: 錯誤
       label_failed: 損壞
@@ -337,12 +346,10 @@ zh-TW:
         warning: 某些檢查返回警告，可能會引發預期外的行為。
       title: 健康狀況報告
     health_email_notifications:
-      description_subscribed: 所有管理員都會收到此儲存空間的運作狀況電子郵件通知。
-      description_unsubscribed: 已向所有管理員關閉此儲存的運作狀況電子郵件通知。
+      description_disabled: 當有重要更新時，管理員將不會透過電子郵件收到更新。
+      description_enabled: 當有重要更新時，管理員將透過電子郵件收到更新。
       error_could_not_be_saved: 無法儲存電子郵件通知設定。 請再試一次。
-      subscribe: 訂閱
-      title: 電子郵件通知
-      unsubscribe: 取消訂閱
+      title: 以電子郵件更新管理員
     help_texts:
       project_folder: 項目資料夾是該項目文件上傳的預設資料夾。 儘管如此，用戶仍然可以將文件上傳到其他位置。
       project_folder_bulk: 專案資料夾是所有選取專案的預設檔案上傳資料夾。您可以在每個專案設定中個別修改。使用者仍可上傳檔案到其他位置。
@@ -386,11 +393,11 @@ zh-TW:
       setting_up_additional_storages_non_admin: 管理員可在 「管理」/「檔案儲存」 中設定額外的檔案儲存空間。
       setting_up_storages: 設定檔案儲存裝置，請參閱
       setting_up_storages_non_admin: 管理員可在 「管理」/「檔案儲存」 中設定檔案儲存空間。
-      share_point:
+      sharepoint:
         application_link_text: SharePoint 網站
         integration: SharePoint 管理 / OpenProject
-        oauth_configuration: 從 %{application_link_text}中的所需應用程式複製這些值。
-        provider_configuration: 請先確保您在 SharePoint 實例中擁有管理員權限，並已安裝 OpenProject 的整合應用程式，才能進行設定。
+        oauth_configuration: 請從 %{application_link_text} 中的目標應用程式複製這些值。
+        provider_configuration: 在進行設定前，請確保您在 %{application_link_text} 中擁有管理權限，或聯絡您的 Microsoft 管理員。在入口網站中，您還需要註冊一個 Azure 應用程式，或使用現有的應用程式進行驗證。
       type: '請確保您在 Nextcloud 實例中具有管理權限，並在進行設置之前安裝了以下應用程序：'
       type_link_text: "“整合 OpenProject”"
     label_active: 啟用
@@ -492,8 +499,8 @@ zh-TW:
         label_oauth_client_secret: Azure OAuth 客戶端密鑰值
         name: OneDrive
         name_placeholder: 例如 OneDrive
-      share_point:
-        label_oauth_client_id: Azure OAuth 應用程式(客戶端) ID
+      sharepoint:
+        label_oauth_client_id: Azure OAuth 應用程式 (用戶端) ID
         label_oauth_client_secret: Azure OAuth 客戶端密鑰值
         name: Sharepoint
         name_placeholder: 例如 SharePoint

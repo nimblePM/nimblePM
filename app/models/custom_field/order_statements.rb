@@ -29,34 +29,27 @@
 #++
 
 module CustomField::OrderStatements
+  ORDER_JOIN_METHOD_BY_FIELD_FORMAT = OpenProject::MultiKeyHash.expand(
+    %w[string date bool link] => :join_for_order_by_string_sql,
+    "int" => :join_for_order_by_int_sql,
+    %w[float calculated_value] => :join_for_order_by_float_sql,
+    "list" => :join_for_order_by_list_sql,
+    "user" => :join_for_order_by_user_sql,
+    "version" => :join_for_order_by_version_sql,
+    "hierarchy" => :join_for_order_by_hierarchy_sql
+  ).freeze
+
   # Returns the expression to use in ORDER BY clause to sort objects by their
   # value of the custom field.
   def order_statement
-    case field_format
-    when "string", "date", "bool", "link", "int", "float", "list", "user", "version", "hierarchy"
-      "cf_order_#{id}.value"
-    end
+    "cf_order_#{id}.value" if ORDER_JOIN_METHOD_BY_FIELD_FORMAT.key?(field_format)
   end
 
   # Returns the join statement that is required to sort objects by their value
   # of the custom field.
   def order_join_statement
-    case field_format
-    when "string", "date", "bool", "link"
-      join_for_order_by_string_sql
-    when "int"
-      join_for_order_by_int_sql
-    when "float"
-      join_for_order_by_float_sql
-    when "list"
-      join_for_order_by_list_sql
-    when "user"
-      join_for_order_by_user_sql
-    when "version"
-      join_for_order_by_version_sql
-    when "hierarchy"
-      join_for_order_by_hierarchy_sql
-    end
+    method_name = ORDER_JOIN_METHOD_BY_FIELD_FORMAT[field_format]
+    send(method_name) if method_name
   end
 
   # Returns the ORDER BY option defining order of objects without value for the

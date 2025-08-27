@@ -125,20 +125,7 @@ module Redmine
           custom_field_values(all:).select { |cv| cv.custom_field_id == id.to_i }
         end
 
-        def custom_field_values(all: false)
-          custom_field_values_cache[custom_field_cache_key] ||= begin
-            current_custom_fields = all ? all_available_custom_fields : available_custom_fields
-            current_custom_fields.flat_map do |custom_field|
-              existing_cvs = custom_values.select { |v| v.custom_field_id == custom_field.id }
-
-              if existing_cvs.empty?
-                build_default_custom_values(custom_field)
-              else
-                existing_cvs
-              end
-            end
-          end
-        end
+        def custom_field_values(all: false) = cached_custom_field_values[all ? :all_available : :available]
 
         # Override to extend the cache key for caching @custom_field_values_cache.
         #
@@ -155,8 +142,8 @@ module Redmine
         ##
         # Maps custom_values into a hash that can be passed to attributes
         # but keeps multivalue custom fields as array values
-        def custom_value_attributes
-          custom_field_values.each_with_object({}) do |cv, hash|
+        def custom_value_attributes(all: false)
+          custom_field_values(all:).each_with_object({}) do |cv, hash|
             key = cv.custom_field_id
             value = cv.value
 
@@ -213,7 +200,7 @@ module Redmine
         def ensure_custom_values_complete
           return unless custom_values.loaded? && (custom_values.any?(&:changed?) || custom_value_destroyed)
 
-          self.custom_values = custom_field_values
+          self.custom_values = custom_field_values(all: true)
         end
 
         def reload(*args)
@@ -335,6 +322,29 @@ module Redmine
 
         private
 
+        def custom_field_values_cache
+          @custom_field_values_cache ||= {}
+        end
+
+        def cached_custom_field_values
+          custom_field_values_cache[custom_field_cache_key] ||= {
+            all_available: uncached_custom_field_values_by_field(all_available_custom_fields),
+            available: uncached_custom_field_values_by_field(available_custom_fields)
+          }
+        end
+
+        def uncached_custom_field_values_by_field(custom_fields)
+          custom_fields.flat_map do |custom_field|
+            existing_cvs = custom_values.select { |v| v.custom_field_id == custom_field.id }
+
+            if existing_cvs.empty?
+              build_default_custom_values(custom_field)
+            else
+              existing_cvs
+            end
+          end
+        end
+
         def build_default_custom_values(custom_field)
           if custom_field.multi_value? && custom_field.default_value.present?
             custom_field.default_value.map do |value|
@@ -431,19 +441,15 @@ module Redmine
                                                  custom_field_id:,
                                                  value:)
 
-          custom_field_values.push(new_custom_value)
+          cached_custom_field_values.each_value { it.push new_custom_value }
         end
 
         def remove_custom_value(custom_value)
           return unless custom_value
 
           custom_value.mark_for_destruction
-          custom_field_values.delete custom_value
+          cached_custom_field_values.each_value { it.delete custom_value }
           self.custom_value_destroyed = true
-        end
-
-        def custom_field_values_cache
-          @custom_field_values_cache ||= {}
         end
 
         module AddClassMethods

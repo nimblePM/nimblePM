@@ -102,7 +102,7 @@ vi:
     button_save: "Lưu"
     button_settings: "Cài đặt"
     button_uncheck_all: "Bỏ chọn tất cả"
-    button_update: "Cập nhật"
+    button_update: "Cập Nhật"
     button_export-atom: "Tải xuống Atom"
     button_generate_pdf: "Generate PDF"
     button_create: "Tạo"
@@ -1079,6 +1079,8 @@ vi:
     notice_successful_delete: "Xóa thành công."
     notice_successful_update: "Cập nhật thành công."
     notice_job_started: "Công việc đã bắt đầu."
+    no_job_id: "No job ID returned from server."
+    invalid_job_response: "Invalid response from server."
     notice_bad_request: "Yêu cầu không hợp lệ."
     relations:
       empty: Không có mối quan hệ nào
@@ -1219,12 +1221,14 @@ vi:
         all: "Tất cả dự án"
         selected: "Chỉ các dự án được chọn"
       search_placeholder: "Tìm kiếm dự án..."
+      search_placeholder_favorites: "Search favorites..."
       include_subprojects: "Bao gồm tất cả các dự án con"
       tooltip:
         include_all_selected: "Dự án đã được bao gồm vì đã bật Bao gồm tất cả các dự án con."
         current_project: "Đây là dự án hiện tại của bạn."
         does_not_match_search: "Dự án không khớp với tiêu chí tìm kiếm."
       no_results: "Không có dự án nào khớp với tiêu chí tìm kiếm của bạn."
+      no_favorite_results: "No favorite project matches your search criteria."
     baseline:
       toggle_title: "Cơ sở"
       clear: "Xóa"

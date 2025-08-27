@@ -26,7 +26,6 @@ import {
 import { DropdownPosition, NgSelectComponent } from '@ng-select/ng-select';
 import { BehaviorSubject, merge, NEVER, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
-import { AddTagFn, GroupValueFn } from '@ng-select/ng-select/lib/ng-select.component';
 
 import { HalResource } from 'core-app/features/hal/resources/hal-resource';
 import {
@@ -70,6 +69,11 @@ export interface IAutocompleterTemplateComponent {
   labelTemplate?:TemplateRef<Element>;
   footerTemplate?:TemplateRef<Element>;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-redundant-type-constituents
+type AddTagFn = (term:string) => any | Promise<any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-redundant-type-constituents
+type GroupValueFn = (key:string | any, children:any[]) => string | any;
 
 @Component({
   selector: 'op-autocompleter',

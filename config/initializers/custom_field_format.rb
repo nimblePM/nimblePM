@@ -91,11 +91,21 @@ OpenProject::CustomFieldFormat.map do |fields|
                                                      enterprise_feature: :custom_field_hierarchies,
                                                      formatter: "CustomValue::HierarchyStrategy")
 
+  fields.register OpenProject::CustomFieldFormat.new("scored_list",
+                                                     label: :label_scored_list,
+                                                     only: %w(WorkPackage),
+                                                     order: 13,
+                                                     enabled: lambda do
+                                                       OpenProject::FeatureDecisions.scored_list_custom_fields_active?
+                                                     end,
+                                                     formatter: "CustomValue::HierarchyStrategy")
+
   fields.register OpenProject::CustomFieldFormat.new("calculated_value",
                                                      label: :label_calculated_value,
                                                      only: %w(Project),
-                                                     order: 13,
+                                                     order: 14,
                                                      enabled: lambda do
                                                        OpenProject::FeatureDecisions.calculated_value_project_attribute_active?
-                                                     end)
+                                                     end,
+                                                     formatter: "CustomValue::CalculatedValueStrategy")
 end

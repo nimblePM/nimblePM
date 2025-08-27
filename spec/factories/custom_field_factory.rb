@@ -23,7 +23,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
@@ -31,7 +31,7 @@
 FactoryBot.define do
   factory :custom_field do
     transient do
-      # These values are used internally to customize the  custom field name
+      # These values are used internally to customize the custom field name
       # when using traits. They are not meant to be set externally.
       _format_name do
         [
@@ -56,7 +56,11 @@ FactoryBot.define do
 
     after(:create) do
       # As the request store keeps track of the created custom fields
-      RequestStore.clear!
+      RequestStore.store.delete_if { |key, _| key.to_s.include?("_custom_fields") }
+    end
+
+    trait :admin_only do
+      admin_only { true }
     end
 
     trait :multi_value do
@@ -83,6 +87,7 @@ FactoryBot.define do
 
     trait :calculated_value do
       field_format { "calculated_value" }
+      formula { "2 + 2" }
     end
 
     trait :float do
@@ -184,6 +189,14 @@ FactoryBot.define do
       multi_value
     end
 
+    trait :scored_list do
+      field_format { "scored_list" }
+      hierarchy_root do
+        service = CustomFields::Hierarchy::HierarchicalItemService.new
+        service.generate_root(instance).value!
+      end
+    end
+
     factory :project_custom_field, class: "ProjectCustomField" do
       project_custom_field_section
 
@@ -248,6 +261,7 @@ FactoryBot.define do
       factory :multi_user_wp_custom_field, traits: [:multi_user]
       factory :link_wp_custom_field, traits: [:link]
       factory :hierarchy_wp_custom_field, traits: [:hierarchy]
+      factory :scored_list_wp_custom_field, traits: [:scored_list]
     end
 
     factory :issue_custom_field, class: "WorkPackageCustomField" do
