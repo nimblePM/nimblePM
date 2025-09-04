@@ -32,6 +32,19 @@ More information and screenshots can be found on our [website](https://www.openp
 - **Documentation**: Explore our [comprehensive documentation](https://www.openproject.org/docs/) to help you get up and running quickly.
 - **Training**: [Book one of our training or consulting offers](https://www.openproject.org/training-and-consulting/#training-signup) to get your team on board in no time.
 
+## Quick Start (NimbleEngineer fork)
+
+For running this forked OpenProject stack locally or on a server using the maintained `env.production` file:
+
+- See `AI_CHAT_INSTRUCTIONS.md` for the canonical docker compose commands.
+- Example with Docker Compose v2:
+
+```bash
+sudo docker compose --env-file env.production up -d --build
+```
+
+This section is specific to this fork. For general OpenProject docs, continue below.
+
 ## Report bugs
 
 You found a bug? Please [report it](https://www.openproject.org/docs/development/report-a-bug/) to our [OpenProject Community](https://community.openproject.org/projects/openproject). Thank you!

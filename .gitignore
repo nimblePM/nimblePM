@@ -148,3 +148,14 @@ acme.json
 *.deb
 *backup*.zip
 *production_backup*.zip
+
+# Local accidental backups and junk
+*.backup
+*.bak
+*.tmp
+*~
+
+# Ensure env files are ignored except examples
+env.production
+!.env.example
+!.env.*.example

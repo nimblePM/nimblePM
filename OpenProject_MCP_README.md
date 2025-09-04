@@ -116,6 +116,10 @@ docker run -d \
   mcp-openproject
 ```
 
+### **Running OpenProject services (this fork)**
+
+For starting the OpenProject stack that this MCP connects to, use the canonical commands in `AI_CHAT_INSTRUCTIONS.md` (docker compose with `--env-file env.production`). Keeping those commands in a single place ensures AI chats and humans use the same, up-to-date procedure.
+
 ## 📈 Future Enhancements
 
 ### **Potential Improvements:**
