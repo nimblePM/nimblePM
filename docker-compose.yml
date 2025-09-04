@@ -10,6 +10,8 @@ services:
       context: .
       dockerfile: ./Dockerfile.enterprise
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       RAILS_ENV: production
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
@@ -32,7 +34,7 @@ services:
     networks:
       - network
     ports:
-      - "${PORT:-8080}:8080"
+      - "${PORT:-3000}:3000"
     depends_on:
       - cache
 
@@ -41,6 +43,8 @@ services:
       context: .
       dockerfile: ./Dockerfile.enterprise
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       RAILS_ENV: production
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}

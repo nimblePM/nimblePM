@@ -155,7 +155,6 @@ acme.json
 *.tmp
 *~
 
-# Ensure env files are ignored except examples
-env.production
+# Ensure env files are ignored except examples (keep env.production tracked per project choice)
 !.env.example
 !.env.*.example

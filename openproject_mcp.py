@@ -402,7 +402,7 @@ async def search_work_packages(
             param_count += 1
             conditions.append(f"(u_assigned.firstname || ' ' || u_assigned.lastname) ILIKE ${param_count}")
             params.append(f'%{assignee}%')
-        
+            
         if type_name:
             param_count += 1
             conditions.append(f"t.name ILIKE ${param_count}")
@@ -928,7 +928,7 @@ async def search_work_packages_by_date(
         if status:
             conditions.append("s.name ILIKE $4")
             params.append(f'%{status}%')
-
+        
         params.append(limit)
         where_clause = " AND ".join(conditions)
         limit_clause = f"LIMIT ${len(params)}"
@@ -1094,7 +1094,7 @@ async def analyze_data_quality(project_name: Optional[str] = None):
 
             ORDER BY count DESC
         """, *params)
-
+        
         return dictify_rows(result)
 
 @mcp.tool()
