@@ -103,6 +103,48 @@ See COPYRIGHT and LICENSE files for more details.
   .assistant-icon { width: 28px; height: 28px; background: #1f5582; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 14px; }
   .assistant-title { font-weight: 600; font-size: 1rem; color: #1f2937; }
   .assistant-subtitle { color: #6b7280; font-size: 0.875rem; margin-top: 2px; }
+  
+  /* Animated thinking indicator */
+  .thinking-indicator { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    padding: 10px 12px; 
+    border-radius: 10px; 
+    background: linear-gradient(-45deg, #F3F4F6, #E5E7EB, #F3F4F6, #E5E7EB); 
+    background-size: 400% 400%; 
+    animation: shimmer 2s ease-in-out infinite;
+    color: #6b7280; 
+    font-size: 14px;
+  }
+  
+  .thinking-dots { 
+    display: inline-flex; 
+    gap: 3px; 
+  }
+  
+  .thinking-dots span { 
+    width: 4px; 
+    height: 4px; 
+    background: #9CA3AF; 
+    border-radius: 50%; 
+    animation: bounce 1.4s ease-in-out infinite both;
+  }
+  
+  .thinking-dots span:nth-child(1) { animation-delay: -0.32s; }
+  .thinking-dots span:nth-child(2) { animation-delay: -0.16s; }
+  .thinking-dots span:nth-child(3) { animation-delay: 0s; }
+  
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+    40% { transform: scale(1.2); opacity: 1; }
+  }
 </style>
 
 <!-- Inline native assistant UI (no iframe) -->
@@ -199,10 +241,10 @@ See COPYRIGHT and LICENSE files for more details.
     if (busy) return;
     const text = inputEl.value.trim(); if (!text) return; inputEl.value = '';
     appendMessage('user', text);
-    // simple typing indicator
-    const typingId = `typing-${Date.now()}`;
+    // animated thinking indicator
+    const typingId = `thinking-${Date.now()}`;
     const typingWrap = document.createElement('div'); typingWrap.id = typingId; typingWrap.style.margin = '8px 0';
-    typingWrap.innerHTML = '<div style="display:inline-block;padding:10px 12px;border-radius:10px;background:#F3F4F6;color:#6b7280;">Assistant is typing…</div>';
+    typingWrap.innerHTML = '<div class="thinking-indicator">Assistant is thinking<div class="thinking-dots"><span></span><span></span><span></span></div></div>';
     messagesEl.appendChild(typingWrap); messagesEl.scrollTop = messagesEl.scrollHeight;
     busy = true; inputEl.disabled = true; sendBtn.disabled = true;
     const history = Array.from(messagesEl.querySelectorAll('#messages > div')).map(n => n.textContent).slice(-6);

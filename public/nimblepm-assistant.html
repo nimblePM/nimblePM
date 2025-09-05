@@ -41,6 +41,48 @@
     .assistant-icon { width: 28px; height: 28px; background: #1f5582; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 14px; }
     .assistant-title { font-weight: 600; font-size: 1rem; color: #1f2937; }
     .assistant-subtitle { color: #6b7280; font-size: 0.875rem; margin-top: 2px; }
+    
+    /* Animated thinking indicator */
+    .thinking-indicator { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      padding: 10px 12px; 
+      border-radius: 10px; 
+      background: linear-gradient(-45deg, #F3F4F6, #E5E7EB, #F3F4F6, #E5E7EB); 
+      background-size: 400% 400%; 
+      animation: shimmer 2s ease-in-out infinite;
+      color: #6b7280; 
+      font-size: 14px;
+    }
+    
+    .thinking-dots { 
+      display: inline-flex; 
+      gap: 3px; 
+    }
+    
+    .thinking-dots span { 
+      width: 4px; 
+      height: 4px; 
+      background: #9CA3AF; 
+      border-radius: 50%; 
+      animation: bounce 1.4s ease-in-out infinite both;
+    }
+    
+    .thinking-dots span:nth-child(1) { animation-delay: -0.32s; }
+    .thinking-dots span:nth-child(2) { animation-delay: -0.16s; }
+    .thinking-dots span:nth-child(3) { animation-delay: 0s; }
+    
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+      40% { transform: scale(1.2); opacity: 1; }
+    }
 
     /* Container the Flowise full chat will render into */
     #flowiseContainer { width: 100%; flex: 1 1 auto; min-height: 0; height: 100%; display: block; }
