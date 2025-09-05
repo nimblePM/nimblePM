@@ -27,6 +27,10 @@ See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
 
+<% content_for :header_tags do %>
+  <link rel="stylesheet" href="https://use.typekit.net/fer7xvf.css">
+<% end %>
+
 <style>
   /* Remove OpenProject default padding and margins for full-screen experience */
   .content-container,
@@ -72,12 +76,17 @@ See COPYRIGHT and LICENSE files for more details.
 
   /* Native assistant UI */
   /* Overlay hero and chat to avoid layout shifts */
-  .initial-view { position: absolute; inset: 0; z-index: 2; height: 100%; min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); transition: all 0.35s ease; }
+  .initial-view { position: absolute; inset: 0; z-index: 2; height: 100%; min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; background: #fff; transition: all 0.35s ease; border-bottom: 1px solid #eef2f7; }
   .initial-view.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; height: 0; min-height: 0; margin: 0; padding: 0; overflow: hidden; }
   .welcome-header { text-align: center; margin-bottom: 2rem; max-width: 720px; }
-  .welcome-title { font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-top: 1rem; }
+  .welcome-title { font-size: 1.125rem; font-weight: 800; color: #1f2937; margin-top: 1rem; font-family: "prometo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
   .welcome-subtitle { font-size: 0.95rem; color: #6b7280; line-height: 1.6; margin-top: 0.25rem; }
-  .hero-logo { width: 160px; height: auto; display: block; margin: 0 auto; filter: none; }
+  /* Logo + subtle glow/shadow */
+  .logo-glow { position: relative; display: inline-block; }
+  .logo-glow::after { content: ""; position: absolute; left: 50%; transform: translateX(-50%); bottom: -10px; width: 68%; height: 22px; background: radial-gradient(ellipse at center, rgba(31,85,130,0.24), rgba(31,85,130,0) 65%); filter: blur(8px); }
+  .hero-logo { width: 160px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.06)); }
+  /* Apple-like rainbow gradient text */
+  .rainbow-text { font-weight: 800; background: linear-gradient(90deg, #0ea5e9 0%, #6366f1 18%, #a855f7 36%, #ec4899 52%, #f59e0b 68%, #84cc16 84%, #22d3ee 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; letter-spacing: -0.01em; }
   .search-container { width: 100%; max-width: 720px; margin: 1.5rem auto; }
   .search-input { width: 100%; padding: 1.1rem 1.25rem; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 12px; outline: none; background: #fff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); transition: all 0.15s ease; }
   .search-input:focus { border-color: #1f5582; box-shadow: 0 4px 6px -1px rgba(31,85,130,0.18); }
@@ -96,8 +105,10 @@ See COPYRIGHT and LICENSE files for more details.
 <div id="nimblepm-assistant" style="height: 100%; width: 100%; position: relative;">
   <div class="initial-view" id="initialView">
     <div class="welcome-header">
-      <img class="hero-logo" src="/sq-logo.svg" alt="nimblePM logo" />
-      <div class="welcome-title">nimblePM Assistant</div>
+      <div class="logo-glow">
+        <img class="hero-logo" src="/sq-logo.svg" alt="nimblePM logo" />
+      </div>
+      <div class="welcome-title">nimblePM <span class="rainbow-text">Assistant</span></div>
       <p class="welcome-subtitle">Ask about projects, tasks, workload, or reporting. Start with a question below or type your own.</p>
     </div>
     <div class="search-container">
