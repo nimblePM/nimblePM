@@ -38,6 +38,7 @@ services:
       - ./enterprise_token_patch.rb:/app/app/models/enterprise_token.rb:ro
       - ./public/nimblepm-assistant.html:/app/public/nimblepm-assistant.html:ro
       - ./public/simple-chat.html:/app/public/simple-chat.html:ro
+      - ./public/sq-logo.svg:/app/public/sq-logo.svg:ro
       - ./app/views/homescreen/index.html.erb:/app/app/views/homescreen/index.html.erb:ro
       - ./app/controllers/homescreen_controller.rb:/app/app/controllers/homescreen_controller.rb:ro
       - ./app/controllers/nimblepm_chat_controller.rb:/app/app/controllers/nimblepm_chat_controller.rb:ro
