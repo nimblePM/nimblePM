@@ -53,6 +53,7 @@ When assisting in this repository, follow these rules:
 
 - 2025-09-04: Initial version added with canonical docker compose commands using env.production.
 - 2025-09-05: Homepage chat height fix — single height anchor on `#content` with overlay layout (hero and chat `position: absolute; inset: 0`) to prevent push-down and scrolling after transition; remove hero from layout post-transition.
+- 2025-09-05: Fixed 500 error on `/my/account` page caused by hardcoded locale link `my/access_token` → `my/access_tokens` (plural). Also fixed chat JavaScript selector bug: replaced invalid `querySelectorAll('> div')` with `messagesEl.children` for cross-browser compatibility.
 
 ## nimblePM Chatbot Integration - Technical Summary
 
