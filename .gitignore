@@ -163,3 +163,7 @@ acme.json
 .env.backup2
 reporting/weekly_exec_report/*.csv
 reporting/weekly_exec_report/weekly_exec_report*.html
+reporting/weekly_exec_report/
+
+# Editor-specific
+.cursor/
