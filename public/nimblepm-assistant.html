@@ -1,0 +1,184 @@
+<!-- nimblepm-assistant version: 2025-09-05T1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nimblePM Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; color: #374151; background: #fff; height: 100vh; overflow: hidden; }
+
+    .initial-view { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); transition: all 0.35s ease; }
+    .initial-view.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; height: 0; margin: 0; padding: 0; overflow: hidden; }
+
+    .welcome-header { text-align: center; margin-bottom: 2rem; max-width: 720px; }
+    .welcome-title { font-size: 2.25rem; font-weight: 700; color: #1f2937; margin-bottom: 0.5rem; }
+    .welcome-subtitle { font-size: 1.05rem; color: #6b7280; line-height: 1.6; }
+
+    .search-container { width: 100%; max-width: 720px; margin: 1.5rem auto; }
+    .search-input { width: 100%; padding: 1.1rem 1.25rem; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 12px; outline: none; background: #fff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); transition: all 0.15s ease; }
+    .search-input:focus { border-color: #1f5582; box-shadow: 0 4px 6px -1px rgba(31,85,130,0.18); }
+
+    .quick-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; max-width: 720px; width: 100%; }
+    .quick-action { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.9rem 1rem; text-align: left; cursor: pointer; font-size: 0.95rem; color: #374151; transition: all 0.15s; }
+    .quick-action:hover { border-color: #1f5582; box-shadow: 0 2px 4px rgba(31,85,130,0.12); }
+
+    .chat-container { background: #fff; display: none; flex-direction: column; min-height: 0; height: 100vh; }
+    .chat-container.active { display: flex; }
+    .chat-header { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+    .assistant-icon { width: 28px; height: 28px; background: #1f5582; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 14px; }
+    .assistant-title { font-weight: 600; font-size: 1rem; color: #1f2937; }
+    .assistant-subtitle { color: #6b7280; font-size: 0.875rem; margin-top: 2px; }
+
+    /* Container the Flowise full chat will render into */
+    #flowiseContainer { width: 100%; flex: 1 1 auto; min-height: 0; height: 100%; display: block; }
+    flowise-fullchatbot#flowiseContainer { width: 100%; flex: 1 1 auto; min-height: 0; height: 100%; display: block; }
+    /* Ensure any immediate child stretches */
+    #flowiseContainer > * { width: 100% !important; height: 100% !important; }
+
+    .brand-footer { text-align: center; padding: 1rem; color: #9ca3af; font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <!-- Initial Search View -->
+  <div class="initial-view" id="initialView">
+    <div class="welcome-header">
+      <h1 class="welcome-title">nimblePM Assistant</h1>
+      <p class="welcome-subtitle">Ask about projects, tasks, workload, or reporting. Start with a question below or type your own.</p>
+    </div>
+
+    <div class="search-container">
+      <input id="initialSearch" class="search-input" type="text" autocomplete="off" placeholder="Ask about projects, status updates, upcoming deadlines..." />
+    </div>
+
+    <div class="quick-actions">
+      <div class="quick-action" onclick="startChat('Summarize the project updates for the past 3 days')">Summarize the project updates for the past 3 days</div>
+      <div class="quick-action" onclick="startChat('What work packages need immediate attention?')">What work packages need immediate attention?</div>
+      <div class="quick-action" onclick="startChat('What is the status of Mount Uniacke?')">What is the status of Mount Uniacke?</div>
+      <div class="quick-action" onclick="startChat('Where do you foresee workload issues?')">Where do you foresee workload issues?</div>
+    </div>
+
+    <div class="brand-footer">Powered by nimblePM • NS Power T&D Engineering</div>
+  </div>
+
+  <!-- Full Chat View -->
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+      <div class="assistant-icon">N</div>
+      <div>
+        <div class="assistant-title">nimblePM Assistant</div>
+        <div class="assistant-subtitle">AI assistant for project management</div>
+      </div>
+    </div>
+    <div id="chatBody" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;">
+      <div id="messages" style="flex: 1 1 auto; overflow: auto; padding: 16px; background: #fff;"></div>
+      <div id="composer" style="display: flex; gap: 8px; border-top: 1px solid #e5e7eb; padding: 10px 12px; background: #fff;">
+        <input id="chatInput" type="text" placeholder="Ask about projects, tasks, reporting..." style="flex: 1; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 10px; outline: none;" />
+        <button id="sendBtn" type="button" style="background: #1f5582; color: #fff; border: 0; padding: 10px 16px; border-radius: 10px; cursor: pointer;">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // Minimal native UI talking to Rails proxy -> Flowise
+    const CHATFLOW_ID = 'e2dfade6-7e37-4fd9-bdae-fb40b614e126';
+
+    const messagesEl = document.getElementById('messages');
+    const inputEl = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function appendMessage(role, text) {
+      const wrap = document.createElement('div');
+      wrap.style.margin = '8px 0';
+      wrap.style.display = 'flex';
+      wrap.style.justifyContent = role === 'user' ? 'flex-end' : 'flex-start';
+      const bubble = document.createElement('div');
+      bubble.style.maxWidth = '80%';
+      bubble.style.padding = '10px 12px';
+      bubble.style.borderRadius = '10px';
+      bubble.style.whiteSpace = 'pre-wrap';
+      bubble.style.wordBreak = 'break-word';
+      if (role === 'user') {
+        bubble.style.background = '#1f5582';
+        bubble.style.color = '#fff';
+      } else {
+        bubble.style.background = '#F3F4F6';
+        bubble.style.color = '#1F2937';
+      }
+      bubble.textContent = text;
+      wrap.appendChild(bubble);
+      messagesEl.appendChild(wrap);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    async function askFlowise(message, history = []) {
+      const res = await fetch('/nimblepm/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chatflowid: CHATFLOW_ID, message, history })
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        throw new Error(`Proxy error ${res.status}: ${txt}`);
+      }
+      return res.json();
+    }
+
+    async function sendCurrent() {
+      const text = inputEl.value.trim();
+      if (!text) return;
+      inputEl.value = '';
+      appendMessage('user', text);
+      // Collect last few messages as basic history
+      const history = Array.from(messagesEl.querySelectorAll('div'))
+        .map(n => n.textContent)
+        .slice(-6);
+      try {
+        const data = await askFlowise(text, history);
+        const reply = data?.text || data?.answer || JSON.stringify(data);
+        appendMessage('assistant', reply);
+      } catch (e) {
+        appendMessage('assistant', `Error: ${e.message}`);
+      }
+    }
+
+    sendBtn.addEventListener('click', sendCurrent);
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendCurrent();
+      }
+    });
+
+    // Expose a hook for initial message
+    window.nimblepmSend = (msg) => {
+      inputEl.value = msg;
+      sendCurrent();
+    };
+  </script>
+
+  <script>
+    const DEBUG = true;
+    const log = (...args) => DEBUG && console.log('[nimblePM]', ...args);
+
+    function startChat(message) {
+      const initialView = document.getElementById('initialView');
+      const chatContainer = document.getElementById('chatContainer');
+      initialView.classList.add('hidden');
+      chatContainer.classList.add('active');
+      setTimeout(() => { initialView.style.display = 'none'; }, 350);
+      if (message) { window.nimblepmSend(message); }
+      log('Switched to chat view');
+    }
+
+    window.startChat = startChat;
+
+    document.getElementById('initialSearch').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+        startChat(e.currentTarget.value.trim());
+      }
+    });
+  </script>
+</body>
+</html>

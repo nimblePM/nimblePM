@@ -59,6 +59,8 @@ Working on OpenProject comes with the satisfaction of working on a widely used o
 
 Also, if you do not want to be limited to working on open source in your free time, OpenProject GmbH, the company contributing to the OpenProject development, [is hiring](https://www.openproject.org/career/).
 
+For repository-specific conventions and commands used in this fork, see the local contributor guide: [AGENTS.md](AGENTS.md).
+
 
 ## Stay in contact
 

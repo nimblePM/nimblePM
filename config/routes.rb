@@ -29,7 +29,11 @@
 #++
 
 Rails.application.routes.draw do
+  Rails.logger.info("[nimblepm] routes loaded: #{Time.now.utc.iso8601}") if defined?(Rails)
   root to: "homescreen#index", as: "home"
+  # nimblePM chat proxy
+  get  "/nimblepm/ping", to: "nimblepm_chat#ping",  as: :nimblepm_ping
+  post "/nimblepm/chat", to: "nimblepm_chat#create", as: :nimblepm_chat
   rails_relative_url_root = OpenProject::Configuration["rails_relative_url_root"] || ""
 
   # Route for error pages

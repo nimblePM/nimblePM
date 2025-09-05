@@ -1,23 +1,33 @@
-# Ticket
-<!-- Provide the link to respective work package -->
+Title: <short imperative summary>
 
-<!-- Contributors: Please check our PR guide: https://www.openproject.org/docs/development/code-review-guidelines/#preparing-your-pull-request before opening a PR. -->
+## Summary
+- What does this change and why?
 
-<!-- Reviewers: Please check our Review guide: https://www.openproject.org/docs/development/code-review-guidelines/#reviewing -->
+## Type
+- [ ] Feature
+- [ ] Fix
+- [ ] Refactor
+- [ ] Chore
+- [ ] Docs
 
-# What are you trying to accomplish?
-<!-- Provide a description of the changes. -->
+## Linked Issues
+- Closes #
+- Refs OP# (work package)
 
-## Screenshots
-<!-- Provide before/after screenshots, videos, or graphs for any visual changes; otherwise, remove this section -->
+## Screenshots / GIF (optional)
 
-# What approach did you choose and why?
-<!-- This section is a place for you to describe your thought process in making these changes.
-     List any tradeoffs you made to take on or pay down tech debt.
-     Describe any alternative approaches you considered and why you discarded them. -->
+## Test Plan
+- Backend: `bundle exec rake test:suite:run`
+- Frontend: `cd frontend && npm test`
+- Docker config: `sudo docker compose --env-file env.production config`
 
-# Merge checklist
+## Checklist
+- [ ] Linters pass (Rubocop/ERB/ESLint) locally or via lefthook
+- [ ] Tests pass (backend + frontend) locally
+- [ ] Docs updated if needed (AGENTS.md, AI_CHAT_INSTRUCTIONS.md)
+- [ ] No secrets committed; config via `env.production`
+- [ ] CSP updated if new external endpoints (see `config/initializers/z_custom_csp.rb`)
+- [ ] UI changes include screenshots
+- [ ] DB migrations (if any) are reversible and reviewed
+- [ ] Docker Compose changes validated with `env.production`
 
-- [ ] Added/updated tests
-- [ ] Added/updated documentation in Lookbook (patterns, previews, etc)
-- [ ] Tested major browsers (Chrome, Firefox, Edge, ...)

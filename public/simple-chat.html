@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Flowise Test</title>
+</head>
+<body style="margin: 0">
+    <h2 style="padding: 20px;">Direct Flowise Embed Test</h2>
+    
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.init({
+            chatflowid: "e2dfade6-7e37-4fd9-bdae-fb40b614e126",
+            apiHost: "https://ask.nimble.engineer",
+        })
+    </script>
+</body>
+</html>

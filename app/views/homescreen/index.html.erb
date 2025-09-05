@@ -26,38 +26,172 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
-<%=
-  render(Primer::OpenProject::PageHeader.new) do |header|
-    header.with_title { I18n.t("label_home") }
-    header.with_breadcrumbs([I18n.t(:label_home)], skip_home_on_mobile: true)
-  end
-%>
 
-<%= render partial: "announcements/show" %>
+<style>
+  /* Remove OpenProject default padding and margins for full-screen experience */
+  .content-container,
+  .content--split {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  #content-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  #content {
+    padding: 0 !important;
+    margin: 0 !important;
+    /* Single height anchor for the entire homescreen content area */
+    height: calc(100vh - 60px); /* Adjust based on header height */
+  }
+  
+  .nimblepm-assistant-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  
+  /* Hide the breadcrumb on this page for cleaner look */
+  .op-breadcrumb {
+    display: none;
+  }
+  
+  /* Popup chatbot will be controlled by Cloudflare worker configuration */
+  
+  /* Ensure our embedded chatbot is visible */
+  #fullchatbot,
+  flowise-fullchatbot,
+  .nimblepm-assistant-frame {
+    display: block !important;
+    visibility: visible !important;
+  }
 
-<% if @homescreen[:blocks].any? %>
-  <section class="widget-boxes -flex">
-  <% @homescreen[:blocks].each do |block| %>
-    <% if block[:if].nil? || instance_eval(&block[:if]) %>
-      <div class="widget-box <%= block[:partial] %>">
-        <%= render partial: "homescreen/blocks/#{block[:partial]}", locals: block[:locals] || {} %>
+  /* Native assistant UI */
+  /* Overlay hero and chat to avoid layout shifts */
+  .initial-view { position: absolute; inset: 0; z-index: 2; height: 100%; min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); transition: all 0.35s ease; }
+  .initial-view.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; height: 0; min-height: 0; margin: 0; padding: 0; overflow: hidden; }
+  .welcome-header { text-align: center; margin-bottom: 2rem; max-width: 720px; }
+  .welcome-title { font-size: 2.25rem; font-weight: 700; color: #1f2937; margin-bottom: 0.5rem; }
+  .welcome-subtitle { font-size: 1.05rem; color: #6b7280; line-height: 1.6; }
+  .search-container { width: 100%; max-width: 720px; margin: 1.5rem auto; }
+  .search-input { width: 100%; padding: 1.1rem 1.25rem; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 12px; outline: none; background: #fff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); transition: all 0.15s ease; }
+  .search-input:focus { border-color: #1f5582; box-shadow: 0 4px 6px -1px rgba(31,85,130,0.18); }
+  .quick-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; max-width: 720px; width: 100%; }
+  .quick-action { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.9rem 1rem; text-align: left; cursor: pointer; font-size: 0.95rem; color: #374151; transition: all 0.15s; }
+  .quick-action:hover { border-color: #1f5582; box-shadow: 0 2px 4px rgba(31,85,130,0.12); }
+  .chat-container { position: absolute; inset: 0; z-index: 1; background: #fff; display: none; flex-direction: column; min-height: 0; height: 100%; }
+  .chat-container.active { display: flex; }
+  .chat-header { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .assistant-icon { width: 28px; height: 28px; background: #1f5582; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 14px; }
+  .assistant-title { font-weight: 600; font-size: 1rem; color: #1f2937; }
+  .assistant-subtitle { color: #6b7280; font-size: 0.875rem; margin-top: 2px; }
+</style>
+
+<!-- Inline native assistant UI (no iframe) -->
+<div id="nimblepm-assistant" style="height: 100%; width: 100%; position: relative;">
+  <div id="nimblepm-debug" style="position:absolute;left:12px;top:8px;background:#ecfeff;color:#0e7490;padding:4px 8px;border-radius:6px;font-size:12px;z-index:5;">nimblePM inline boot…</div>
+  <div class="initial-view" id="initialView">
+    <div class="welcome-header">
+      <h1 class="welcome-title">nimblePM Assistant</h1>
+      <p class="welcome-subtitle">Ask about projects, tasks, workload, or reporting. Start with a question below or type your own.</p>
+    </div>
+    <div class="search-container">
+      <input id="initialSearch" class="search-input" type="text" autocomplete="off" placeholder="Ask about projects, status updates, upcoming deadlines...">
+    </div>
+    <div class="quick-actions">
+      <div class="quick-action" onclick="startChat('Summarize the project updates for the past 3 days')">Summarize the project updates for the past 3 days</div>
+      <div class="quick-action" onclick="startChat('What work packages need immediate attention?')">What work packages need immediate attention?</div>
+      <div class="quick-action" onclick="startChat('What is the status of Mount Uniacke?')">What is the status of Mount Uniacke?</div>
+      <div class="quick-action" onclick="startChat('Where do you foresee workload issues?')">Where do you foresee workload issues?</div>
+    </div>
+    <div style="text-align:center; padding: 1rem; color: #9ca3af; font-size: 0.875rem;">Powered by nimblePM • NS Power T&D Engineering</div>
+  </div>
+
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+      <div class="assistant-icon">N</div>
+      <div>
+        <div class="assistant-title">nimblePM Assistant</div>
+        <div class="assistant-subtitle">AI assistant for project management</div>
       </div>
-    <% end %>
-  <% end %>
-  </section>
-<% end %>
+    </div>
+    <div id="chatBody" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;">
+      <div id="messages" style="flex: 1 1 auto; overflow: auto; padding: 16px; background: #fff;"></div>
+      <div id="composer" style="display: flex; gap: 8px; border-top: 1px solid #e5e7eb; padding: 10px 12px; background: #fff;">
+        <input id="chatInput" type="text" placeholder="Ask about projects, tasks, reporting..." style="flex: 1; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 10px; outline: none;">
+        <button id="sendBtn" type="button" style="background: #1f5582; color: #fff; border: 0; padding: 10px 16px; border-radius: 10px; cursor: pointer;">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% if show_homescreen_links? && @homescreen[:links].any? %>
-  <section class="homescreen--links">
+<script>
+  console.log('[nimblePM] inline assistant script loaded');
+  const CHATFLOW_ID = '<%= ENV.fetch('FLOWISE_CHATFLOW_ID', 'e2dfade6-7e37-4fd9-bdae-fb40b614e126') %>';
 
-  <% @homescreen[:links].each do |link| %>
-    <% title = I18n.t(link[:label], scope: "homescreen.links") %>
-    <a class="homescreen--links--item" href="<%= link[:url] %>" target="_blank" aria-label="<%= title %>">
-      <%= op_icon(link[:icon]) %>
-      <%= title %>
-    </a>
-  <% end %>
-  </section>
-<% end %>
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+  let busy = false;
 
-<%= call_hook :homescreen_after_links %>
+  function appendMessage(role, text) {
+    const wrap = document.createElement('div');
+    wrap.style.margin = '8px 0';
+    wrap.style.display = 'flex';
+    wrap.style.justifyContent = role === 'user' ? 'flex-end' : 'flex-start';
+    const bubble = document.createElement('div');
+    bubble.style.maxWidth = '80%'; bubble.style.padding = '10px 12px'; bubble.style.borderRadius = '10px'; bubble.style.whiteSpace = 'pre-wrap'; bubble.style.wordBreak = 'break-word';
+    if (role === 'user') { bubble.style.background = '#1f5582'; bubble.style.color = '#fff'; } else { bubble.style.background = '#F3F4F6'; bubble.style.color = '#1F2937'; }
+    bubble.textContent = text; wrap.appendChild(bubble); messagesEl.appendChild(wrap); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function askFlowise(message, history = []) {
+    const res = await fetch('<%= nimblepm_chat_path %>', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chatflowid: CHATFLOW_ID, message, history }) });
+    if (!res.ok) { const txt = await res.text(); throw new Error(`Proxy error ${res.status}: ${txt}`); }
+    return res.json();
+  }
+
+  async function sendCurrent() {
+    if (busy) return;
+    const text = inputEl.value.trim(); if (!text) return; inputEl.value = '';
+    appendMessage('user', text);
+    // simple typing indicator
+    const typingId = `typing-${Date.now()}`;
+    const typingWrap = document.createElement('div'); typingWrap.id = typingId; typingWrap.style.margin = '8px 0';
+    typingWrap.innerHTML = '<div style="display:inline-block;padding:10px 12px;border-radius:10px;background:#F3F4F6;color:#6b7280;">Assistant is typing…</div>';
+    messagesEl.appendChild(typingWrap); messagesEl.scrollTop = messagesEl.scrollHeight;
+    busy = true; inputEl.disabled = true; sendBtn.disabled = true;
+    const history = Array.from(messagesEl.querySelectorAll('#messages > div')).map(n => n.textContent).slice(-6);
+    try {
+      const data = await askFlowise(text, history);
+      console.debug('[nimblePM] Flowise response', data);
+      const reply = data?.text || data?.answer || data?.message || data?.output || data?.result || JSON.stringify(data);
+      typingWrap.remove();
+      appendMessage('assistant', reply);
+    } catch (e) {
+      typingWrap.remove();
+      appendMessage('assistant', `Error: ${e.message}`);
+    } finally {
+      busy = false; inputEl.disabled = false; sendBtn.disabled = false; inputEl.focus();
+    }
+  }
+
+  sendBtn.addEventListener('click', sendCurrent);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target === document.getElementById('chatInput')) { e.preventDefault(); sendCurrent(); } });
+
+  function startChat(message) {
+    const initialView = document.getElementById('initialView');
+    const chatContainer = document.getElementById('chatContainer');
+    initialView.classList.add('hidden'); chatContainer.classList.add('active');
+    // Remove initial hero from layout after transition to avoid extra scroll space
+    setTimeout(() => { initialView.style.display = 'none'; }, 350);
+    if (message) { inputEl.value = message; sendCurrent(); }
+  }
+  window.startChat = startChat;
+
+  document.getElementById('initialSearch').addEventListener('keypress', (e) => { if (e.key === 'Enter' && e.currentTarget.value.trim()) { startChat(e.currentTarget.value.trim()); } });
+</script>

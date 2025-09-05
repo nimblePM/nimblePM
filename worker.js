@@ -86,8 +86,8 @@ export default {
     // This handler runs on the <body> tag
     rewriter.on('body', {
       element(element) {
-        // Skip injecting chatbot on homepage (where we have embedded chat)
-        if (url.pathname === '/' || url.pathname === '/home') {
+        // Skip injecting chatbot on homepage and homescreen (where we have embedded chat)
+        if (url.pathname === '/' || url.pathname === '' || url.pathname === '/home' || url.pathname.startsWith('/homescreen')) {
           return; // Don't inject popup chatbot on homepage
         }
         

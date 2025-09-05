@@ -2,6 +2,8 @@
 
 We are pleased that you are thinking about contributing to OpenProject! This guide details how to contribute to OpenProject in a way that is efficient and fun for everyone.
 
+Note for this NimbleEngineer fork: Please read the repository-local contributor guide in [AGENTS.md](AGENTS.md) for structure, commands, and conventions specific to this codebase (Docker Compose usage, CSP, and chat integration notes).
+
 ## Get in touch
 
 Please get in touch with us using our [development forum](https://community.openproject.org/projects/openproject/boards/7) or send us an email to [info@openproject.com](mailto:info@openproject.com).

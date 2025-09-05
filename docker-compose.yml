@@ -27,10 +27,22 @@ services:
       OPENPROJECT_PROTOCOL: ${OPENPROJECT_PROTOCOL:-https}
       OPENPROJECT_HTTPS: ${OPENPROJECT_HTTPS:-true}
       OPENPROJECT_SEED_ADMIN_USER__PASSWORD: ${ADMIN_PASSWORD:-admin}
+      OPENPROJECT_SECURITY_HEADERS_CONTENT_SECURITY_POLICY: ${OPENPROJECT_SECURITY_HEADERS_CONTENT_SECURITY_POLICY}
+      # Flowise API passthrough
+      FLOWISE_API_HOST: ${FLOWISE_API_HOST}
+      FLOWISE_CHATFLOW_ID: ${FLOWISE_CHATFLOW_ID}
+      FLOWISE_API_KEY: ${FLOWISE_API_KEY}
     volumes:
       - opdata:/var/openproject/assets
       - ./files:/var/openproject/files
       - ./enterprise_token_patch.rb:/app/app/models/enterprise_token.rb:ro
+      - ./public/nimblepm-assistant.html:/app/public/nimblepm-assistant.html:ro
+      - ./public/simple-chat.html:/app/public/simple-chat.html:ro
+      - ./app/views/homescreen/index.html.erb:/app/app/views/homescreen/index.html.erb:ro
+      - ./app/controllers/homescreen_controller.rb:/app/app/controllers/homescreen_controller.rb:ro
+      - ./app/controllers/nimblepm_chat_controller.rb:/app/app/controllers/nimblepm_chat_controller.rb:ro
+      - ./config/routes.rb:/app/config/routes.rb:ro
+      - ./config/initializers/z_custom_csp.rb:/app/config/initializers/z_custom_csp.rb:ro
     networks:
       - network
     ports:
@@ -52,10 +64,16 @@ services:
       OPENPROJECT_CACHE__MEMCACHE__SERVER: cache:11211
       OPENPROJECT_RAILS__CACHE__STORE: memcache
       OPENPROJECT_EDITION: ${OPENPROJECT_EDITION:-standard}
+      OPENPROJECT_SECURITY_HEADERS_CONTENT_SECURITY_POLICY: ${OPENPROJECT_SECURITY_HEADERS_CONTENT_SECURITY_POLICY}
+      # Flowise API passthrough
+      FLOWISE_API_HOST: ${FLOWISE_API_HOST}
+      FLOWISE_CHATFLOW_ID: ${FLOWISE_CHATFLOW_ID}
+      FLOWISE_API_KEY: ${FLOWISE_API_KEY}
     volumes:
       - opdata:/var/openproject/assets
       - ./files:/var/openproject/files
       - ./enterprise_token_patch.rb:/app/app/models/enterprise_token.rb:ro
+      - ./config/initializers/z_custom_csp.rb:/app/config/initializers/z_custom_csp.rb:ro
     networks:
       - network
     command: bundle exec good_job start

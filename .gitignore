@@ -158,3 +158,8 @@ acme.json
 # Ensure env files are ignored except examples (keep env.production tracked per project choice)
 !.env.example
 !.env.*.example
+
+# Local backups and reporting artifacts
+.env.backup2
+reporting/weekly_exec_report/*.csv
+reporting/weekly_exec_report/weekly_exec_report*.html
