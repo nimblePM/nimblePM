@@ -13,8 +13,9 @@
     .initial-view.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; height: 0; margin: 0; padding: 0; overflow: hidden; }
 
     .welcome-header { text-align: center; margin-bottom: 2rem; max-width: 720px; }
-    .welcome-title { font-size: 2.25rem; font-weight: 700; color: #1f2937; margin-bottom: 0.5rem; }
-    .welcome-subtitle { font-size: 1.05rem; color: #6b7280; line-height: 1.6; }
+    .welcome-title { font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-top: 1rem; }
+    .welcome-subtitle { font-size: 0.95rem; color: #6b7280; line-height: 1.6; margin-top: 0.25rem; }
+    .hero-logo { width: 160px; height: auto; display: block; margin: 0 auto; }
 
     .search-container { width: 100%; max-width: 720px; margin: 1.5rem auto; }
     .search-input { width: 100%; padding: 1.1rem 1.25rem; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 12px; outline: none; background: #fff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); transition: all 0.15s ease; }
@@ -44,7 +45,8 @@
   <!-- Initial Search View -->
   <div class="initial-view" id="initialView">
     <div class="welcome-header">
-      <h1 class="welcome-title">nimblePM Assistant</h1>
+      <img class="hero-logo" src="/sq-logo.svg" alt="nimblePM logo" />
+      <div class="welcome-title">nimblePM Assistant</div>
       <p class="welcome-subtitle">Ask about projects, tasks, workload, or reporting. Start with a question below or type your own.</p>
     </div>
 
@@ -80,6 +82,10 @@
     </div>
   </div>
 
+  <!-- Markdown rendering libs -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+
   <script type="module">
     // Minimal native UI talking to Rails proxy -> Flowise
     const CHATFLOW_ID = 'e2dfade6-7e37-4fd9-bdae-fb40b614e126';
@@ -106,7 +112,25 @@
         bubble.style.background = '#F3F4F6';
         bubble.style.color = '#1F2937';
       }
-      bubble.textContent = text;
+      if (role === 'assistant' && window.marked && window.DOMPurify) {
+        const html = window.marked.parse(text || '');
+        bubble.innerHTML = window.DOMPurify.sanitize(html);
+        bubble.querySelectorAll('pre').forEach(pre => {
+          pre.style.background = '#111827';
+          pre.style.color = '#e5e7eb';
+          pre.style.padding = '10px';
+          pre.style.borderRadius = '8px';
+          pre.style.overflowX = 'auto';
+        });
+        bubble.querySelectorAll('code:not(pre code)').forEach(code => {
+          code.style.background = '#e5e7eb';
+          code.style.padding = '2px 4px';
+          code.style.borderRadius = '4px';
+        });
+        bubble.querySelectorAll('a').forEach(a => { a.target = '_blank'; a.rel = 'noopener noreferrer'; });
+      } else {
+        bubble.textContent = text;
+      }
       wrap.appendChild(bubble);
       messagesEl.appendChild(wrap);
       messagesEl.scrollTop = messagesEl.scrollHeight;
