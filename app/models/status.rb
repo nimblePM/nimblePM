@@ -35,6 +35,8 @@ class Status < ApplicationRecord
   acts_as_list
 
   belongs_to :color, class_name: "Color"
+  has_and_belongs_to_many :projects,
+                          join_table: :projects_statuses
 
   before_destroy :delete_workflows
 
@@ -76,6 +78,10 @@ class Status < ApplicationRecord
   end
 
   def to_s; name end
+
+  def allowed_in_project?(project)
+    project.allowed_statuses.include?(self)
+  end
 
   def is_readonly
     return false unless can_readonly?
